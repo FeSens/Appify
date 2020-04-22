@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shop: one
+  name: MyString
+  short_name: MyString
+  theme_color: MyString
+  background_color: MyString
+  display: MyString
+  orientation: MyString
+
+two:
+  shop: two
+  name: MyString
+  short_name: MyString
+  theme_color: MyString
+  background_color: MyString
+  display: MyString
+  orientation: MyString

@@ -17,5 +17,17 @@
     <% end %>
   </ul>
 <% else %>
-  <p>This app has not created any webhooks for this Shop. Add webhooks to your ShopifyApp initializer if you need webhooks</p>
+  <p>This app has not created any webhooks for this Shop. Add webhooks to your ShopifyApp initializer if you need webhooks.</p>
+<% end %>
+
+<h2>ScriptTags</h2>
+
+<% if @scripttags.present? %>
+  <ul>
+    <% @scripttags.each do |scripttag| %>
+      <li><%= scripttag.src %> : <%= scripttag.display_scope %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>This app has not created any script tags for this Shop. Add webhooks to your ShopifyApp initializer if you need script tags.</p>
 <% end %>

@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_19_054150) do
+ActiveRecord::Schema.define(version: 2020_04_22_151006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "manifests", force: :cascade do |t|
+    t.bigint "shop_id", null: false
+    t.string "name"
+    t.string "short_name"
+    t.string "theme_color"
+    t.string "background_color"
+    t.string "display"
+    t.string "orientation"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["shop_id"], name: "index_manifests_on_shop_id"
+  end
 
   create_table "shops", force: :cascade do |t|
     t.string "shopify_domain", null: false
@@ -23,4 +36,5 @@ ActiveRecord::Schema.define(version: 2020_04_19_054150) do
     t.index ["shopify_domain"], name: "index_shops_on_shopify_domain", unique: true
   end
 
+  add_foreign_key "manifests", "shops"
 end

@@ -54,3 +54,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'shopify_app'
 gem 'serviceworker-rails'
+gem 'pry'
