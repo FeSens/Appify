@@ -4,11 +4,21 @@ class HomeController < AuthenticatedController
   def index
     @products = ShopifyAPI::Product.find(:all, params: { limit: 10 })
     @webhooks = ShopifyAPI::Webhook.find(:all)
-    @scripttags = ShopifyAPI::ScriptTag.find(:all)
-    @scripttags.each { |v| ShopifyAPI::ScriptTag.delete(v.id) }
-    ShopifyAPI::ScriptTag.create(event: "onload", src: "#{domain}/apps/script/serviceworker-register.js")
-    @scripttags = ShopifyAPI::ScriptTag.find(:all)
+    @manifest = shop.manifest
+    regiter_script
+  end
 
-    binding.pry
+  private
+
+  def regiter_script
+    @scripttags = ShopifyAPI::ScriptTag.find(:all)
+    return nil if @scripttags.select { |i| i.src.include? script_url}.present?
+
+    ShopifyAPI::ScriptTag.create(event: "onload", src: script_url)
+    @scripttags = ShopifyAPI::ScriptTag.find(:all)
+  end
+
+  def script_url
+    "https://#{domain}/apps/script/serviceworker-register.js"
   end
 end

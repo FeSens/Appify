@@ -31,3 +31,12 @@
 <% else %>
   <p>This app has not created any script tags for this Shop. Add webhooks to your ShopifyApp initializer if you need script tags.</p>
 <% end %>
+
+<%= form_for @manifest, url: manifest_path(@manifest), method: "patch" do |f| %>
+  <%= f.text_field :name %>
+  <%= f.text_field :short_name %>
+  <%= f.text_field :theme_color %>
+  <%= f.text_field :background_color %>
+  <%= f.text_field :display %>
+  <%= f.submit "Save" %>
+<% end %>
