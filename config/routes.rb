@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   mount ShopifyApp::Engine, at: '/'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resource :homepage, only: %i[show]
-  resources :manifests
+  resources :manifest_forms
+  resources :manifest, only: %i[index]
   resources :home
 end

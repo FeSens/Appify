@@ -7,8 +7,6 @@ Rails.application.configure do
       headers: { "Service-Worker-Allowed" => "/" }
     match '/serviceworker.js' => 'serviceworker.js', pack: true,
       headers: { "Service-Worker-Allowed" => "/" }
-    
-    match '/manifest.json'
     # Examples
     #
     # map to a named asset explicitly

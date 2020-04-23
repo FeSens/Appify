@@ -1,4 +1,4 @@
-class ManifestsController < AuthenticatedController
+class ManifestFormsController < AuthenticatedController
   def update
     Manifest.find(params[:id]).update(manifest_params)
     redirect_to home_index_path
