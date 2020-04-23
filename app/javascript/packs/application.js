@@ -16,3 +16,10 @@ require("channels")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 require("shopify_app")
+
+import "bootstrap";
+import "../stylesheets/application";
+
+document.addEventListener("turbolinks:load", () => {
+  $('[data-toggle="tooltip"]').tooltip()
+})

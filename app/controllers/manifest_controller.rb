@@ -1,6 +1,6 @@
 class ManifestController < ApplicationController
   def index
-    shop = Shop.first.find_by(domain: request.host)
+    shop = Shop.find_by(domain: request.host)
     return render json: {} unless shop
 
     manifest = shop.manifest
