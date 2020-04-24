@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: Appify_production
-  username: Appify
-  password: <%= ENV['APPIFY_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
