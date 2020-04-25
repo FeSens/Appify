@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class HomeController < AuthenticatedController
+class HomeController < ApplicationController
   def index
     @manifest = shop.manifest
     shop.update(domain: domain)
