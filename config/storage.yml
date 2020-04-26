@@ -32,3 +32,14 @@ local:
 #   service: Mirror
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
+
+local:
+  service: Disk
+  root: <%= Rails.root.join("storage") %>
+
+amazon:
+  service: S3
+  access_key_id: <%= Rails.application.credentials.dig(:amazon, :api_key) %>
+  secret_access_key: <%= Rails.application.credentials.dig(:amazon, :api_secret_key) %>
+  region: "us-east-1"
+  bucket: "appify-skin"
