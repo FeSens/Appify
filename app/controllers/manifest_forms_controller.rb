@@ -7,6 +7,6 @@ class ManifestFormsController < AuthenticatedController
   private
 
   def manifest_params
-    params.require(:manifest).permit(:name, :short_name, :theme_color, :background_color, :display, :orientation, :description)
+    params.require(:manifest).permit(:name, :short_name, :theme_color, :background_color, :display, :orientation, :description, :icon)
   end
 end
