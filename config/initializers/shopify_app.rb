@@ -1,5 +1,5 @@
 ShopifyApp.configure do |config|
-  config.application_name = "Appify"
+  config.application_name = "Aplicatify"
   config.api_key = Rails.application.credentials.dig(:shopify, :api_key)
   config.secret = Rails.application.credentials.dig(:shopify, :api_secret)
   config.old_secret = ""
