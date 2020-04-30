@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :manifest_forms
   resources :manifest, only: %i[index]
   resources :home
+  resources :privacy, only: %i[index]
 end
