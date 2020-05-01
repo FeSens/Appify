@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_25_210900) do
+ActiveRecord::Schema.define(version: 2020_05_01_044505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2020_04_25_210900) do
     t.string "orientation", default: "portrait"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "start_url", default: "/"
+    t.string "start_url", default: "/?utm_source=homescreen"
     t.string "lang", default: "pt-BR"
     t.string "description", default: "Descrição do seu app aqui"
     t.index ["shop_id"], name: "index_manifests_on_shop_id"
