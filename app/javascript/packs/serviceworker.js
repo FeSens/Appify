@@ -75,3 +75,10 @@ registerRoute(
     ],
   })
 );
+
+window.addEventListener('beforeinstallprompt', e => {
+  e.userChoice.then(choiceResult => {
+    $.post("apps/scripts/analytics/instals", choiceResult.outcome);  
+    ga('send', 'event', 'app_install', choiceResult.outcome);
+  });
+});
