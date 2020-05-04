@@ -9,12 +9,28 @@ const JS_CACHE = "javascript";
 const STYLE_CACHE = "stylesheets";
 const IMAGE_CACHE = "images";
 const FONT_CACHE = "fonts";
+const CACHE = "pwabuilder-offline";
 
 self.addEventListener("message", (event) => {
   if (event.data && event.data.type === "SKIP_WAITING") {
     self.skipWaiting();
   }
 });
+
+// This is the "Offline copy of assets" service worker
+
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
+});
+
+registerRoute(
+  new RegExp('/*'),
+  new StaleWhileRevalidate({
+    cacheName: CACHE
+  })
+);
 
 registerRoute(
   ({event}) => event.request.destination === 'document',
@@ -76,9 +92,9 @@ registerRoute(
   })
 );
 
-window.addEventListener('beforeinstallprompt', e => {
-  e.userChoice.then(choiceResult => {
-    $.post("apps/scripts/analytics/instals", choiceResult.outcome);  
-    ga('send', 'event', 'app_install', choiceResult.outcome);
-  });
-});
+//window.addEventListener('beforeinstallprompt', e => {
+//  e.userChoice.then(choiceResult => {
+//    $.post("apps/scripts/analytics/instals", choiceResult.outcome);  
+//  ga('send', 'event', 'app_install', choiceResult.outcome);
+//  });
+//});

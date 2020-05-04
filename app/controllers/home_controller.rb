@@ -13,9 +13,9 @@ class HomeController < AuthenticatedController
     @themes_id = ShopifyAPI::Theme.find(:all)
     @themes_id.each do |t|
       layout = ShopifyAPI::Asset.find('layout/theme.liquid', :params => {:theme_id => t.id})
-      unless layout.value.present? "<link rel='manifest' href='apps/script/manifest.json'>"
+      unless layout.value.include? "<link rel='manifest' href='/apps/script/manifest.json'>"
         l = layout.value.split("<head>")[1]
-        layout.value = "<head> <link rel='manifest' href='apps/script/manifest.json'> #{l}"
+        layout.value = "<head> <link rel='manifest' href='/apps/script/manifest.json'> #{l}"
         layout.save
       end
     end
