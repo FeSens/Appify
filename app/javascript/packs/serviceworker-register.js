@@ -5,8 +5,15 @@ if (navigator.serviceWorker) {
     });
 }
 window.addEventListener('beforeinstallprompt', e => {
-  e.userChoice.then(choiceResult => {
-    $.post("apps/scripts/analytics/installs", choiceResult.outcome);  
-//  ga('send', 'event', 'app_install', choiceResult.outcome);
+  e.preventDefault();
+  e.prompt();
+  e.userChoice.userChoice.then((choice) => {
+    if (choice.outcome === 'accepted') {
+      console.log('User accepted the A2HS prompt');
+    } else {
+      console.log('User dismissed the A2HS prompt');
+    }
+    // Clear the saved prompt since it can't be used again
+    installPromptEvent = null;
   });
 });
