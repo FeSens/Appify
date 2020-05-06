@@ -43,3 +43,5 @@ amazon:
   secret_access_key: <%= Rails.application.credentials.dig(:amazon, :api_secret_key) %>
   region: "us-east-1"
   bucket: "appify-skin"
+  upload:
+    acl: "public-read"
