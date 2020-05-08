@@ -13,7 +13,7 @@ class ManifestController < ApplicationController
   end
 
   def icons
-    sizes = [[192,192], [512,512]]
+    sizes = [[192, 192], [512, 512]]
     sizes.map do |size|
       { src: shop.manifest.icon.variant(resize_to_fit: size).processed.service_url.sub(/\?.*/, ''),
         sizes: "#{size[0]}x#{size[1]}",
