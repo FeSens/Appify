@@ -2,7 +2,7 @@ class ManifestController < ApplicationController
   attr_accessor :shop
 
   def index
-    shop = Shop.find_by(domain: request.host)
+    @shop = Shop.find_by(domain: request.host)
     return render json: {} unless shop
 
     manifest = shop.manifest.as_json except: %i[id created_at updated_at shop_id]
