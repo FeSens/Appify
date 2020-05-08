@@ -17,7 +17,7 @@ class ManifestController < ApplicationController
     sizes.map do |size|
       { src: shop.manifest.icon.variant(resize_to_fit: size).processed.service_url.sub(/\?.*/, ''),
         sizes: "#{size[0]}x#{size[1]}",
-        type: icon.content_type
+        type: shop.manifest.icon.content_type
       }
     end
   end
