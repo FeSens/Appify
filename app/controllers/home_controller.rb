@@ -2,7 +2,7 @@
 
 class HomeController < AuthenticatedController
   def index
-    @manifest = Manifest.last #shop.manifest
+    @manifest = shop.manifest
     shop.update(domain: domain)
     regiter_script
   end
@@ -13,20 +13,24 @@ class HomeController < AuthenticatedController
     @themes_id = ShopifyAPI::Theme.find(:all)
     @themes_id.each do |t|
       layout = ShopifyAPI::Asset.find('layout/theme.liquid', :params => {:theme_id => t.id})
-      unless layout.value.include? "<link rel='manifest' href='/apps/script/manifest.json'>"
+      unless layout.value.include? "<link rel='manifest' href='#{manifest_url}'>"
         l = layout.value.split("<head>")[1]
-        layout.value = "<head> <link rel='manifest' href='/apps/script/manifest.json'> #{l}"
+        layout.value = "<head> <link rel='manifest' href='#{manifest_url}'> #{l}"
+        layout.save
+      end
+      unless layout.value.include? "<link rel='manifest' href='#{manifest_url}'>"
+        l = layout.value.split("<head>")[1]
+        layout.value = "<head> <script type='text/javascript' async='' src='#{script_url}'></script> #{l}"
         layout.save
       end
     end
-    @scripttags = ShopifyAPI::ScriptTag.find(:all)
-    return nil if @scripttags.select { |i| i.src.include? script_url}.present?
-
-    ShopifyAPI::ScriptTag.create(event: "onload", src: script_url)
-    @scripttags = ShopifyAPI::ScriptTag.find(:all)
   end
 
   def script_url
-    "https://#{domain}/apps/script/serviceworker-register.js"
+    '/apps/script/serviceworker-register.js'
+  end
+
+  def manifest_url
+    '/apps/script/manifest.json'
   end
 end
