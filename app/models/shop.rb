@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class Shop < ActiveRecord::Base
   include ShopifyApp::ShopSessionStorage
-  has_one :manifest
+  has_one :manifest, dependent: :destroy
   after_create :init_manifest
 
   def init_manifest
