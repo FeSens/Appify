@@ -36,8 +36,6 @@ function addElement () {
   openPopup();
 }
 
-setTimeout(openPopup, 20);
-
 function openPopup() {
   var el = document.getElementById('popup');
   el.style.display = 'block';
@@ -64,3 +62,5 @@ function showPrompt() {
     installPromptEvent = null;
   });
 }
+
+setTimeout(addElement, 20000);
