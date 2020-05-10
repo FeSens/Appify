@@ -36,7 +36,7 @@ function addElement () {
   var newDiv = document.createElement("div"); 
   newDiv.innerHTML +=`<div id="popup" style="${style.popup}">
                         <div class="popup_body">
-                          Would you like to use your app?
+                          Would you like to use our app, and recive exclusive promotions?
                         </div>
                         <div style="${style.alingBottom}">
                           <button class="accept" onClick="showPrompt()"  style="${style.button}">Yes</button>
