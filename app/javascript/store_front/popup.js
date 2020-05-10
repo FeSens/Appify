@@ -13,7 +13,21 @@ var style = {
     border-radius: 5px;  
     box-shadow: 0 2px 8px #aaa;  
     overflow: hidden;   
-    padding: 10px;`
+    padding: 10px;`,
+  
+  button:`
+    color: 24a0ed;
+    background-color: white;
+    text-align: center;
+    border-color: white;
+    float: right;
+    padding: 10px 20px;`,
+
+  alingBottom:`
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  `
 }
 
 function addElement () { 
@@ -24,8 +38,10 @@ function addElement () {
                         <div class="popup_body" style="height: 90%;">
                           Would you like to use your app?
                         </div>
-                        <button class="accept" onClick="showPrompt()"> Yes! </button>
-                        <button class="close_button"onClick="closePopup()">close</button>
+                        <div style="${style.alingBottom}">
+                          <button class="accept" onClick="showPrompt()"  style="${style.button}">Yes</button>
+                          <button class="close_button" onClick="closePopup()" style="${style.button}">No</button>
+                        </div>
                       </div>`;   
 
   // add the newly created element and its content into the DOM 
