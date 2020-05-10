@@ -35,7 +35,7 @@ function addElement () {
   // and give it popup content 
   var newDiv = document.createElement("div"); 
   newDiv.innerHTML +=`<div id="popup" style="${style.popup}">
-                        <div class="popup_body" style="height: 90%;">
+                        <div class="popup_body">
                           Would you like to use your app?
                         </div>
                         <div style="${style.alingBottom}">
