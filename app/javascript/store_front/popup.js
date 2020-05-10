@@ -13,7 +13,8 @@ var style = {
     border-radius: 5px;  
     box-shadow: 0 2px 8px #aaa;  
     overflow: hidden;   
-    padding: 10px;`,
+    padding: 10px;
+    font-size: 1.3em;`,
   
   button:`
     color: 24a0ed;
@@ -67,6 +68,7 @@ function closePopup() {
 }
 
 function showPrompt() {
+  closePopup();
   window.installPromptEvent.prompt();
   window.installPromptEvent.userChoice.then((choice) => {
     if (choice.outcome === 'accepted') {
