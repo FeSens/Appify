@@ -63,4 +63,7 @@ function showPrompt() {
   });
 }
 
+window.showPrompt = showPrompt;
+window.closePopup = closePopup;
+
 setTimeout(addElement, 20000);
