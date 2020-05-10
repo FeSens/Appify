@@ -12,7 +12,7 @@ var style = {
     border: 1px solid #ddd;
     border-radius: 5px;  
     box-shadow: 0 2px 8px #aaa;  
-    overflow: hidden;   
+    overflow: hidden;
     padding: 10px;
     font-size: 1.3em;`,
   
