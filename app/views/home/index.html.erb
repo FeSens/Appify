@@ -1,5 +1,13 @@
 <div class="row">
-  <div class="col-6 ml-5 mt-5">
+  <div class="col-9 mx-auto mt-5 p white shadow-sm p-4 text-center">
+    <h1>Bem vindo ao Appify.</h1><br>
+    <h3>Configure a aparencia do seu app</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-9 mx-auto mt-5 p white shadow-sm p-4">
+    <h4 class="pb-4">Settings</h4>
     <%= form_for @manifest, url: manifest_form_path(@manifest), method: "patch" do |f| %>
       <div class="form-group">
         <%= label_tag 'manifest_name', 'Nome:' %>
@@ -25,7 +33,19 @@
         <%= label_tag 'manifest_description', 'Descrição:' %>
         <%= f.text_area :description, class: "form-control" %>
       </div>
-      <%= f.submit "Salvar", class: "btn btn-primary float-right" %>
+      <%= f.submit "Salvar", class: "btn btn-primary float-right px-4" %>
     <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-9 mx-auto mt-5 p white shadow-sm p-4 text-center">
+    <h4 class="pb-4">Downloads</h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-9 mx-auto mt-5 p white shadow-sm p-4 text-center">
+    <h4 class="pb-4">Aparencia No Site</h4>
   </div>
 </div>
