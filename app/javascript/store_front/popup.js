@@ -54,11 +54,13 @@ function addElement () {
 }
 
 function openPopup() {
-  var el = document.getElementById('popup');
-  el.style.display = 'block';
-  
-  // Updates: set window background color black
-  document.body.style.background = '#353333';
+  if(window.installPromptEvent){
+    var el = document.getElementById('popup');
+    el.style.display = 'block';
+    
+    // Updates: set window background color black
+    document.body.style.background = '#353333';
+  }
 }
 
 function closePopup() {
