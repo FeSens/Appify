@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_01_044505) do
+ActiveRecord::Schema.define(version: 2020_05_12_034600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,21 @@ ActiveRecord::Schema.define(version: 2020_05_01_044505) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "configurations", force: :cascade do |t|
+    t.bigint "shop_id", null: false
+    t.boolean "enable_timer"
+    t.boolean "enable_url"
+    t.string "modal_text"
+    t.integer "timer"
+    t.string "url"
+    t.boolean "enable_pages"
+    t.integer "pages"
+    t.boolean "and"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["shop_id"], name: "index_configurations_on_shop_id"
   end
 
   create_table "manifests", force: :cascade do |t|
@@ -61,6 +76,17 @@ ActiveRecord::Schema.define(version: 2020_05_01_044505) do
     t.index ["shopify_domain"], name: "index_shops_on_shopify_domain", unique: true
   end
 
+  create_table "track_installs", force: :cascade do |t|
+    t.bigint "shop_id", null: false
+    t.integer "count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "date"
+    t.index ["shop_id"], name: "index_track_installs_on_shop_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "configurations", "shops"
   add_foreign_key "manifests", "shops"
+  add_foreign_key "track_installs", "shops"
 end

@@ -2,6 +2,7 @@
 class Shop < ActiveRecord::Base
   include ShopifyApp::ShopSessionStorage
   has_one :manifest, dependent: :destroy
+  has_one :configuration, dependent: :destroy
   after_create :init_manifest
 
   def init_manifest

@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shop: one
+  enable_timer: false
+  enable_url: false
+  modal_text: MyString
+  timer: 1
+  url: MyString
+  enable_pages: false
+  pages: 1
+  and: false
+
+two:
+  shop: two
+  enable_timer: false
+  enable_url: false
+  modal_text: MyString
+  timer: 1
+  url: MyString
+  enable_pages: false
+  pages: 1
+  and: false
