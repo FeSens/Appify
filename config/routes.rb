@@ -9,4 +9,11 @@ Rails.application.routes.draw do
   resources :home
   resources :privacy, only: %i[index]
   resources :render_js, only: %i[index], path: '/preferences'
+
+  controller :mandatory_webhooks do
+    post '/webhooks/shop_redact' => :shop_redact
+    post '/webhooks/customers_redact' => :customers_redact
+    post '/webhooks/customers_data_request' => :customers_data_request
+  end
+  
 end
