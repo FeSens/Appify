@@ -3,6 +3,7 @@
 class HomeController < AuthenticatedController
   def index
     @manifest = shop.manifest
+    @configuration = shop.configuration
     shop.update(domain: domain)
     regiter_script
   end
