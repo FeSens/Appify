@@ -39,7 +39,7 @@
 </div>
 
 <div class="row">
-  <div class="col-9 mx-auto mt-5 p white shadow-sm p-4 text-center">
+  <div class="col-9 mx-auto mt-5 p white shadow-sm p-4">
     <h4 class="pb-4">Gatilhos de Instalação</h4>
     <%= form_for @configuration, url: configuration_form_path(@configuration), method: "patch" do |f| %>
       <div class="form-group">
@@ -48,11 +48,11 @@
       </div>
       <div class="form-group">
         <%= label_tag 'configuration_timer', 'Tempo (segundos):' %>
-        <%= f.integer_field :timer, class: "form-control" %>
+        <%= f.number_field :timer, class: "form-control" %>
       </div>
       <div class="form-group">
         <%= label_tag 'configuration_modal_text', 'Texto do Popup' %>
-        <%= f.text_field :modal_text:, class: "form-control" %>
+        <%= f.text_area :modal_text, class: "form-control" %>
       </div>
       <%= f.submit "Salvar", class: "btn btn-primary float-right px-4" %>
     <% end %>
