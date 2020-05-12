@@ -7,6 +7,7 @@ class Shop < ActiveRecord::Base
 
   def init_manifest
     create_manifest
+    create_configuration
   end
 
   def api_version

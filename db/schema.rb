@@ -38,14 +38,14 @@ ActiveRecord::Schema.define(version: 2020_05_12_034600) do
 
   create_table "configurations", force: :cascade do |t|
     t.bigint "shop_id", null: false
-    t.boolean "enable_timer"
-    t.boolean "enable_url"
-    t.string "modal_text"
-    t.integer "timer"
-    t.string "url"
-    t.boolean "enable_pages"
-    t.integer "pages"
-    t.boolean "and"
+    t.boolean "enable_timer", default: false, null: false
+    t.boolean "enable_url", default: false, null: false
+    t.boolean "enable_pages", default: false, null: false
+    t.boolean "and", default: false, null: false
+    t.string "modal_text", default: "Do you want to install our app for exclusive promotions?", null: false
+    t.integer "timer", default: 20000, null: false
+    t.string "url", default: "/", null: false
+    t.integer "pages", default: 2, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["shop_id"], name: "index_configurations_on_shop_id"
