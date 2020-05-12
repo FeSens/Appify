@@ -18,7 +18,8 @@ class HomeController < AuthenticatedController
         layout.value = "<head> <link rel='manifest' href='#{manifest_url}'> #{l}"
         layout.save
       end
-      unless layout.value.include? "<script type='text/javascript' async='' src='#{script_url}'></script>"
+      script_urls.each do |script_url|
+        next if layout.value.include? "<script type='text/javascript' async='' src='#{script_url}'></script>"
         l = layout.value.split("<head>")[1]
         layout.value = "<head> <script type='text/javascript' async='' src='#{script_url}'></script> #{l}"
         layout.save
@@ -26,8 +27,9 @@ class HomeController < AuthenticatedController
     end
   end
 
-  def script_url
-    '/apps/script/serviceworker-register.js'
+  def script_urls
+    ['/apps/script/serviceworker-register.js',
+    '/apps/script/preferences.js']
   end
 
   def manifest_url
