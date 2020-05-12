@@ -86,7 +86,9 @@ function closePopup() {
 }
 
 function showPrompt() {
-  closePopup();
+  var el = document.getElementById('popup');
+  el.style.display = 'none';
+  document.body.style.background = 'white';
   window.installPromptEvent.prompt();
   window.installPromptEvent.userChoice.then((choice) => {
     if (choice.outcome === 'accepted') {
