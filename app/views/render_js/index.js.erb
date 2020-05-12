@@ -82,6 +82,7 @@ function closePopup() {
   var el = document.getElementById('popup');
   el.style.display = 'none';
   document.body.style.background = 'white';
+  window.installPromptEvent = null
 }
 
 function showPrompt() {
@@ -101,4 +102,6 @@ function showPrompt() {
 window.showPrompt = showPrompt;
 window.closePopup = closePopup;
 
-setTimeout(addElement, <%= @shop.id%>);
+<% if @config.enable_timer %>
+  setTimeout(addElement, <%= @config.timer %>);
+<% end %>

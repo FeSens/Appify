@@ -3,6 +3,7 @@ class RenderJsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @shop = Shop.last#Shop.find_by(domain: request.host)
+    @config = Shop.find_by(domain: request.host)&.configuration
+    @config = Shop.last.configuration if Rails.env.development?
   end
 end
