@@ -8,5 +8,3 @@ window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
   window.installPromptEvent = e;
 });
-
-require("store_front")
