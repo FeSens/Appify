@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :manifest, only: %i[index]
   resources :home
   resources :privacy, only: %i[index]
+  resources :render_js, only: %i[index]
 end
