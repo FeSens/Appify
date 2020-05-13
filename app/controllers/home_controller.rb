@@ -5,12 +5,12 @@ class HomeController < AuthenticatedController
     @manifest = shop.manifest
     @configuration = shop.configuration
     shop.update(domain: domain)
-    regiter_script
+    register_script
   end
 
   private
 
-  def regiter_script
+  def register_script
     @themes_id = ShopifyAPI::Theme.find(:all)
     @themes_id.each do |t|
       layout = ShopifyAPI::Asset.find('layout/theme.liquid', :params => {:theme_id => t.id})
