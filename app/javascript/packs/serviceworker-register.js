@@ -9,7 +9,7 @@ window.addEventListener('beforeinstallprompt', e => {
   window.installPromptEvent = e;
 });
 
-var vapidPublicKey = <%= Rails.application.credentials.dig(:webpush, :public_key) %>;
+var vapidPublicKey = 'BOrPeoGdzvXg1OuNhjqYpCFof8D5QnDu4v1td5GTBBrXoVU-MhufANWOmWaHLH5ZXv3BUEFmP-I4m9Olme7V_VY';
 
 function checkNotifs(obj){
 if (!("Notification" in window)) {                                             //1
