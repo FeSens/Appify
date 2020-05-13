@@ -50,7 +50,7 @@ if (navigator.serviceWorker) {
 }
 
 function sendKeys(s){
-  $.post('/push', {
+  $.post('/apps/script/push', {
     endpoint: s.endpoint,
     p256dh: btoa(String.fromCharCode.apply(null, new Uint8Array(s.getKey('p256dh')))).replace(/\+/g, '-').replace(/\//g, '_'),
     auth: btoa(String.fromCharCode.apply(null, new Uint8Array(s.getKey('auth')))).replace(/\+/g, '-').replace(/\//g, '_')
