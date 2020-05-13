@@ -35,7 +35,8 @@ gem 'pry'
 gem 'bootstrap',  '~>4.3.1'
 gem 'sprockets', '~> 3.0'
 gem 'image_processing', '~> 1.2'
-gem "aws-sdk-s3", require: false
+gem 'aws-sdk-s3', require: false
+gem 'webpush'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
