@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_12_034600) do
+ActiveRecord::Schema.define(version: 2020_05_13_043149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,18 @@ ActiveRecord::Schema.define(version: 2020_05_12_034600) do
     t.index ["shop_id"], name: "index_configurations_on_shop_id"
   end
 
+  create_table "customers", force: :cascade do |t|
+    t.boolean "acceptsMarketing"
+    t.string "displayName"
+    t.string "email"
+    t.string "firstName"
+    t.string "shopify_id"
+    t.string "lastName"
+    t.string "phone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "manifests", force: :cascade do |t|
     t.bigint "shop_id", null: false
     t.string "name", default: "O seu App"
@@ -65,6 +77,16 @@ ActiveRecord::Schema.define(version: 2020_05_12_034600) do
     t.string "lang", default: "pt-BR"
     t.string "description", default: "Descrição do seu app aqui"
     t.index ["shop_id"], name: "index_manifests_on_shop_id"
+  end
+
+  create_table "pushes", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.string "endpoint"
+    t.string "auth"
+    t.string "p256dh"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_pushes_on_customer_id"
   end
 
   create_table "shops", force: :cascade do |t|
@@ -88,5 +110,6 @@ ActiveRecord::Schema.define(version: 2020_05_12_034600) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "configurations", "shops"
   add_foreign_key "manifests", "shops"
+  add_foreign_key "pushes", "customers"
   add_foreign_key "track_installs", "shops"
 end

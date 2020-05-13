@@ -15,5 +15,6 @@ Rails.application.routes.draw do
     post '/webhooks/customers_redact' => :customers_redact
     post '/webhooks/customers_data_request' => :customers_data_request
   end
-  
+
+  resource :push, only: %i[create]
 end

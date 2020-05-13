@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  acceptsMarketing: false
+  displayName: MyString
+  email: MyString
+  firstName: MyString
+  shopify_id: MyString
+  lastName: MyString
+  phone: MyString
+
+two:
+  acceptsMarketing: false
+  displayName: MyString
+  email: MyString
+  firstName: MyString
+  shopify_id: MyString
+  lastName: MyString
+  phone: MyString
