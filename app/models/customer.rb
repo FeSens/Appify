@@ -1,3 +1,3 @@
 class Customer < ApplicationRecord
-  has_many :pushs
+  has_many :pushes
 end
