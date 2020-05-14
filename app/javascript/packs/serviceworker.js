@@ -93,11 +93,11 @@ registerRoute(
 );
 
 self.addEventListener("push", function(event) {
-  var data = event.data;
-  var title = data['title'];
-  var body = data['body'];
-  var tag = data['tag'];
-  var icon = data['icon'];
+  var data = event.data.json();
+  var title = data.title;
+  var body = data.body;
+  var tag = data.tag;
+  var icon = data.icon;
 
   event.waitUntil(
       self.registration.showNotification(title, {
