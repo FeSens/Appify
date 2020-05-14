@@ -5,7 +5,7 @@ class SendPushesController < AuthenticatedController
         title: push_params[:title],
         body: push_params[:body]
       }
-      send(customer, message)
+      send_push(customer, message)
     end
     redirect_to home_index_path
   end
@@ -21,7 +21,7 @@ class SendPushesController < AuthenticatedController
     shop.manifest.icon.variant(resize_to_fit: [192, 192]).processed.service_url.sub(/\?.*/, '') if shop.manifest.icon.present?
   end
 
-  def send(customer, message)
+  def send_push(customer, message)
     Webpush.payload_send(
       endpoint: customer.endpoint,
       message: message.to_json,
@@ -36,11 +36,4 @@ class SendPushesController < AuthenticatedController
   rescue Webpush::ExpiredSubscription
     customer.destroy
   end
-
-
-
-
-
-
-
 end
