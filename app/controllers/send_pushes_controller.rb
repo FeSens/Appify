@@ -5,7 +5,6 @@ class SendPushesController < AuthenticatedController
         title: push_params[:title],
         body: push_params[:body]
       }
-      puts message
       send_push(customer, message)
     end
     redirect_to home_index_path
