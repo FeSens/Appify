@@ -13,6 +13,7 @@ class PushesController < ApplicationController
   private
 
   def subscription_params
-    params.permit(:endpoint, :auth, :p256dh, :shop)
+    s = Shop.find_by(shopify_domain: params[:shop])
+    params.permit(:endpoint, :auth, :p256dh).merge(shop_id: s.id)
   end
 end

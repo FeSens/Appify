@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   end
 
   resource :push, only: %i[create]
+  resource :send_push, only: %i[create]
 end
