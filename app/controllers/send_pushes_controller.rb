@@ -3,8 +3,7 @@ class SendPushesController < AuthenticatedController
     Push.all.each do |customer|
       message = {
         title: push_params[:title],
-        body: push_params[:body],
-        icon: icon
+        body: push_params[:body]
       }
       send(customer, message)
     end
@@ -34,9 +33,14 @@ class SendPushesController < AuthenticatedController
         private_key: Rails.application.credentials.dig(:webpush, :private_key)
       }
       )
-    true
   rescue Webpush::ExpiredSubscription
     customer.destroy
-    false
   end
+
+
+
+
+
+
+
 end
