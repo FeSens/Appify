@@ -11,12 +11,6 @@ const IMAGE_CACHE = "images";
 const FONT_CACHE = "fonts";
 const CACHE = "pwabuilder-offline";
 
-self.addEventListener("message", (event) => {
-  if (event.data && event.data.type === "SKIP_WAITING") {
-    self.skipWaiting();
-  }
-});
-
 // This is the "Offline copy of assets" service worker
 
 self.addEventListener("message", (event) => {
@@ -24,13 +18,6 @@ self.addEventListener("message", (event) => {
     self.skipWaiting();
   }
 });
-
-registerRoute(
-  new RegExp('/*'),
-  new StaleWhileRevalidate({
-    cacheName: CACHE
-  })
-);
 
 registerRoute(
   ({event}) => event.request.destination === 'document',
@@ -50,7 +37,8 @@ registerRoute(
     cacheName: JS_CACHE,
     plugins: [
       new ExpirationPlugin({
-        maxEntries: 15,
+        maxEntries: 15, 
+        purgeOnQuotaError: true,
       }),
     ],
   })
@@ -62,7 +50,8 @@ registerRoute(
     cacheName: STYLE_CACHE,
     plugins: [
       new ExpirationPlugin({
-        maxEntries: 15,
+        maxEntries: 15, 
+        purgeOnQuotaError: true,
       }),
     ],
   })
@@ -73,8 +62,12 @@ registerRoute(
   new StaleWhileRevalidate({
     cacheName: IMAGE_CACHE,
     plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
       new ExpirationPlugin({
-        maxEntries: 15,
+        maxEntries: 15, 
+        purgeOnQuotaError: true,
       }),
     ],
   })
@@ -86,7 +79,8 @@ registerRoute(
     cacheName: FONT_CACHE,
     plugins: [
       new ExpirationPlugin({
-        maxEntries: 15,
+        maxEntries: 15, 
+        purgeOnQuotaError: true,
       }),
     ],
   })
