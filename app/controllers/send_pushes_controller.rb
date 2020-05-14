@@ -13,7 +13,7 @@ class SendPushesController < AuthenticatedController
   private
 
   def push_params
-    params.require(:push).permit(:title, :body, :icon)
+    params.permit(:title, :body, :icon)
   end
 
   def icon
