@@ -39,5 +39,4 @@ class SendPushesController < AuthenticatedController
     customer.destroy
     false
   end
-
 end
