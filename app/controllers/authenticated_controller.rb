@@ -6,7 +6,7 @@ class AuthenticatedController < ApplicationController
   private
 
   def shop
-    Shop.where(shopify_domain: ShopifyAPI::Shop.current.myshopify_domain).first
+    Shop.find_by(shopify_domain: ShopifyAPI::Shop.current.myshopify_domain)
   end
 
   def domain

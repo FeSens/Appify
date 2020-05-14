@@ -25,5 +25,4 @@ class ManifestController < ApplicationController
   def hash_color(color)
     "##{color.gsub('#', '')}"
   end
-
 end

@@ -3,7 +3,8 @@ class SendPushesController < AuthenticatedController
     Push.all.each do |customer|
       message = {
         title: params[:title],
-        body: params[:body]
+        body: params[:body],
+        icon: icon
       }
       Webpush.payload_send(
         endpoint: customer.endpoint,
@@ -22,4 +23,16 @@ class SendPushesController < AuthenticatedController
       false
     end
   end
+
+  private
+
+  def push_params
+    params.require(:push).permit(:title, :body, :icon)
+  end
+
+  def icon
+    return push_params[:icon] if push_params[:icon].present?
+    shop.manifest.icon.variant(resize_to_fit: [192, 192]).processed.service_url.sub(/\?.*/, '') if shop.manifest.icon.present?
+  end
+
 end
