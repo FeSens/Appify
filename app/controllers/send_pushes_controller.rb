@@ -8,6 +8,7 @@ class SendPushesController < AuthenticatedController
       }
       send(customer, message)
     end
+    redirect_to home_index_path
   end
 
   private
