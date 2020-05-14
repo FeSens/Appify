@@ -2,8 +2,8 @@ class SendPushesController < AuthenticatedController
   def create
     Push.all.each do |customer|
       message = {
-        title: params[:title],
-        body: params[:body],
+        title: push_params[:title],
+        body: push_params[:body],
         icon: icon
       }
       Webpush.payload_send(
