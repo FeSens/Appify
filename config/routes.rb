@@ -19,5 +19,5 @@ Rails.application.routes.draw do
   resource :push, only: %i[create]
   resource :send_push, only: %i[create]
 
-  resources :subscriber_count, only: %i[create show]
+  resources :subscriber_count, only: %i[create index]
 end
