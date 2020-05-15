@@ -9,6 +9,10 @@ window.addEventListener('beforeinstallprompt', e => {
   window.installPromptEvent = e;
 });
 
+window.addEventListener('onappinstalled', () => {
+  computeSubscriber("pwa")
+});
+
 var vapidPublicKey = 'BOrPeoGdzvXg1OuNhjqYpCFof8D5QnDu4v1td5GTBBrXoVU-MhufANWOmWaHLH5ZXv3BUEFmP-I4m9Olme7V_VY';
 
 function checkNotifs(obj){
@@ -39,6 +43,7 @@ if (navigator.serviceWorker) {
           if (subscription) {
             return subscription;
           }
+          computeSubscriber("push")
           return registration.pushManager.subscribe({                           //6
             userVisibleOnly: true,
             applicationServerKey: vapidPublicKey
@@ -55,4 +60,9 @@ function sendKeys(s){
     p256dh: btoa(String.fromCharCode.apply(null, new Uint8Array(s.getKey('p256dh')))).replace(/\+/g, '-').replace(/\//g, '_'),
     auth: btoa(String.fromCharCode.apply(null, new Uint8Array(s.getKey('auth')))).replace(/\+/g, '-').replace(/\//g, '_')
   });
+}
+
+function computeSubscriber(s) {
+  service = (service == "pwa") ? 0 : 1;
+  $.post('/subscriber_count', { service });
 }
