@@ -4,6 +4,7 @@ class HomeController < AuthenticatedController
   def index
     @manifest = shop.manifest
     @configuration = shop.configuration
+    @push = { push_count: shop.push_interaction.count, push_limit: shop.push_limit }
     shop.update(domain: domain)
     register_script
   end

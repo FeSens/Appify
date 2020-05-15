@@ -6,6 +6,8 @@ class PushSenderJob < ApplicationJob
   end
 
   def send_push(customer, message)
+    push_interaction = PushInteraction.find_by(shop_id: customer.shop_id)
+    push_interaction.autorized?
     Webpush.payload_send(
       endpoint: customer.endpoint,
       message: message.to_json,
@@ -19,5 +21,6 @@ class PushSenderJob < ApplicationJob
     )
   rescue Webpush::ExpiredSubscription
     customer.destroy
+    push_interaction.decrement
   end
 end

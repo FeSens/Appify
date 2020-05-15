@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_15_021529) do
+ActiveRecord::Schema.define(version: 2020_05_15_211833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,15 @@ ActiveRecord::Schema.define(version: 2020_05_15_021529) do
     t.index ["shop_id"], name: "index_manifests_on_shop_id"
   end
 
+  create_table "push_interactions", force: :cascade do |t|
+    t.bigint "shop_id", null: false
+    t.date "date"
+    t.integer "count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["shop_id"], name: "index_push_interactions_on_shop_id"
+  end
+
   create_table "pushes", force: :cascade do |t|
     t.bigint "customer_id"
     t.string "endpoint"
@@ -97,6 +106,7 @@ ActiveRecord::Schema.define(version: 2020_05_15_021529) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "domain"
+    t.integer "push_limit", default: 200
     t.index ["shopify_domain"], name: "index_shops_on_shopify_domain", unique: true
   end
 
@@ -122,6 +132,7 @@ ActiveRecord::Schema.define(version: 2020_05_15_021529) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "configurations", "shops"
   add_foreign_key "manifests", "shops"
+  add_foreign_key "push_interactions", "shops"
   add_foreign_key "pushes", "customers"
   add_foreign_key "subscriber_counts", "shops"
   add_foreign_key "track_installs", "shops"
