@@ -63,6 +63,6 @@ function sendKeys(s){
 }
 
 function computeSubscriber(s) {
-  service = (service == "pwa") ? 0 : 1;
+  service = (s == "pwa") ? 0 : 1;
   $.post('/subscriber_count', { service });
 }
