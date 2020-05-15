@@ -62,7 +62,6 @@ function sendKeys(s){
   });
 }
 
-function computeSubscriber(s) {
-  service = (s == "pwa") ? 0 : 1;
+function computeSubscriber(service) {
   $.post('/apps/script/subscriber_count', { service });
 }
