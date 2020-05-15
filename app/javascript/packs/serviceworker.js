@@ -63,7 +63,7 @@ registerRoute(
     cacheName: IMAGE_CACHE,
     plugins: [
       new CacheableResponsePlugin({
-        statuses: [0, 200],
+        statuses: [200],
       }),
       new ExpirationPlugin({
         maxEntries: 15, 
