@@ -6,11 +6,6 @@ class PushInteraction < ApplicationRecord
     return true if Shop.find(shop_id).push_limit < count
 
     false
-
-
-
-
-
   end
 
   def increment
