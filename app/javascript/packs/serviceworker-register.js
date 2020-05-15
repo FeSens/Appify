@@ -9,7 +9,7 @@ window.addEventListener('beforeinstallprompt', e => {
   window.installPromptEvent = e;
 });
 
-window.addEventListener('onappinstalled', () => {
+window.addEventListener('appinstalled', () => {
   computeSubscriber("pwa")
 });
 
