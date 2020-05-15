@@ -20,10 +20,25 @@ self.addEventListener("message", (event) => {
 });
 
 registerRoute(
+  ({event}) => event.request.destination === 'document',
+  new NetworkFirst({
+    cacheName: HTML_CACHE,
+    plugins: [
+      new ExpirationPlugin({
+        maxEntries: 10,
+      }),
+    ],
+  })
+);
+
+registerRoute(
   ({event}) => event.request.destination === 'script',
   new StaleWhileRevalidate({
     cacheName: JS_CACHE,
     plugins: [
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
       new ExpirationPlugin({
         maxEntries: 15, 
         purgeOnQuotaError: true,
