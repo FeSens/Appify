@@ -3,7 +3,7 @@ class PushInteraction < ApplicationRecord
   belongs_to :shop
 
   def available?
-    return true if Shop.find_by(:shop_id).push_limit < count
+    return true if Shop.find_by(shop_id: shop_id).push_limit < count
 
     false
   end
