@@ -5,7 +5,7 @@ class HomeController < AuthenticatedController
     @manifest = shop.manifest
     @configuration = shop.configuration
     push = PushInteraction.find_or_create_by(shop_id: shop.id, date: Date.today.at_beginning_of_month)
-    @push = { push_count: push.count, push_limit: shop.push_limit }
+    @push_interaction = { push_count: push.count, push_limit: shop.push_limit }
     shop.update(domain: domain)
     register_script
   end
