@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shop: one
+  service: 1
+  count: 1
+
+two:
+  shop: two
+  service: 1
+  count: 1

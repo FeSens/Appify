@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_214619) do
+ActiveRecord::Schema.define(version: 2020_05_15_021529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,16 @@ ActiveRecord::Schema.define(version: 2020_05_13_214619) do
     t.index ["shopify_domain"], name: "index_shops_on_shopify_domain", unique: true
   end
 
+  create_table "subscriber_counts", force: :cascade do |t|
+    t.bigint "shop_id", null: false
+    t.integer "service"
+    t.integer "count", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.date "date", default: -> { "CURRENT_DATE" }
+    t.index ["shop_id"], name: "index_subscriber_counts_on_shop_id"
+  end
+
   create_table "track_installs", force: :cascade do |t|
     t.bigint "shop_id", null: false
     t.integer "count"
@@ -113,5 +123,6 @@ ActiveRecord::Schema.define(version: 2020_05_13_214619) do
   add_foreign_key "configurations", "shops"
   add_foreign_key "manifests", "shops"
   add_foreign_key "pushes", "customers"
+  add_foreign_key "subscriber_counts", "shops"
   add_foreign_key "track_installs", "shops"
 end

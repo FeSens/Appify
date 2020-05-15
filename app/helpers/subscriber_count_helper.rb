@@ -1,0 +1,2 @@
+module SubscriberCountHelper
+end
