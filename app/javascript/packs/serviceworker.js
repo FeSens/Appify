@@ -3,6 +3,7 @@ import { CacheFirst, StaleWhileRevalidate, NetworkFirst, NetworkOnly } from 'wor
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute } from 'workbox-precaching';
+import { idbKeyval } from 'indexdb'
 //This is the service worker with the Advanced caching
 const HTML_CACHE = "html";
 const JS_CACHE = "javascript";
@@ -104,3 +105,44 @@ self.addEventListener("push", function(event) {
       })
   );
 });
+
+self.addEventListener('pushsubscriptionchange', function(event) {
+  console.log('Subscription expired');
+  event.waitUntil(
+    self.registration.pushManager.subscribe({ userVisibleOnly: true })
+    .then(function(subscription) {
+      console.log('Subscribed after expiration', subscription.endpoint);
+      return sendKeys(subscription);
+    })
+  );
+});
+
+function sendKeys(s){
+  return $.post('/apps/script/push', {
+    subscriber_id: id,
+    endpoint: s.endpoint,
+    p256dh: btoa(String.fromCharCode.apply(null, new Uint8Array(s.getKey('p256dh')))).replace(/\+/g, '-').replace(/\//g, '_'),
+    auth: btoa(String.fromCharCode.apply(null, new Uint8Array(s.getKey('auth')))).replace(/\+/g, '-').replace(/\//g, '_')
+  });
+}
+
+var id;
+
+idbKeyval.get("push-subscriber").then(function(result){
+  id = result
+})
+
+if (!id) { 
+  id = create_UUID()
+  idbKeyval.set("push-subscriber", id)
+}
+
+function create_UUID() {
+  var dt = new Date().getTime();
+  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = (dt + Math.random()*16)%16 | 0;
+      dt = Math.floor(dt/16);
+      return (c=='x' ? r :(r&0x3|0x8)).toString(16);
+  });
+  return uuid;
+}

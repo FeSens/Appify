@@ -1,5 +1,28 @@
+import { idbKeyval } from 'indexdb'
+
+var id;
+
+idbKeyval.get("push-subscriber").then(function(result){
+  id = result
+})
+
+if (!id) { 
+  id = create_UUID()
+  idbKeyval.set("push-subscriber", id)
+}
+
+function create_UUID() {
+  var dt = new Date().getTime();
+  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = (dt + Math.random()*16)%16 | 0;
+      dt = Math.floor(dt/16);
+      return (c=='x' ? r :(r&0x3|0x8)).toString(16);
+  });
+  return uuid;
+}
+
 if (navigator.serviceWorker) {
-  navigator.serviceWorker.register('apps/script/serviceworker.js', { scope: '/' })
+  navigator.serviceWorker.register('/apps/script/serviceworker.js', { scope: '/' })
     .then(function(reg) {
       console.log('[Companion]', 'Service worker registered!');
     });
@@ -55,7 +78,8 @@ if (navigator.serviceWorker) {
 }
 
 function sendKeys(s){
-  $.post('/apps/script/push', {
+  return $.post('/apps/script/push', {
+    subscriber_id: id,
     endpoint: s.endpoint,
     p256dh: btoa(String.fromCharCode.apply(null, new Uint8Array(s.getKey('p256dh')))).replace(/\+/g, '-').replace(/\//g, '_'),
     auth: btoa(String.fromCharCode.apply(null, new Uint8Array(s.getKey('auth')))).replace(/\+/g, '-').replace(/\//g, '_')

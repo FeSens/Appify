@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_15_211833) do
+ActiveRecord::Schema.define(version: 2020_05_16_224933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2020_05_15_211833) do
   create_table "push_interactions", force: :cascade do |t|
     t.bigint "shop_id", null: false
     t.date "date"
-    t.integer "count"
+    t.integer "count", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["shop_id"], name: "index_push_interactions_on_shop_id"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 2020_05_15_211833) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "shop_id"
+    t.string "subscriber_id"
     t.index ["customer_id"], name: "index_pushes_on_customer_id"
     t.index ["shop_id"], name: "index_pushes_on_shop_id"
   end
