@@ -9,7 +9,7 @@
   <div class="col-9 mx-auto mt-5 mb-5 white shadow-sm p-4 text-center">
     <h3>Pushs Disponives</h3>
     <div class="progress">
-      <div class="progress-bar" role="progressbar" style="width: <%=  @push_interaction[:push_count] / @push_interaction[:push_limit] %>%" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="progress-bar" role="progressbar" style="width: <%=  @push_interaction[:push_count].to_f / @push_interaction[:push_limit].to_f %>%" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
     <h3><%= @push_interaction[:push_count] %>/<%= @push_interaction[:push_limit] %></h3>
   </div>
