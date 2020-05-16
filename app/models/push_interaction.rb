@@ -18,7 +18,7 @@ class PushInteraction < ApplicationRecord
 
   def autorized?
     with_lock do
-      raise OutOfPushInteractionsError, "store_id: #{store_id} is out of interactions" unless available?
+      raise OutOfPushInteractionsError, "shop_id: #{shop_id} is out of interactions" unless available?
 
       increment
     end
