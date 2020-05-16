@@ -1,5 +1,5 @@
 class PushInteraction < ApplicationRecord
-  class OutOfPushInteractions < StandardError; end
+  class OutOfPushInteractionsError < StandardError; end
   belongs_to :shop
 
   def available?
@@ -18,7 +18,7 @@ class PushInteraction < ApplicationRecord
 
   def autorized?
     with_lock do
-      raise DeliveryboxIntegrationError, "store_id: #{store_id} is out of interactions" unless available?
+      raise OutOfPushInteractionsError, "store_id: #{store_id} is out of interactions" unless available?
 
       increment
     end
