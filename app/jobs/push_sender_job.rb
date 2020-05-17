@@ -1,5 +1,8 @@
 class PushSenderJob < ApplicationJob
   queue_as :default
+  sidekiq_options retry: 3
+  retry_on OutOfPushInteractionsError # defaults to 3s wait, 5 attempts
+  discard_on ActiveJob::DeserializationError
 
   def perform(customer, message)
     send_push(customer, message)
@@ -21,6 +24,9 @@ class PushSenderJob < ApplicationJob
     )
   rescue Webpush::ExpiredSubscription
     customer.destroy
+    push_interaction.decrement
+
+  rescue ActiveJob::DeserializationError
     push_interaction.decrement
   end
 end
