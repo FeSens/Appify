@@ -4,12 +4,12 @@ var id;
 
 idbKeyval.get("push-subscriber").then(function(result){
   id = result
+}).then(function() {
+  if (!id) { 
+    id = create_UUID()
+    idbKeyval.set("push-subscriber", id)
+  }
 })
-
-if (!id) { 
-  id = create_UUID()
-  idbKeyval.set("push-subscriber", id)
-}
 
 function create_UUID() {
   var dt = new Date().getTime();
