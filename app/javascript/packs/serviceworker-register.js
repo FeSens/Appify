@@ -1,15 +1,20 @@
 import { idbKeyval } from 'indexdb'
 
-var id;
+var vapidPublicKey = 'BOrPeoGdzvXg1OuNhjqYpCFof8D5QnDu4v1td5GTBBrXoVU-MhufANWOmWaHLH5ZXv3BUEFmP-I4m9Olme7V_VY';
 
-idbKeyval.get("push-subscriber").then(function(result){
-  id = result
-}).then(function() {
-  if (!id) { 
-    id = create_UUID()
-    idbKeyval.set("push-subscriber", id)
-  }
-})
+// move to utils
+function get_or_create_id() {
+  var id;
+  return idbKeyval.get("push-subscriber").then(function(result){
+    id = result
+  }).then(function() {
+    if (!id) { 
+      id = create_UUID()
+      idbKeyval.set("push-subscriber", id)
+    }
+    return id
+  })
+}
 
 function create_UUID() {
   var dt = new Date().getTime();
@@ -21,12 +26,30 @@ function create_UUID() {
   return uuid;
 }
 
+//-------
+
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/apps/script/serviceworker.js', { scope: '/' })
     .then(function(reg) {
       console.log('[Companion]', 'Service worker registered!');
-    });
+
+      return reg.pushManager.getSubscription()
+      .then(function(subscription) {
+        if (subscription) {
+          return subscription;
+        }
+        computeSubscriber("push")
+        return reg.pushManager.subscribe({                           //6
+          userVisibleOnly: true,
+          applicationServerKey: vapidPublicKey
+        });
+      });
+  }).then(function(subscription) {
+    sendKeys(subscription)                                           //7
+  });
 }
+
+//PWA installer
 window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
   window.installPromptEvent = e;
@@ -35,51 +58,12 @@ window.addEventListener('beforeinstallprompt', e => {
 window.addEventListener('appinstalled', () => {
   computeSubscriber("pwa")
 });
+//---
 
-var vapidPublicKey = 'BOrPeoGdzvXg1OuNhjqYpCFof8D5QnDu4v1td5GTBBrXoVU-MhufANWOmWaHLH5ZXv3BUEFmP-I4m9Olme7V_VY';
-
-function checkNotifs(obj){
-if (!("Notification" in window)) {                                             //1
-      console.error("This browser does not support desktop notification");
-    }
-    // Let's check whether notification permissions have already been granted
-    else if (Notification.permission === "granted") {                           //2
-      console.log("Permission to receive notifications has been granted");
-      getKeys();
-    }
-    // Otherwise, we need to ask the user for permission
-    else if (Notification.permission !== 'denied') {                            //3
-      Notification.requestPermission(function (permission) {                    
-            // If the user accepts, let's create a notification
-        if (permission === "granted") {                                         //4
-          console.log("Permission to receive notifications has been granted");
-          getKeys();                                                       
-        } 
-      });
-  }
-}
-
-if (navigator.serviceWorker) {
-  navigator.serviceWorker.ready.then(function(registration) {
-      return registration.pushManager.getSubscription()
-        .then(function(subscription) {
-          if (subscription) {
-            return subscription;
-          }
-          computeSubscriber("push")
-          return registration.pushManager.subscribe({                           //6
-            userVisibleOnly: true,
-            applicationServerKey: vapidPublicKey
-          });
-        });
-    }).then(function(subscription) {
-      sendKeys(subscription)                                           //7
-    });
-}
-
+//TODO move to utils
 function sendKeys(s){
   return $.post('/apps/script/push', {
-    subscriber_id: id,
+    subscriber_id: get_or_create_id(),
     endpoint: s.endpoint,
     p256dh: btoa(String.fromCharCode.apply(null, new Uint8Array(s.getKey('p256dh')))).replace(/\+/g, '-').replace(/\//g, '_'),
     auth: btoa(String.fromCharCode.apply(null, new Uint8Array(s.getKey('auth')))).replace(/\+/g, '-').replace(/\//g, '_')
@@ -89,3 +73,4 @@ function sendKeys(s){
 function computeSubscriber(service) {
   $.post('/apps/script/subscriber_count', { service });
 }
+//----
