@@ -14,21 +14,17 @@ export let utils = (() => {
   }
 
   function get_or_create_id() {
-    var id;
-    return idbKeyval.get("push-subscriber").then(function(result){
-      id = result
-    }).then(function() {
-      if (!id) { 
-        id = create_UUID()
-        idbKeyval.set("push-subscriber", id)
-      }
+    var id = idbKeyval.get("push-subscriber")
+    if (!id) { 
+      id = create_UUID()
+      idbKeyval.set("push-subscriber", id)
+    }
       return id
-    })
   }
 
   function sendKeys(s) {
     return $.post('/apps/script/push', {
-      subscriber_id: await get_or_create_id(),
+      subscriber_id: get_or_create_id(),
       endpoint: s.endpoint,
       p256dh: btoa(String.fromCharCode.apply(null, new Uint8Array(s.getKey('p256dh')))).replace(/\+/g, '-').replace(/\//g, '_'),
       auth: btoa(String.fromCharCode.apply(null, new Uint8Array(s.getKey('auth')))).replace(/\+/g, '-').replace(/\//g, '_')
