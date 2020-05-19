@@ -14,12 +14,12 @@ export let utils = (() => {
   }
 
   function get_or_create_id() {
-    var id = idbKeyval.get("push-subscriber")
-    if (!id) { 
-      id = create_UUID()
-      idbKeyval.set("push-subscriber", id)
-    }
-      return id
+    //var id = idbKeyval.get("push-subscriber")
+    //if (!id) { 
+    id = create_UUID()
+    //  idbKeyval.set("push-subscriber", id)
+    //}
+    return id
   }
 
   function sendKeys(s) {
