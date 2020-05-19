@@ -14,19 +14,15 @@ export let utils = (() => {
   }
 
   const get_or_create_id = async () => {
-    var id;
-    return idbKeyval.get("push-subscriber").then(function(result){
-      id = result
-    }).then(function() {
-      if (!id) { 
-        id = create_UUID()
-        idbKeyval.set("push-subscriber", id)
-      }
-      return id
-    })
+    var id = await idbKeyval.get("push-subscriber")
+    if (!id) { 
+      id = create_UUID()
+      idbKeyval.set("push-subscriber", id)
+    }
+    return id
   }
 
-  function sendKeys(s) {
+  const sendKeys = async (s) => {
     return $.post('/apps/script/push', {
       subscriber_id: await get_or_create_id(),
       endpoint: s.endpoint,
