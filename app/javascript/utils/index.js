@@ -2,7 +2,7 @@ import { idbKeyval } from 'indexdb'
 
 export let utils = (() => {
   var vapidPublicKey = 'BOrPeoGdzvXg1OuNhjqYpCFof8D5QnDu4v1td5GTBBrXoVU-MhufANWOmWaHLH5ZXv3BUEFmP-I4m9Olme7V_VY';
-  
+
   function get_or_create_id() {
     var id;
     return idbKeyval.get("push-subscriber").then(function(result){
@@ -39,19 +39,21 @@ export let utils = (() => {
     $.post('/apps/script/subscriber_count', { service });
   }
 
-  function register_push_service(reg) {
-    reg.pushManager.getSubscription()
-    .then(function(subscription) {
-      if (subscription) {
-        return subscription;
-      }
-      computeSubscriber("push")
-      return reg.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: vapidPublicKey
-      }); 
-    }).then(function (subscription){
-      sendKeys(subscription) 
-    });
+  return { 
+    register_push_service(reg) {
+      reg.pushManager.getSubscription()
+      .then(function(subscription) {
+        if (subscription) {
+          return subscription;
+        }
+        computeSubscriber("push")
+        return reg.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: vapidPublicKey
+        }); 
+      }).then(function (subscription){
+        sendKeys(subscription) 
+      });
+    }
   }
 })();
