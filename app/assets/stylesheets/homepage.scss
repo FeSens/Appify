@@ -1,3 +1,215 @@
 // Place all the styles related to the homepage controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.info-card {
+
+  img {
+    height: 85%;
+  }
+  @media screen and (min-width: 1199px) and (max-width: 1599px) {
+    img {
+      height: 65%;
+    }
+    
+    .title {
+      top: 13%;
+    }
+
+    .value {
+      top: 31.2%;
+    }
+  }
+
+  .title {
+    top: 20%;
+    left: 50px;
+    position: absolute;
+    text-align: left;
+    font: Normal 23px/28px Gotham Rounded;
+    letter-spacing: 0px;
+    color: #E95362;
+    opacity: 1;
+  }
+
+  .value {
+    position: absolute;
+    top: 48%;
+    left: 50px;
+    text-align: left;
+    font: Bold 38px/45px Gotham Rounded;
+    letter-spacing: 0px;
+    color: #2D366E;
+    opacity: 1;
+  }
+}
+
+.navbar {
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  opacity: 1;
+  height: 94px;
+
+  .greetings {
+    text-align: left;
+    font: Bold 37px/45px Gotham Rounded;
+    letter-spacing: 0px;
+    color: #333D79;
+    opacity: 1;
+  }
+  
+  .name {
+    text-align: left;
+    font: Normal 37px/45px Gotham Rounded;
+    letter-spacing: 0px;
+    color: #E95362;
+    opacity: 1;
+  }
+
+  .user-name {
+    text-align: left;
+    font: Normal 20px/24px Gotham Rounded;
+    letter-spacing: 0px;
+    color: #E95362;
+    opacity: 1;
+  }
+}
+
+.sidebar {
+  background: #E95362 0% 0% no-repeat padding-box;
+  opacity: 1;
+  width: 255px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  .logo {
+  }
+
+  a {
+    width: 205px;
+    height: 43px;
+    border-radius: 10px;
+    opacity: 1;
+  }
+}
+
+.btn-purple {
+  background: #333D79 0% 0% no-repeat padding-box;
+  border-color: #333D79;
+  text-align: left;
+  font: Normal 20px/24px Gotham Rounded;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  opacity: 1;
+}
+
+.btn-red {
+  background: #E95362 0% 0% no-repeat padding-box;
+  border-color: #E95362;
+  text-align: left;
+  font: Medium 20px/24px Gotham Rounded;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  opacity: 1;
+}
+
+.btn-red:hover, .btn-red:focus, .btn-red:active, .btn-red.active {
+  color: #E95362;
+  background-color: #FAFAFA;
+  border-color: #FAFAFA; /*set the color you want here*/
+}
+
+.btn-purple:hover, .btn-purple:focus, .btn-purple:active, .btn-purple.active {
+  color: #E95362;
+  background-color: #FAFAFA;
+  border-color: #FAFAFA; /*set the color you want here*/
+}
+
+body, html {
+  height: 100%;
+}
+.wrapper {
+  margin-left: 255px;
+}
+
+.interactions-container{
+  background: #E95362 0% 0% no-repeat padding-box;
+  border: 1px solid #707070;
+  border-radius: 27px;
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+  height: 222px;
+
+  img {
+    height: 100%;
+    width: 100%;
+    max-width: 192px;
+  }
+
+  .title {
+    text-align: left;
+    font: Medium 20px/24px Gotham Rounded;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+  }
+
+  .consumed {
+    text-align: left;
+    font: Bold 33px/40px Gotham Rounded;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+  }
+
+  .available {
+    text-align: left;
+    font: Book 20px/24px Gotham Rounded;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+  }
+
+  .progress {
+    height: 10px;
+
+    .progress-bar {
+      background-color: #333D79 !important;
+      border-radius: 10px;
+      opacity: 1;
+    }
+  }
+}
+
+.latest-campaigns {
+  height: 272px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 3px solid #E95362;
+  border-radius: 38px;
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+  opacity: 1;
+
+  .title {
+    text-align: left;
+    font: Medium 35px/42px Gotham Rounded;
+    letter-spacing: 0px;
+    color: #333D79;
+  }
+
+  .tr-info {
+    text-align: left;
+    font: Medium 20px/24px Gotham Rounded;
+    letter-spacing: 0px;
+    color: #858E97;
+    opacity: 1;
+  }
+
+  .tr-body{
+    font: Medium 20px/24px Gotham Rounded;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 1;
+  }
+}
