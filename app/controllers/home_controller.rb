@@ -2,13 +2,14 @@
 
 class HomeController < AuthenticatedController
   def index
+    shop = Shop.last if Rails.env.development?
     @manifest = shop.manifest
     @configuration = shop.configuration
     push = PushInteraction.find_or_create_by(shop_id: shop.id, date: Date.today.at_beginning_of_month)
     @push_interaction = { push_count: push.count, push_limit: shop.push_limit }
     @push_subscribers = shop.pushes.count
-    shop.update(domain: domain)
-    register_script
+    shop.update(domain: domain) unless Rails.env.development?
+    register_script unless Rails.env.development?
   end
 
   private
