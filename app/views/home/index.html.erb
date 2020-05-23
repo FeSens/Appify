@@ -59,7 +59,7 @@
     <div class="row">
       <div class="col-8">
         <h4 class="pb-4">Assinantes Push</h4>
-        <canvas id="push-subscribers" width="800" height="450"></canvas>
+        <canvas id="push-subscribers" width="200" height="100"></canvas>
       </div>
       <div class="col-4">
         <div class="row interactions-container float-right mt-5">
@@ -75,7 +75,7 @@
               </div>
               <div class="col-12">
                 <div class="progress">
-                  <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar" role="progressbar" style="<%=  100 * @push_interaction[:push_count].to_f / @push_interaction[:push_limit].to_f %>%" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
             </div>

@@ -196,6 +196,12 @@ body, html {
   border-top-right-radius: 0px;
   opacity: 1;
 
+  img {
+    height: 100%;
+    width: 100%;
+    max-width: 192px;
+  }
+  
   .title {
     text-align: left;
     font: Medium 35px/42px Gotham Rounded;
