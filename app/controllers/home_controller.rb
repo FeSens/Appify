@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class HomeController < ApplicationController
+class HomeController < AuthenticatedController
   def index
-    shop = Shop.last if Rails.env.development?
+    #shop = Shop.last if Rails.env.development?
     @manifest = shop.manifest
     @configuration = shop.configuration
     push = PushInteraction.find_or_create_by(shop_id: shop.id, date: Date.today.at_beginning_of_month)
