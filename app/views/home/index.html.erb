@@ -73,9 +73,9 @@
                                 <span class="title">Impressions <br> Consumed</span>
                             </div>
                             <div class="col-12 mb-3">
-                                <span class="consumed mr-3">5,000</span>
+                                <span class="consumed mr-3"> <%= @push_interaction[:push_count] %> </span>
                                 <span class="available">|</span>
-                                <span class="available">25,000</span>
+                                <span class="available"> <%= @push_interaction[:push_limit] %> </span>
                             </div>
                             <div class="col-12">
                                 <div class="progress">
