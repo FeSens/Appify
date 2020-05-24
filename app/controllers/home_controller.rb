@@ -18,7 +18,7 @@ class HomeController < AuthenticatedController
   def register_script
     @themes_id = ShopifyAPI::Theme.find(:all)
     @themes_id.each do |t|
-      layout = ShopifyAPI::Asset.find('layout/theme.liquid', :params => {:theme_id => t.id})
+      layout = ShopifyAPI::Asset.find('layout/theme.liquid', params: { theme_id: t.id })
       unless layout.value.include? "<link rel='manifest' href='#{manifest_url}'>"
         l = layout.value.split("<head>")[1]
         layout.value = "<head> <link rel='manifest' href='#{manifest_url}'> #{l}"
