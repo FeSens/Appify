@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <% application_name = ShopifyApp.configuration.application_name %>
     <title><%= application_name %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag 'application' %>
     <% if ShopifyApp.use_webpacker? %>
       <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -17,7 +18,33 @@
     <div class="app-wrapper">
       <div class="app-content">
         <main role="main">
-          <%= yield %>
+          <div class="sidebar">
+            <div class="row">
+              <div class="col-12 text-center mt-4">
+                <%= image_tag "Logo.svg", class:"logo mx-auto" %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 text-center mt-5">
+                <a class="btn btn-purple text-center" href="#" role="button">+ Nova Campanha</a>
+              </div>
+              <div class="col-12 text-center mt-4">
+                <a class="btn btn-red" href="#" role="button">Home</a>
+              </div>
+              <div class="col-12 text-center mt-4">
+                <a class="btn btn-red" href="#" role="button">Campanhas</a>
+              </div>
+              <div class="col-12 text-center mt-4">
+                <a class="btn btn-red" href="#" role="button">Subscribers</a>
+              </div>
+              <div class="col-12 text-center mt-4">
+                <a class="btn btn-red" href="#" role="button">Opt Ins</a>
+              </div>
+            </div>
+          </div>
+          <div class="wrapper">
+            <%= yield %>
+          </div>
         </main>
       </div>
     </div>
