@@ -5,21 +5,19 @@
 .info-card {
 
   img {
-    height: 85%;
+    height: 216px;
   }
   @media screen and (min-width: 1199px) and (max-width: 1599px) {
     img {
-      height: 65%;
+      height: 165px;
     }
     
     .title {
-      top: 13% !important;
       left: 40px !important;
       font: Normal 18px/22px Gotham Rounded !important;
     }
 
     .value {
-      top: 31.2% !important;
       left: 40px !important;
       font: Bold 30px/36px Gotham Rounded !important;
     }
@@ -144,7 +142,6 @@ body, html {
   border-radius: 27px;
   border-bottom-right-radius: 0px;
   border-top-right-radius: 0px;
-  height: 222px;
 
   img {
     height: 100%;
@@ -188,7 +185,6 @@ body, html {
 }
 
 .latest-campaigns {
-  height: 272px;
   background: #FFFFFF 0% 0% no-repeat padding-box;
   border: 3px solid #E95362;
   border-radius: 38px;
