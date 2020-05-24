@@ -14,6 +14,8 @@ class SubscriberCountController < AuthenticatedController
     subscriber_count = SubscriberCount.find_or_create_by(subscriber_params)
     subscriber_count.increment(:count)
     subscriber_count.save
+
+    head :no_content
   end
 
   private
