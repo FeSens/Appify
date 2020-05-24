@@ -1,9 +1,8 @@
-class SubscriberCountController < ApplicationController
+class SubscriberCountController < AuthenticatedController
   skip_before_action *_process_action_callbacks.map{|callback| callback.filter if callback.kind == :before}.compact, only: %i[create]
   skip_around_action *_process_action_callbacks.map{|callback| callback.filter if callback.kind == :around}.compact, only: %i[create]
 
   def index
-    shop = Shop.last
     subscriber_count = SubscriberCount.where(['shop_id = ? and created_at > ?', shop.id, 30.days.ago])
     render json: { pwa: subscriber_count.pwa.pluck(:count),
                    push: subscriber_count.push.pluck(:count),
