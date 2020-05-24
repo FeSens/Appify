@@ -19,5 +19,4 @@ class MandatoryWebhooksController < ApplicationController
   def webhook_params
     params.except(:controller, :action, :type)
   end
-  
 end

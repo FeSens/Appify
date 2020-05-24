@@ -2,12 +2,16 @@
 
 class AuthenticatedController < ApplicationController
   include ShopifyApp::Authenticated
-  before_action :store_configuration, only: %i[index] unless Rails.env.development?
-  after_action :register_script, only: %i[index create] unless Rails.env.development?
+  unless Rails.env.development?
+    before_action :store_configuration, only: %i[index]
+    after_action :register_script, only: %i[index create]
+  end
 
-  skip_before_action *_process_action_callbacks.map{|callback| callback.filter if callback.kind == :before}.compact if Rails.env.development?
-  skip_around_action *_process_action_callbacks.map{|callback| callback.filter if callback.kind == :around}.compact if Rails.env.development?
-  skip_after_action *_process_action_callbacks.map{|callback| callback.filter if callback.kind == :around}.compact if Rails.env.development?
+  if Rails.env.development?
+    skip_before_action *_process_action_callbacks.map{|callback| callback.filter if callback.kind == :before}.compact if Rails.env.development?
+    skip_around_action *_process_action_callbacks.map{|callback| callback.filter if callback.kind == :around}.compact if Rails.env.development?
+    skip_after_action *_process_action_callbacks.map{|callback| callback.filter if callback.kind == :around}.compact if Rails.env.development?
+  end
 
   helper_method :shop_name
 
@@ -23,14 +27,16 @@ class AuthenticatedController < ApplicationController
     @themes_id.each do |t|
       layout = ShopifyAPI::Asset.find('layout/theme.liquid', params: { theme_id: t.id })
       unless layout.value.include? "<link rel='manifest' href='#{manifest_url}'>"
-        l = layout.value.split("<head>")[1]
+        l = layout.value.split('<head>')[1]
         layout.value = "<head> <link rel='manifest' href='#{manifest_url}'> #{l}"
         layout.save
       end
       script_urls.each do |script_url|
-        next if layout.value.include? "<script type='text/javascript' async='' src='#{script_url}'></script>"
+        if layout.value.include? "<script type='text/javascript' async='' src='#{script_url}'></script>"
+          next
+        end
 
-        l = layout.value.split("<head>")[1]
+        l = layout.value.split('<head>')[1]
         layout.value = "<head> <script type='text/javascript' async='' src='#{script_url}'></script> #{l}"
         layout.save
       end

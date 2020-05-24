@@ -24,7 +24,6 @@ class PushSenderJob < ApplicationJob
   rescue Webpush::ExpiredSubscription
     customer.destroy
     push_interaction.decrement
-
   rescue Exception => e
     push_interaction.decrement
     raise
