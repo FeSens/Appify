@@ -9,6 +9,7 @@ class HomeController < AuthenticatedController
     @push_interaction = { push_count: push.count, push_limit: shop.push_limit }
     @new_subscribers = shop.subscriber_counts.pwa.last_half.count
     @push_subscribers = shop.pushes.active.count
+    @campaigns = shop.campaigns
     shop.update(domain: domain) unless Rails.env.development?
     register_script unless Rails.env.development?
   end
