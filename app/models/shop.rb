@@ -5,6 +5,7 @@ class Shop < ActiveRecord::Base
   has_one :configuration, dependent: :destroy
   has_many :pushes, dependent: :destroy
   has_many :push_interactions, dependent: :destroy
+  has_many :subscriber_counts, dependent: :destroy
   after_create :init_models
 
   def init_models

@@ -3,7 +3,7 @@ class SubscriberCountController < AuthenticatedController
   skip_around_action *_process_action_callbacks.map{|callback| callback.filter if callback.kind == :around}.compact, only: %i[create]
 
   def index
-    subscriber_count = SubscriberCount.where(['shop_id = ? and created_at > ?', shop.id, 30.days.ago])
+    subscriber_count = SubscriberCount.where(['shop_id = ? and created_at > ?', shop.id, 14.days.ago])
     render json: { pwa: subscriber_count.pwa.pluck(:count),
                    push: subscriber_count.push.pluck(:count),
                    date_pwa: subscriber_count.pwa.pluck(:date),
