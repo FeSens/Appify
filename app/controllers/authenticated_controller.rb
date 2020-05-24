@@ -9,6 +9,8 @@ class AuthenticatedController < ApplicationController
   skip_around_action *_process_action_callbacks.map{|callback| callback.filter if callback.kind == :around}.compact if Rails.env.development?
   skip_after_action *_process_action_callbacks.map{|callback| callback.filter if callback.kind == :around}.compact if Rails.env.development?
 
+  helper_method :shop_name
+
   private
 
   def store_configuration
@@ -42,6 +44,8 @@ class AuthenticatedController < ApplicationController
   end
 
   def shop_name
+    return 'Loja Teste' if Rails.env.development?
+
     ShopifyAPI::Shop.current.name
   end
 
