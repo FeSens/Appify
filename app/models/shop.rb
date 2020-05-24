@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 class Shop < ActiveRecord::Base
   include ShopifyApp::ShopSessionStorage
+
+  enum plan_name: %i[Basico]
   has_one :manifest, dependent: :destroy
   has_one :configuration, dependent: :destroy
   has_many :pushes, dependent: :destroy

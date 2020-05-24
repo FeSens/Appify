@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(version: 2020_05_24_043237) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "domain"
     t.integer "push_limit", default: 200
-    t.string "plan_name"
+    t.integer "plan_name", default: 0
     t.index ["shopify_domain"], name: "index_shops_on_shopify_domain", unique: true
   end
 
