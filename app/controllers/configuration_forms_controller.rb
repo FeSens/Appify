@@ -1,4 +1,4 @@
-class ConfigurationFormsController < ApplicationController
+class ConfigurationFormsController < AuthenticatedController
   def update
     ::Configuration.find(params[:id]).update(configuration_params)
     redirect_to home_index_path
