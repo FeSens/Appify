@@ -2,7 +2,7 @@
 class Shop < ActiveRecord::Base
   include ShopifyApp::ShopSessionStorage
 
-  enum plan_name: %i[Basico]
+  enum plan_name: %i[partner_test Basico]
   has_one :manifest, dependent: :destroy
   has_one :configuration, dependent: :destroy
   has_many :pushes, dependent: :destroy
