@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-9 mx-auto mb-5 white shadow-sm p-4">
     <h4 class="pb-4">Settings</h4>
-    <%= form_for @campaign, url: campaigns_path(@campaign), method: "create" do |f| %>
+    <%= form_with model: @campaign do |f| %>
       <div class="form-group">
         <%= label_tag 'campaign_name', 'Nome:' %>
         <%= f.text_field :name, class: "form-control" %>
