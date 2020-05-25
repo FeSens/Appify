@@ -1,5 +1,6 @@
 class CreateCampaignJob < ApplicationJob
   queue_as :default
+  attr_accessor :campaign
 
   def perform(campaign)
     return reschedule if postpone?
