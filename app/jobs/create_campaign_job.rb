@@ -23,7 +23,7 @@ class CreateCampaignJob < ApplicationJob
   end
 
   def postpone?
-    campaign.date_time > Time.now
+    campaign.release_date > Time.now
   end
 
   def reschedule
