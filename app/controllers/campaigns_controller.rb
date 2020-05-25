@@ -9,7 +9,7 @@ class CampaignsController < AuthenticatedController
 
   def create
     campaign = shop.campaigns.create(campaing_params)
-    CreateCampaignJob.perform_at(campaign.release_date, campaign)
+    CreateCampaignJob.set(wait_until: campaign.release_date).perform_later(campaign)
     redirect_to campaigns_path
   end
 
