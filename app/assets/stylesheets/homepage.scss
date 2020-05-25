@@ -107,6 +107,14 @@
   opacity: 1;
 }
 
+.btn-lg {
+  width: 205px;
+  height: 43px;
+  border-radius: 10px;
+  opacity: 1;
+}
+
+
 .btn-red {
   background: #E95362 0% 0% no-repeat padding-box;
   border-color: #E95362;
@@ -224,4 +232,12 @@ body, html {
     color: #000000;
     opacity: 1;
   }
+}
+
+h2 {
+  text-align: left;
+  font: Medium 30px/36px Gotham Rounded;
+  letter-spacing: 0px;
+  color: #E95362;
+  opacity: 1;
 }

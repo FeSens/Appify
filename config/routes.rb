@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :configuration_forms
   resources :manifest, only: %i[index]
   resources :home
+  resources :campaigns
   resources :privacy, only: %i[index]
   resources :render_js, only: %i[index], path: '/preferences'
 
