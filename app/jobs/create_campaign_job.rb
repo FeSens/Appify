@@ -3,6 +3,7 @@ class CreateCampaignJob < ApplicationJob
   attr_accessor :campaign
 
   def perform(campaign)
+    @campaign = campaign
     return reschedule if postpone?
 
     pushes = Push.where(shop_id: campaign.shop_id)
