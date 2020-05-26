@@ -101,7 +101,7 @@ self.addEventListener("push", function(event) {
 
   event.waitUntil(() => {
     sendAnalytics(data, "impressions");
-    self.registration.showNotification(title, {
+    return self.registration.showNotification(title, {
       body: body,
       icon: icon,
       tag: tag,
@@ -118,7 +118,7 @@ self.addEventListener('notificationclick', function(event) {
   var url = data.url;
   event.waitUntil(() => {
     sendAnalytics(data, "clicks");
-    self.clients.openWindow(url);
+    return self.clients.openWindow(url);
   })
 });
 
