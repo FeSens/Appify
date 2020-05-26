@@ -96,14 +96,30 @@ self.addEventListener("push", function(event) {
   var body = data.body;
   var tag = data.tag;
   var icon = data.icon;
+  var url = data.url;
+  var campaign_id = data.campaign_id;
 
   event.waitUntil(
       self.registration.showNotification(title, {
           body: body,
           icon: icon,
-          tag: tag
+          tag: tag,
+          data: {
+            url: url,
+            campaign_id: campaign_id
+          }
       })
-  );
+  ).then(sendAnalytics(data, "impressions"));
+});
+
+self.addEventListener('notificationclick', function(event) {
+  var data = event.data.json();
+  var url = data.url;
+
+  event.waitUntil(
+    sendAnalytics(data, "clicks"),
+    self.clients.openWindow(url)
+  )
 });
 
 self.addEventListener('pushsubscriptionchange', function(event) {
@@ -145,4 +161,11 @@ function create_UUID() {
       return (c=='x' ? r :(r&0x3|0x8)).toString(16);
   });
   return uuid;
+}
+
+function sendAnalytics(data, attr) {
+  return $.post('/apps/script/analytics/campaigns', {
+    campaign_id: data.campaign_id,
+    attr: "impressions",
+  });
 }

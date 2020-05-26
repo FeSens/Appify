@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   resources :privacy, only: %i[index]
   resources :render_js, only: %i[index], path: '/preferences'
 
+  namespace :analytics do
+    resources :campaigns, only: %i[create]
+  end
+
   controller :mandatory_webhooks do
     post '/webhooks/shop_redact' => :shop_redact
     post '/webhooks/customers_redact' => :customers_redact

@@ -11,6 +11,8 @@ class CreateCampaignJob < ApplicationJob
       message = {
         title: campaign.title,
         body: campaign.body,
+        url: campaign.url,
+        campaign_id: campaign.id,
         icon: icon
       }
       PushSenderJob.perform_later(customer, message)
