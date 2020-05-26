@@ -130,11 +130,17 @@ self.addEventListener('pushsubscriptionchange', function(event) {
 });
 
 function sendKeys(s){
-  return $.post('/apps/script/push', {
-    subscriber_id: id,
-    endpoint: s.endpoint,
-    p256dh: btoa(String.fromCharCode.apply(null, new Uint8Array(s.getKey('p256dh')))).replace(/\+/g, '-').replace(/\//g, '_'),
-    auth: btoa(String.fromCharCode.apply(null, new Uint8Array(s.getKey('auth')))).replace(/\+/g, '-').replace(/\//g, '_')
+  return fetch('/apps/script/push', {
+    method: 'post',
+    headers: {
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify({
+      subscriber_id: id,
+      endpoint: s.endpoint,
+      p256dh: btoa(String.fromCharCode.apply(null, new Uint8Array(s.getKey('p256dh')))).replace(/\+/g, '-').replace(/\//g, '_'),
+      auth: btoa(String.fromCharCode.apply(null, new Uint8Array(s.getKey('auth')))).replace(/\+/g, '-').replace(/\//g, '_')
+    })
   });
 }
 
@@ -160,8 +166,14 @@ function create_UUID() {
 }
 
 function sendAnalytics(data, attr) {
-  return $.post('/apps/script/analytics/campaigns', {
-    campaign_id: data.campaign_id,
-    attr: "impressions",
+  return fetch('/apps/script/analytics/campaigns', {
+    method: 'post',
+    headers: {
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify({
+      campaign_id: data.campaign_id,
+      attr: attr,
+    })
   });
 }
