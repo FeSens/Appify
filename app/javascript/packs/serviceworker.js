@@ -98,10 +98,9 @@ self.addEventListener("push", function(event) {
   var icon = data.icon;
   var url = data.url;
   var campaign_id = data.campaign_id;
-
-  event.waitUntil(() => {
-    sendAnalytics(data, "impressions");
-    return self.registration.showNotification(title, {
+  sendAnalytics(data, "impressions");
+  event.waitUntil(
+    self.registration.showNotification(title, {
       body: body,
       icon: icon,
       tag: tag,
@@ -109,17 +108,14 @@ self.addEventListener("push", function(event) {
         url: url,
         campaign_id: campaign_id
       }
-    });
-  });
+  }));
 });
 
 self.addEventListener('notificationclick', function(event) {
   var data = event.data.json();
   var url = data.url;
-  event.waitUntil(() => {
-    sendAnalytics(data, "clicks");
-    return self.clients.openWindow(url);
-  })
+  sendAnalytics(data, "clicks");
+  event.waitUntil(self.clients.openWindow(url))
 });
 
 self.addEventListener('pushsubscriptionchange', function(event) {
