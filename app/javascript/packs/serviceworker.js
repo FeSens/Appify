@@ -112,7 +112,7 @@ self.addEventListener("push", function(event) {
 });
 
 self.addEventListener('notificationclick', function(event) {
-  var data = event.data.json();
+  var data = event.notification.data;
   var url = data.url;
   sendAnalytics(data, "clicks");
   event.waitUntil(self.clients.openWindow(url))
