@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_24_232502) do
+ActiveRecord::Schema.define(version: 2020_05_27_023049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,20 @@ ActiveRecord::Schema.define(version: 2020_05_24_232502) do
     t.string "lang", default: "pt-BR"
     t.string "description", default: "Descrição do seu app aqui"
     t.index ["shop_id"], name: "index_manifests_on_shop_id"
+  end
+
+  create_table "optins", force: :cascade do |t|
+    t.string "title", default: "Would you like to receive notifications?", null: false
+    t.string "body", default: "We can send you special promotions", null: false
+    t.string "accept_button", default: "Yes", null: false
+    t.string "decline_button", default: "No", null: false
+    t.string "background_color", default: "FFFFFF", null: false
+    t.string "text_color", default: "000000", null: false
+    t.integer "timer", default: 20, null: false
+    t.boolean "enabled", default: true, null: false
+    t.integer "kind", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "push_interactions", force: :cascade do |t|
