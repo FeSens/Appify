@@ -1,88 +1,18 @@
-<style>
-.modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 30%;
-  transform: translate(-50%, -50%);
-  text-align: left;
-  background: rgba(255, 255, 255, 1);
-  transition: opacity .25s;
-  box-shadow: 0 3px 13px 0 rgba(0,0,0,0.19);
-  border-radius: 5px;
-  padding: 1em 2em;
-}
-
-.modal-title {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-  -ms-flex-align: start;
-  align-items: flex-start;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  padding: 1rem;
-  border-bottom: 1px solid #e9ecef;
-  border-top-left-radius: .3rem;
-  border-top-right-radius: .3rem;
-}
-
-.modal-body {
-  position: relative;
-  -webkit-box-flex: 1;
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
-  padding: 1rem;
-}
-
-.aling-bottom {
-  position: relative;
-  float: right;
-}
-
-.btn {
-  display: inline-block;
-  font-weight: 400;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border: 1px solid transparent;
-  padding: .375rem .75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: .25rem;
-  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
-.btn-secondary {
-  color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
-}
+<style type="text/css">
+    <%= Appify::Application.assets["public/modals.scss"].to_s.html_safe %>
 </style>
 
-<div id="modal" class="modal">
-  <div class="modal-title">
+<div id="modal" class="aplicatify-modal" style="background: #<%= @optin.background_color %>">
+  <div id="modal_optin_title" class="modal-title" style="color: #<%= @optin.text_color %>">
     <%=@optin.title%>
   </div>
 
-  <div class="modal-body">
+  <div id="modal_optin_body" class="modal-body" style="color: #<%= @optin.text_color %>">
     <%=@optin.body%>
   </div>
 
   <div class="aling-bottom">
-    <button class="btn btn-secondary close_button" onClick="closePopup()"><%=@optin.decline_button%></button>
-    <button class="btn btn-primary accept" onClick="showPrompt()"><%=@optin.accept_button%></button>
+    <button id="modal_optin_decline_button" class="btn btn-secondary close_button" onClick="closePopup()"><%=@optin.decline_button%></button>
+    <button id="modal_optin_accept_button" class="btn btn-primary accept" onClick="showPrompt()"><%=@optin.accept_button%></button>
   </div>
 </div>
