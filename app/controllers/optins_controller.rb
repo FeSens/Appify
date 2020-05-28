@@ -1,13 +1,15 @@
 class OptinsController < AuthenticatedController
-  before_action :validate, only: %i[update]
+  before_action :load_optin, only: %i[update]
   def index
-    @optin = Optin.find_or_create_by(shop_id: shop.id, kind: 'pwa')
+    pwa  = Optin.find_or_create_by(shop_id: shop.id, kind: 'pwa')
+    push = Optin.find_or_create_by(shop_id: shop.id, kind: 'push')
+    @optins = { pwa: pwa, push: push }
   end
 
   def update
-    Optin.update(optin_params)
+    @optin.update(optin_params)
     flash[:success] = "Updated with success"
-    redirect_to optins_path
+    redirect_to optins_path(tab: @optin.kind)
   end
 
   private
@@ -17,9 +19,7 @@ class OptinsController < AuthenticatedController
                                    :background_color, :text_color, :timer, :enabled)
   end
 
-  def validate
-    return if Optin.find_by(id: params[:id])&.shop_id == shop.id
-    flash[:alert] = "Not Authorized"
-    redirect_to optins_path 
+  def load_optin
+    @optin = shop.optins.find(params[:id])
   end
 end

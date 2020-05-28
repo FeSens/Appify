@@ -1,6 +1,23 @@
-<div class="row mt-3">
-  <div class="col-6 mx-auto mb-5 white shadow-sm p-4">
-    <h4 class="pb-4">Pushs optin</h4>
+<div class="row pl-3 pt-3">
+  <div class="col-6 white shadow-sm p-4">
+    <div class="row">
+      <div class="col-12">
+        <%  tab = params[:tab] || 'push'
+            active_tabs = {}
+            active_tabs[tab] = 'active' 
+            @optin = @optins[tab.to_sym] %>
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link  <%= active_tabs['push'] %>" href="?tab=push">Push</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link  <%= active_tabs['pwa'] %>" href="?tab=pwa">PWA</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+    </div>
     <%= form_with model: @optin, method: 'patch' do |f| %>
       <div class="form-group">
         <%= label_tag 'optin_title', 'Title:' %>
@@ -37,10 +54,8 @@
       <%= f.submit "Save", class: "btn btn-purple float-right px-4" %>
     <% end %>
   </div>
-  <div class="col-6">
-    <div class="mx-auto">
-      <%= render partial: 'public/modals/modal' %>
-    </div>
+  <div class="col-6 d-flex justify-content-center">
+    <%= render partial: 'public/modals/modal' %>
   </div>
 </div>
 

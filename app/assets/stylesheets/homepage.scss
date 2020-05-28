@@ -251,5 +251,7 @@ h2 {
 }
 
 .aplicatify-modal {
-  left: 79% !important;
+  top: 40% !important;
+  left: auto !important;
+  transform: translate(0%, 0%) !important;
 }
