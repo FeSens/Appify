@@ -3,7 +3,7 @@ function addElement () {
   // and give it popup content 
   var newDiv = document.createElement("div"); 
   
-  newDiv.innerHTML += `<%= render partial: '/public/modals/modal', locals: { optin: @optins[:pwa] } %>`;   
+  newDiv.innerHTML += `<%= render partial: '/public/modal', locals: { optin: @optins[:pwa] } %>`;   
 
   // add the newly created element and its content into the DOM 
   var currentDiv = document.getElementById("main_container"); 
