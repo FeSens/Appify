@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_27_023049) do
+ActiveRecord::Schema.define(version: 2020_05_27_030940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,8 @@ ActiveRecord::Schema.define(version: 2020_05_27_023049) do
     t.integer "kind", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "shop_id", null: false
+    t.index ["shop_id"], name: "index_optins_on_shop_id"
   end
 
   create_table "push_interactions", force: :cascade do |t|
@@ -175,6 +177,7 @@ ActiveRecord::Schema.define(version: 2020_05_27_023049) do
   add_foreign_key "campaigns", "shops"
   add_foreign_key "configurations", "shops"
   add_foreign_key "manifests", "shops"
+  add_foreign_key "optins", "shops"
   add_foreign_key "push_interactions", "shops"
   add_foreign_key "push_subscriber_campaigns", "campaigns"
   add_foreign_key "push_subscriber_campaigns", "pushes"

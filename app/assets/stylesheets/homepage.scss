@@ -241,3 +241,11 @@ h2 {
   color: #E95362;
   opacity: 1;
 }
+
+.alert {
+  width: 300px;
+  right: 20px;
+  margin-top: 20px;
+  position: fixed;
+  z-index: 999;
+}

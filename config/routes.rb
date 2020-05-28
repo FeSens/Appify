@@ -8,11 +8,16 @@ Rails.application.routes.draw do
   resources :manifest, only: %i[index]
   resources :home
   resources :campaigns
+  resources :optins, only: %i[index update]
   resources :privacy, only: %i[index]
   resources :render_js, only: %i[index], path: '/preferences'
 
   namespace :analytics do
     resources :campaigns, only: %i[create]
+  end
+
+  namespace :public do
+    resources :modals, only: %i[index]
   end
 
   controller :mandatory_webhooks do
