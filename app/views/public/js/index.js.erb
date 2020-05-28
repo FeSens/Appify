@@ -1,0 +1,54 @@
+function addElement () { 
+  // create a new div element 
+  // and give it popup content 
+  var newDiv = document.createElement("div"); 
+  
+  newDiv.innerHTML += `<%= render partial: '/public/modals/modal', locals: { optin: @optins[:pwa] } %>`;   
+
+  // add the newly created element and its content into the DOM 
+  var currentDiv = document.getElementById("main_container"); 
+  document.body.insertBefore(newDiv, currentDiv); 
+
+  // open popup onload
+  openPopup();
+}
+
+function openPopup() {
+  if(window.installPromptEvent){
+    var el = document.getElementById('popup');
+    el.style.display = 'block';
+    
+    // Updates: set window background color black
+    document.body.style.background = '#353333';
+  }
+}
+
+function closePopup() {
+  var el = document.getElementById('popup');
+  el.style.display = 'none';
+  document.body.style.background = 'white';
+  window.installPromptEvent = null
+}
+
+function showPrompt() {
+  var el = document.getElementById('popup');
+  el.style.display = 'none';
+  document.body.style.background = 'white';
+  window.installPromptEvent.prompt();
+  window.installPromptEvent.userChoice.then((choice) => {
+    if (choice.outcome === 'accepted') {
+      console.log('User accepted the A2HS prompt');
+    } else {
+      console.log('User dismissed the A2HS prompt');
+    }
+    // Clear the saved prompt since it can't be used again
+    installPromptEvent = null;
+  });
+}
+
+window.showPrompt = showPrompt;
+window.closePopup = closePopup;
+
+<% if @optins[:pwa].enabled %>
+  setTimeout(addElement, <%= @optins[:pwa].timer * 1000 %>);
+<% end %>

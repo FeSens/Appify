@@ -130,7 +130,7 @@ self.addEventListener('pushsubscriptionchange', function(event) {
 });
 
 function sendKeys(s){
-  return fetch('/apps/script/push', {
+  return fetch('/apps/script/public/push', {
     method: 'post',
     headers: {
       'Content-type': 'application/json'

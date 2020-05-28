@@ -1,0 +1,73 @@
+<div class="row pl-3 pt-3">
+  <div class="col-6 white shadow-sm p-4">
+    <div class="row">
+      <div class="col-12">
+        <%  tab = params[:tab] || 'push'
+            active_tabs = {}
+            active_tabs[tab] = 'active' 
+            @optin = @optins[tab.to_sym] %>
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link  <%= active_tabs['push'] %>" href="?tab=push">Push</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link  <%= active_tabs['pwa'] %>" href="?tab=pwa">PWA</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+    </div>
+    <%= form_with model: @optin, method: 'patch', url: admin_optin_path(@optin) do |f| %>
+      <div class="form-group">
+        <%= label_tag 'optin_title', 'Title:' %>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= label_tag 'optin_body', 'Body:' %>
+        <%= f.text_field :body, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= label_tag 'optin_accept_button', 'Accept Button:' %>
+        <%= f.text_field :accept_button, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= label_tag 'optin_decline_button', 'Decline Button:' %>
+        <%= f.text_field :decline_button, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= label_tag 'optin_background_color', 'Background Color:' %>
+        <%= f.text_field :background_color, class: "form-control jscolor" %>
+      </div>
+      <div class="form-group">
+        <%= label_tag 'optin_text_color', 'Text Color:' %>
+        <%= f.text_field :text_color, class: "form-control jscolor" %>
+      </div>
+      <div class="form-group">
+        <%= label_tag 'optin_timer', 'Timer:' %>
+        <%= f.number_field :timer, class: "form-control" %>
+      </div>
+        <div class="form-group">
+        <%= label_tag 'optin_enabled', 'Enable:' %>
+        <%= f.check_box :enabled, class: "form-control" %>
+      </div>
+      <%= f.submit "Save", class: "btn btn-purple float-right px-4" %>
+    <% end %>
+  </div>
+  <div class="col-6 d-flex justify-content-center">
+    <%= render partial: 'public/modals/modal', locals: {optin: @optin} %>
+  </div>
+</div>
+
+<script>
+  $("input").on('keyup change', function (){
+  $(`#modal_${this.id}`).html($(this).val())
+
+  if (this.id.includes("background_color")) {
+      $('#modal').css('background', `#${$(this).val()}`)
+  }
+  if (this.id.includes("text_color")) {
+      $('.modal-title, .modal-body').css('color', `#${$(this).val()}`)
+  }
+  });
+</script>

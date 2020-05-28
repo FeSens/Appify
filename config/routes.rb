@@ -1,23 +1,25 @@
 Rails.application.routes.draw do
-  root :to => 'home#index'
+  root :to => 'admin/home#index'
   mount ShopifyApp::Engine, at: '/'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resource :homepage, only: %i[show]
-  resources :manifest_forms
-  resources :configuration_forms
-  resources :manifest, only: %i[index]
-  resources :home
-  resources :campaigns
-  resources :optins, only: %i[index update]
   resources :privacy, only: %i[index]
-  resources :render_js, only: %i[index], path: '/preferences'
+
+  namespace :admin do
+    resources :home
+    resources :campaigns
+    resources :subscribers, only: %i[index]
+    resources :optins, only: %i[index update]
+  end
 
   namespace :analytics do
     resources :campaigns, only: %i[create]
+    resources :subscribers, only: %i[create]
   end
 
   namespace :public do
-    resources :modals, only: %i[index]
+    resources :js, only: %i[index], path: '/preferences'
+    resources :manifest, only: %i[index]
+    resource :push, only: %i[create]
   end
 
   controller :mandatory_webhooks do
@@ -25,11 +27,6 @@ Rails.application.routes.draw do
     post '/webhooks/customers_redact' => :customers_redact
     post '/webhooks/customers_data_request' => :customers_data_request
   end
-
-  resource :push, only: %i[create]
-  resource :send_push, only: %i[create]
-
-  resources :subscriber_count, only: %i[create index]
 
   require "sidekiq/web"
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|

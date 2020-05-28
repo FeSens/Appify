@@ -23,7 +23,7 @@ export let utils = (() => {
   }
 
   const sendKeys = async (s) => {
-    return $.post('/apps/script/push', {
+    return $.post('/apps/script/public/push', {
       subscriber_id: await get_or_create_id(),
       endpoint: s.endpoint,
       p256dh: btoa(String.fromCharCode.apply(null, new Uint8Array(s.getKey('p256dh')))).replace(/\+/g, '-').replace(/\//g, '_'),
@@ -32,7 +32,7 @@ export let utils = (() => {
   }
   
   function computeSubscriber(service) {
-    $.post('/apps/script/subscriber_count', { service });
+    $.post('/apps/script/analytics/subscribers', { service });
   }
 
   return { 
