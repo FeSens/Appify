@@ -15,8 +15,8 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
 require("shopify_app")
-var Chart = require('chart.js');
 
 import "bootstrap";
 
@@ -24,6 +24,4 @@ document.addEventListener("turbolinks:load", () => {
   $('[data-toggle="tooltip"]').tooltip()
 })
 
-import flatpickr from "flatpickr"
-import "flatpickr/dist/flatpickr.min.css"
-flatpickr(".datepicker", {})
+window.$ = $;

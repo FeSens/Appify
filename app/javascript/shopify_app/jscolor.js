@@ -1845,8 +1845,9 @@ jsc.jscolor.installByClassName = function (className) {
 	jsc.tryInstallOnElements(buttonElms, className);
 };
 
-
-jsc.register();
+$(document).on('turbolinks:load', function() {
+	jsc.register();
+})
 
 
 return jsc.jscolor;

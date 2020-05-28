@@ -1,4 +1,6 @@
-$(document).ready(function() {
+var Chart = require('chart.js');
+
+$(document).on('turbolinks:load', function() {
   $.getJSON('/subscriber_count', function( data ) {
 
     new Chart(document.getElementById("push-subscribers"), {
