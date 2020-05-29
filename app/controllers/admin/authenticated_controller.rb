@@ -45,10 +45,8 @@ module Admin
 
     def shop
       return Shop.last if Rails.env.development?
-
-      Rails.cache.fetch("#{cache_key_with_version}/competing_price", expires_in: 12.hours) do
-        Shop.find_by(shopify_domain: ShopifyAPI::Shop.current.myshopify_domain)
-      end
+      
+      Shop.find_by(shopify_domain: ShopifyAPI::Shop.current.myshopify_domain)
     end
 
     def shop_name
