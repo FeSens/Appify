@@ -8,22 +8,27 @@
   </div>
 </div>
 <div class="row">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Impressions</th>
-        <th scope="col">Clicks</th>
-      </tr>
-    </thead>
+  <table class="table campaigns">
     <tbody>
       <%@campaigns.each_with_index do |campaign, i| %>
         <tr>
-          <th scope="row" ><%= i + 1 %> </th>
-          <td> <%= campaign.name %> </td>
-          <td> <%= campaign.impressions %> </td>
-          <td> <%= campaign.clicks %> </td>
+          <td> 
+            <div> <%= campaign.name %> </div>
+            <div class="sub-label"> 
+              All Subscribers | <%= "in" if campaign.release_date > Time.now%> <%= distance_of_time_in_words(Time.now, campaign.release_date) %> <%= "ago" if campaign.release_date < Time.now%> | Campaign ID: <%= campaign.id %>
+            </div>
+          </td>
+          <td>
+            <div> <%= campaign.impressions %> </div>
+            <div class="sub-label"> Impressions </div>
+          </td>
+          <td> 
+            <div> <%= campaign.clicks %> </div>
+            <div class="sub-label"> Clicks </div>
+          </td>
+          <td class="align-middle">
+            <a class="btn btn-red" href="<%= edit_admin_campaign_path(campaign) %>" role="button">Edit</a>
+          </td>
         </tr>
       <% end %>
     </tbody>
