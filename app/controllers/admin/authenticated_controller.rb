@@ -46,7 +46,9 @@ module Admin
     def shop
       return Shop.last if Rails.env.development?
 
-      Shop.find_by(shopify_domain: ShopifyAPI::Shop.current.myshopify_domain)
+      Rails.cache.fetch("#{cache_key_with_version}/competing_price", expires_in: 12.hours) do
+        Shop.find_by(shopify_domain: ShopifyAPI::Shop.current.myshopify_domain)
+      end
     end
 
     def shop_name
@@ -65,7 +67,7 @@ module Admin
 
     def script_urls
       ['/apps/script/serviceworker-register.js',
-       '/apps/script/preferences.js']
+       '/apps/script/public/preferences.js']
     end
 
     def manifest_url
