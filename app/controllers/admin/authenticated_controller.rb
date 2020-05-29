@@ -65,7 +65,7 @@ module Admin
 
     def script_urls
       ['/apps/script/serviceworker-register.js',
-      '/apps/script/preferences.js']
+       '/apps/script/preferences.js']
     end
 
     def manifest_url
