@@ -349,19 +349,31 @@ input:checked + .slider:before {
 .background{
   height: 480px;
   width: 230px;
-  background: antiquewhite;
-  position: relative;
+  position: absolute;
   z-index: 0;
-  top: -50%;
-  left: 17%;
+  top: 70px;
+  transform: translate(25%);
 }
 
 .top-bar{
   height: 20px;
   width: 230px;
-  background: green;
-  position: relative;
+  transform: translate(25%);
+  position: absolute;
   z-index: 1;
-  top: -50%;
-  left: 17%;
+  top: 50px;
+}
+
+.logo-preview {
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+
+  img {
+    height: 60px;
+    width: 60px;
+  }
+  
 }

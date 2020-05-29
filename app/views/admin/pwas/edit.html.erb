@@ -30,9 +30,31 @@
   </div>
   <div class="col-6 d-flex my-auto justify-content-center">
     <div class="">
+      <div class="logo-preview">
+        <%= image_tag @manifest.icon, id: "logo-preview" %>
+      </div>
       <%= image_tag "iphone-x-minimal-buttons.svg", class: "iphone" %>
-      <div class="top-bar"> </div>
-      <div class="background"> </div>
+      <div id="prev_manifest_theme_color" class="top-bar" style="background: #<%= @manifest.theme_color%>;"> </div>
+      <div id="prev_manifest_background_color" class="background" style="background: #<%= @manifest.background_color%>;"> </div>
     </div>
   </div>
 </div>
+
+<script>
+  $("input").on('keyup change', function (){
+    $(`#prev_${this.id}`).css('background', `#${$(this).val()}`);
+    if (this.id.includes("icon")) {
+      readURL(this)
+    }
+  });
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        $('#logo-preview').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]); // convert to base64 string
+    }
+  }
+</script>
