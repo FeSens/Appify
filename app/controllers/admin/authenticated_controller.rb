@@ -2,10 +2,10 @@
 module Admin
   class AuthenticatedController < ApplicationController
     include ShopifyApp::Authenticated
-    unless Rails.env.development?
-      before_action :store_configuration, only: %i[index]
-      after_action :register_script, only: %i[index create]
-    end
+
+    attr_accessor :shop
+
+    before_action :get_current_shop
 
     if Rails.env.development?
       skip_before_action *_process_action_callbacks.map{|callback| callback.filter if callback.kind == :before}.compact if Rails.env.development?
@@ -43,10 +43,10 @@ module Admin
       end
     end
 
-    def shop
-      return Shop.last if Rails.env.development?
-      
-      Shop.find_by(shopify_domain: ShopifyAPI::Shop.current.myshopify_domain)
+    def get_current_shop
+      return @shop = Shop.last if Rails.env.development?
+
+      @shop = Shop.find_by(shopify_domain: ShopifyAPI::Shop.current.myshopify_domain)
     end
 
     def shop_name
