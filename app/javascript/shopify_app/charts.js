@@ -17,7 +17,7 @@ $(document).on('turbolinks:load', function() {
           {
             maxBarThickness: 50,
             label: "New Subscribers",
-            backgroundColor: "#FF5B6B",
+            backgroundColor: "#FF7595",
             data: data.push_new_subscribers
           }
         ]

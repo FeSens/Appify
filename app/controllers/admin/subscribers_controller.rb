@@ -2,6 +2,7 @@ module Admin
   class SubscribersController < AuthenticatedController
     def index
       push_subs_base = SubscriberCount.where(['shop_id = ? and created_at < ?', shop.id, 14.days.ago]).push.count
+      subscriber_count = SubscriberCount.where(['shop_id = ? and created_at > ?', shop.id, 14.days.ago]).order(updated_at: :asc)
 
       push = []
       push_new_subscribers = []
@@ -10,7 +11,6 @@ module Admin
         push_new_subscribers << p
       end
 
-      subscriber_count = SubscriberCount.where(['shop_id = ? and created_at > ?', shop.id, 14.days.ago]).order(updated_at: :asc)
       render json: { pwa: subscriber_count.pwa.pluck(:count),
                     push: push,
                     push_new_subscribers: push_new_subscribers,
