@@ -33,7 +33,7 @@
         <%= f.text_field :title, class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= label_tag 'optin_body', 'Body:' %>
+        <%= label_tag 'optin_body', 'Description:' %>
         <%= f.text_field :body, class: "form-control" %>
       </div>
       <div class="form-group">
@@ -53,7 +53,7 @@
         <%= f.text_field :text_color, class: "form-control jscolor" %>
       </div>
       <div class="form-group">
-        <%= label_tag 'optin_timer', 'Timer:' %>
+        <%= label_tag 'optin_timer', 'Trigger Time (in seconds):' %>
         <%= f.number_field :timer, class: "form-control" %>
       </div>
       <%= f.submit "Save", class: "btn btn-purple float-right px-4" %>

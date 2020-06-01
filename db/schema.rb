@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_27_030940) do
+ActiveRecord::Schema.define(version: 2020_06_01_200728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,26 +84,26 @@ ActiveRecord::Schema.define(version: 2020_05_27_030940) do
     t.bigint "shop_id", null: false
     t.string "name", default: "O seu App"
     t.string "short_name", default: "App"
-    t.string "theme_color", default: "#ffffff"
-    t.string "background_color", default: "#000000"
+    t.string "theme_color", default: "CB505A"
+    t.string "background_color", default: "FFFFFF"
     t.string "display", default: "standalone"
     t.string "orientation", default: "portrait"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "start_url", default: "/?utm_source=homescreen"
     t.string "lang", default: "pt-BR"
-    t.string "description", default: "Descrição do seu app aqui"
+    t.string "description", default: "Track your orders and receive special promos with our new brand app!"
     t.index ["shop_id"], name: "index_manifests_on_shop_id"
   end
 
   create_table "optins", force: :cascade do |t|
-    t.string "title", default: "Would you like to receive notifications?", null: false
-    t.string "body", default: "We can send you special promotions", null: false
-    t.string "accept_button", default: "Yes", null: false
+    t.string "title", default: "Looking for special promos?", null: false
+    t.string "body", default: "Receive special notifications with the hottest offers!", null: false
+    t.string "accept_button", default: "Yes!", null: false
     t.string "decline_button", default: "No", null: false
     t.string "background_color", default: "FFFFFF", null: false
     t.string "text_color", default: "000000", null: false
-    t.integer "timer", default: 20, null: false
+    t.integer "timer", default: 30, null: false
     t.boolean "enabled", default: true, null: false
     t.integer "kind", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false

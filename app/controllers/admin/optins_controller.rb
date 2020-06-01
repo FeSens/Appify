@@ -4,7 +4,9 @@ module Admin
     attr_accessor :optin
 
     def index
-      pwa  = Optin.find_or_create_by(shop_id: shop.id, kind: 'pwa')
+      pwa  = Optin.find_or_create_by(shop_id: shop.id, kind: 'pwa', 
+        title: "Put our store in your pocket!", description: "Download our app and keep updated about your order and the newest products!",
+        accept_button: "Let's go!", timer: 15)
       push = Optin.find_or_create_by(shop_id: shop.id, kind: 'push')
       @optins = { pwa: pwa, push: push }
     end
