@@ -36,5 +36,19 @@ module Shopify
     def manifest_url
       '/apps/script/public/manifest.json'
     end
+
+    def shop_name
+      return 'Loja Teste' if Rails.env.development?
+
+      ShopifyAPI::Shop.current.name
+    end
+
+    def plan_name
+      ShopifyAPI::Shop.current.plan_name
+    end
+
+    def domain
+      ShopifyAPI::Shop.current.domain
+    end
   end
 end

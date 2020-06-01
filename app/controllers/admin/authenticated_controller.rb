@@ -3,16 +3,14 @@ module Admin
   class AuthenticatedController < ApplicationController
     include ShopifyApp::Authenticated
 
-    attr_accessor :shop
-
-    before_action :get_current_shop
-
     if Rails.env.development?
       skip_before_action *_process_action_callbacks.map{|callback| callback.filter if callback.kind == :before}.compact if Rails.env.development?
       skip_around_action *_process_action_callbacks.map{|callback| callback.filter if callback.kind == :around}.compact if Rails.env.development?
       skip_after_action *_process_action_callbacks.map{|callback| callback.filter if callback.kind == :around}.compact if Rails.env.development?
     end
 
+    attr_accessor :shop
+    before_action :load_current_shop
     helper_method :shop_name
 
     private
@@ -43,7 +41,7 @@ module Admin
       end
     end
 
-    def get_current_shop
+    def load_current_shop
       return @shop = Shop.last if Rails.env.development?
 
       @shop = Shop.find_by(shopify_domain: ShopifyAPI::Shop.current.myshopify_domain)
