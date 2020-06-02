@@ -5,9 +5,9 @@ module Shopify
 
     def perform(shop_domain:)
       @shop = Shop.find_by(shopify_domain: shop_domain)
-      configure_store
 
       shop.with_shopify_session do
+        configure_store
         @themes_id = ShopifyAPI::Theme.find(:all)
         @themes_id.each do |t|
           layout = ShopifyAPI::Asset.find('layout/theme.liquid', params: { theme_id: t.id })
@@ -41,7 +41,6 @@ module Shopify
     def configure_store
       s = ShopifyAPI::Shop.current
       shop.update(plan_name: s.plan_name, domain: s.domain, shop_name: s.shop_name)
-
     end
   end
 end
