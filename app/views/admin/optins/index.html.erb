@@ -65,6 +65,8 @@
 </div>
 
 <script>
+  var el = document.getElementById('modal_<%=@optin.kind%>');
+  el.style.display = 'block';
   $("input").on('keyup change', function (){
   $(`#modal_${this.id}`).html($(this).val())
 

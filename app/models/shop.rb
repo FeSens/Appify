@@ -15,7 +15,10 @@ class Shop < ActiveRecord::Base
 
   def init_models
     create_manifest
-    create_configuration
+    self.optins.create(shop_id: shop.id, kind: 'pwa', 
+      title: "Put our store in your pocket!", body: "Download our app and keep updated about your order and the newest products!",
+      accept_button: "Let's go!", timer: 15)
+    self.optins.create(kind: 'push')
   end
 
   def api_version
