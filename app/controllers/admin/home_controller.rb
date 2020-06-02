@@ -7,7 +7,7 @@ module Admin
       push = PushInteraction.find_or_create_by(shop_id: shop.id, date: Date.today.at_beginning_of_month)
       @push_interaction = { push_count: push.count, push_limit: shop.push_limit }
       @new_subscribers = shop.subscriber_counts.pwa.last_half.count
-      @push_subscribers = shop.pushes.active.count
+      @push_subscribers = shop.pushes.count
       @campaigns = shop.campaigns
     end
   end
