@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 module Shopify
   class AfterAuthenticateJob < ActiveJob::Base
+    attr_accessor :shop
+
     def perform(shop_domain:)
-      shop = Shop.find_by(shopify_domain: shop_domain)
-      shop.update(plan_name: plan_name)
-      shop.update(domain: domain)
+      @shop = Shop.find_by(shopify_domain: shop_domain)
+      configure_store
 
       shop.with_shopify_session do
         @themes_id = ShopifyAPI::Theme.find(:all)
@@ -37,18 +38,10 @@ module Shopify
       '/apps/script/public/manifest.json'
     end
 
-    def shop_name
-      return 'Loja Teste' if Rails.env.development?
+    def configure_store
+      s = ShopifyAPI::Shop.current
+      shop.update(plan_name: s.plan_name, domain: s.domain, shop_name: s.shop_name)
 
-      ShopifyAPI::Shop.current.name
-    end
-
-    def plan_name
-      ShopifyAPI::Shop.current.plan_name
-    end
-
-    def domain
-      ShopifyAPI::Shop.current.domain
     end
   end
 end
