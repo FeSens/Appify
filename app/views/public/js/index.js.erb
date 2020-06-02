@@ -76,9 +76,9 @@ window.showPrompt = showPrompt;
 window.closePopup = closePopup;
 
 <% if @optins[:pwa].enabled %>
-  setTimeout(addElement, <%= @optins[:pwa].timer * 1000 %>);
+  setTimeout(addElement, <%= @optins[:pwa].timer * 1000 %>, 'pwa');
 <% end %>
 
 <% if @optins[:push].enabled %>
-  setTimeout(addElement, <%= @optins[:push].timer * 1000 %>);
+  setTimeout(addElement, <%= @optins[:push].timer * 1000 %>, 'push');
 <% end %>
