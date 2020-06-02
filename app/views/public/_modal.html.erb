@@ -60,20 +60,20 @@
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
   }
   .btn-secondary {
-    color: #fff;
-    background-color: #6c757d;
-    border-color: #6c757d;
+    color: #fff !important;
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
   }
 
   .btn-primary {
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
+    color: #fff !important;
+    background-color: #007bff !important;
+    border-color: #007bff !important;
   }
 }
 </style>
 
-<div id="modal" class="aplicatify-modal" style="background: #<%= optin.background_color %>">
+<div id="modal_<%=optin.kind%>" class="aplicatify-modal" style="background: #<%= optin.background_color %>">
   <div id="modal_optin_title" class="modal-title" style="color: #<%= optin.text_color %>">
     <%=optin.title%>
   </div>

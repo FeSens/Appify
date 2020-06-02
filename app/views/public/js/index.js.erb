@@ -18,7 +18,7 @@ function addElement (type) {
 
 function openPopup(type) {
   if(window.installPromptEvent && type == "pwa"){
-    var el = document.getElementById('modal');
+    var el = document.getElementById(`modal_${type}`);
     el.style.display = 'block';
     
     // Updates: set window background color black
@@ -26,7 +26,7 @@ function openPopup(type) {
   }
 
   if(type == "push" && Notification.permission == "default") {
-      var el = document.getElementById('modal');
+      var el = document.getElementById(`modal_${type}`);
       el.style.display = 'block';
       
       // Updates: set window background color black
@@ -34,15 +34,15 @@ function openPopup(type) {
   }
 }
 
-function closePopup() {
-  var el = document.getElementById('modal');
+function closePopup(type) {
+  var el = document.getElementById(`modal_${type}`);
   el.style.display = 'none';
   document.body.style.background = 'white';
   window.installPromptEvent = null
 }
 
 function pwa_prompt() {
-  var el = document.getElementById('modal');
+  var el = document.getElementById('modal_pwa');
   el.style.display = 'none';
   document.body.style.background = 'white';
   window.installPromptEvent.prompt();
@@ -59,6 +59,9 @@ function pwa_prompt() {
 
 function push_prompt() {
   window.register_push_service(window.saved_reg);
+  var el = document.getElementById('modal_push');
+  el.style.display = 'none';
+  document.body.style.background = 'white';
 }
 
 function showPrompt(type) {
