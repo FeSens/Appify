@@ -31,7 +31,7 @@
   <div class="col-6 d-flex my-auto justify-content-center">
     <div class="">
       <div class="logo-preview">
-        <%if @manifest.icon %>
+        <%if @manifest.icon.attached? %>
           <%= image_tag @manifest.icon, id: "logo-preview" %>
         <% else %>
           <img id="logo-preview" src="">
