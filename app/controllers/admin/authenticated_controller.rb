@@ -31,7 +31,7 @@ module Admin
     end
 
     def shop_name
-      shop.shop_name
+      shop.name
     end
   end
 end
