@@ -73,17 +73,17 @@
 }
 </style>
 
-<div id="modal" class="aplicatify-modal" style="background: #<%= @optin.background_color %>">
-  <div id="modal_optin_title" class="modal-title" style="color: #<%= @optin.text_color %>">
-    <%=@optin.title%>
+<div id="modal" class="aplicatify-modal" style="background: #<%= optin.background_color %>">
+  <div id="modal_optin_title" class="modal-title" style="color: #<%= optin.text_color %>">
+    <%=optin.title%>
   </div>
 
-  <div id="modal_optin_body" class="modal-body" style="color: #<%= @optin.text_color %>">
-    <%=@optin.body%>
+  <div id="modal_optin_body" class="modal-body" style="color: #<%= optin.text_color %>">
+    <%=optin.body%>
   </div>
 
   <div class="aling-bottom">
-    <button id="modal_optin_decline_button" class="btn btn-secondary close_button" onClick="closePopup()"><%=@optin.decline_button%></button>
-    <button id="modal_optin_accept_button" class="btn btn-primary accept" onClick="showPrompt(@optin.service)"><%=@optin.accept_button%></button>
+    <button id="modal_optin_decline_button" class="btn btn-secondary close_button" onClick="closePopup()"><%=optin.decline_button%></button>
+    <button id="modal_optin_accept_button" class="btn btn-primary accept" onClick="showPrompt(<%=optin.kind%>)"><%=optin.accept_button%></button>
   </div>
 </div>
