@@ -4,7 +4,8 @@ if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/apps/script/serviceworker.js', { scope: '/' })
     .then(function(reg) {
       console.log('[Companion]', 'Service worker registered!');
-      utils.register_push_service(reg);
+      window.saved_reg = reg;
+      //utils.register_push_service(reg);
   })
 }
 

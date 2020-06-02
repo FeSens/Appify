@@ -1,10 +1,15 @@
-function addElement () { 
+import { utils } from 'utils'
+
+function addElement (type) { 
   // create a new div element 
   // and give it popup content 
   var newDiv = document.createElement("div"); 
   
-  newDiv.innerHTML += `<%= render partial: 'public/modal', locals: { optin: @optin[:pwa] } %>`;   
-
+  if (type == "pwa") {
+    newDiv.innerHTML += `<%= render partial: 'public/modal', locals: { optin: @optin[:pwa] } %>`;
+  } else {
+    newDiv.innerHTML += `<%= render partial: 'public/modal', locals: { optin: @optin[:push] } %>`;
+  }
   // add the newly created element and its content into the DOM 
   var currentDiv = document.getElementById("main_container"); 
   document.body.insertBefore(newDiv, currentDiv); 
@@ -30,7 +35,7 @@ function closePopup() {
   window.installPromptEvent = null
 }
 
-function showPrompt() {
+function pwa_prompt() {
   var el = document.getElementById('popup');
   el.style.display = 'none';
   document.body.style.background = 'white';
@@ -46,9 +51,25 @@ function showPrompt() {
   });
 }
 
+function push_prompt() {
+utils.register_push_service(window.saved_reg);
+}
+
+function showPrompt(type) {
+  if (type == 'pwa') {
+    pwa_prompt();
+  } else {
+    push_prompt();
+  }
+}
+
 window.showPrompt = showPrompt;
 window.closePopup = closePopup;
 
 <% if @optins[:pwa].enabled %>
   setTimeout(addElement, <%= @optins[:pwa].timer * 1000 %>);
+<% end %>
+
+<% if @optins[:push].enabled %>
+  setTimeout(addElement, <%= @optins[:push].timer * 1000 %>);
 <% end %>
