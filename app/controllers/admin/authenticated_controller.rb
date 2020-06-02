@@ -44,7 +44,7 @@ module Admin
     def load_current_shop
       return @shop = Shop.last if Rails.env.development?
 
-      @shop = Shop.find_by(shopify_domain: ShopifyAPI::Shop.current.myshopify_domain)
+      @shop = Shop.find(session[:shop_id])
     end
 
     def shop_name
