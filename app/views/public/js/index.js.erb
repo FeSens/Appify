@@ -6,9 +6,9 @@ function addElement (type) {
   var newDiv = document.createElement("div"); 
   
   if (type == "pwa") {
-    newDiv.innerHTML += `<%= render partial: 'public/modal', locals: { optin: @optin[:pwa] } %>`;
+    newDiv.innerHTML += `<%= render partial: 'public/modal', locals: { optin: @optins[:pwa] } %>`;
   } else {
-    newDiv.innerHTML += `<%= render partial: 'public/modal', locals: { optin: @optin[:push] } %>`;
+    newDiv.innerHTML += `<%= render partial: 'public/modal', locals: { optin: @optins[:push] } %>`;
   }
   // add the newly created element and its content into the DOM 
   var currentDiv = document.getElementById("main_container"); 
