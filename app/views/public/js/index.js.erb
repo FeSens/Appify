@@ -13,28 +13,36 @@ function addElement (type) {
   document.body.insertBefore(newDiv, currentDiv); 
 
   // open popup onload
-  openPopup();
+  openPopup(type);
 }
 
-function openPopup() {
-  if(window.installPromptEvent){
-    var el = document.getElementById('popup');
+function openPopup(type) {
+  if(window.installPromptEvent && type == "pwa"){
+    var el = document.getElementById('modal');
     el.style.display = 'block';
     
     // Updates: set window background color black
     document.body.style.background = '#353333';
   }
+
+  if(type == "push" && Notification.permission == "default") {
+      var el = document.getElementById('modal');
+      el.style.display = 'block';
+      
+      // Updates: set window background color black
+      document.body.style.background = '#353333';
+  }
 }
 
 function closePopup() {
-  var el = document.getElementById('popup');
+  var el = document.getElementById('modal');
   el.style.display = 'none';
   document.body.style.background = 'white';
   window.installPromptEvent = null
 }
 
 function pwa_prompt() {
-  var el = document.getElementById('popup');
+  var el = document.getElementById('modal');
   el.style.display = 'none';
   document.body.style.background = 'white';
   window.installPromptEvent.prompt();
@@ -50,7 +58,7 @@ function pwa_prompt() {
 }
 
 function push_prompt() {
- window.register_push_service(window.saved_reg);
+  window.register_push_service(window.saved_reg);
 }
 
 function showPrompt(type) {
