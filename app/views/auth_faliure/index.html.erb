@@ -1,1 +1,30 @@
-Something went wrong, please try again.
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Appify</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href='https://fonts.googleapis.com/css?family=Varela Round' rel='stylesheet'>
+  </head>
+
+  <body>
+    <div class="container-fluid h-100">
+      <div class="row align-items-center h-100">
+        <div class="col-6 mx-auto my-auto text-center">
+          <div class="row">
+            <div class="col-12">
+              <%= image_tag '404.svg' %>
+            </div>
+          </div>
+          <div class="col-12">
+           <h4> We are sorry, something in your authentication went wrong. Please try again. </h4>
+           error code: <%= params[:message] %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
