@@ -1,3 +1,3 @@
-class AuthFaliureController < ApplicationController
+class AuthFaliureController < ActionController::Base
   def index; end
 end

@@ -1,4 +1,4 @@
-class MandatoryWebhooksController < ApplicationController
+class MandatoryWebhooksController < ActionController::Base
   include ShopifyApp::WebhookVerification
 
   def shop_redact
