@@ -29,6 +29,10 @@ Rails.application.routes.draw do
     post '/webhooks/customers_data_request' => :customers_data_request
   end
 
+  controller :auth_faliure do
+    get '/auth/faliure' => :index
+  end
+
   require "sidekiq/web"
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|
     # Protect against timing attacks:
