@@ -217,6 +217,8 @@ GEM
       activemodel
     redis (4.1.4)
     regexp_parser (1.7.0)
+    rollbar (2.16.2)
+      multi_json
     ruby-vips (2.0.17)
       ffi (~> 1.9)
     ruby_dep (1.5.0)
@@ -315,6 +317,7 @@ DEPENDENCIES
   puma (~> 4.3)
   rails (~> 6.0.2, >= 6.0.2.2)
   redis
+  rollbar
   sass-rails (>= 6)
   selenium-webdriver
   serviceworker-rails
