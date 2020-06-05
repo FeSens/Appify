@@ -3,11 +3,11 @@ class MandatoryWebhooksController < ApplicationController
 
   def shop_redact
     Shop.find_by(shopify_domain: params[:shop_domain]).destroy
-    head :ok
+    head :no_content
   end
 
   def customer_redact
-    head :ok
+    head :no_content
   end
 
   def customer_data_request
