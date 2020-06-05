@@ -3,7 +3,7 @@ ShopifyApp.configure do |config|
   config.api_key = Rails.application.credentials.dig(:shopify, :api_key)
   config.secret = Rails.application.credentials.dig(:shopify, :api_secret)
   config.old_secret = ""
-  config.scope = "write_script_tags, read_themes, write_themes" # Consult this page for more scope options:
+  config.scope = "read_themes, write_themes" # Consult this page for more scope options:
                                  # https://help.shopify.com/en/api/getting-started/authentication/oauth/scopes
   config.embedded_app = false
   config.api_version = "2020-04"
