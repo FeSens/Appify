@@ -5,7 +5,7 @@ ShopifyApp.configure do |config|
   config.old_secret = ""
   config.scope = "read_themes, write_themes" # Consult this page for more scope options:
                                  # https://help.shopify.com/en/api/getting-started/authentication/oauth/scopes
-  config.embedded_app = false
+  config.embedded_app = true
   config.api_version = "2020-04"
   config.shop_session_repository = 'Shop'
   config.after_authenticate_job = { job: "Shopify::AfterAuthenticateJob", inline: true }
