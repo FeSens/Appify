@@ -40,7 +40,7 @@ module Shopify
 
     def configure_store
       s = ShopifyAPI::Shop.current
-      shop.update(plan_name: s.plan_name, domain: s.domain, name: s.name)
+      shop.update(domain: s.domain, name: s.name)
     end
   end
 end
