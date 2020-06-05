@@ -4,7 +4,7 @@ export let idbKeyval = (() => {
   function getDB() {
     if (!db) {
       db = new Promise((resolve, reject) => {
-        const openreq = indexedDB.open('svgo-keyval', 1);
+        const openreq = indexedDB.open('appdata', 1);
 
         openreq.onerror = () => {
           reject(openreq.error);
@@ -12,7 +12,7 @@ export let idbKeyval = (() => {
 
         openreq.onupgradeneeded = () => {
           // First time setup: create an empty object store
-          openreq.result.createObjectStore('keyval');
+          openreq.result.createObjectStore('index');
         };
 
         openreq.onsuccess = () => {
@@ -26,10 +26,10 @@ export let idbKeyval = (() => {
   async function withStore(type, callback) {
     const db = await getDB();
     return new Promise((resolve, reject) => {
-      const transaction = db.transaction('keyval', type);
+      const transaction = db.transaction('index', type);
       transaction.oncomplete = () => resolve();
       transaction.onerror = () => reject(transaction.error);
-      callback(transaction.objectStore('keyval'));
+      callback(transaction.objectStore('index'));
     });
   }
 
