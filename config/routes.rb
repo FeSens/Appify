@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   end
 
   controller :auth_faliure do
-    get '/auth/faliure' => :index
+    get '/auth/failure' => :index
   end
 
   require "sidekiq/web"
