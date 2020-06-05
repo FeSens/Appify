@@ -6,6 +6,9 @@ if (navigator.serviceWorker) {
       console.log('[Companion]', 'Service worker registered!');
       window.saved_reg = reg;
       window.register_push_service = utils.register_push_service;
+      if (Notification.permission == 'granted') {
+        utils.register_push_service(reg);
+      }
   })
 }
 
