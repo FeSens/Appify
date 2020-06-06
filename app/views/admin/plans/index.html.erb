@@ -1,5 +1,7 @@
 <div class="row pl-3 pt-3">
   <div class="col-6 white shadow-sm p-4">
-    <%= link_to "Palan", admin_plans_path(id:1), method: :post %>
+    <% @plans.each do |plan| %>
+      <%= link_to plan.name, admin_plans_path(id: plan), method: :post %>
+    <% end %>
   </div>
 </div>

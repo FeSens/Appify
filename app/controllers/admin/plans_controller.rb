@@ -1,17 +1,13 @@
 module Admin
   class PlansController < AuthenticatedController
-    def index; end
+    def index
+      @plans = Plan.all
+    end
 
     def create
-      @recurring_application_charge = ShopifyAPI::RecurringApplicationCharge.new(
-        name: 'Gift Basket Plan',
-        price: 9.99,
-        return_url: callback_admin_plans_path,
-        test: true,
-        trial_days: 7,
-        capped_amount: 100,
-        terms: '$0.99 for every order created'
-      )
+      @recurring_application_charge = ShopifyAPI::RecurringApplicationCharge.new(plan)
+      @recurring_application_charge.test = true
+      @recurring_application_charge.return_url = callback_admin_plans_url
 
       
       return fullpage_redirect_to @recurring_application_charge.confirmation_url if @recurring_application_charge.save
@@ -30,8 +26,8 @@ module Admin
       redirect_to admin_campaigns_path
     end
 
-    def plan(id)
-      @plan = Plan.find(id).slice(:name, :price, :return_url, :trial_days, :capped_amount, :terms)
+    def plan
+      @plan = Plan.find(params[:id]).slice(:name, :price, :trial_days, :capped_amount, :terms)
     end
   end
 end
