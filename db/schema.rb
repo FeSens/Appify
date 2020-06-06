@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_05_042018) do
+ActiveRecord::Schema.define(version: 2020_06_06_042148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,16 @@ ActiveRecord::Schema.define(version: 2020_06_05_042018) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "shop_id", null: false
     t.index ["shop_id"], name: "index_optins_on_shop_id"
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.string "name"
+    t.decimal "price"
+    t.integer "trial_days"
+    t.integer "capped_amount"
+    t.string "terms"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "push_interactions", force: :cascade do |t|

@@ -15,8 +15,7 @@ module Admin
 
       return unless recurring_application_charge.save
 
-      @tokens[:confirmation_url] = recurring_application_charge.confirmation_url
-      redirect recurring_application_charge.confirmation_url
+      fullpage_redirect_to recurring_application_charge.confirmation_url
     end
 
     def plan(id)
