@@ -1,7 +1,14 @@
 <div class="row pl-3 pt-3">
-  <div class="col-6 white shadow-sm p-4">
-    <% @plans.each do |plan| %>
-      <%= link_to plan.name, admin_plans_path(id: plan), method: :post %>
-    <% end %>
-  </div>
+  <% @plans.each do |plan| %>
+    <div class="col-3 white shadow-sm p-4 mx-auto">
+       <h3> <%= plan.name %> </h3> <br>
+       <h5> <%= "Current plan" if @current_plan == plan%> </h5> <br>
+        Store App<br>
+        Unlimited Customer Base<br>
+        Dashboard<br>
+        Custom Triggers<br>
+        <%= plan.push_limit %> Push Notifications per Month<br>
+        <%= link_to "Get this plan", admin_plans_path(id: plan), method: :post %>
+    </div>
+  <% end %>
 </div>

@@ -2,6 +2,8 @@ module Admin
   class PlansController < AuthenticatedController
     def index
       @plans = Plan.all
+      activated_plan = Rails.env.development? ? Plan.last : ShopifyAPI::RecurringApplicationCharge.current
+      @current_plan = Plan.find_by(name: activated_plan.name)
     end
 
     def create
