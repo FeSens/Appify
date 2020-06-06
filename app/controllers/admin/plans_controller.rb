@@ -23,7 +23,7 @@ module Admin
         flash[:success] = 'Plan updated successfully'
       end
       
-      redirect_to admin_campaigns_path
+      redirect_to admin_plans_path
     end
 
     def plan
