@@ -1,6 +1,7 @@
 # frozen_string_literal: true
+
 module Shopify
-  class AfterAuthenticateJob < ActiveJob::Base
+  class AfterAuthenticateJob < ApplicationJob
     attr_accessor :shop
 
     def perform(shop_domain:)
@@ -17,9 +18,7 @@ module Shopify
             layout.save
           end
           script_urls.each do |script_url|
-            if layout.value.include? "<script type='text/javascript' async='' src='#{script_url}'></script>"
-              next
-            end
+            next if layout.value.include? "<script type='text/javascript' async='' src='#{script_url}'></script>"
 
             l = layout.value.split('<head>')[1]
             layout.value = "<head> <script type='text/javascript' async='' src='#{script_url}'></script> #{l}"

@@ -1,6 +1,5 @@
 module Public
   class ManifestController < PublicController
-
     def index
       manifest = shop.manifest.as_json except: %i[id created_at updated_at shop_id]
       manifest['icons'] = icons if shop.manifest.icon.present?

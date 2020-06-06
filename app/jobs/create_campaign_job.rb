@@ -21,7 +21,9 @@ class CreateCampaignJob < ApplicationJob
 
   def icon
     shop = campaign.shop
-    shop.manifest.icon.variant(resize_to_fit: [192, 192]).processed.service_url.sub(/\?.*/, '') if shop.manifest.icon.present?
+    return if shop.manifest.icon.blank?
+
+    shop.manifest.icon.variant(resize_to_fit: [192, 192]).processed.service_url.sub(/\?.*/, '')
   end
 
   def postpone?

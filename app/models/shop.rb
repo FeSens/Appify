@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class Shop < ActiveRecord::Base
+class Shop < ApplicationRecord
   include ShopifyApp::ShopSessionStorage
 
-  enum plan_name: %i[partner_test retainer]
+  enum plan_name: { partner_test: 0, retainer: 1 }
   has_one :manifest, dependent: :destroy
   has_one :configuration, dependent: :destroy
   has_many :pushes, dependent: :destroy
@@ -15,10 +15,12 @@ class Shop < ActiveRecord::Base
 
   def init_models
     create_manifest
-    self.optins.create(kind: 'pwa',
-      title: "Put our store in your pocket!", body: "Download our app and keep updated about your order and the newest products!",
-      accept_button: "Let's go!", timer: 15)
-    self.optins.create(kind: 'push')
+    optins.create(kind: 'pwa',
+                  title: 'Put our store in your pocket!',
+                  body: 'Download our app and keep updated about your order and the newest products!',
+                  accept_button: "Let's go!",
+                  timer: 15)
+    optins.create(kind: 'push')
   end
 
   def api_version

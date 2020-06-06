@@ -5,7 +5,7 @@ class CustomersDataErasureJob < ApplicationJob
     shop = Shop.find_by(shopify_domain: shop_domain)
 
     if shop.nil?
-      logger.error("#{self.class} failed: cannot find shop with domain '#{shop_domain}'")
+      logger.error("#{self.class} failed: cannot find shop with domain '#{shop_domain}', on '#{webhook}'")
       return
     end
 

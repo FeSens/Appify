@@ -4,9 +4,9 @@ module Admin
     include ShopifyApp::Authenticated
 
     if Rails.env.development?
-      skip_before_action *_process_action_callbacks.map{|callback| callback.filter if callback.kind == :before}.compact if Rails.env.development?
-      skip_around_action *_process_action_callbacks.map{|callback| callback.filter if callback.kind == :around}.compact if Rails.env.development?
-      skip_after_action *_process_action_callbacks.map{|callback| callback.filter if callback.kind == :around}.compact if Rails.env.development?
+      skip_before_action *_process_action_callbacks.map{|callback| callback.filter if callback.kind == :before}.compact
+      skip_around_action *_process_action_callbacks.map{|callback| callback.filter if callback.kind == :around}.compact
+      skip_after_action *_process_action_callbacks.map{|callback| callback.filter if callback.kind == :around}.compact
     end
 
     attr_accessor :shop

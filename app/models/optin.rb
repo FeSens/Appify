@@ -1,3 +1,3 @@
 class Optin < ApplicationRecord
-  enum kind: %i[pwa push]
+  enum kind: { pwa: 0, push: 1 }
 end

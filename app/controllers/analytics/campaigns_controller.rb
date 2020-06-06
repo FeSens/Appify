@@ -26,7 +26,7 @@ module Analytics
       validator = ParamsValidator.new(params)
       return if validator.valid?
 
-      render json: { errors: validator.errors }, status: 422
+      render json: { errors: validator.errors }, status: :unprocessable_entity
     end
   end
 end

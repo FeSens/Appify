@@ -7,15 +7,15 @@ module Admin
       push = []
       push_new_subscribers = []
       subscriber_count.push.pluck(:count).each do |p|
-        push <<  push_subs_base + push_new_subscribers.sum
+        push << push_subs_base + push_new_subscribers.sum
         push_new_subscribers << p
       end
 
       render json: { pwa: subscriber_count.pwa.pluck(:count),
-                    push: push,
-                    push_new_subscribers: push_new_subscribers,
-                    date_pwa: subscriber_count.pwa.pluck(:date),
-                    date_push: subscriber_count.push.pluck(:date) }
+                     push: push,
+                     push_new_subscribers: push_new_subscribers,
+                     date_pwa: subscriber_count.pwa.pluck(:date),
+                     date_push: subscriber_count.push.pluck(:date) }
     end
   end
 end
