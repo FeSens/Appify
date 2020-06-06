@@ -3,10 +3,10 @@ module Admin
     def index; end
 
     def create
-      recurring_application_charge = ShopifyAPI::RecurringApplicationCharge.new(
+      @recurring_application_charge = ShopifyAPI::RecurringApplicationCharge.new(
         name: 'Gift Basket Plan',
         price: 9.99,
-        return_url: admin_campaigns_url,
+        return_url: callback_admin_plans_path,
         test: true,
         trial_days: 7,
         capped_amount: 100,
@@ -16,6 +16,16 @@ module Admin
       return unless recurring_application_charge.save
 
       fullpage_redirect_to recurring_application_charge.confirmation_url
+    end
+
+    def callback
+      @recurring_application_charge = ShopifyAPI::RecurringApplicationCharge.find(params[:charge_id])
+      if @recurring_application_charge.status == 'accepted'
+        @recurring_application_charge.activate
+      end
+      
+      flash[:success] = 'Plan updated successfully'
+      redirect_to admin_campaigns_path
     end
 
     def plan(id)
