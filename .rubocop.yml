@@ -1,0 +1,78 @@
+---
+
+require: rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 2.6
+  StyleGuideBaseURL: https://github.com/zygotecnologia/guides/tree/master/style/ruby
+  Exclude:
+    - ".pryrc"
+    - "Gemfile"
+    - "node_modules/**/*"
+    - "db/**/*"
+    - "vendor/**/*"
+    - "tmp/**/*"
+    - "bin/**/*"
+    - "log/**/*"
+    - "**/*.erb"
+    - "config/**/*"
+    - "config/routes.rb"
+    - "config/routes/*.rb"
+
+
+Rails:
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Enabled: false
+
+Lint/UnifiedInteger:
+  Enabled: false
+
+Lint/RedundantSplatExpansion:
+  Enabled: false
+
+LineLength:
+  Max: 120
+  Exclude:
+    - 'spec/**/*'
+
+BlockLength:
+  Max: 80
+  Exclude:
+    - "spec/**/*"
+
+Metrics/ClassLength:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Naming/PredicateName:
+  Enabled: true
+  NamePrefix:
+  - is_
+  - has_
+  - have_
+  ForbiddenPrefixes:
+  - is_
+  Exclude:
+  - spec/**/*
