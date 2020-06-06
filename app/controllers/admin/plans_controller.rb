@@ -21,6 +21,7 @@ module Admin
       @recurring_application_charge = ShopifyAPI::RecurringApplicationCharge.find(params[:charge_id])
       flash[:success] = 'Your plan was not altered'
       if @recurring_application_charge.status == 'accepted'
+        update_shop_limit
         @recurring_application_charge.activate
         flash[:success] = 'Plan updated successfully'
       end
@@ -30,6 +31,11 @@ module Admin
 
     def plan
       @plan = Plan.find(params[:id]).slice(:name, :price, :trial_days, :capped_amount, :terms)
+    end
+
+    def update_shop_limit
+      p = Plan.find_by(name: @recurring_application_charge.name)
+      shop.update(push_limit: p.push_limit) 
     end
   end
 end
