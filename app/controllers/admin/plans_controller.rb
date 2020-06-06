@@ -13,9 +13,11 @@ module Admin
         terms: '$0.99 for every order created'
       )
 
-      return unless recurring_application_charge.save
-
-      fullpage_redirect_to recurring_application_charge.confirmation_url
+      
+      return fullpage_redirect_to @recurring_application_charge.confirmation_url if @recurring_application_charge.save
+      
+      flash[:danger] = @recurring_application_charge.errors.full_messages.first.to_s.capitalize
+      redirect_to admin_plans_path
     end
 
     def callback
