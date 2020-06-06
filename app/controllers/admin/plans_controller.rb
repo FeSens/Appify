@@ -8,7 +8,6 @@ module Admin
       @recurring_application_charge = ShopifyAPI::RecurringApplicationCharge.new(plan)
       @recurring_application_charge.test = true
       @recurring_application_charge.return_url = callback_admin_plans_url
-
       
       return fullpage_redirect_to @recurring_application_charge.confirmation_url if @recurring_application_charge.save
       
@@ -18,11 +17,12 @@ module Admin
 
     def callback
       @recurring_application_charge = ShopifyAPI::RecurringApplicationCharge.find(params[:charge_id])
+      flash[:success] = 'Your plan was not altered'
       if @recurring_application_charge.status == 'accepted'
         @recurring_application_charge.activate
+        flash[:success] = 'Plan updated successfully'
       end
       
-      flash[:success] = 'Plan updated successfully'
       redirect_to admin_campaigns_path
     end
 
