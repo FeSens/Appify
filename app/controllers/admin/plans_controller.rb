@@ -30,7 +30,7 @@ module Admin
     end
 
     def plan
-      @plan = Plan.find(params[:id]).slice(:name, :price, :trial_days, :capped_amount, :terms)
+      @plan = Plan.find(params[:id]).slice(:name, :price, :trial_days)
     end
 
     def update_shop_limit
