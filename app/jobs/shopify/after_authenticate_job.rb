@@ -40,6 +40,8 @@ module Shopify
     def configure_store
       s = ShopifyAPI::Shop.current
       shop.update(domain: s.domain, name: s.name)
+      p = Plan.find_by(name: s.plan_name)
+      shop.update(push_limit: p.push_limit) if p
     end
   end
 end
