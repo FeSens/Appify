@@ -25,7 +25,7 @@ class OrdersCreateJob < ActiveJob::Base
 
   def extract_parameters_from_url(url)
     uri = URI.parse(url)
-    return CGI.parse(uri.query)
+    return Rack::Utils.parse_nested_query(uri.query)
   end
 
 end
