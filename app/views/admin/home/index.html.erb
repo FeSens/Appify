@@ -14,7 +14,7 @@
       <div class="col-md-6 col-xl-3  mx-auto info-card">
         <%= image_tag "Componente 3 – 1.svg" %>
         <div class="title">Revenue<br>Generated</div>
-        <div class="value">$0</div>
+        <div class="value"><%= number_to_currency(@revenue) %></div>
       </div>
       <div class="col-md-6 col-xl-3  mx-auto info-card">
         <%= image_tag "Componente 4 – 1.svg" %>

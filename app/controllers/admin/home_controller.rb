@@ -10,6 +10,7 @@ module Admin
       @new_subscribers = shop.subscriber_counts.push.last_half.count
       @push_subscribers = shop.pushes.count
       @campaigns = shop.campaigns
+      @revenue = shop.orders.this_month.sum(:total)
     end
   end
 end
