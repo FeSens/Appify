@@ -21,7 +21,7 @@ class OrdersCreateJob < ActiveJob::Base
   def utm_parameters
     query = ShopifyAPI::GraphQL.client.parse <<-'GRAPHQL'
     {
-      order(id:"gid://shopify/Order/2298839728263") {
+      order(id: "#{webhook[:admin_graphql_api_id]}") {
         customerJourney {
           lastVisit {
             utmParameters {
