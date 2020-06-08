@@ -46,6 +46,7 @@ module Admin
       q["utm_source"] = "aplicatify"
       q["utm_medium"] = "push"
       q["utm_campaign"] = params[:campaign][:name]
+      q["ref"] = "aplicatify"
       return "/#{uri.path}?#{q.to_query}"
     end
   end
