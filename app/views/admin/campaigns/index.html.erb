@@ -19,6 +19,10 @@
             </div>
           </td>
           <td>
+            <div> <%= number_to_currency(campaign.orders.sum(:total)) %> </div>
+            <div class="sub-label"> Revenue </div>
+          </td>
+          <td>
             <div> <%= campaign.impressions %> </div>
             <div class="sub-label"> Impressions </div>
           </td>

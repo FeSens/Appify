@@ -18,7 +18,7 @@
       <div class="form-group">
         <%= label_tag 'campaign_url', 'Destination URL:' %>
         <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1"><% @shop.domain %>/</span>
+          <span class="input-group-text" id="basic-addon1"><%= @shop.domain %>/</span>
           <%= f.text_field :url, class: "form-control" %>
         </div>
       </div>
