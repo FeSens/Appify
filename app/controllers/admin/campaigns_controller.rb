@@ -26,7 +26,9 @@ module Admin
     private
 
     def campaing_params
-      params.require(:campaign).permit(:name, :tag, :title, :body, :url, :release_date)
+      c = params.require(:campaign).permit(:name, :tag, :title, :body, :url, :release_date)
+      c[:url] = build_url
+      c
     end
 
     def load_campaign
@@ -35,6 +37,16 @@ module Admin
 
     def create_job
       CreateCampaignJob.set(wait_until: campaign.release_date).perform_later(campaign)
+    end
+
+    def build_url
+      url = params[:campaign][:url].match(/^\/*(.*)/)&.captures&.first
+      uri = URI.parse(url)
+      q = uri.query.present? ? Rack::Utils.parse_nested_query(uri.query) : {}
+      q["utm_source"] = "aplicatify"
+      q["utm_medium"] = "push"
+      q["utm_campaign"] = params[:campaign][:name]
+      return "/#{uri.path}?#{q.to_query}"
     end
   end
 end

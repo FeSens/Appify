@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shop: one
+  campaing: one
+  landning_site: MyString
+  total: 9.99
+
+two:
+  shop: two
+  campaing: two
+  landning_site: MyString
+  total: 9.99
