@@ -30,12 +30,21 @@ class OrdersCreateJob < ActiveJob::Base
               source
             }
           }
+
+          firstVisit {
+            utmParameters {
+              campaign
+              medium
+              source
+            }
+          }
         }
       }
     }
     GRAPHQL
     result = ShopifyAPI::GraphQL.client.query(query)
-    utm = result.data.order.customer_journey.last_visit.utm_parameters
-    @utm_medium, @utm_campaign, @utm_source = utm.medium, utm.campaign, utm.source
+    journey = result.data.order.customer_journey
+    visit = journey.last_visit.present? ? journey.last_visit.utm_parameters : journey.first_visit.utm_parameters
+    @utm_medium, @utm_campaign, @utm_source = visit.medium, visit.campaign, visit.source
   end  
 end
