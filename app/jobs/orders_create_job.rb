@@ -10,13 +10,13 @@ class OrdersCreateJob < ActiveJob::Base
     end
 
     shop.with_shopify_session do
-      @landing_site = ShopifyAPI::Order.find(webhook.id, fields: 'landing_site')
+      @landing_site = ShopifyAPI::Order.find(webhook[:id], fields: 'landing_site')
     end
     return unless source_verified?
 
     @campaign = shop.campaigns.find_by(name: utm_campaign)
 
-    shop.orders.create(campaign_id: campaign&.id, landing_site: landing_site, total: webhook.total_line_items_price, name: webhook.name)
+    shop.orders.create(campaign_id: campaign&.id, landing_site: landing_site, total: webhook[:total_line_items_price], name: webhook[:name])
   end
 
   def source_verified?
