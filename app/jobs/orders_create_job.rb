@@ -19,9 +19,9 @@ class OrdersCreateJob < ActiveJob::Base
   end
 
   def utm_parameters
-    query = ShopifyAPI::GraphQL.client.parse <<-'GRAPHQL'
+    query = ShopifyAPI::GraphQL.client.parse <<-GRAPHQL
     {
-      order(id: "#{webhook[:admin_graphql_api_id]}") {
+      order(id: "#{@webhook[:admin_graphql_api_id]}") {
         customerJourney {
           lastVisit {
             utmParameters {
@@ -35,7 +35,7 @@ class OrdersCreateJob < ActiveJob::Base
     }
     GRAPHQL
     result = ShopifyAPI::GraphQL.client.query(query)
-    utm = result.data.order.customerJourney.lastVisit.utmParameters
+    utm = result.data.order.customer_journey.last_visit.utm_parameters
     @utm_medium, @utm_campaign, @utm_source = utm.medium, utm.campaign, utm.source
   end  
 end
