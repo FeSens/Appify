@@ -12,16 +12,14 @@ module Shopify
         @themes_id = ShopifyAPI::Theme.find(:all)
         @themes_id.each do |t|
           layout = ShopifyAPI::Asset.find('layout/theme.liquid', params: { theme_id: t.id })
-          unless layout.value.include? "<link rel='manifest' href='#{manifest_url}'>"
-            l = layout.value.split('<head>')[1]
-            layout.value = "<head> <link rel='manifest' href='#{manifest_url}'> #{l}"
-            layout.save
-          end
-          script_urls.each do |script_url|
-            next if layout.value.include? "<script type='text/javascript' async='' src='#{script_url}'></script>"
-
-            l = layout.value.split('<head>')[1]
-            layout.value = "<head> <script type='text/javascript' async='' src='#{script_url}'></script> #{l}"
+          create_asset unless ShopifyAPI::Asset.find('snippets/aplicatify-snippet.liquid', params: { theme_id: t.id })
+          unless layout.value.include? "{% include 'aplicatify-snippet' %}"
+            l = layout.value.split('<head>')
+            layout.value = `#{l[0]}
+                            <!-- APLICATIFY:START -->
+                              {% include 'aplicatify-snippet' %}
+                            <!-- APLICATIFY:END -->
+                            #{l[1]}`
             layout.save
           end
         end
@@ -42,6 +40,15 @@ module Shopify
       shop.update(domain: s.domain, name: s.name)
       p = Plan.find_by(name: s.plan_name)
       shop.update(push_limit: p.push_limit) if p
+    end
+
+    def create_asset
+      ShopifyAPI::Asset.create(key: "snippets/aplicatify-snippet.liquid", 
+        value: `
+          <link rel='manifest' href='#{manifest_url}'>
+          <script type='text/javascript' async='' src='#{script_urls[0]}'></script>
+          <script type='text/javascript' async='' src='#{script_urls[1]}'></script>
+        `)
     end
   end
 end
