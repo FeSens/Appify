@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Shopify
-  class AfterAuthenticateJob < ApplicationJob
+  class AfterAuthenticateJob
     attr_accessor :shop
 
     def perform(shop_domain:)
@@ -12,14 +12,10 @@ module Shopify
         @themes_id = ShopifyAPI::Theme.find(:all)
         @themes_id.each do |t|
           layout = ShopifyAPI::Asset.find('layout/theme.liquid', params: { theme_id: t.id })
-          create_asset unless ShopifyAPI::Asset.find('snippets/aplicatify-snippet.liquid', params: { theme_id: t.id })
+          create_asset
           unless layout.value.include? "{% include 'aplicatify-snippet' %}"
             l = layout.value.split('<head>')
-            layout.value = `#{l[0]}
-                            <!-- APLICATIFY:START -->
-                              {% include 'aplicatify-snippet' %}
-                            <!-- APLICATIFY:END -->
-                            #{l[1]}`
+            layout.value = "<head>\n  <!-- APLICATIFY:START -->\n {% include 'aplicatify-snippet' %}\n  <!-- APLICATIFY:END -->\n#{l[1]}"
             layout.save
           end
         end
@@ -44,11 +40,7 @@ module Shopify
 
     def create_asset
       ShopifyAPI::Asset.create(key: "snippets/aplicatify-snippet.liquid", 
-        value: `
-          <link rel='manifest' href='#{manifest_url}'>
-          <script type='text/javascript' async='' src='#{script_urls[0]}'></script>
-          <script type='text/javascript' async='' src='#{script_urls[1]}'></script>
-        `)
+        value: "<link rel='manifest' href='#{manifest_url}'>\n<script type='text/javascript' async='' src='#{script_urls[0]}'></script>\n<script type='text/javascript' async='' src='#{script_urls[1]}'></script>")
     end
   end
 end
