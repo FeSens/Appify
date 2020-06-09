@@ -8,7 +8,7 @@ ShopifyApp.configure do |config|
   config.embedded_app = true
   config.api_version = "2020-04"
   config.shop_session_repository = 'Shop'
-  config.after_authenticate_job = { job: "Shopify::AfterAuthenticateJob", inline: true }
+  config.after_authenticate_job = { job: "Shopify::AfterAuthenticateJob", inline: false }
   config.webhooks = [
     {topic: 'orders/create', address: 'https://appify-skin.herokuapp.com/webhooks/orders_create', format: 'json', 
      fields: ['admin_graphql_api_id', 'total_line_items_price', 'name']},
