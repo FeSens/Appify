@@ -14,8 +14,8 @@ ShopifyApp.configure do |config|
      fields: ['admin_graphql_api_id', 'total_line_items_price', 'name']},
   ]
   config.scripttags = [
-    { event: 'onload', src: "/apps/script/serviceworker-register.js" },
-    { event: 'onload', src: "/apps/script/public/preferences.js" }
+    { event: 'onload', src: "apps/script/serviceworker-register.js" },
+    { event: 'onload', src: "apps/script/public/preferences.js" }
   ]
 end
 
