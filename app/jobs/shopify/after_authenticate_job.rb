@@ -13,11 +13,12 @@ module Shopify
         @themes_id.each do |t|
           layout = ShopifyAPI::Asset.find('layout/theme.liquid', params: { theme_id: t.id })
           create_asset
-          unless layout.value.include? "{% include 'aplicatify-snippet' %}"
-            l = layout.value.split('<head>')
-            layout.value = "<head>\n  <!-- APLICATIFY:START -->\n {% include 'aplicatify-snippet' %}\n  <!-- APLICATIFY:END -->\n#{l[1]}"
-            #layout.save
-          end
+          #unless layout.value.include? "{% include 'aplicatify-snippet' %}"
+            #l = layout.value.split('<head>')
+            #layout.value = "<head>\n  <!-- APLICATIFY:START -->\n {% include 'aplicatify-snippet' %}\n  <!-- APLICATIFY:END -->\n#{l[1]}"
+          logger.error(layout.value)
+          layout.save
+          #end
         end
       end
     end
