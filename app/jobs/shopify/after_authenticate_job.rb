@@ -16,7 +16,7 @@ module Shopify
           unless layout.value.include? "{% include 'aplicatify-snippet' %}"
             l = layout.value.split('<head>')
             layout.value = "<head>\n  <!-- APLICATIFY:START -->\n {% include 'aplicatify-snippet' %}\n  <!-- APLICATIFY:END -->\n#{l[1]}"
-            layout.save
+            #layout.save
           end
         end
       end
