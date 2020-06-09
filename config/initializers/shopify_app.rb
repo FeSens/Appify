@@ -3,7 +3,7 @@ ShopifyApp.configure do |config|
   config.api_key = Rails.application.credentials.dig(:shopify, :api_key)
   config.secret = Rails.application.credentials.dig(:shopify, :api_secret)
   config.old_secret = ""
-  config.scope = "read_themes, write_themes, read_orders" # Consult this page for more scope options:
+  config.scope = "read_themes, write_themes, read_orders, write_script_tags" # Consult this page for more scope options:
                                  # https://help.shopify.com/en/api/getting-started/authentication/oauth/scopes
   config.embedded_app = true
   config.api_version = "2020-04"
@@ -12,6 +12,10 @@ ShopifyApp.configure do |config|
   config.webhooks = [
     {topic: 'orders/create', address: 'https://appify-skin.herokuapp.com/webhooks/orders_create', format: 'json', 
      fields: ['admin_graphql_api_id', 'total_line_items_price', 'name']},
+  ]
+  config.scripttags = [
+    { event: 'onload', src: "/apps/script/serviceworker-register.js" },
+    { event: 'onload', src: "/apps/script/public/preferences.js" }
   ]
 end
 

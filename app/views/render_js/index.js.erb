@@ -107,3 +107,5 @@ window.closePopup = closePopup;
 <% if @config.enable_timer %>
   setTimeout(addElement, <%= @config.timer %>);
 <% end %>
+
+$('head').append('<link rel="manifest" href="/apps/script/public/manifest.json">');
