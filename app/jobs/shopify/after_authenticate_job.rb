@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Shopify
-  class AfterAuthenticateJob
+  class AfterAuthenticateJob < ApplicationJob
     attr_accessor :shop
 
     def perform(shop_domain:)
