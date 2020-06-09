@@ -10,7 +10,7 @@ module Shopify
       shop.with_shopify_session do
         configure_store
         create_asset
-        modify_theme if false
+        modify_theme
       end
     end
 
