@@ -35,16 +35,14 @@ module Shopify
     end
 
     def modify_theme!
-      @themes_id = ShopifyAPI::Theme.find(:all)
-      @themes_id.each do |t|
-        layout = ShopifyAPI::Asset.find('layout/theme.liquid', params: { theme_id: t.id })
-        create_asset
-        unless layout.value.include? "{% include 'aplicatify-snippet' %}"
-          l = layout.value.split('<head>')
-          layout.value = "#{l[0]}\n<head>\n  <!-- APLICATIFY:START -->\n {% include 'aplicatify-snippet' %}\n  <!-- APLICATIFY:END -->\n#{l[1]}"
-          layout.save
-        end
+      layout = ShopifyAPI::Asset.find('layout/theme.liquid', params: { role: "main" })
+      create_asset
+      unless layout.value.include? "{% include 'aplicatify-snippet' %}"
+        l = layout.value.split('<head>')
+        layout.value = "#{l[0]}\n<head>\n  <!-- APLICATIFY:START -->\n {% include 'aplicatify-snippet' %}\n  <!-- APLICATIFY:END -->\n#{l[1]}"
+        layout.save
       end
+      shop.update(theme_verified: true)
     end
 
     def modify_theme

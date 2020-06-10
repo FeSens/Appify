@@ -34,6 +34,29 @@
           <span class="name ml-2" ><%= shop_name %></span>
         </nav>
       </div>
+      <% unless theme_verified? %>
+        <div class="row">
+          <div class="alert-danger w-100">
+            Sorry, an error occurred during the installation process and your theme was not automatically modified.<br>
+            To execute the modifications manually and finish the installation process, please follow the instructions below:<br>
+            * Open Theme's panel and then "Edit Code" for the current theme.
+            * In the snippets folder create a file with the name: "aplicatify-snippet.liquid"
+            * Insert this code in the file:
+            <div class="pl-4">
+              &ltlink rel='manifest' href='/apps/script/public/manifest.json'&gt<br>
+              &ltscript type='text/javascript' async='' src='/apps/script/serviceworker-register.js'&gt&lt/script&gt<br>
+              &ltscript type='text/javascript' async='' src='/apps/script/public/preferences.js'&gt&lt/script&gt
+            </div>
+            * In the layout folder, edit the file: "theme.liquid" and inser the following code just after the &lthead&gt tag:
+            <div class="pl-4">
+              &lt!-- APLICATIFY:START --&gt<br>
+              {% include 'aplicatify-snippet' %}<br>
+              &lt!-- APLICATIFY:END --&gt
+            </div>
+            More detailed instructions can be found in: <a href="http://www.aplicatify.com/instalation_guide" target="_blank">Installation Guide</a>
+          </div>
+        </div>
+      <% end %>
       <%= flash_messages %>
       <%= yield %>
     </div>
