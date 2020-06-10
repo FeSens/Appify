@@ -12,6 +12,7 @@ module Admin
     attr_accessor :shop
     before_action :load_current_shop
     helper_method :shop_name
+    helper_method :theme_verified?
 
     private
 
@@ -33,5 +34,10 @@ module Admin
     def shop_name
       shop.name
     end
+    
+    def theme_verified?
+      shop.theme_verified
+    end
+    
   end
 end
