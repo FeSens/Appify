@@ -9,7 +9,6 @@ module Shopify
 
       shop.with_shopify_session do
         configure_store
-        create_asset
         modify_theme
       end
     end
@@ -35,7 +34,7 @@ module Shopify
         value: "<link rel='manifest' href='#{manifest_url}'>\n<script type='text/javascript' async='' src='#{script_urls[0]}'></script>\n<script type='text/javascript' async='' src='#{script_urls[1]}'></script>")
     end
 
-    def modify_theme
+    def modify_theme!
       @themes_id = ShopifyAPI::Theme.find(:all)
       @themes_id.each do |t|
         layout = ShopifyAPI::Asset.find('layout/theme.liquid', params: { theme_id: t.id })
@@ -46,6 +45,13 @@ module Shopify
           layout.save
         end
       end
+    end
+
+    def modify_theme
+      modify_theme!
+    rescue StandardError => e
+      Rollbar.error(e, "Shop (#{shop.id}) theme could not be modified")
+      shop.update(theme_verified: false)
     end
   end
 end
