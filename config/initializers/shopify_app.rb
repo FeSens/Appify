@@ -10,6 +10,7 @@ ShopifyApp.configure do |config|
   config.shop_session_repository = 'Shop'
   config.after_authenticate_job = { job: "Shopify::AfterAuthenticateJob", inline: true }
   config.webhooks = [
+    {topic: 'app/uninstalled', address: 'https://example.com/webhooks/app_uninstalled', format: 'json'},
     {topic: 'orders/create', address: 'https://appify-skin.herokuapp.com/webhooks/orders_create', format: 'json', 
      fields: ['admin_graphql_api_id', 'total_line_items_price', 'name']},
   ]
