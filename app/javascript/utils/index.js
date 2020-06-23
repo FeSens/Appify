@@ -65,7 +65,7 @@ export let utils = (() => {
   }
 
   const pageVisit = async () => {
-    return $.post('/apps/script/analytics/page_visits', {
+    return $.post('/analytics/page_visits', {
       subscriber_id: await idbKeyval.get("push-subscriber"),
       path: window.location.pathname,
       time_spent: window.browserInteractionTime.getTimeInMilliseconds() | 0,

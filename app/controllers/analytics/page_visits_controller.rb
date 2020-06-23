@@ -16,7 +16,7 @@ module Analytics
     end
 
     def page_visit_params
-      params.permit(:path, :data, :time_spent, :subscriber_id, :session, :is_available)
+      params.permit(:path, :data, :time_spent, :subscriber_id, :session, :is_available).merge(shop_id: shop.id)
     end
 
     def validate
