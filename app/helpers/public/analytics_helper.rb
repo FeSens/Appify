@@ -1,0 +1,2 @@
+module Public::AnalyticsHelper
+end
