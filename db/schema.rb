@@ -126,9 +126,13 @@ ActiveRecord::Schema.define(version: 2020_06_22_184234) do
   end
 
   create_table "page_visits", force: :cascade do |t|
-    t.bigint "push_id", null: false
+    t.bigint "push_id"
     t.integer "time_spent"
     t.string "path"
+    t.string "subscriber_id"
+    t.datetime "data"
+    t.decimal "price"
+    t.boolean "is_available"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["push_id"], name: "index_page_visits_on_push_id"
