@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pushes: one
+  time_spent: 1
+  path: MyString
+
+two:
+  pushes: two
+  time_spent: 1
+  path: MyString
