@@ -7,6 +7,7 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.2.2",
     "bootstrap": "4.3.1",
+    "browser-interaction-time": "^2.0.3",
     "chart.js": "^2.9.3",
     "flatpickr": "^4.6.3",
     "jquery": "^3.5.0",

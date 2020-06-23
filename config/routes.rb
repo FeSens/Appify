@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   namespace :analytics do
     resources :campaigns, only: %i[create]
     resources :subscribers, only: %i[create]
+    resources :page_visits, only: %i[create]
   end
 
   namespace :public do
