@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_10_212434) do
+ActiveRecord::Schema.define(version: 2020_06_23_214123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +125,22 @@ ActiveRecord::Schema.define(version: 2020_06_10_212434) do
     t.index ["shop_id"], name: "index_orders_on_shop_id"
   end
 
+  create_table "page_visits", force: :cascade do |t|
+    t.bigint "push_id"
+    t.integer "time_spent"
+    t.string "path"
+    t.string "subscriber_id"
+    t.datetime "data"
+    t.decimal "price"
+    t.boolean "is_available"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "session"
+    t.bigint "shop_id", null: false
+    t.index ["push_id"], name: "index_page_visits_on_push_id"
+    t.index ["shop_id"], name: "index_page_visits_on_shop_id"
+  end
+
   create_table "plans", force: :cascade do |t|
     t.string "name"
     t.decimal "price"
@@ -206,6 +222,8 @@ ActiveRecord::Schema.define(version: 2020_06_10_212434) do
   add_foreign_key "optins", "shops"
   add_foreign_key "orders", "campaigns"
   add_foreign_key "orders", "shops"
+  add_foreign_key "page_visits", "pushes"
+  add_foreign_key "page_visits", "shops"
   add_foreign_key "push_interactions", "shops"
   add_foreign_key "push_subscriber_campaigns", "campaigns"
   add_foreign_key "push_subscriber_campaigns", "pushes"
