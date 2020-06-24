@@ -1,13 +1,11 @@
 module Public
   class ManifestController < PublicController
     def index
-      Rails.cache.fetch("{ManifestController:#{shop.id}}", expires_in: 5.minutes) do
-        manifest = shop.manifest.as_json except: %i[id created_at updated_at shop_id]
-        manifest['icons'] = icons if shop.manifest.icon.present?
-        manifest['background_color'] = hash_color(manifest['background_color'])
-        manifest['theme_color'] = hash_color(manifest['theme_color'])
-        render json: manifest
-      end
+      manifest = shop.manifest.as_json except: %i[id created_at updated_at shop_id]
+      manifest['icons'] = icons if shop.manifest.icon.present?
+      manifest['background_color'] = hash_color(manifest['background_color'])
+      manifest['theme_color'] = hash_color(manifest['theme_color'])
+      render json: manifest
     end
 
     def icons
