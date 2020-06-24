@@ -8,7 +8,7 @@ module Public
       return @shop = Shop.last if Rails.env.development?
 
       @shop = Shop.find_by(domain: request.host)
-      render :no_content unless shop
+      return head :no_content unless shop
     end
   end
 end
