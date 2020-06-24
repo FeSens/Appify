@@ -38,7 +38,7 @@ module Shopify
       layout = ShopifyAPI::Asset.find('layout/theme.liquid', params: { role: "main" })
       create_asset
       unless layout.value.include? "{% include 'aplicatify-snippet' %}"
-        l = layout.value.split('<head>')
+        l = layout.value.split('<head>', 2)
         layout.value = "#{l[0]}\n<head>\n  <!-- APLICATIFY:START -->\n {% include 'aplicatify-snippet' %}\n  <!-- APLICATIFY:END -->\n#{l[1]}"
         layout.save
       end
