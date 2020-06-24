@@ -12,8 +12,7 @@ module Public
     private
 
     def subscription_params
-      s = Shop.find_by(shopify_domain: params[:shop])
-      params.permit(:subscriber_id, :endpoint, :auth, :p256dh).merge(shop_id: s.id)
+      params.permit(:subscriber_id, :endpoint, :auth, :p256dh).merge(shop_id: shop.id)
     end
   end
 end
