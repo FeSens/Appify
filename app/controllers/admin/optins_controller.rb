@@ -12,7 +12,7 @@ module Admin
     def update
       optin.update(optin_params)
       flash[:success] = 'Updated with success'
-      redirect_to admin_optins_path(tab: @optin.kind), turbolinks: false
+      redirect_to admin_optins_path(tab: @optin.kind)
     end
 
     private
