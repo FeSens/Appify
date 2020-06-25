@@ -20,30 +20,22 @@ function openPopup(type) {
   if(window.installPromptEvent && type == "pwa") {
     var el = document.getElementById(`modal_${type}`);
     el.style.display = 'block';
-    
-    // Updates: set window background color black
-    document.body.style.background = '#353333';
   }
 
   if(type == "push" && Notification.permission == "default") {
       var el = document.getElementById(`modal_${type}`);
       el.style.display = 'block';
-      
-      // Updates: set window background color black
-      document.body.style.background = '#353333';
   }
 }
 
 function closePopup(type) {
   var el = document.getElementById(`modal_${type}`);
   el.style.display = 'none';
-  document.body.style.background = 'white';
 }
 
 function pwa_prompt() {
   var el = document.getElementById('modal_pwa');
   el.style.display = 'none';
-  document.body.style.background = 'white';
   window.installPromptEvent.prompt();
   window.installPromptEvent.userChoice.then((choice) => {
     if (choice.outcome === 'accepted') {
@@ -60,7 +52,6 @@ function push_prompt() {
   window.register_push_service(window.saved_reg);
   var el = document.getElementById('modal_push');
   el.style.display = 'none';
-  document.body.style.background = 'white';
 }
 
 function showPrompt(type) {
