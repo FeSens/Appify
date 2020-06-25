@@ -19,25 +19,25 @@
   box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
 }
 
-.app-modal-title {
+.aplicatify-modal-title {
     font-size: 18px;
     padding-bottom: 5px;
     font-weight: bold;
   }
 
-  .app-modal-body {
+  .aplicatify-modal-body {
     position: relative;
     font-size: 16px;
     padding-bottom: 25px;
   }
 
-.aling-bottom {
+.aplicatify-aling-bottom {
     position: relative;
     width: 100%;
     float: right;
 }
 
-.btn {
+.aplicatify-btn {
   display: inline-block;
   font-weight: 400;
   text-align: center;
@@ -46,8 +46,6 @@
   padding: .375rem .75rem;
   font-size: 1rem;
   line-height: 1.5;
-  border-radius: .25rem;
-  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
   min-width: 114px;
   min-height: 39px;
   max-width: 152px;
@@ -55,6 +53,7 @@
   max-height: 39px;
   height: 16%;
   border-radius: 4px;
+  border-width: 0px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 }
 
@@ -72,16 +71,16 @@
 </style>
 
 <div id="modal_<%=optin.kind%>" class="aplicatify-modal" style="background: #<%= optin.background_color %>; display: none;">
-  <div id="modal_optin_title" class="app-modal-title" style="color: #<%= optin.text_color %>">
+  <div id="modal_optin_title" class="aplicatify-modal-title" style="color: #<%= optin.text_color %>">
     <%=optin.title%>
   </div>
 
-  <div id="modal_optin_body" class="app-modal-body" style="color: #<%= optin.text_color %>">
+  <div id="modal_optin_body" class="aplicatify-modal-body" style="color: #<%= optin.text_color %>">
     <%=optin.body%>
   </div>
 
   <div class="aling-bottom">
-    <button id="modal_optin_decline_button" class="btn btn-no close_button" onClick="closePopup('<%=optin.kind%>')"><%=optin.decline_button%></button>
-    <button id="modal_optin_accept_button" class="btn btn-yes accept" style="float: right;" onClick="showPrompt('<%=optin.kind%>')"><%=optin.accept_button%></button>
+    <button id="modal_optin_decline_button" class="aplicatify-btn close_button" onClick="closePopup('<%=optin.kind%>')"><%=optin.decline_button%></button>
+    <button id="modal_optin_accept_button" class="aplicatify-btn accept" style="float: right;" onClick="showPrompt('<%=optin.kind%>')"><%=optin.accept_button%></button>
   </div>
 </div>
