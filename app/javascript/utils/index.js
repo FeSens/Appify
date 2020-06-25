@@ -100,7 +100,10 @@ export let utils = (() => {
       pageVisit()
     },
     init() {
-      init()
+      init();
+      window.onappinstalled = function(ev) { 
+        computeSubscriber("pwa")
+      };
     }
   }
 })();
