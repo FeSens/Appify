@@ -18,7 +18,9 @@
       </div>
     </div>
     <div class="app-logo">
-      <%=image_tag @shop.manifest.icon, size: "58x58"%>
+      <%if @shop.manifest.icon.attached? %>
+        <%=image_tag @shop.manifest.icon, size: "55x55"%>
+      <% end %>
     </div>
   </div>
 </div>
@@ -30,7 +32,9 @@
   <div class="push-windows">
     <div class="main">
       <div class="app-logo">
-      <%=image_tag @shop.manifest.icon, size: "55x55"%>
+      <%if @shop.manifest.icon.attached? %>
+        <%=image_tag @shop.manifest.icon, size: "55x55"%>
+      <% end %>
       </div>
     <div class="push-body">
       <div class="push-title">
