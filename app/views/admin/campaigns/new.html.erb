@@ -1,6 +1,11 @@
 <div class="row mt-3">
-  <div class="col-9 mx-auto mb-5 white shadow-sm p-4">
+  <div class="col-5 mx-auto mb-5 white shadow-sm p-4">
     <h4 class="pb-4">New Campaign</h4>
     <%= render "form", url: admin_campaigns_path(@campaign), method: :post %>
+  </div>
+  <div class="col-5 mx-auto mb-5">
+    <div class="row h-100">
+      <%= render "macos_push", url: admin_campaigns_path(@campaign), method: :post %>
+    </div>
   </div>
 </div>
