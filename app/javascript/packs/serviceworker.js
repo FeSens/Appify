@@ -63,6 +63,7 @@ self.addEventListener("push", function(event) {
       body: body,
       icon: icon,
       tag: tag,
+      requireInteraction: true,
       data: {
         url: url,
         campaign_id: campaign_id
