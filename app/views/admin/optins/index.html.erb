@@ -71,10 +71,10 @@
   $(`#modal_${this.id}`).html($(this).val())
 
   if (this.id.includes("background_color")) {
-      $('#modal').css('background', `#${$(this).val()}`)
+      $('.aplicatify-modal').css('background', `#${$(this).val()}`)
   }
   if (this.id.includes("text_color")) {
-      $('.modal-title, .modal-body').css('color', `#${$(this).val()}`)
+      $('.aplicatify-modal-title, .aplicatify-modal-body').css('color', `#${$(this).val()}`)
   }
   });
 </script>
