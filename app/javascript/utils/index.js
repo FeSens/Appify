@@ -75,7 +75,7 @@ export let utils = (() => {
     });
   }
 
-  function init() {
+  function initialize() {
     get_or_create_id();
     get_or_create_cookie("session");
   }
@@ -87,7 +87,6 @@ export let utils = (() => {
           if (subscription) {
             return subscription;
           }
-          computeSubscriber("push")
           return reg.pushManager.subscribe({
             userVisibleOnly: true,
             applicationServerKey: vapidPublicKey
@@ -100,7 +99,7 @@ export let utils = (() => {
       pageVisit()
     },
     init() {
-      init();
+      initialize();
       window.onappinstalled = function(ev) { 
         computeSubscriber("pwa")
       };
