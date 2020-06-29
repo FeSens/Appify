@@ -1,7 +1,7 @@
 module Analytics
   class SubscribersController < AnalyticsController
     def create
-      subscriber_count = SubscriberCount.find_or_create_by(subscriber_params).increment
+      SubscriberCount.find_or_create_by(subscriber_params).increment
       head :no_content
     end
 
