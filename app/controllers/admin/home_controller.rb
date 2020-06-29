@@ -9,7 +9,8 @@ module Admin
       @app_installs = shop.subscriber_counts.pwa.sum(:count)
       @push_subscribers = shop.pushes.count
       @campaigns = shop.campaigns
-      @revenue = shop.orders.this_month.sum(:total)
+      @revenue = shop.orders.sum(:total)
+      @app_revenue = shop.campaigns.find_by(name:"app").orders.sum(:total)
     end
   end
 end

@@ -3,23 +3,23 @@
     <div class="row my-3">
       <div class="col-md-6 col-xl-3  mx-auto info-card">
         <%= image_tag "Componente 1 – 1.svg" %>
-        <div class="title">Campaigns<br>Sent</div>
-        <div class="value"> <%= @campaigns.sent.count %> </div>
-      </div>
-      <div class="col-md-6 col-xl-3  mx-auto info-card">
-        <%= image_tag "Componente 2 – 1.svg" %>
-        <div class="title">Subscribers</div>
-        <div class="value"><%= @push_subscribers %></div>
-      </div>
-      <div class="col-md-6 col-xl-3  mx-auto info-card">
-        <%= image_tag "Componente 3 – 1.svg" %>
-        <div class="title">Revenue<br>Generated</div>
-        <div class="value"><%= number_to_currency(@revenue) %></div>
+        <div class="title">App<br>Revenue</div>
+        <div class="value"> <%= number_to_currency(@app_revenue) %> </div>
       </div>
       <div class="col-md-6 col-xl-3  mx-auto info-card">
         <%= image_tag "Componente 4 – 1.svg" %>
         <div class="title">App<br>Users</div>
         <div class="value"><%= @app_installs %></div>
+      </div>
+      <div class="col-md-6 col-xl-3  mx-auto info-card">
+        <%= image_tag "Componente 3 – 1.svg" %>
+        <div class="title">Total<br>Revenue</div>
+        <div class="value"><%= number_to_currency(@revenue) %></div>
+      </div>
+      <div class="col-md-6 col-xl-3  mx-auto info-card">
+        <%= image_tag "Componente 2 – 1.svg" %>
+        <div class="title">Active<br>Subscribers</div>
+        <div class="value"><%= @push_subscribers %></div>
       </div>
     </div>
   </div>
