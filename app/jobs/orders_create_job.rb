@@ -1,6 +1,8 @@
-class OrdersCreateJob < ActiveJob::Base
+class OrdersCreateJob < ApplicationJob
+  class JurnerNotAvailable < StandardError ; end
   attr_accessor :webhook, :utm_source, :utm_medium, :utm_campaign, :campaign, :shop
-
+  retry_on JurnerNotAvailable, wait: ->(executions) { (executions*60) * (13 ** executions) }, attempts: 3
+  
   def perform(shop_domain:, webhook:)
     @webhook = webhook
     @shop = Shop.find_by(shopify_domain: shop_domain)
@@ -44,6 +46,7 @@ class OrdersCreateJob < ActiveJob::Base
     GRAPHQL
     result = ShopifyAPI::GraphQL.client.query(query)
     journey = result.data.order.customer_journey
+    raise JurnerNotAvailable unless journey.present?
     visit = journey.last_visit.present? ? journey.last_visit.utm_parameters : journey.first_visit.utm_parameters
     @utm_medium, @utm_campaign, @utm_source = visit.medium, visit.campaign, visit.source
   end  
