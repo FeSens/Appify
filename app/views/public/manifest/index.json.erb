@@ -11,8 +11,8 @@
     }<%= i == (icon_sizes.length - 1) ? '' : ',' %>
   <% end %>
   ],
-  "theme_color":  <%= hash_color(@manifest.theme_color) %>,
-  "background_color": <%= hash_color(@manifest.background_color) %>,
+  "theme_color":  "<%= hash_color(@manifest.theme_color) %>",
+  "background_color": "<%= hash_color(@manifest.background_color) %>",
   "display": "<%= @manifest.display %>",
   "orientation": "<%= @manifest.orientation %>"
 }
