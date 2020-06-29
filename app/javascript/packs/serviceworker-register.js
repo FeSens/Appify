@@ -18,10 +18,6 @@ window.addEventListener('beforeinstallprompt', e => {
   window.installPromptEvent = e;
 });
 
-window.addEventListener('appinstalled', () => {
-  computeSubscriber("pwa")
-});
-
 window.browserInteractionTime = new BrowserInteractionTime({
   timeIntervalEllapsedCallbacks: [],
   absoluteTimeEllapsedCallbacks: [],
