@@ -1,5 +1,5 @@
 class CreateCampaignJob < ApplicationJob
-  queue_as :default
+  queue_as :critical
   attr_accessor :campaign
 
   def perform(campaign)

@@ -1,5 +1,5 @@
 class PushSenderJob < ApplicationJob
-  queue_as :default
+  queue_as :critical
   sidekiq_options retry: 3
   discard_on ActiveJob::DeserializationError
 

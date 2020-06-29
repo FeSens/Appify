@@ -1,5 +1,6 @@
 class OrdersCreateJob < ApplicationJob
-  class JurnerNotAvailable < StandardError ; end
+  queue_as :low
+  class JourneyNotAvailable < StandardError ; end
   attr_accessor :webhook, :utm_source, :utm_medium, :utm_campaign, :campaign, :shop
   retry_on JurnerNotAvailable, wait: ->(executions) { (executions*60) * (13 ** executions) }, attempts: 3
   
@@ -46,7 +47,7 @@ class OrdersCreateJob < ApplicationJob
     GRAPHQL
     result = ShopifyAPI::GraphQL.client.query(query)
     journey = result.data.order.customer_journey
-    raise JurnerNotAvailable unless journey.present?
+    raise JourneyNotAvailable unless journey.present?
     visit = journey.last_visit.present? ? journey.last_visit.utm_parameters : journey.first_visit.utm_parameters
     @utm_medium, @utm_campaign, @utm_source = visit.medium, visit.campaign, visit.source
   end  
