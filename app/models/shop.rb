@@ -12,7 +12,7 @@ class Shop < ApplicationRecord
   has_many :campaigns, dependent: :destroy
   has_many :optins, dependent: :destroy
   has_many :orders, dependent: :destroy
-  has_many :page_visits
+  has_many :page_visits, dependent: :destroy
   after_create :init_models
 
   def init_models
@@ -23,6 +23,7 @@ class Shop < ApplicationRecord
                   accept_button: "Let's go!",
                   timer: 15)
     optins.create(kind: 'push')
+    campaigns.create(name:"app", tag:"internal", url:"/?ref=aplicatify&utm_source=aplicatify&utm_medium=app&utm_campaign=app")
   end
 
   def api_version
