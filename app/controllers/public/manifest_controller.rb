@@ -11,7 +11,7 @@ module Public
     def icons
       sizes = [[192, 192], [512, 512]]
       sizes.map do |size|
-        { src: shop.manifest.icon.variant(resize_to_fit: size).processed.service_url.sub(/\?.*/, ''),
+        { src: shop.manifest.icon.variant(resize: size).processed.service_url.sub(/\?.*/, ''),
           sizes: "#{size[0]}x#{size[1]}",
           type: shop.manifest.icon.content_type }
       end
