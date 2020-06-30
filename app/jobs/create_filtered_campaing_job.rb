@@ -6,7 +6,7 @@ class CreateFilteredCampaingJob < ApplicationJob
     @campaign = campaign
     return reschedule if postpone?
 
-    filter.all.each do |push_id, path|
+    filter.each do |push_id, path|
       customer = Push.find(push_id)
       message = {
         title: campaign.title,
