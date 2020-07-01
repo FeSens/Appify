@@ -75,10 +75,8 @@ self.addEventListener('notificationclick', function(event) {
   var data = event.notification.data;
   var url = data.url;
   sendAnalytics(data, "clicks");
-  event.waitUntil( () => {
-    self.clients.openWindow(url);
-    event.notification.close();
-  })
+  self.clients.openWindow(url);
+  event.notification.close();
 });
 
 self.addEventListener('pushsubscriptionchange', function(event) {
