@@ -8,6 +8,7 @@
         Dashboard<br>
         Custom Triggers<br>
         <%= plan.push_limit %> Push Notifications per Month<br>
+        <%= number_to_currency(plan.price) %> USD<br>
         <%= link_to "Get this plan", admin_plans_path(id: plan), method: :post %>
     </div>
   <% end %>
