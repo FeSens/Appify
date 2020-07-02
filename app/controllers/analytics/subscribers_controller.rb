@@ -8,8 +8,7 @@ module Analytics
     private
 
     def subscriber_params
-      s = Shop.find_by(shopify_domain: params[:shop])
-      params.permit(:service).merge(shop_id: s.id, date: Date.today)
+      params.permit(:service).merge(shop_id: shop.id, date: Date.today)
     end
   end
 end

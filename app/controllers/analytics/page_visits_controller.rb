@@ -1,7 +1,5 @@
 module Analytics
   class PageVisitsController < AnalyticsController
-    before_action :validate
-    attr_accessor :shop
 
     def create
       params_recived = page_visit_params
@@ -17,13 +15,6 @@ module Analytics
 
     def page_visit_params
       params.permit(:path, :data, :time_spent, :subscriber_id, :session, :is_available).merge(shop_id: shop.id)
-    end
-
-    def validate
-      return @shop = Shop.last if Rails.env.development?
-
-      @shop = Shop.find_by(domain: request.host)
-      return head :no_content unless shop
     end
   end
 end

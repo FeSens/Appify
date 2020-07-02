@@ -21,7 +21,6 @@ module Analytics
     def create
       Campaign.increment_counter params[:attr], params[:campaign_id]
       if params[:attr] == "impressions"
-        shop = Shop.find_by(domain: request.host)
         PushInteraction.find_or_create_by(shop_id: shop.id, date: Date.today.at_beginning_of_month).increment
       end
     end
