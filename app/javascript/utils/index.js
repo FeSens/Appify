@@ -75,6 +75,28 @@ export let utils = (() => {
     });
   }
 
+  const cartBind = async () => {
+    Shopify.onCartUpdate = cartSync()
+  }
+
+  const cartSync = async () => {
+    fetch('./cart.js')
+      .then((response) => {
+        return response.json()
+      })
+      .then((data) => {
+        // Work with JSON data here
+        $.post('/apps/script/analytics/carts', {
+          subscriber_id: dbKeyval.get("push-subscriber"),
+          token: data['token'],
+          data: JSON.stringify(data)
+        });
+      })
+      .catch((err) => {
+        console.log('Error parsing cart data')
+      })
+  }
+  
   function initialize() {
     get_or_create_id();
     get_or_create_cookie("session");
@@ -100,6 +122,7 @@ export let utils = (() => {
     },
     init() {
       initialize();
+      cartBind();
       window.onappinstalled = function(ev) { 
         computeSubscriber("pwa")
       };
