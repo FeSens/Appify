@@ -86,10 +86,10 @@ export let utils = (() => {
       })
       .then((data) => {
         // Work with JSON data here
-        $.post('/apps/script/analytics/cart', {
-          subscriber_id: await get_or_create_id(),
+        $.post('/apps/script/analytics/carts', {
+          subscriber_id: get_or_create_id(),
           token: data['token'],
-          data: data
+          data: JSON.stringify(data)
         });
       })
       .catch((err) => {
