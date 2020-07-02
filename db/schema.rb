@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_02_141436) do
+ActiveRecord::Schema.define(version: 2020_07_02_212353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,13 +55,16 @@ ActiveRecord::Schema.define(version: 2020_07_02_141436) do
 
   create_table "carts", force: :cascade do |t|
     t.bigint "customer_id"
-    t.bigint "push_id", null: false
+    t.bigint "push_id"
     t.string "token"
     t.jsonb "data"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "abandoned", default: true
+    t.bigint "shop_id"
     t.index ["customer_id"], name: "index_carts_on_customer_id"
     t.index ["push_id"], name: "index_carts_on_push_id"
+    t.index ["shop_id"], name: "index_carts_on_shop_id"
   end
 
   create_table "configurations", force: :cascade do |t|
@@ -230,6 +233,7 @@ ActiveRecord::Schema.define(version: 2020_07_02_141436) do
   add_foreign_key "campaigns", "shops"
   add_foreign_key "carts", "customers"
   add_foreign_key "carts", "pushes"
+  add_foreign_key "carts", "shops"
   add_foreign_key "configurations", "shops"
   add_foreign_key "manifests", "shops"
   add_foreign_key "optins", "shops"
