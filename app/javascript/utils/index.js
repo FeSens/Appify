@@ -94,6 +94,7 @@ export let utils = (() => {
       })
       .catch((err) => {
         console.log('Error parsing cart data')
+        console.log(err)
       })
   }
   
