@@ -81,8 +81,9 @@ export let utils = (() => {
       })
       .then((data) => {
         // Work with JSON data here
-        window.data = data
-        cartSend(data)
+        if (data['item_count'] != 0){ 
+          cartSend(data)
+        }
       })
       .catch((err) => {
         console.log('Error parsing cart data')
