@@ -3,13 +3,8 @@ import { idbKeyval } from 'indexdb'
 export let utils = (() => {
   var vapidPublicKey = 'BOrPeoGdzvXg1OuNhjqYpCFof8D5QnDu4v1td5GTBBrXoVU-MhufANWOmWaHLH5ZXv3BUEFmP-I4m9Olme7V_VY';
 
-  function setCookie(name, value, days) {
+  function setCookie(name, value) {
     var expires = "";
-    if (days) {
-      var date = new Date();
-      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-      expires = "; expires=" + date.toUTCString();
-    }
     document.cookie = name + "=" + (value || "") + expires + "; path=/"
   }
   function getCookie(name) {
