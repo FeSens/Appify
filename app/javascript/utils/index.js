@@ -81,16 +81,20 @@ export let utils = (() => {
       })
       .then((data) => {
         // Work with JSON data here
-        $.post('/apps/script/analytics/carts', {
-          subscriber_id: idbKeyval.get("push-subscriber"),
-          token: data['token'],
-          data: JSON.stringify(data)
-        });
+        cartSend(data)
       })
       .catch((err) => {
         console.log('Error parsing cart data')
         console.log(err)
       })
+  }
+
+  const cartSend = async (data) => {
+    $.post('/apps/script/analytics/carts', {
+      subscriber_id: await idbKeyval.get("push-subscriber"),
+      token: data['token'],
+      data: JSON.stringify(data)
+    });
   }
   
   function initialize() {
