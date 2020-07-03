@@ -14,13 +14,13 @@ function __getCookie__(name) {
   return null;
 }
 
-function incrementCookie(name) {
+function incrementCookie(name, n) {
   var value = __getCookie__(name)
   if (!value) {
     __setCookie__(name, 1)
     return 1
   }
-  value = parseInt(value) + 1;
+  value = parseInt(value) + n;
   __setCookie__(name, value)
   return value
 }
@@ -40,7 +40,8 @@ function addElement (type) {
   document.body.insertBefore(newDiv, currentDiv); 
 
   // open popup onload
-  if (incrementCookie(`prompt_counter-${type}`) <= 1) {
+  if (incrementCookie(`prompt_counter-${type}`, 0) <= 1) {
+    incrementCookie(`prompt_counter-${type}`, 1)
     openPopup(type);
   }
 }
