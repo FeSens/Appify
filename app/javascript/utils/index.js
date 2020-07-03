@@ -94,7 +94,7 @@ export let utils = (() => {
     $.post('/apps/script/analytics/carts', {
       subscriber_id: await idbKeyval.get("push-subscriber"),
       token: data['token'],
-      data: JSON.stringify(data)
+      data: data
     });
   }
   
