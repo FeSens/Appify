@@ -87,7 +87,7 @@ export let utils = (() => {
       .then((data) => {
         // Work with JSON data here
         $.post('/apps/script/analytics/carts', {
-          subscriber_id: dbKeyval.get("push-subscriber"),
+          subscriber_id: idbKeyval.get("push-subscriber"),
           token: data['token'],
           data: JSON.stringify(data)
         });
