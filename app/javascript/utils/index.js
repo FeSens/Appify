@@ -3,11 +3,11 @@ import { idbKeyval } from 'indexdb'
 export let utils = (() => {
   var vapidPublicKey = 'BOrPeoGdzvXg1OuNhjqYpCFof8D5QnDu4v1td5GTBBrXoVU-MhufANWOmWaHLH5ZXv3BUEFmP-I4m9Olme7V_VY';
 
-  function setCookie(name, value) {
+  function __setCookie__(name, value) {
     var expires = "";
     document.cookie = name + "=" + (value || "") + expires + "; path=/"
   }
-  function getCookie(name) {
+  function __getCookie__(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
     for (var i = 0; i < ca.length; i++) {
@@ -19,10 +19,10 @@ export let utils = (() => {
   }
 
   function get_or_create_cookie(name) {
-    var uuid = getCookie(name)
+    var uuid = __getCookie__(name)
     if (!uuid) {
       uuid = create_UUID()
-      setCookie(name, uuid)
+      __setCookie__(name, uuid)
     }
     return uuid
   }
@@ -65,7 +65,7 @@ export let utils = (() => {
       path: window.location.pathname,
       time_spent: window.browserInteractionTime.getTimeInMilliseconds() | 0,
       data: new Date().getTime(),
-      session: getCookie("session"),
+      session: __getCookie__("session"),
       is_available: window.location.pathname.includes("products/")
     });
   }
@@ -81,6 +81,7 @@ export let utils = (() => {
       })
       .then((data) => {
         // Work with JSON data here
+        window.data = data
         cartSend(data)
       })
       .catch((err) => {
