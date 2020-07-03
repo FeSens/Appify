@@ -66,6 +66,9 @@ GEM
       zeitwerk (~> 2.2, >= 2.2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    appoptics_apm (4.11.1)
+      json
+      no_proxy_fix (~> 0.1.2, >= 0.1.2)
     autoprefixer-rails (9.7.6)
       execjs
     aws-eventstream (1.1.0)
@@ -128,6 +131,7 @@ GEM
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
     jmespath (1.4.0)
+    json (2.3.0)
     jwt (2.2.1)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -151,6 +155,7 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.1.1)
     nio4r (2.5.2)
+    no_proxy_fix (0.1.2)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     oauth2 (1.4.4)
@@ -254,10 +259,6 @@ GEM
       rack (~> 2.0)
       rack-protection (>= 2.0.0)
       redis (>= 4.1.0)
-    skylight (4.3.0)
-      skylight-core (= 4.3.0)
-    skylight-core (4.3.0)
-      activesupport (>= 4.2.0)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -304,6 +305,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  appoptics_apm
   aws-sdk-s3
   bootsnap (>= 1.4.2)
   bootstrap (~> 4.3.1)
@@ -323,7 +325,6 @@ DEPENDENCIES
   serviceworker-rails
   shopify_app
   sidekiq
-  skylight
   spring
   spring-watcher-listen (~> 2.0.0)
   sprockets (~> 3.0)

@@ -40,7 +40,7 @@ gem 'sprockets', '~> 3.0'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'webpush'
 #web monitoring tool
-gem "skylight"
+gem 'appoptics_apm'
 #Exception Notifier
 gem 'rollbar'
 
