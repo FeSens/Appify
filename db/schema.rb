@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_02_212353) do
+ActiveRecord::Schema.define(version: 2020_07_04_010636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,16 @@ ActiveRecord::Schema.define(version: 2020_07_02_212353) do
     t.string "lang", default: "pt-BR"
     t.string "description", default: "Track your orders and receive special promos with our new brand app!"
     t.index ["shop_id"], name: "index_manifests_on_shop_id"
+  end
+
+  create_table "opt_in_counts", force: :cascade do |t|
+    t.bigint "shop_id", null: false
+    t.integer "service"
+    t.integer "count"
+    t.datetime "date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["shop_id"], name: "index_opt_in_counts_on_shop_id"
   end
 
   create_table "optins", force: :cascade do |t|
@@ -236,6 +246,7 @@ ActiveRecord::Schema.define(version: 2020_07_02_212353) do
   add_foreign_key "carts", "shops"
   add_foreign_key "configurations", "shops"
   add_foreign_key "manifests", "shops"
+  add_foreign_key "opt_in_counts", "shops"
   add_foreign_key "optins", "shops"
   add_foreign_key "orders", "campaigns"
   add_foreign_key "orders", "shops"
