@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :subscribers, only: %i[create]
     resources :page_visits, only: %i[create]
     resources :carts, only: %i[create]
+    resources :opt_ins, only: %i[create]
   end
 
   namespace :public do

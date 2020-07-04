@@ -1,0 +1,2 @@
+module Analytics::OptInHelper
+end
