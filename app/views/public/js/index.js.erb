@@ -25,6 +25,15 @@ function incrementCookie(name, n) {
   return value
 }
 
+function sendOptInAnalytics(type){
+  fetch("/apps/script/analytics/opt_ins",
+    {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ service: type })
+    })
+}
+
 function addElement (type) { 
   // create a new div element 
   // and give it popup content 
@@ -41,8 +50,9 @@ function addElement (type) {
 
   // open popup onload
   if (incrementCookie(`prompt_counter-${type}`, 0) <= 1) {
-    incrementCookie(`prompt_counter-${type}`, 1)
     openPopup(type);
+    incrementCookie(`prompt_counter-${type}`, 1);
+    sendOptInAnalytics(type);
   }
 }
 
