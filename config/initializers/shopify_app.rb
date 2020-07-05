@@ -14,7 +14,7 @@ ShopifyApp.configure do |config|
       fields: ['id', 'token', 'cart_token']},
     {topic: 'app/uninstalled', address: 'https://appify-skin.herokuapp.com/webhooks/app_uninstalled', format: 'json'},
     {topic: 'orders/create', address: 'https://appify-skin.herokuapp.com/webhooks/orders_create', format: 'json', 
-     fields: ['admin_graphql_api_id', 'total_line_items_price', 'name']},
+     fields: ['checkout_token', 'cart_token', 'admin_graphql_api_id', 'total_line_items_price', 'name']},
   ]
 end
 
