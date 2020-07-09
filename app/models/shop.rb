@@ -6,6 +6,7 @@ class Shop < ApplicationRecord
   enum plan_name: { partner_test: 0, retainer: 1 }
   has_one :manifest, dependent: :destroy
   has_one :configuration, dependent: :destroy
+  has_many :automations, dependent: :destroy
   has_many :pushes, dependent: :destroy
   has_many :push_interactions, dependent: :destroy
   has_many :subscriber_counts, dependent: :destroy
