@@ -69,9 +69,18 @@ export let utils = (() => {
       is_available: window.location.pathname.includes("products/")
     });
   }
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
   const cartBind = async () => {
-    Shopify.onCartUpdate = cartSync()
+    while(true){
+      if(typeof Shopify !== 'undefined') {
+        Shopify.onCartUpdate = cartSync
+        break;
+      }
+      await sleep(1000);
+    }
   }
 
   const cartSync = async () => {
