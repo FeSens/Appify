@@ -2,6 +2,7 @@ import { idbKeyval } from 'indexdb'
 
 export let utils = (() => {
   var vapidPublicKey = 'BOrPeoGdzvXg1OuNhjqYpCFof8D5QnDu4v1td5GTBBrXoVU-MhufANWOmWaHLH5ZXv3BUEFmP-I4m9Olme7V_VY';
+  var encapsulated = function (args) {};
 
   function __setCookie__(name, value) {
     var expires = "";
@@ -71,7 +72,8 @@ export let utils = (() => {
   }
 
   const cartBind = async (args) => {
-
+    encapsulated(args);
+    cartSync();
   }
 
   const cartSync = async () => {
@@ -125,7 +127,8 @@ export let utils = (() => {
     init() {
       initialize();
       $(document).ready(function() {
-        cartBind();
+        encapsulated = Shopify.onCartUpdate
+        Shopify.onCartUpdate = cartBind
       });
       window.onappinstalled = function(ev) { 
         computeSubscriber("pwa")
