@@ -72,8 +72,8 @@ export let utils = (() => {
   }
 
   const cartBind = async (args) => {
-    encapsulated(args);
     cartSync(args);
+    encapsulated(args);
   }
 
   const cartSync = async (data) => {
