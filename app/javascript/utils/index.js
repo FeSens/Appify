@@ -74,13 +74,7 @@ export let utils = (() => {
   }
 
   const cartBind = async () => {
-    while(true){
-      if(typeof Shopify !== 'undefined') {
-        Shopify.onCartUpdate = cartSync
-        break;
-      }
-      await sleep(1000);
-    }
+  
   }
 
   const cartSync = async () => {
