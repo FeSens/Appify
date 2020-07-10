@@ -73,24 +73,19 @@ export let utils = (() => {
 
   const cartBind = async (args) => {
     encapsulated(args);
-    cartSync();
+    cartSync(args);
   }
 
-  const cartSync = async () => {
-    fetch('./cart.js')
-      .then((response) => {
-        return response.json()
-      })
-      .then((data) => {
-        // Work with JSON data here
-        if (data['item_count'] != 0){ 
-          cartSend(data)
-        }
-      })
-      .catch((err) => {
-        console.log('Error parsing cart data')
-        console.log(err)
-      })
+  const cartSync = async (data) => {
+    try {
+      if (data['item_count'] != 0){ 
+        cartSend(data)
+      }
+    }
+    catch(err) {
+      console.log('Error parsing cart data')
+      console.log(err)
+    }
   }
 
   const cartSend = async (data) => {
