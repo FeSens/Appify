@@ -124,7 +124,9 @@ export let utils = (() => {
     },
     init() {
       initialize();
-      cartBind();
+      $(document).ready(function() {
+        cartBind();
+      });
       window.onappinstalled = function(ev) { 
         computeSubscriber("pwa")
       };
