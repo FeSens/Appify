@@ -70,8 +70,8 @@ export let utils = (() => {
     });
   }
 
-  const cartBind = async () => {
-    Shopify.onCartUpdate = cartSync
+  const cartBind = async (args) => {
+
   }
 
   const cartSync = async () => {
