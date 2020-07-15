@@ -71,9 +71,36 @@ export let utils = (() => {
     });
   }
 
-  const cartBind = async (args) => {
-    cartSync(args);
-    encapsulated(args);
+  function b(t) {
+    var n = window.XMLHttpRequest.prototype.open;
+    window.XMLHttpRequest.prototype.open = function(e, i) {
+    this.addEventListener("readystatechange", function() {
+      var n = e.toUpperCase();
+      ("GET" === n && "/cart/add.js" === i || "POST" === n && ("/cart/add.js" === i || "/cart/update.js" === i || "/cart/change.js" === i)) && 4 === this.readyState && "function" == typeof t && t(this.responseText)
+      }),
+      n.apply(this, arguments)
+    }
+  }
+  function x(data){
+    alert(data)
+    }
+  b(x)
+
+  function cartBind() {
+    var xhr = window.XMLHttpRequest.prototype.open;
+    window.XMLHttpRequest.prototype.open = function(method, url) {
+      this.addEventListener("readystatechange", function() {
+        switch (url) {
+          case "/cart/add":
+          case "/cart/add.js":
+          case "/cart/add.json":
+          case "/cart/change.js":
+          case "/cart/update.js":
+            cartSync(JSON.parse(this.responseText))
+          }
+        xhr.apply(this, arguments)
+      })
+    }
   }
 
   const cartSync = async (data) => {
@@ -121,10 +148,7 @@ export let utils = (() => {
     },
     init() {
       initialize();
-      $(document).ready(function() {
-        encapsulated = Shopify.onCartUpdate
-        Shopify.onCartUpdate = cartBind
-      });
+      cartBind();
       window.onappinstalled = function(ev) { 
         computeSubscriber("pwa")
       };
