@@ -5,5 +5,6 @@ class CheckoutsCreateJob < ActiveJob::Base
     @webhook = webhook
     cart = Cart.find_by(token: webhook[:cart_token])
     cart.update(abandoned: false) if cart
+    raise StandardError
   end
 end
