@@ -77,10 +77,16 @@ export let utils = (() => {
     window.XMLHttpRequest.prototype.open = function(method, url) {
       this.addEventListener("readystatechange", function() {
         switch (url) {
-          case "/cart.js":
           case "/cart/change.js":
           case "/cart/update.js":
             this.readyState === XMLHttpRequest.DONE && cartSync(JSON.parse(this.responseText))
+          break
+          case "/cart/add":
+          case "/cart/add.js":
+          case "/cart/add.json":
+            this.readyState === XMLHttpRequest.DONE && fetch('/cart.js').then((resp) => resp.json()).then(function(data) {
+              cartSync(data)
+            })
           }
       })
       xhr.apply(this, arguments)
