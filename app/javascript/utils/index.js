@@ -96,10 +96,10 @@ export let utils = (() => {
           case "/cart/add.json":
           case "/cart/change.js":
           case "/cart/update.js":
-            cartSync(JSON.parse(this.responseText))
+            this.readyState === XMLHttpRequest.DONE && cartSync(JSON.parse(this.responseText))
           }
-        xhr.apply(this, arguments)
       })
+      xhr.apply(this, arguments)
     }
   }
 
