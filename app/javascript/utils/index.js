@@ -77,9 +77,7 @@ export let utils = (() => {
     window.XMLHttpRequest.prototype.open = function(method, url) {
       this.addEventListener("readystatechange", function() {
         switch (url) {
-          case "/cart/add":
-          case "/cart/add.js":
-          case "/cart/add.json":
+          case "/cart.js":
           case "/cart/change.js":
           case "/cart/update.js":
             this.readyState === XMLHttpRequest.DONE && cartSync(JSON.parse(this.responseText))
