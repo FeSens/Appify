@@ -12,6 +12,8 @@ class OrdersCreateJob < ApplicationJob
       return
     end
 
+    IdentifyCart.new(webhook).call
+
     shop.with_shopify_session do
       utm_parameters
     end
