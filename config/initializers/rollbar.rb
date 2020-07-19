@@ -10,7 +10,8 @@ Rollbar.configure do |config|
   end
 
   config.exception_level_filters.merge!({
-    "ActiveRecord::RecordNotFound" => "ignore"
+    "OrdersCreateJob::JourneyNotAvailable" => "ignore",
+    "CheckoutsCreateJob::CartNotFoundError" => "ignore"
   })
 
   # By default, Rollbar will try to call the `current_user` controller method
