@@ -117,7 +117,7 @@ export let utils = (() => {
   async function hashCart(cart) {
     var s = ""
     for (const [key, value] of Object.entries(cart['items'])) {
-      s += `${value['id']}${value['product_id']}${value['variant_id']}${value['sku']}${cart['item_count']}`
+      s += `${value['product_id']}${value['variant_id']}${value['sku']}${cart['item_count']}`
     }
 
     return digestMessage(s)

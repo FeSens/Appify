@@ -22,7 +22,7 @@ class IdentifyCart
   def by_line_items
     s = ""
     data[:line_items].each do |line_item|
-      s += "#{line_item[:id]}#{line_item[:product_id]}#{line_item[:variant_id]}#{line_item[:sku]}#{line_item[:quantity]}"
+      s += "#{line_item[:product_id]}#{line_item[:variant_id]}#{line_item[:sku]}#{line_item[:quantity]}"
     end
     hexdigest = Digest::SHA256.hexdigest s
     cart = Cart.where(hexdigest: hexdigest).update_all(abandoned: false)
@@ -30,3 +30,9 @@ class IdentifyCart
     return cart > 0
   end
 end
+
+
+
+{"line_items"=>
+[{"id"=>5162929193095, "variant_id"=>33502107336839, "title"=>"CAmiseta", "quantity"=>1, "sku"=>"1", "variant_title"=>"", "vendor"=>"Teste Giovanna", "fulfillment_service"=>"manual", "product_id"=>4806096846983}]
+}
