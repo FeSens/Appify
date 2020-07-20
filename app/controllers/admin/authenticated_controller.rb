@@ -41,7 +41,7 @@ module Admin
     end
 
     def set_activity
-      shop.touch(:last_active)
+      shop.touch(:last_activity)
     end
     
   end
