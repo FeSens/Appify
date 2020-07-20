@@ -1,8 +1,7 @@
 class OrdersCreateJob < ApplicationJob
-  queue_as :low
   class JourneyNotAvailable < StandardError ; end
+  queue_as :low
   attr_accessor :webhook, :utm_source, :utm_medium, :utm_campaign, :campaign, :shop
-  retry_on JourneyNotAvailable, wait: ->(executions) { (executions*60) * (13 ** executions) }, attempts: 3
   
   def perform(shop_domain:, webhook:)
     @webhook = webhook
