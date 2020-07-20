@@ -11,6 +11,7 @@ module Admin
 
     attr_accessor :shop
     before_action :load_current_shop
+    after_action :set_activity, only: %i[index]
     helper_method :shop_name
     helper_method :theme_verified?
 
@@ -37,6 +38,10 @@ module Admin
     
     def theme_verified?
       shop.theme_verified
+    end
+
+    def set_activity
+      shop.touch(:last_active)
     end
     
   end
