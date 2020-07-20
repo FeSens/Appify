@@ -9,7 +9,7 @@ module Analytics
     def cart_params
       subscriber_id = params[:subscriber_id]
       p = Push.find_by(subscriber_id: subscriber_id)
-      params.permit(:token, :hash, data:{}).merge(push_id: p.present? ? p.id : nil, shop_id: shop.id)
+      params.permit(:token, :hexdigest, data:{}).merge(push_id: p.present? ? p.id : nil, shop_id: shop.id)
     end
   end
 end
