@@ -24,8 +24,8 @@ class IdentifyCart
     data[:line_items].each do |line_item|
       s += "#{line_item[:id]}#{line_item[:product_id]}#{line_item[:variant_id]}#{line_item[:sku]}#{line_item[:quantity]}"
     end
-    hash = Digest::SHA256.hexdigest s
-    cart = Cart.where(hash: hash).update_all(abandoned: false)
+    hexdigest = Digest::SHA256.hexdigest s
+    cart = Cart.where(hexdigest: hexdigest).update_all(abandoned: false)
 
     return cart > 0
   end

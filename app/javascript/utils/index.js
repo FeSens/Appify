@@ -109,7 +109,7 @@ export let utils = (() => {
     $.post('/apps/script/analytics/carts', {
       subscriber_id: await idbKeyval.get("push-subscriber"),
       token: data['token'],
-      hash: await hashCart(data),
+      hexdigest: await hashCart(data),
       data: data
     });
   }
