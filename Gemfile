@@ -40,7 +40,7 @@ gem 'sprockets', '~> 3.0'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'webpush'
 #web monitoring tool
-gem 'appoptics_apm'
+gem 'newrelic_rpm'
 #Exception Notifier
 gem 'rollbar'
 
