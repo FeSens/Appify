@@ -19,7 +19,7 @@ class PushSenderJob < ApplicationJob
         private_key: Rails.application.credentials.dig(:webpush, :private_key)
       }
     )
-  rescue Webpush::ExpiredSubscription
+  rescue Webpush::ExpiredSubscription, Webpush::Unauthorized
     customer.destroy
   rescue StandardError
     raise
