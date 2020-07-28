@@ -60,17 +60,16 @@ export let utils = (() => {
     $.post('/apps/script/analytics/subscribers', { service });
   }
 
-  const pageVisit = async () => {
-    return $.post('/apps/script/analytics/page_visits', {
+  const pageVisit = () => {
+    return new Promise($.post('/apps/script/analytics/page_visits', {
       subscriber_id: await idbKeyval.get("push-subscriber"),
       path: window.location.pathname,
       time_spent: window.browserInteractionTime.getTimeInMilliseconds() | 0,
       data: new Date().getTime(),
       session: __getCookie__("session"),
       is_available: window.location.pathname.includes("products/")
-    });
+    }));
   }
-
 
   function cartBind() {
     var xhr = window.XMLHttpRequest.prototype.open;
