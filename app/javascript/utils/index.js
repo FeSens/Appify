@@ -66,14 +66,14 @@ export let utils = (() => {
         type: 'POST',
         async: false,
         contentType : "application/json", 
-        data: {
+        data: JSON.stringify({
         subscriber_id: await idbKeyval.get("push-subscriber"),
         path: window.location.pathname,
         time_spent: window.browserInteractionTime.getTimeInMilliseconds() | 0,
         data: new Date().getTime(),
         session: __getCookie__("session"),
         is_available: window.location.pathname.includes("products/")
-      }
+      })
     })
   }
 
