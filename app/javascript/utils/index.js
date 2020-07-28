@@ -60,15 +60,21 @@ export let utils = (() => {
     $.post('/apps/script/analytics/subscribers', { service });
   }
 
-  const pageVisit = () => {
-    return new Promise($.post('/apps/script/analytics/page_visits', {
-      subscriber_id: await idbKeyval.get("push-subscriber"),
-      path: window.location.pathname,
-      time_spent: window.browserInteractionTime.getTimeInMilliseconds() | 0,
-      data: new Date().getTime(),
-      session: __getCookie__("session"),
-      is_available: window.location.pathname.includes("products/")
-    }));
+  const pageVisit = async () => {
+    return $.ajax({
+        url: '/apps/script/analytics/page_visits', 
+        type: 'POST',
+        async: false,
+        contentType : "application/json", 
+        data: {
+        subscriber_id: await idbKeyval.get("push-subscriber"),
+        path: window.location.pathname,
+        time_spent: window.browserInteractionTime.getTimeInMilliseconds() | 0,
+        data: new Date().getTime(),
+        session: __getCookie__("session"),
+        is_available: window.location.pathname.includes("products/")
+      }
+    })
   }
 
   function cartBind() {
