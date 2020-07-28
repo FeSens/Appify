@@ -1,5 +1,5 @@
 module Admin
-  class AutomationsController < AdminController
+  class AutomationsController < AuthenticatedController
     def index
       @automations = []
       @automations << shop.automations.find_or_create_by(kind: "cart recovery")
