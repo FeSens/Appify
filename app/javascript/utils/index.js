@@ -1,4 +1,5 @@
 import { idbKeyval } from 'indexdb'
+var dig = require('object-dig');
 
 export let utils = (() => {
   var vapidPublicKey = 'BOrPeoGdzvXg1OuNhjqYpCFof8D5QnDu4v1td5GTBBrXoVU-MhufANWOmWaHLH5ZXv3BUEFmP-I4m9Olme7V_VY';
@@ -114,6 +115,9 @@ export let utils = (() => {
     $.post('/apps/script/analytics/carts', {
       subscriber_id: await idbKeyval.get("push-subscriber"),
       token: data['token'],
+      utm_medium: dig(data, 'attributes', 'utm_medium'),
+      utm_campaign: dig(data, 'attributes', 'utm_campaign'),
+      utm_source: dig(data, 'attributes', 'utm_source'),
       hexdigest: await hashCart(data),
       data: data
     });
@@ -140,6 +144,16 @@ export let utils = (() => {
   function initialize() {
     get_or_create_id();
     get_or_create_cookie("session");
+    var queryString = window.location.search;
+    var searchParams = new URLSearchParams(queryString);
+    cart_attributes = {
+      'attributes': {
+        'utm_medium': searchParams.get("utm_medium"),
+        'utm_campaign': searchParams.get("utm_campaign"),
+        'utm_source': searchParams.get("utm_source")
+      }
+    }
+    $.post('/cart/update.js', cart_attributes);
   }
 
   return {
@@ -169,3 +183,5 @@ export let utils = (() => {
     }
   }
 })();
+
+
