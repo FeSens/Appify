@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_20_032809) do
+ActiveRecord::Schema.define(version: 2020_07_29_185208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,10 @@ ActiveRecord::Schema.define(version: 2020_07_20_032809) do
     t.boolean "abandoned", default: true
     t.bigint "shop_id"
     t.string "hexdigest"
+    t.integer "tries", default: 0
+    t.string "utm_medium"
+    t.string "utm_campaign"
+    t.string "utm_source"
     t.index ["customer_id"], name: "index_carts_on_customer_id"
     t.index ["push_id"], name: "index_carts_on_push_id"
     t.index ["shop_id"], name: "index_carts_on_shop_id"
