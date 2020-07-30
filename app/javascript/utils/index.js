@@ -4,6 +4,21 @@ export let utils = (() => {
   var vapidPublicKey = 'BOrPeoGdzvXg1OuNhjqYpCFof8D5QnDu4v1td5GTBBrXoVU-MhufANWOmWaHLH5ZXv3BUEFmP-I4m9Olme7V_VY';
   var encapsulated = function (args) {};
 
+  const dig = (target, ...keys) => {
+    let digged = target;
+    for (const key of keys) {
+      if (typeof digged === 'undefined' || digged === null) {
+        return undefined;
+      }
+      if (typeof key === 'function') {
+        digged = key(digged);
+      } else {
+        digged = digged[key];
+      }
+    };
+    return digged; 
+  }
+
   function __setCookie__(name, value) {
     var expires = "";
     document.cookie = name + "=" + (value || "") + expires + "; path=/"
@@ -114,6 +129,9 @@ export let utils = (() => {
     $.post('/apps/script/analytics/carts', {
       subscriber_id: await idbKeyval.get("push-subscriber"),
       token: data['token'],
+      utm_medium: dig(data, 'attributes', 'utm_medium'),
+      utm_campaign: dig(data, 'attributes', 'utm_campaign'),
+      utm_source: dig(data, 'attributes', 'utm_source'),
       hexdigest: await hashCart(data),
       data: data
     });
