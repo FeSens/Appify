@@ -1,5 +1,6 @@
 import { idbKeyval } from 'indexdb'
 
+
 export let utils = (() => {
   var vapidPublicKey = 'BOrPeoGdzvXg1OuNhjqYpCFof8D5QnDu4v1td5GTBBrXoVU-MhufANWOmWaHLH5ZXv3BUEFmP-I4m9Olme7V_VY';
   var encapsulated = function (args) {};
@@ -140,16 +141,7 @@ export let utils = (() => {
   function initialize() {
     get_or_create_id();
     get_or_create_cookie("session");
-    var queryString = window.location.search;
-    var searchParams = new URLSearchParams(queryString);
-    var cart_attributes = {
-      'attributes': {
-        'utm_medium': searchParams.get("utm_medium"),
-        'utm_campaign': searchParams.get("utm_campaign"),
-        'utm_source': searchParams.get("utm_source")
-      }
-    }
-    $.post('/cart/update.js', cart_attributes);
+
   }
 
   return {
