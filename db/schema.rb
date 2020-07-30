@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_29_185208) do
+ActiveRecord::Schema.define(version: 2020_07_30_175304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 2020_07_29_185208) do
     t.string "utm_medium"
     t.string "utm_campaign"
     t.string "utm_source"
+    t.boolean "impacted", default: false
     t.index ["customer_id"], name: "index_carts_on_customer_id"
     t.index ["push_id"], name: "index_carts_on_push_id"
     t.index ["shop_id"], name: "index_carts_on_shop_id"
