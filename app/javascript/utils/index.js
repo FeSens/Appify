@@ -146,7 +146,7 @@ export let utils = (() => {
     get_or_create_cookie("session");
     var queryString = window.location.search;
     var searchParams = new URLSearchParams(queryString);
-    cart_attributes = {
+    var cart_attributes = {
       'attributes': {
         'utm_medium': searchParams.get("utm_medium"),
         'utm_campaign': searchParams.get("utm_campaign"),
