@@ -44,4 +44,10 @@ describe UrlBuilder do
     let(:url) { "https://www.google.com" }
     include_examples "output a valid url"
   end
+
+  context "having previously attached query params" do
+    let(:url) { "https://www.google.com/?p1=test_1&p2=2" }
+    let(:expeced_url) { "https://#{www}#{url.gsub("https://", "").gsub("http://", "")}&#{query_dict.to_query }" }
+    include_examples "output a valid url"
+  end
 end
