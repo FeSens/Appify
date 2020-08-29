@@ -3,25 +3,35 @@
     <%= label_tag 'campaign_name', 'Campaign Name:' %>
     <%= f.text_field :name, class: "form-control" %>
   </div>
+
   <div class="form-group">
     <%= label_tag 'campaign_tag', 'Tag:' %>
     <%= f.text_field :tag, class: "form-control" %>
   </div>
+
   <div class="form-group">
     <%= label_tag 'campaign_title', 'Push Title:' %>
     <%= f.text_field :title, class: "form-control" %>
   </div>
+
   <div class="form-group">
     <%= label_tag 'campaign_body', 'Push Body:' %>
     <%= f.text_area :body, class: "form-control" %>
   </div>
+
   <div class="form-group">
     <%= label_tag 'campaign_url', 'Destination URL:' %>
+
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1"><%= @shop.domain %>/</span>
+    <% if params[:action] == "edit" %>
       <%= f.text_field :url, class: "form-control" %>
+    <% else %>
+      <%= f.text_field :url, class: "form-control", value: @shop.domain%>
+    <% end %>
     </div>
+
   </div>
+
   <!-- <div class="form-group"> -->
     <!--<%= label_tag 'campaign_release_date', 'Release Date:' %>-->
     <%= f.hidden_field :release_date, value: Time.now, class: "form-control" %>

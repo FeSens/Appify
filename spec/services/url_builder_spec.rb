@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe UrlFormater do
+describe UrlBuilder do
   let(:campaign) { Faker::Superhero.name }
   let(:query_dict) { {ref: "aplicatify", utm_campaign: campaign, utm_medium: "push", utm_source:"aplicatify"} }
   let(:www) { url.count(".") >= 2 ? "" : "www." }
