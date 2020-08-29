@@ -8,6 +8,6 @@ FactoryBot.define do
     clicks { rand(1..delivered) }
     title { Faker::Marketing.buzzwords }
     body { Faker::Marketing.buzzwords }
-    url { "https://www.google.com" }
+    url { UrlBuilder.call(shop.domain, name) }
   end
 end
