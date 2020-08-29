@@ -11,7 +11,7 @@ class CreateFilteredCampaingJob < ApplicationJob
       message = {
         title: campaign.title,
         body: campaign.body,
-        url: build_url(path),
+        url: UrlBuilder.call(path, campaign.name),
         campaign_id: campaign.id,
         icon: icon
       }
@@ -32,17 +32,6 @@ class CreateFilteredCampaingJob < ApplicationJob
 
   def reschedule
     CreateCampaignJob.set(wait_until: campaign.release_date).perform_later(campaign)
-  end
-
-
-  def build_url(url)
-    uri = URI.parse(url)
-    q = uri.query.present? ? Rack::Utils.parse_nested_query(uri.query) : {}
-    q["utm_source"] = "aplicatify"
-    q["utm_medium"] = "push"
-    q["utm_campaign"] = campaign.name
-    q["ref"] = "aplicatify"
-    return "#{uri.path}?#{q.to_query}"
   end
 end
 
