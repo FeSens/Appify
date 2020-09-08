@@ -4,15 +4,15 @@ module Admin
     attr_accessor :optin
 
     def index
-      pwa  = shop.optins.pwa.first
-      push = shop.optins.push.first
+      pwa  = current_shop.optins.pwa.first
+      push = current_shop.optins.push.first
       @optins = { pwa: pwa, push: push }
     end
 
     def update
       optin.update(optin_params)
       flash[:success] = 'Updated with success'
-      redirect_to admin_optins_path(tab: @optin.kind)
+      redirect_to admin_optins_path(tab: optin.kind)
     end
 
     private
@@ -23,7 +23,7 @@ module Admin
     end
 
     def load_optin
-      @optin = shop.optins.find(params[:id])
+      @optin = current_shop.optins.find(params[:id])
     end
   end
 end
