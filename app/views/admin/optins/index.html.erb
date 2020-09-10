@@ -5,7 +5,7 @@
         <ul class="nav nav-tabs">
           <% for tab in optins_kind %>
             <li class="nav-item">
-              <a class="nav-link <%= active_tab(tab, params[:tab]) %>" data-turbolinks="false" href= <%= "?tab=#{tab}" %>> <%= I18n.t(tab) %> </a>
+              <a class="nav-link <%= active_tab(tab, params[:tab]) %>" data-turbolinks="false" href= <%= "?tab=#{tab}" %>> <%= I18n.t "optin.#{tab}" %> </a>
             </li>
           <% end %>
         </ul>
