@@ -1,5 +1,5 @@
 module Campaigns
-  class Creator
+  class Creator < ApplicationService
     def initialize(campaign, targeter)
       @campaign = campaign
       @targeter = targeter
