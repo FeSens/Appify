@@ -107,6 +107,10 @@ GEM
     concurrent-ruby (1.1.6)
     connection_pool (2.2.3)
     crass (1.0.6)
+    database_cleaner (1.8.5)
+    database_cleaner-active_record (1.8.0)
+      activerecord
+      database_cleaner (~> 1.8.0)
     diff-lcs (1.4.4)
     erubi (1.9.0)
     execjs (2.7.0)
@@ -327,6 +331,7 @@ DEPENDENCIES
   bootstrap (~> 4.3.1)
   byebug
   capybara (>= 2.15)
+  database_cleaner-active_record (~> 1.8.0)
   factory_bot_rails (~> 5.1.1)
   faker
   image_processing (~> 1.2)
