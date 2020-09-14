@@ -31,7 +31,7 @@ describe UrlBuilder do
   end
 
   context "with http://" do
-    let(:url) { Faker::Internet.url(scheme="http") }
+    let(:url) { Faker::Internet.url.gsub("https://", "http://") }
     include_examples "output a valid url"
   end
 
