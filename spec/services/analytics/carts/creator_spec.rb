@@ -47,6 +47,11 @@ describe Analytics::Carts::Creator do
     include_examples "call"
   end
 
+  describe "with unexistent push subscriber" do
+    let(:push) { FactoryBot.create :push, subscriber_id: 37821318}
+    include_examples "call"
+  end
+
   describe "saves cart with impacted = true" do
     it "with the first request including aplicatify in utm_source" do
       described_class.call(params, push.subscriber_id, shop.id)
