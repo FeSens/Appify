@@ -29,13 +29,16 @@ module Analytics
       end
 
       def push_id
+        return nil unless subscriber_id.present?
+
         p = Push.find_by(subscriber_id: subscriber_id)
         return p.id if p.present?
+
         nil
       end
 
       def impacted?
-        params['utm_source']&.include?('aplicatify')
+        params[:utm_source]&.include?('aplicatify')
       end
     end
   end
