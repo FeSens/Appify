@@ -11,7 +11,7 @@ describe Analytics::Carts::Creator do
       utm_medium: "push",
       utm_campaign: "test",
       utm_source: "aplicatify",
-      data: {a: "aaa", b: "bbb" }
+      data: "{'a': 'aaa', 'b': 'bbb' }"
     }
   end
 
@@ -22,7 +22,7 @@ describe Analytics::Carts::Creator do
       utm_medium: "push",
       utm_campaign: "test",
       utm_source: "other source",
-      data: {a: "aaa", b: "bbb" }
+      data: "{'a': 'aaa', 'b': 'bbb' }"
     }
   end
 
@@ -73,5 +73,10 @@ describe Analytics::Carts::Creator do
 
       expect(Cart.last).to have_attributes(impacted: false)
     end
+  end
+
+  describe "saves cart with params" do
+    before { described_class.call(params, push.subscriber_id, shop.id) }
+    it { expect(Cart.last).to have_attributes(params) }
   end
 end
