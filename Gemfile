@@ -43,6 +43,9 @@ gem 'webpush'
 gem 'newrelic_rpm'
 #Exception Notifier
 gem 'rollbar'
+#Custumer Success App
+gem "intercom-rails"
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,4 +1,5 @@
 class Analytics::AnalyticsController < ActionController::API
+  skip_after_action :intercom_rails_auto_include
   before_action :find_shop
   attr_accessor :shop
 
