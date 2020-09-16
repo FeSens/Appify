@@ -6,7 +6,7 @@ class CreateCampaignJob < ApplicationJob
     @campaign = campaign
     return reschedule if postpone?
 
-    targeter = "Campaigns::Targeters::#{targeter_params[:targeter].to_s.classify}".constantize.new(targeter_params[:params])
+    targeter = "Campaigns::Targeters::#{targeter_params[:targeter].to_s.classify}".constantize.new(**targeter_params[:params])
 
     Campaigns::Creator.call(campaign, targeter)
   end

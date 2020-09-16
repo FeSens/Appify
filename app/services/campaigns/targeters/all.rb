@@ -1,10 +1,13 @@
 module Campaigns
   module Targeters
     class All
-      def initialize(*args) ; end
-      
+      attr_accessor :shop_id
+      def initialize(shop_id: nil)
+      @shop_id = shop_id
+      end
+
       def call
-        Push.where(shop_id: campaign.shop_id)
+        Push.where(shop_id: shop_id)
       end
     end
   end

@@ -37,7 +37,7 @@ module Admin
     end
 
     def create_job
-      targeter = { targeter: :all, params: nil }
+      targeter = { targeter: :all, params: {shop_id: current_shop.id} }
       CreateCampaignJob.set(wait_until: campaign.release_date).perform_later(campaign, targeter)
     end
   end
