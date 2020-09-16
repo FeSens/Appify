@@ -11,15 +11,15 @@
         Notification Preview
       </div>
       <div class="push-website">
-        <%=@shop.domain%>
+        <%=current_shop.domain%>
       </div>
       <div id="mac-text" class="push-text">
         Preview your push notification
       </div>
     </div>
     <div class="app-logo">
-      <%if @shop.manifest.icon.attached? %>
-        <%=image_tag @shop.manifest.icon, size: "55x55"%>
+      <%if current_shop.manifest.icon.attached? %>
+        <%=image_tag current_shop.manifest.icon, size: "55x55"%>
       <% end %>
     </div>
   </div>
@@ -32,8 +32,8 @@
   <div class="push-windows">
     <div class="main">
       <div class="app-logo">
-      <%if @shop.manifest.icon.attached? %>
-        <%=image_tag @shop.manifest.icon, size: "55x55"%>
+      <%if current_shop.manifest.icon.attached? %>
+        <%=image_tag current_shop.manifest.icon, size: "55x55"%>
       <% end %>
       </div>
     <div class="push-body">
@@ -44,7 +44,7 @@
         Preview your push notification
       </div>
       <div class="push-website mt-3">
-        <%=@shop.domain%>
+        <%=current_shop.domain%>
       </div>
     </div>
   </div>

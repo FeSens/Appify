@@ -26,7 +26,7 @@
     <% if params[:action] == "edit" %>
       <%= f.text_field :url, class: "form-control" %>
     <% else %>
-      <%= f.text_field :url, class: "form-control", value: @shop.domain%>
+      <%= f.text_field :url, class: "form-control", value: current_shop.domain%>
     <% end %>
     </div>
 
