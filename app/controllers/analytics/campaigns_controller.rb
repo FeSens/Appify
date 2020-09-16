@@ -19,10 +19,9 @@ module Analytics
     before_action :validate_params
 
     def create
-      Campaign.increment_counter params[:attr], params[:campaign_id]
-      if params[:attr] == "impressions"
-        PushInteraction.find_or_create_by(shop_id: shop.id, date: Date.today.at_beginning_of_month).increment
-      end
+      Analytics::Campaigns::Incrementor.call(shop.id, params[:campaign_id], params[:attr])
+
+      head :no_content
     end
 
     def validate_params
