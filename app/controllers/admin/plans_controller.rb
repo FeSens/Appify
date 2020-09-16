@@ -7,7 +7,7 @@ module Admin
     end
 
     def create
-      @recurring_application_charge = ShopifyAPI::RecurringApplicationCharge.new(plan)
+      @recurring_application_charge = ShopifyAPI::RecurringApplicationCharge.new(plan_params)
       @recurring_application_charge.test = true
       @recurring_application_charge.return_url = callback_admin_plans_url
       
@@ -29,13 +29,15 @@ module Admin
       redirect_to admin_plans_path
     end
 
-    def plan
-      @plan = Plan.find(params[:id]).slice(:name, :price, :trial_days)
+    def update_shop_limit
+      plan = Plan.find_by(name: @recurring_application_charge.name)
+      current_shop.update(push_limit: plan.push_limit)
     end
 
-    def update_shop_limit
-      p = Plan.find_by(name: @recurring_application_charge.name)
-      shop.update(push_limit: p.push_limit) 
+    private
+
+    def plan_params
+      Plan.find(params[:id]).slice(:name, :price, :trial_days)
     end
   end
 end

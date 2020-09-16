@@ -2,21 +2,14 @@
   <div class="col-6 white shadow-sm p-4">
     <div class="row">
       <div class="col-12">
-        <%  tab = params[:tab] || 'push'
-            active_tabs = {}
-            active_tabs[tab] = 'active' 
-            @optin = @optins[tab.to_sym] %>
         <ul class="nav nav-tabs">
-          <li class="nav-item">
-            <a class="nav-link  <%= active_tabs['push'] %>"  data-turbolinks="false" href="?tab=push">Push</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link  <%= active_tabs['pwa'] %>" data-turbolinks="false" href="?tab=pwa">App</a>
-          </li>
+          <% for tab in optins_kind %>
+            <li class="nav-item">
+              <a class="nav-link <%= active_tab(tab, params[:tab]) %>" data-turbolinks="false" href= <%= "?tab=#{tab}" %>> <%= I18n.t "optin.#{tab}" %> </a>
+            </li>
+          <% end %>
         </ul>
       </div>
-    </div>
-    <div class="row">
     </div>
     <%= form_with model: @optin, method: 'patch', url: admin_optin_path(@optin), class:"mt-3", local: true do |f| %>
       <div class="form-group">

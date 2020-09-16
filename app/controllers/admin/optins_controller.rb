@@ -1,18 +1,14 @@
 module Admin
   class OptinsController < AuthenticatedController
-    before_action :load_optin, only: %i[update]
+    before_action :load_optin, only: %i[update index]
     attr_accessor :optin
 
-    def index
-      pwa  = shop.optins.pwa.first
-      push = shop.optins.push.first
-      @optins = { pwa: pwa, push: push }
-    end
+    def index ; end
 
     def update
       optin.update(optin_params)
       flash[:success] = 'Updated with success'
-      redirect_to admin_optins_path(tab: @optin.kind)
+      redirect_to admin_optins_path(tab: optin.kind)
     end
 
     private
@@ -23,7 +19,8 @@ module Admin
     end
 
     def load_optin
-      @optin = shop.optins.find(params[:id])
+      return @optin = current_shop.optins.find(params[:id]) if params[:id].present?
+      @optin = current_shop.optins.find_by(kind: params[:tab] || "push")
     end
   end
 end
