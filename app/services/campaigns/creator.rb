@@ -1,5 +1,7 @@
 module Campaigns
   class Creator < ApplicationService
+    attr_reader :campaign, :targeter
+    
     def initialize(campaign, targeter)
       @campaign = campaign
       @targeter = targeter
