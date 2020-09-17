@@ -25,6 +25,9 @@ IntercomRails.config do |config|
   # or If User::custom_data method returns a hash
   config.user.custom_data = Proc.new { |user| user.custom_data }
 
+  config.api_secret = Rails.application.secrets.dig(:intercom, :api_key)
+
+
   # == Include for logged out Users
   # If set to true, include the Intercom messenger on all pages, regardless of whether
   # The user model class (set below) is present.
