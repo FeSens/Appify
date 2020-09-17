@@ -45,6 +45,8 @@ gem 'newrelic_rpm'
 gem 'rollbar'
 #Custumer Success App
 gem "intercom-rails"
+gem 'intercom', '~> 4.1'
+
 
 
 group :development, :test do

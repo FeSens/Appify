@@ -34,20 +34,15 @@ class Shop < ApplicationRecord
   end
 
   def custom_data
-    {
-      name: name,
-      shopify_domain: shopify_domain,
-      domain: domain,
-      pushes_limit: push_limit,
-      pushes_sent: push_interactions.last&.count || 0,
-      plan_name: plan_name,
-      created_at: created_at.to_i,
-      theme_verified: theme_verified,
-      last_auth: last_auth.to_i,
-      last_activity: last_activity.to_i,
-      campaigns_count: campaigns.count,
-      app_installs: subscriber_counts.pwa.sum(:count),
-      push_subscribers: pushes.count
-    }
+    as_json(with_everything: true,
+      except: [:id, :name, :created_at, :updated_at, :last_auth, :last_activity, :shopify_token, :metadata, :push_limit]).merge(
+        pushes_sent: push_interactions.last&.count || 0,
+        last_auth: last_auth.to_i,
+        last_activity: last_activity.to_i,
+        campaigns_count: campaigns.count,
+        app_installs: subscriber_counts.pwa.sum(:count),
+        push_subscribers: pushes.count,
+        pushes_limit: push_limit
+      )
   end
 end
