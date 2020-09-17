@@ -5,7 +5,7 @@ class IntercomSyncJob < ApplicationJob
     intercom = Intercom::Client.new(token: Rails.application.credentials.dig(:intercom, :api_token), handle_rate_limit: true)
     intercom_user = begin
       # tries to find user with this id
-      intercom.contacts.find(id: user.metadata['intercom_user_id']) if user.metadata['intercom_user_id']
+      intercom.contacts.find(id: user.metadata.dig('intercom_user_id')) if user.metadata&.dig('intercom_user_id').present?
       contacts = intercom.contacts.search(
         "query": {
           "field": 'external_id',
