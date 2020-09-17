@@ -32,4 +32,22 @@ class Shop < ApplicationRecord
   def api_version
     ShopifyApp.configuration.api_version
   end
+
+  def custom_data
+    {
+      name: name,
+      shopify_domain: shopify_domain,
+      domain: domain,
+      pushes_limit: push_limit,
+      pushes_sent: push_interactions.last&.count || 0,
+      plan_name: plan_name,
+      created_at: created_at.to_i,
+      theme_verified: theme_verified,
+      last_auth: last_auth.to_i,
+      last_activity: last_activity.to_i,
+      campaigns_count: campaigns.count,
+      app_installs: subscriber_counts.pwa.sum(:count),
+      push_subscribers: pushes.count 
+    }
+  end
 end

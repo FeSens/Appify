@@ -22,6 +22,8 @@ IntercomRails.config do |config|
   # If it is `current_user` or `@user`, then you can ignore this
   #
   config.user.current = Proc.new { current_shop }
+  # or If User::custom_data method returns a hash
+  config.user.custom_data = Proc.new { |user| user.custom_data }
 
   # == Include for logged out Users
   # If set to true, include the Intercom messenger on all pages, regardless of whether
