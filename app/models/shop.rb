@@ -47,7 +47,8 @@ class Shop < ApplicationRecord
       last_activity: last_activity.to_i,
       campaigns_count: campaigns.count,
       app_installs: subscriber_counts.pwa.sum(:count),
-      push_subscribers: pushes.count 
+      push_subscribers: pushes.count,
+      external_id: id
     }
   end
 end
