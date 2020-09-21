@@ -125,6 +125,6 @@ class IntercomSyncJob < ApplicationJob
       @shop_data = ShopifyAPI::Shop.current
     end
 
-    @shop_data.attributes.slice(:email, :shop_owner, :city, :country, :id, :phone, :address1, :address2, :zip)
+    @shop_data.attributes.slice(:email, :shop_owner, :city, :country, :id, :phone, :address1, :address2, :zip, :plan_name)
   end
 end
