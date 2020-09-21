@@ -1,6 +1,7 @@
 class OrdersCreateJob < ApplicationJob
   class JourneyNotAvailable < StandardError ; end
   queue_as :low
+  sidekiq_options retry: 5
   attr_accessor :webhook, :utm_source, :utm_medium, :utm_campaign, :campaign, :shop
   
   def perform(shop_domain:, webhook:)
