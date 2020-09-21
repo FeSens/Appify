@@ -80,7 +80,7 @@ class IntercomSyncJob < ApplicationJob
     # Add the custom attributes for that user to intercom, from our database
     intercom_user.email = user.metadata.dig('email') unless intercom_user.email.present?
     intercom_user.phone = user.metadata.dig('phone') unless intercom_user.phone.present?
-    intercom_user.custom_attributes[:shop_owner] = user.metadata.dig('shop_owner') unless intercom_user.custom_attributes[:shop_owner].present?
+    intercom_user.custom_attributes['shop_owner'] = user.metadata.dig('shop_owner') unless intercom_user.custom_attributes['shop_owner'].present?
     intercom_user.custom_attributes = intercom_user.custom_attributes.merge(user.custom_data)
   
     intercom.contacts.save(intercom_user)
