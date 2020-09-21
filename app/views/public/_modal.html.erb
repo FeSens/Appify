@@ -70,7 +70,7 @@
 }
 </style>
 
-<div id="modal_<%=optin.kind%>" class="aplicatify-modal" style="background: #<%= optin.background_color %>; display: none;">
+<div id="modal_<%=optin.kind%>" class="aplicatify-modal" style="background: #<%= optin.background_color %>; display: none; <%= "z-index: 0;" if preview == true %>">
   <div id="modal_optin_title" class="aplicatify-modal-title" style="color: #<%= optin.text_color %>">
     <%=optin.title%>
   </div>
