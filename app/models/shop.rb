@@ -43,8 +43,8 @@ class Shop < ApplicationRecord
         app_installs: subscriber_counts.pwa.sum(:count),
         push_subscribers: pushes.count,
         pushes_limit: push_limit,
-        opt_in_push_enabled: push.first.enabled?,
-        opt_in_pwa_enabled: pwa.first.enabled?
+        opt_in_push_enabled: optins.push.first.enabled?,
+        opt_in_pwa_enabled: optins.pwa.first.enabled?
       )
   end
 end
