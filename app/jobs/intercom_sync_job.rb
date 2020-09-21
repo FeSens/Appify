@@ -21,8 +21,10 @@ class IntercomSyncJob < ApplicationJob
       intercom.contacts.create(external_id: user.id)
     end
     
-    # We store intercom id in our db
-    user.update metadata: { intercom_user_id: intercom_user.id }
+    # We store intercom id and shopify metadata in our db
+    metadata = { intercom_user_id: intercom_user.id }
+    metadata = metadata.merge(shopify_data(user)) unless user.metadata&.dig('email').present?
+    user.update metadata: metadata
   
     # Sometimes intercom knows time zone of user and we don’t so we use their information on the time zone
     #user_time_zone = intercom_user.try(:location_data).try(:timezone)
@@ -76,7 +78,10 @@ class IntercomSyncJob < ApplicationJob
     #intercom_user.last_request_at = user.last_request_at
   
     # Add the custom attributes for that user to intercom, from our database
-    intercom_user.custom_attributes = user.custom_data
+    intercom_user.email = user.metadata.dig('email') unless intercom_user.email.present?
+    intercom_user.phone = user.metadata.dig('phone') unless intercom_user.phone.present?
+    intercom_user.custom_attributes[:shop_owner] = user.metadata.dig('shop_owner') unless intercom_user.custom_attributes[:shop_owner].present?
+    intercom_user.custom_attributes = intercom_user.custom_attributes.merge(user.custom_data)
   
     intercom.contacts.save(intercom_user)
   
@@ -112,5 +117,14 @@ class IntercomSyncJob < ApplicationJob
   #ensure
   #  Time.zone = old_time_zone
   end
+
+  private
+
+  def shopify_data(shop)
+    shop.with_shopify_session do
+      @shop_data = ShopifyAPI::Shop.current
+    end
+
+    @shop_data.attributes.slice(:email, :shop_owner, :city, :country, :id, :phone, :address1, :address2, :zip)
+  end
 end
-  
