@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 module Admin
   class AuthenticatedController < ApplicationController
-    include ShopifyApp::Authenticated unless Rails.env.development?
+    include ShopifyApp::Authenticated if Rails.env.production?
 
     helper_method :current_shop
     after_action :set_activity, only: %i[index]
@@ -10,11 +10,9 @@ module Admin
 
     def current_shop
       @current_shop ||= begin
-        if Rails.env.development?
-          Shop.last
-        else
-          Shop.find(session[:shop_id])
-        end
+        return Shop.last unless Rails.env.production?
+        
+        Shop.find(session[:shop_id])
       end
     end
 
