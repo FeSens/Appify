@@ -44,7 +44,8 @@ class Shop < ApplicationRecord
         push_subscribers: pushes.count,
         pushes_limit: push_limit,
         opt_in_push_enabled: optins.push.first.enabled?,
-        opt_in_pwa_enabled: optins.pwa.first.enabled?
+        opt_in_pwa_enabled: optins.pwa.first.enabled?,
+        app_icon: manifest.icon.present?
       )
   end
 end
