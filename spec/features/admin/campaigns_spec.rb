@@ -1,0 +1,47 @@
+require "rails_helper"
+
+RSpec.feature "Campaigns", type: :feature do
+  let(:campaign_name) { "Test Campaign 1" }
+  let(:campaign) { FactoryBot.build :campaign }
+  let(:campaign_attributes) { campaign.attributes.slice("name", "tag", "title", "body", "url")}
+
+  scenario "User creates a new campaign" do
+    shop = FactoryBot.create :shop
+    visit new_admin_campaign_path
+    
+    within "form" do
+      fill_in "campaign_name", with: campaign.name
+      fill_in "campaign_tag", with: campaign.tag
+      fill_in "campaign_title", with: campaign.title
+      fill_in "campaign_body", with: campaign.body
+      fill_in "campaign_url", with: campaign.url
+    end
+
+    #Check if preview is working correctly
+    #section = find(:css, '#mac-text')
+    #expect(section).to have_text(campaign.body)
+
+    click_button "Send Now"
+    
+    expect(shop.reload.campaigns.last).to have_attributes campaign_attributes
+    expect(page).to have_current_path(admin_campaigns_path)
+    expect(page).to have_text(campaign.name)
+  end
+
+  scenario "User list all campaigns" do
+    other_campaigns = FactoryBot.create_list :campaign, 3
+    shop = FactoryBot.create :shop
+    campaigns = FactoryBot.create_list :campaign, 3, shop: shop
+    visit admin_campaigns_path
+
+    for campaign in campaigns do
+      expect(page).to have_text(campaign.name)
+      expect(page).to have_text(campaign.clicks)
+      expect(page).to have_text(campaign.impressions)
+    end
+
+    for campaign in other_campaigns do
+      expect(page).not_to have_text(campaign.name)
+    end
+  end
+end
