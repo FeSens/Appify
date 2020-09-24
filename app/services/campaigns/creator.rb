@@ -1,10 +1,11 @@
 module Campaigns
   class Creator < ApplicationService
-    attr_reader :campaign, :targeter
+    attr_accessor :campaign
+    attr_reader :targeter
     
-    def initialize(campaign, targeter)
+    def initialize(campaign, targeter, args: nil)
       @campaign = campaign
-      @targeter = targeter
+      @targeter = "Campaigns::Targeters::#{targeter.to_s.classify}".constantize.new(campaign.shop_id, args: args)
     end
     
     def call
@@ -19,7 +20,11 @@ module Campaigns
     end
 
     def send_push_messages
-      targeter.call.each do |customer|
+      targets = targeter.call
+      
+      campaign.pushes << targets
+
+      targets.each do |customer|
         message = {
           title: campaign.title,
           body: campaign.body,

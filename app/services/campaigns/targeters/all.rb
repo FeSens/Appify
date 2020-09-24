@@ -1,9 +1,9 @@
 module Campaigns
   module Targeters
-    class All
+    class All < ApplicationService
       attr_accessor :shop_id
-      def initialize(shop_id: nil)
-      @shop_id = shop_id
+      def initialize(shop_id, args: nil)
+        @shop_id = shop_id
       end
 
       def call
