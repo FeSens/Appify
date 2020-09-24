@@ -2,13 +2,11 @@ class CreateCampaignJob < ApplicationJob
   queue_as :critical
   attr_accessor :campaign
 
-  def perform(campaign, targeter_params)
+  def perform(campaign, targeter, args: nil)
     @campaign = campaign
     return reschedule if postpone?
 
-    targeter = "Campaigns::Targeters::#{targeter_params[:targeter].to_s.classify}".constantize.new(**targeter_params[:params])
-
-    Campaigns::Creator.call(campaign, targeter)
+    Campaigns::Creator.call(campaign, targeter, args: args)
   end
 
   def postpone?

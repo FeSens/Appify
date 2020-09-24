@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Campaigns::Creator do
+describe Campaigns::Creator, type: :worker do
   let(:shop) { FactoryBot.create :shop}
   let(:campaign) { FactoryBot.create :campaign, shop: shop }
   let(:targeter) { :all }

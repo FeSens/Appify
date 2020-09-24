@@ -3,6 +3,8 @@ require 'spec_helper'
 require 'support/database_cleaner'
 require 'capybara/rspec'
 require 'simplecov'
+require "sidekiq/testing"
+Sidekiq::Testing.inline!
 SimpleCov.start
 
 ENV['RAILS_ENV'] ||= 'test'
@@ -66,4 +68,9 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  config.around(type: :worker) do |example|
+    if example.metadata[:sidekiq_fake] == true
+      Sidekiq::Testing.fake! { example.run }
+    end
+  end
 end

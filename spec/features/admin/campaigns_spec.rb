@@ -28,6 +28,33 @@ RSpec.feature "Campaigns", type: :feature do
     expect(page).to have_text(campaign.name)
   end
 
+  scenario "User edit an existing campaign" do
+    shop = FactoryBot.create :shop
+    existing_campaign = FactoryBot.create :campaign, shop: shop
+    visit edit_admin_campaign_path(existing_campaign)
+    
+    within "form" do
+      fill_in "campaign_name", with: campaign.name
+      fill_in "campaign_tag", with: campaign.tag
+      fill_in "campaign_title", with: campaign.title
+      fill_in "campaign_body", with: campaign.body
+      fill_in "campaign_url", with: campaign.url
+    end
+
+    #Check if preview is working correctly
+    #section = find(:css, '#mac-text')
+    #expect(section).to have_text(campaign.body)
+
+    click_button "Send Now"
+    
+    expect(shop.reload.campaigns.last).to have_attributes campaign_attributes
+    expect(page).to have_current_path(admin_campaigns_path)
+    expect(page).to have_text(campaign.name)
+    expect(page).to have_text(existing_campaign.clicks)
+    expect(page).to have_text(existing_campaign.impressions)
+    expect(page).not_to have_text(existing_campaign.name)
+  end
+
   scenario "User list all campaigns" do
     other_campaigns = FactoryBot.create_list :campaign, 3
     shop = FactoryBot.create :shop
