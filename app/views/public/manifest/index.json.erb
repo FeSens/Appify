@@ -5,9 +5,9 @@
   "icons": [
   <% icon_sizes.each.with_index do |dim, i| %>
     {
-      "src": "<%=  @manifest.icon.variant(resize: dim).processed.service_url.sub(/\?.*/, '') %>",
+      "src": "<%=  @manifest.icon.variant(resize: dim).processed.service_url.sub(/\?.*/, '') if @manifest.icon.present? %>",
       "sizes": "<%= dim %>",
-      "type": "<%= @manifest.icon.content_type%>"
+      "type": "<%= @manifest.icon.content_type if @manifest.icon.present? %>"
     }<%= i == (icon_sizes.length - 1) ? '' : ',' %>
   <% end %>
   ],
