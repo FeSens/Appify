@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 describe Analytics::Carts::Creator do
-  let(:shop) { FactoryBot.create :shop}
+  let(:shop) { FactoryBot.create :shop }
   let(:campaign) { FactoryBot.create :campaign, shop: shop }
-  let(:push) { FactoryBot.create :push}
+  let(:push) { FactoryBot.create :push }
   let(:params) do
     { 
       token: rand(36**64).to_s(36),
