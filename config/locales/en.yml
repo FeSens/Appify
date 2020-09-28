@@ -34,6 +34,30 @@ en:
   optin:
     pwa: "PWA"
     push: "Push"
+  helpers:
+    submit:
+      create: Create %{model}
+      submit: "Save"
+      update: "Update"
+      send_now: "Send Now"
+  admin_commons:
+    new_campaign: "New Campaign"
+    edit_campaign: "Edit Campaign"
+    your_campaigns: "Your Campaigns"
+    home: "Home"
+    upgrade: "Upgrade"
+    revenue: "Revenue"
+    impressions: "Impressions"
+    edit: "Edit"
+    languages: "Languages"
+  targter:
+    all_subscribers: "All Subscribers"
+  plans:
+    store_app: "Store App"
+    unlimited_customer_base: "Unlimited Customer Base"
+    custom_triggers: "Custom Triggers"
+    push_notifications_per_month: "Push Notifications per Month"
+    get_this_plan: "Get this plan"
   admin:
     home:
       index:
@@ -41,14 +65,8 @@ en:
         app_users_html: "App<br>Users"
         total_revenue_html: "Total<br>Revenue"
         active_subscribers_html: "All<br>Subscriebrs"
+        subscriber_growth: "Novos Inscritos"
         impressions_consumed_html: "Impressions<br>Consumed"
-  helpers:
-    submit:
-      create: Create %{model}
-      submit: "Save"
-      update: "Update"
-      send_now: "Send Now"
-
-  activerecord:
-    models:
-      manifest: "App settings"
+        name: "Name"
+        audience: "Audience"
+        last_campaigns: "Last Campaigns"
