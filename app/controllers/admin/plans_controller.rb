@@ -8,7 +8,7 @@ module Admin
 
     def create
       @recurring_application_charge = ShopifyAPI::RecurringApplicationCharge.new(plan_params)
-      @recurring_application_charge.test = true
+      @recurring_application_charge.test = false
       @recurring_application_charge.return_url = callback_admin_plans_url
       
       return fullpage_redirect_to @recurring_application_charge.confirmation_url if @recurring_application_charge.save
