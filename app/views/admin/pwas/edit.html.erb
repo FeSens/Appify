@@ -2,30 +2,30 @@
   <div class="col-6 white shadow-sm p-4">
     <%= form_for @manifest, url: admin_pwa_path(@manifest), method: :patch do |f| %>
       <div class="form-group">
-        <%= label_tag 'manifest_name', 'Store Name:' %>
+        <%= label_tag :name, t('activerecord.attributes.manifest.name') %>
         <%= f.text_field :name, class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= label_tag 'manifest_short_name', 'App Name:' %>
+         <%= label_tag :short_name, t('activerecord.attributes.manifest.short_name') %>
         <%= f.text_field :short_name, class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= label_tag 'manifest_icon', 'Your Logo:' %>
+         <%= label_tag :icon, t('activerecord.attributes.manifest.icon') %>
         <%= f.file_field :icon, class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= label_tag 'manifest_theme_color', 'Theme Color:' %>
+        <%= label_tag :theme_color, t('activerecord.attributes.manifest.theme_color') %>
         <%= f.text_field :theme_color, class: "form-control jscolor" %>
       </div>
       <div class="form-group">
-        <%= label_tag 'manifest_background_color', 'Background Color:' %>
+         <%= label_tag :background_color, t('activerecord.attributes.manifest.background_color') %>
         <%= f.text_field :background_color, class: "form-control jscolor" %>
       </div>
       <div class="form-group">
-        <%= label_tag 'manifest_description', 'Short description:' %>
+         <%= label_tag :description, t('activerecord.attributes.manifest.description') %>
         <%= f.text_area :description, class: "form-control" %>
       </div>
-      <%= f.submit "Save", class: "btn btn-primary float-right px-4" %>
+      <%= f.submit t('helpers.submit.submit'), class: "btn btn-purple float-right px-4" %>
     <% end %>
   </div>
   <div class="col-6 d-flex my-auto justify-content-center">

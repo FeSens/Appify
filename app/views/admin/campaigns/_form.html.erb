@@ -1,26 +1,26 @@
 <%= form_with model: @campaign, url: url, method: method do |f| %>
   <div class="form-group">
-    <%= label_tag 'campaign_name', 'Campaign Name:' %>
+    <%= label_tag :name, t('activerecord.attributes.campaign.name') %>
     <%= f.text_field :name, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= label_tag 'campaign_tag', 'Tag:' %>
+    <%= label_tag :tag, t('activerecord.attributes.campaign.tag') %>
     <%= f.text_field :tag, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= label_tag 'campaign_title', 'Push Title:' %>
+    <%= label_tag :title, t('activerecord.attributes.campaign.title') %>
     <%= f.text_field :title, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= label_tag 'campaign_body', 'Push Body:' %>
+    <%= label_tag :body, t('activerecord.attributes.campaign.body') %>
     <%= f.text_area :body, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= label_tag 'campaign_url', 'Destination URL:' %>
+    <%= label_tag :url, t('activerecord.attributes.campaign.url') %>
 
     <div class="input-group-prepend">
     <% if params[:action] == "edit" %>
@@ -36,5 +36,5 @@
     <!--<%= label_tag 'campaign_release_date', 'Release Date:' %>-->
     <%= f.hidden_field :release_date, value: Time.now, class: "form-control" %>
   <!--</div>-->
-  <%= f.submit "Send Now", class: "btn btn-purple float-right px-4" %>
+  <%= f.submit t('helpers.submit.send_now'), class: "btn btn-purple float-right px-4" %>
 <% end %>

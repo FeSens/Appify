@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resource :pwa, only: %i[edit update]
     resources :subscribers, only: %i[index]
     resources :optins, only: %i[index update]
+    resource :locales, only: %i[update]
     resources :plans, only: %i[index create callback] do
       collection do
         get :callback

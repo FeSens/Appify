@@ -3,22 +3,22 @@
     <div class="row my-3">
       <div class="col-md-6 col-xl-3  mx-auto info-card">
         <%= image_tag "Componente 1 – 1.svg" %>
-        <div class="title">App<br>Revenue</div>
+        <div class="title"><%= t('.app_revenue_html')%></div>
         <div class="value"> <%= app_revenue %> </div>
       </div>
       <div class="col-md-6 col-xl-3  mx-auto info-card">
         <%= image_tag "Componente 4 – 1.svg" %>
-        <div class="title">App<br>Users</div>
+        <div class="title"><%= t('.app_users_html')%></div>
         <div class="value"><%= app_installs %></div>
       </div>
       <div class="col-md-6 col-xl-3  mx-auto info-card">
         <%= image_tag "Componente 3 – 1.svg" %>
-        <div class="title">Total<br>Revenue</div>
+        <div class="title"><%= t('.total_revenue_html')%></div>
         <div class="value"><%= revenue %></div>
       </div>
       <div class="col-md-6 col-xl-3  mx-auto info-card">
         <%= image_tag "Componente 2 – 1.svg" %>
-        <div class="title">Active<br>Subscribers</div>
+        <div class="title"><%= t('.active_subscribers_html')%></div>
         <div class="value"><%= push_subscribers %></div>
       </div>
     </div>
@@ -26,7 +26,7 @@
 </div>
 <div class="row mt-3">
   <div class="col-8">
-    <h4 class="pb-4">Subscriber Growth<br>+ <%=new_subscribers%></h4>
+    <h4 class="pb-4"><%= t('.subscriber_growth')%><br>+ <%=new_subscribers%></h4>
     <canvas id="push-subscribers" width="200" height="100"></canvas>
   </div>
   <div class="col-4">
@@ -34,7 +34,7 @@
       <div class="col-6 my-auto">
         <div class="row">
           <div class="col-12 mb-4">
-            <span class="title">Impressions <br> Consumed</span>
+            <span class="title"><%= t('.impressions_consumed_html')%></span>
           </div>
           <div class="col-12 mb-3">
             <span class="consumed mr-3"> <%= push_interaction[:push_count] %> </span>
@@ -54,14 +54,14 @@
     </div>
     <div class="row latest-campaigns float-right mt-4 py-4">
       <div class="col-12 my-auto">
-        <div class="title">Last Campaigns</div>
+        <div class="title"><%= t('.last_campaigns')%></div>
         <div>
         <table class="table">
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">Audience</th>
+              <th scope="col"><%= t('.name')%></th>
+              <th scope="col"><%= t('.audience')%></th>
             </tr>
           </thead>
           <tbody>

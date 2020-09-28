@@ -34,3 +34,21 @@ en:
   optin:
     pwa: "PWA"
     push: "Push"
+  admin:
+    home:
+      index:
+        app_revenue_html: "App<br>Revenue"
+        app_users_html: "App<br>Users"
+        total_revenue_html: "Total<br>Revenue"
+        active_subscribers_html: "All<br>Subscriebrs"
+        impressions_consumed_html: "Impressions<br>Consumed"
+  helpers:
+    submit:
+      create: Create %{model}
+      submit: "Save"
+      update: "Update"
+      send_now: "Send Now"
+
+  activerecord:
+    models:
+      manifest: "App settings"

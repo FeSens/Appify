@@ -26,7 +26,7 @@ module Shopify
 
     def configure_store
       s = ShopifyAPI::Shop.current
-      shop.update(domain: s.domain, name: s.name)
+      shop.update(domain: s.domain, name: s.name, locale: s.primary_locale)
       p = Plan.find_by(name: s.plan_name)
       shop.update(push_limit: p.push_limit) if p
     end

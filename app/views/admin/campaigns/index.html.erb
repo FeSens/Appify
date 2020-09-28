@@ -1,10 +1,10 @@
 <div class="row py-3">
   <div class="col-6 my-auto">
-    <h2>Your Campaigns</h2>
+    <h2><%= t('admin_commons.your_campaigns') %></h2>
   </div>
 
   <div class="col-6 my-auto">
-    <a class="btn btn-purple text-center btn-lg float-right" href="<%= new_admin_campaign_path %>" role="button">+ New Campaign</a>
+    <a class="btn btn-purple text-center btn-lg float-right" href="<%= new_admin_campaign_path %>" role="button">+ <%= t('admin_commons.new_campaign') %></a>
   </div>
 </div>
 <div class="row">
@@ -15,23 +15,23 @@
           <td> 
             <div> <%= campaign.name %> </div>
             <div class="sub-label"> 
-              All Subscribers | <%= "in" if campaign.release_date > Time.now%> <%= distance_of_time_in_words(Time.now, campaign.release_date) %> <%= "ago" if campaign.release_date < Time.now%> | Campaign ID: <%= campaign.id %>
+              <%= t('targter.all_subscribers')%> | <%= distance_of_time_in_words(Time.now, campaign.release_date) %> | Campaign ID: <%= campaign.id %>
             </div>
           </td>
           <td>
             <div> <%= number_to_currency(campaign.orders.sum(:total)) %> </div>
-            <div class="sub-label"> Revenue </div>
+            <div class="sub-label"> <%= t('admin_commons.revenue')%> </div>
           </td>
           <td>
             <div> <%= campaign.impressions %> </div>
-            <div class="sub-label"> Impressions </div>
+            <div class="sub-label"> <%= t('admin_commons.impressions')%> </div>
           </td>
           <td> 
             <div> <%= campaign.clicks %> </div>
-            <div class="sub-label"> Clicks </div>
+            <div class="sub-label"> <%= t('admin_commons.clicks')%> </div>
           </td>
           <td class="align-middle">
-            <a class="btn btn-red" href="<%= edit_admin_campaign_path(campaign) %>" role="button">Edit</a>
+            <a class="btn btn-red" href="<%= edit_admin_campaign_path(campaign) %>" role="button"> <%= t('admin_commons.edit')%> </a>
           </td>
         </tr>
       <% end %>

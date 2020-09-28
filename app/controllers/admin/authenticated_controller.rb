@@ -4,6 +4,7 @@ module Admin
     include ShopifyApp::Authenticated if Rails.env.production?
 
     helper_method :current_shop
+    before_action :set_locale
     after_action :set_activity, only: %i[index]
 
     private
@@ -18,6 +19,10 @@ module Admin
 
     def set_activity
       current_shop.touch(:last_activity)
+    end
+
+    def set_locale
+      I18n.locale = current_shop.locale if I18n.available_locales.include? current_shop.locale.to_sym
     end
   end
 end

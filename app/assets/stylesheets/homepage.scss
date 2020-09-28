@@ -375,5 +375,17 @@ input:checked + .slider:before {
     height: 60px;
     width: 60px;
   }
-  
+}
+
+.flag {
+  height: 42px;
+  width: 60px;
+}
+
+.sidebar-text {
+  text-align: left;
+  font: Normal 20px/24px Varela Round;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  opacity: 1;
 }

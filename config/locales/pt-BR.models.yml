@@ -1,0 +1,63 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+pt-BR:
+  activerecord:
+    models:
+      campaign: "Campanhas"
+      optin: "Gatilhos de Aceite"
+      manifest: "Configuraçōes"
+    attributes:
+      optin:
+        title: "Titulo"
+        body: "Corpo da mensagem"
+        accept_button: "Botão de aceite"
+        decline_button: "Botão de recusa"
+        background_color: "Cor de fundo"
+        text_color: "Cor do texto"
+        timer: "Tempo de espera"
+        enabled: "Habilitado"
+      campaign:
+        shop: "Loja"
+        name: "Nome Interno"
+        tag: "Tag"
+        segmentation_size: "Tamanho da segmentação"
+        delivered: "Entregues"
+        title: "Titulo"
+        body: "Corpo da mensagem"
+        url: "Url de Destino"
+        release_date: "Data de Lançamento"
+      manifest:
+        name: "Nome do App"
+        short_name: "Nome Curto do App"
+        icon: "A sua logo"
+        theme_color: "Cor do tema"
+        background_color: "Cor de fundo"
+        description: "Descrição"

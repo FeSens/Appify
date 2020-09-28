@@ -13,7 +13,7 @@
     </div>
     <%= form_with model: @optin, method: 'patch', url: admin_optin_path(@optin), class:"mt-3", local: true do |f| %>
       <div class="form-group">
-        <%= label_tag 'optin_enabled', 'Enable:' %>
+          <%= label_tag :enabled, t('activerecord.attributes.optin.enabled') %>
         <div>
         <label class="switch">
           <%= f.check_box :enabled %>
@@ -22,34 +22,34 @@
         </div>
       </div>
       <div class="form-group">
-        <%= label_tag 'optin_title', 'Title:' %>
+        <%= label_tag :title, t('activerecord.attributes.optin.title') %>
         <%= f.text_field :title, class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= label_tag 'optin_body', 'Description:' %>
+        <%= label_tag :body, t('activerecord.attributes.optin.body') %>
         <%= f.text_field :body, class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= label_tag 'optin_accept_button', 'Accept Button:' %>
+        <%= label_tag :accept_button, t('activerecord.attributes.optin.accept_button') %>
         <%= f.text_field :accept_button, class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= label_tag 'optin_decline_button', 'Decline Button:' %>
+        <%= label_tag :decline_button, t('activerecord.attributes.optin.decline_button') %>
         <%= f.text_field :decline_button, class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= label_tag 'optin_background_color', 'Background Color:' %>
+        <%= label_tag :background_color, t('activerecord.attributes.optin.background_color') %>
         <%= f.text_field :background_color, class: "form-control jscolor" %>
       </div>
       <div class="form-group">
-        <%= label_tag 'optin_text_color', 'Text Color:' %>
+        <%= label_tag :text_color, t('activerecord.attributes.optin.text_color') %>
         <%= f.text_field :text_color, class: "form-control jscolor" %>
       </div>
       <div class="form-group">
-        <%= label_tag 'optin_timer', 'Trigger Time (in seconds):' %>
+        <%= label_tag :timer, t('activerecord.attributes.optin.timer') %>
         <%= f.number_field :timer, class: "form-control" %>
       </div>
-      <%= f.submit "Save", class: "btn btn-purple float-right px-4" %>
+      <%= f.submit t('helpers.submit.submit'), class: "btn btn-purple float-right px-4" %>
     <% end %>
   </div>
   <div class="col-6 d-flex justify-content-center">
