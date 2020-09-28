@@ -248,9 +248,9 @@ pt-BR:
   admin:
     home:
       index:
-        app_revenue_html: "Receida do<br>App"
+        app_revenue_html: "Receita do<br>App"
         app_users_html: "Usuários do<br>App"
-        total_revenue_html: "Receida <br>Total"
+        total_revenue_html: "Receita <br>Total"
         active_subscribers_html: "Inscritos <br>Ativos"
         subscriber_growth: "Novos Inscritos"
         impressions_consumed_html: "Impressōes<br>Utilizadas"
