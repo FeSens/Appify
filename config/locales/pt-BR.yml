@@ -227,6 +227,7 @@ pt-BR:
     push: "Push"
   
   admin_commons:
+    greetings: "Olá"
     new_campaign: "Nova Campanha"
     edit_campaign: "Editar Campanha"
     your_campaigns: "Suas Campanhas"

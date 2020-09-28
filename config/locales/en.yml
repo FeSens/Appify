@@ -41,6 +41,7 @@ en:
       update: "Update"
       send_now: "Send Now"
   admin_commons:
+    greetings: "Hello"
     new_campaign: "New Campaign"
     edit_campaign: "Edit Campaign"
     your_campaigns: "Your Campaigns"
