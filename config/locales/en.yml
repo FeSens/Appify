@@ -65,7 +65,7 @@ en:
         app_revenue_html: "App<br>Revenue"
         app_users_html: "App<br>Users"
         total_revenue_html: "Total<br>Revenue"
-        active_subscribers_html: "All<br>Subscriebrs"
+        active_subscribers_html: "All<br>Subscribers"
         subscriber_growth: "New Subscribers"
         impressions_consumed_html: "Impressions<br>Consumed"
         name: "Name"

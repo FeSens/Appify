@@ -232,7 +232,7 @@ pt-BR:
     edit_campaign: "Editar Campanha"
     your_campaigns: "Suas Campanhas"
     home: "Home"
-    upgrade: "Upgrade"
+    upgrade: "Planos"
     revenue: "Receita"
     impressions: "Impressōes"
     edit: "Editar"
@@ -243,7 +243,7 @@ pt-BR:
     store_app: "App da loja"
     unlimited_customer_base: "Base ilimitada de clientes"
     custom_triggers: "Gatilhos personalizados"
-    push_notifications_per_month: "Notificaçoes push por mes"
+    push_notifications_per_month: "Notificaçōes push por mês"
     get_this_plan: "Assine este plano"
   admin:
     home:
