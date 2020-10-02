@@ -1,7 +1,7 @@
 class Push < ApplicationRecord
   belongs_to :customer, optional: true
   belongs_to :shop, optional: true
-  has_many :push_subscriber_campaigns, dependent: :nullify
+  has_many :push_subscriber_campaigns, dependent: :destroy
   has_many :campaigns, through: :push_subscriber_campaigns
   has_many :page_visits, dependent: :nullify
   has_many :carts, dependent: :nullify

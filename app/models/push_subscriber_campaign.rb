@@ -1,4 +1,4 @@
 class PushSubscriberCampaign < ApplicationRecord
-  belongs_to :push, optional: true
-  belongs_to :campaing, optional: true
+  belongs_to :push, optional: false
+  belongs_to :campaign, optional: false
 end
