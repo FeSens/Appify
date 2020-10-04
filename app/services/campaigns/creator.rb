@@ -13,10 +13,12 @@ module Campaigns
     end
 
     def icon
-      shop = campaign.shop
-      return if shop.manifest.icon.blank?
-  
-      shop.manifest.icon.variant(resize_to_fit: [192, 192]).processed.service_url.sub(/\?.*/, '')
+      @icon ||= begin
+        shop = campaign.shop
+        return if shop.manifest.icon.blank?
+    
+        shop.manifest.icon.variant(resize_to_fit: [192, 192]).processed.service_url.sub(/\?.*/, '')
+      end
     end
 
     def send_push_messages
