@@ -8,7 +8,7 @@ module Pushes
     end
     
     def call
-      call!
+      call! if Rails.env.production?
     rescue Webpush::ExpiredSubscription, Webpush::Unauthorized
       customer.destroy
     end

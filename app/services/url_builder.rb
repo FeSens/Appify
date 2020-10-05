@@ -2,9 +2,9 @@ class UrlBuilder < ApplicationService
   attr_reader :url, :campaign_name, :medium
 
   def initialize(url, campaign_name, medium="push")
-    @url = url
-    @campaign_name = campaign_name
-    @medium = medium
+    @url = I18n.transliterate(url)
+    @campaign_name = I18n.transliterate(campaign_name)
+    @medium = I18n.transliterate(medium)
   end
 
   def call
