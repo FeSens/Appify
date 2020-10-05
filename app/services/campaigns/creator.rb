@@ -21,10 +21,23 @@ module Campaigns
       end
     end
 
+    def filterd_targets(targets)
+      ids = campaign.pushes.pluck(:id)
+      return targets unless ids.present?
+
+      targets.where("id not in (?)", ids)
+    end
+
+    def create_associations(targets)
+      filterd_targets = filterd_targets(targets)
+      associations = filterd_targets.map { |p| {campaign_id: campaign.id, push_id: p.id, created_at: Time.now, updated_at: Time.now} }
+      PushSubscriberCampaign.insert_all(associations) if associations.present?
+    end
+
     def send_push_messages
       targets = targeter.call
-      
-      campaign.pushes << targets
+
+      create_associations(targets)
 
       targets.each do |customer|
         message = {
