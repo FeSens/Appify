@@ -352,6 +352,7 @@ DEPENDENCIES
   pry
   puma (~> 4.3)
   rails (>= 6.0.2.2)
+  rake (~> 13)
   redis
   rollbar
   rspec-rails (~> 4.0.1)
