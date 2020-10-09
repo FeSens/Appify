@@ -3,23 +3,20 @@
 # .NET, PHP, Python, Node, and Go applications with deep visibility and low
 # overhead.  For more information, visit www.newrelic.com.
 #
-# Generated October 8, 2020
+# Generated July 20, 2020
 #
-# This configuration file is custom generated for NewRelic Administration
+# This configuration file is custom generated for Aplicatify
 #
 # For full documentation of agent configuration options, please refer to
 # https://docs.newrelic.com/docs/agents/ruby-agent/installation-configuration/ruby-agent-configuration
 
 common: &default_settings
   # Required license key associated with your New Relic account.
-  license_key: 1831a6dca6f5d6f348c265c24ad7a6ce4022NRAL
+  license_key: 61ec7f50b982a9399b48dc5ec46320344a70NRAL
 
   # Your application name. Renaming here affects where data displays in New
   # Relic.  For more details, see https://docs.newrelic.com/docs/apm/new-relic-apm/maintenance/renaming-applications
   app_name: Aplicatify
-
-  distributed_tracing:
-    enabled: true
 
   # To disable the agent regardless of other settings, uncomment the following:
   # agent_enabled: false
