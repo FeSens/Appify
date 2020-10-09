@@ -48,7 +48,7 @@ class OrdersCreateJob < ApplicationJob
     }
     GRAPHQL
     result = ShopifyAPI::GraphQL.client.query(query)
-    journey = result.data&.order&.customer_journey
+    journey = result.data.order.customer_journey
     raise JourneyNotAvailable unless journey.present?
     visit = journey.last_visit.present? ? journey.last_visit.utm_parameters : journey.first_visit.utm_parameters
     @utm_medium, @utm_campaign, @utm_source = visit&.medium, visit&.campaign, visit&.source
