@@ -1,13 +1,13 @@
 require "rails_helper"
 
-RSpec.feature "Configure Opt In", type: :feature do
-  let(:optin) { FactoryBot.build :optin}
+RSpec.describe "Configure Opt In", type: :feature do
+  let(:optin) { FactoryBot.build :optin }
   let(:optin_attributes) { optin.attributes.except("created_at", "id", "updated_at", "shop_id", "kind") }
-  
-  scenario "User Configure Push Opt In" do
+
+  it "User Configure Push Opt In" do
     shop = FactoryBot.create :shop
     visit admin_optins_path
-    
+
     within "form" do
       fill_in "optin_title", with: optin.title
       fill_in "optin_body", with: optin.body
@@ -23,11 +23,11 @@ RSpec.feature "Configure Opt In", type: :feature do
     expect(shop.reload.optins.push.first).to have_attributes optin_attributes
   end
 
-  scenario "User Configure Pwa Opt In" do
+  it "User Configure Pwa Opt In" do
     shop = FactoryBot.create :shop
     visit admin_optins_path
     click_link "PWA"
-    
+
     within "form" do
       fill_in "optin_title", with: optin.title
       fill_in "optin_body", with: optin.body

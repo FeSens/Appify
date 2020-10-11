@@ -7,12 +7,11 @@ module Public
     end
 
     def hash_color(color)
-      "##{color.gsub('#', '')}"
+      "##{color.delete("#")}"
     end
 
     def icon_sizes
-      ["192x192", "512x512"]
+      %w[192x192 512x512]
     end
-
   end
 end

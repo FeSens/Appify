@@ -4,7 +4,7 @@ FactoryBot.define do
     name { Faker::Marketing.buzzwords }
     short_name { Faker::Marketing.buzzwords }
     description { Faker::Marketing.buzzwords }
-    theme_color { "#{rand(2**32).to_s(16)}" }
-    background_color { "#{rand(2**32).to_s(16)}" }
+    theme_color { rand(2**32).to_s(16).to_s }
+    background_color { rand(2**32).to_s(16).to_s }
   end
 end

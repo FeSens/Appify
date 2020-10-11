@@ -1,13 +1,13 @@
 require "rails_helper"
 
-RSpec.feature "Configure PWA", type: :feature do
-  let(:manifest) { FactoryBot.build :manifest}
+RSpec.describe "Configure PWA", type: :feature do
+  let(:manifest) { FactoryBot.build :manifest }
   let(:manifest_attributes) { manifest.attributes.except("created_at", "id", "updated_at", "shop_id") }
-  
-  scenario "User Configure PWA" do
+
+  it "User Configure PWA" do
     shop = FactoryBot.create :shop
     visit edit_admin_pwa_path
-    
+
     within "form" do
       fill_in "manifest_name", with: manifest.name
       fill_in "manifest_short_name", with: manifest.short_name

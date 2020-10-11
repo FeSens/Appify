@@ -6,7 +6,7 @@ module Pushes
       @customer = customer
       @message = message
     end
-    
+
     def call
       call! if Rails.env.production?
     rescue Webpush::ExpiredSubscription, Webpush::Unauthorized
@@ -20,7 +20,7 @@ module Pushes
         p256dh: customer.p256dh,
         auth: customer.auth,
         vapid: {
-          subject: 'mailto:suporte@appify.com',
+          subject: "mailto:suporte@appify.com",
           public_key: Rails.application.credentials.dig(:webpush, :public_key),
           private_key: Rails.application.credentials.dig(:webpush, :private_key)
         }

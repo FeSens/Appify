@@ -1,6 +1,6 @@
 class CheckoutsCreateJob < ActiveJob::Base
   sidekiq_options retry: 5
-  class CartNotFoundError < StandardError ; end
+  class CartNotFoundError < StandardError; end
   queue_as :low
   attr_accessor :webhook
   def perform(shop_domain:, webhook:)

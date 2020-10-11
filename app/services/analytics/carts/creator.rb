@@ -9,7 +9,7 @@ module Analytics
         @subscriber_id = subscriber_id
         @shop_id = shop_id
       end
-      
+
       def call
         call!
         true
@@ -21,7 +21,7 @@ module Analytics
       end
 
       private
-  
+
       def cart_params
         params[:push_id] = push_id
         params[:impacted] = true if impacted?
@@ -38,7 +38,7 @@ module Analytics
       end
 
       def impacted?
-        params[:utm_source]&.include?('aplicatify')
+        params[:utm_source]&.include?("aplicatify")
       end
     end
   end

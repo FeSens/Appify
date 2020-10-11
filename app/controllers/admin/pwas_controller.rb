@@ -9,7 +9,7 @@ module Admin
 
     def update
       manifest.update(manifest_params)
-      flash[:success] = 'Updated with success'
+      flash[:success] = "Updated with success"
       redirect_to edit_admin_pwa_path
     end
 

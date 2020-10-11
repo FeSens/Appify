@@ -1,6 +1,4 @@
-
 RSpec.configure do |config|
-
   config.before(:suite) do
     if config.use_transactional_fixtures?
       raise(<<-MSG)
@@ -14,10 +12,11 @@ RSpec.configure do |config|
         uncommitted transaction data setup over the spec's database connection.
       MSG
     end
-    DatabaseCleaner.clean_with :truncation, except: %w(ar_internal_metadata)
+
+    DatabaseCleaner.clean_with :truncation, except: %w[ar_internal_metadata]
   end
 
-  config.before(:each) do
+  config.before do
     DatabaseCleaner.strategy = :transaction
   end
 
@@ -34,12 +33,11 @@ RSpec.configure do |config|
     end
   end
 
-  config.before(:each) do
+  config.before do
     DatabaseCleaner.start
   end
 
-  config.after(:each) do
+  config.after do
     DatabaseCleaner.clean
   end
-  
 end

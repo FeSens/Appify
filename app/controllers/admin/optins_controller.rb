@@ -3,11 +3,11 @@ module Admin
     before_action :load_optin, only: %i[update index]
     attr_accessor :optin
 
-    def index ; end
+    def index; end
 
     def update
       optin.update(optin_params)
-      flash[:success] = 'Updated with success'
+      flash[:success] = "Updated with success"
       redirect_to admin_optins_path(tab: optin.kind)
     end
 
@@ -20,6 +20,7 @@ module Admin
 
     def load_optin
       return @optin = current_shop.optins.find(params[:id]) if params[:id].present?
+
       @optin = current_shop.optins.find_by(kind: params[:tab] || "push")
     end
   end

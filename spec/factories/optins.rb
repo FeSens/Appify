@@ -5,8 +5,8 @@ FactoryBot.define do
     body { Faker::Marketing.buzzwords }
     accept_button { Faker::Marketing.buzzwords }
     decline_button { Faker::Marketing.buzzwords }
-    background_color { "#{rand(2**32).to_s(16)}" }
-    text_color { "#{rand(2**32).to_s(16)}" }
+    background_color { rand(2**32).to_s(16).to_s }
+    text_color { rand(2**32).to_s(16).to_s }
     timer { rand(1..100) }
     kind { :push }
   end

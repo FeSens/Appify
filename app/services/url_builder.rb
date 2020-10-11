@@ -1,7 +1,7 @@
 class UrlBuilder < ApplicationService
   attr_reader :url, :campaign_name, :medium
 
-  def initialize(url, campaign_name, medium="push")
+  def initialize(url, campaign_name, medium = "push")
     @url = I18n.transliterate(url)
     @campaign_name = I18n.transliterate(campaign_name)
     @medium = I18n.transliterate(medium)
@@ -29,6 +29,7 @@ class UrlBuilder < ApplicationService
 
   def www
     return if url.count(".") >= 2
+
     "www."
   end
 end

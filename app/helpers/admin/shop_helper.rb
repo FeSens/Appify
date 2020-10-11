@@ -16,7 +16,7 @@ module Admin
     def shop_name
       current_shop.name
     end
-    
+
     def theme_verified?
       current_shop.theme_verified
     end
@@ -31,7 +31,7 @@ module Admin
     end
 
     def app_revenue
-      @app_revenue ||= current_shop.campaigns.find_by(name:"app").orders.sum(:total)
+      @app_revenue ||= current_shop.campaigns.find_by(name: "app").orders.sum(:total)
       number_to_currency(@app_revenue)
     end
 

@@ -2,6 +2,6 @@
 
 module Admin
   class HomeController < AuthenticatedController
-    def index ; end
+    def index; end
   end
 end

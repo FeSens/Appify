@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :campaign do
     shop
     name { Faker::Beer.unique.brand }
-    tag { Faker::Beer.name.gsub(" ", "-") }
+    tag { Faker::Beer.name.tr(" ", "-") }
     segmentation_size { rand(1..1_000) }
     delivered { rand(1..segmentation_size) }
     impressions { rand(1..delivered) }

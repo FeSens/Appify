@@ -1,9 +1,9 @@
 class OrdersCreateJob < ApplicationJob
-  class JourneyNotAvailable < StandardError ; end
+  class JourneyNotAvailable < StandardError; end
   queue_as :low
   sidekiq_options retry: 5
   attr_accessor :webhook, :utm_source, :utm_medium, :utm_campaign, :campaign, :shop
-  
+
   def perform(shop_domain:, webhook:)
     @webhook = webhook
     @shop = Shop.find_by(shopify_domain: shop_domain)
@@ -50,7 +50,10 @@ class OrdersCreateJob < ApplicationJob
     result = ShopifyAPI::GraphQL.client.query(query)
     journey = result.data&.order&.customer_journey
     raise JourneyNotAvailable unless journey.present?
+
     visit = journey.last_visit.present? ? journey.last_visit.utm_parameters : journey.first_visit.utm_parameters
-    @utm_medium, @utm_campaign, @utm_source = visit&.medium, visit&.campaign, visit&.source
-  end  
+    @utm_medium = visit&.medium
+    @utm_campaign = visit&.campaign
+    @utm_source = visit&.source
+  end
 end

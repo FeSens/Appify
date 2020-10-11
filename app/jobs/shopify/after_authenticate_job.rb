@@ -16,12 +16,12 @@ module Shopify
     end
 
     def script_urls
-      ['/apps/script/serviceworker-register.js',
-       '/apps/script/public/preferences.js']
+      ["/apps/script/serviceworker-register.js",
+       "/apps/script/public/preferences.js"]
     end
 
     def manifest_url
-      '/apps/script/public/manifest.json'
+      "/apps/script/public/manifest.json"
     end
 
     def configure_store
@@ -32,15 +32,15 @@ module Shopify
     end
 
     def create_asset
-      ShopifyAPI::Asset.create(key: "snippets/aplicatify-snippet.liquid", 
-        value: "<link rel='manifest' href='#{manifest_url}'>\n<script type='text/javascript' async='' src='#{script_urls[0]}'></script>\n<script type='text/javascript' async='' src='#{script_urls[1]}'></script>")
+      ShopifyAPI::Asset.create(key: "snippets/aplicatify-snippet.liquid",
+                               value: "<link rel='manifest' href='#{manifest_url}'>\n<script type='text/javascript' async='' src='#{script_urls[0]}'></script>\n<script type='text/javascript' async='' src='#{script_urls[1]}'></script>")
     end
 
     def modify_theme!
-      layout = ShopifyAPI::Asset.find('layout/theme.liquid', params: { role: "main" })
+      layout = ShopifyAPI::Asset.find("layout/theme.liquid", params: { role: "main" })
       create_asset
       unless layout.value.include? "{% include 'aplicatify-snippet' %}"
-        l = layout.value.split('<head>', 2)
+        l = layout.value.split("<head>", 2)
         layout.value = "#{l[0]}\n<head>\n  <!-- APLICATIFY:START -->\n {% include 'aplicatify-snippet' %}\n  <!-- APLICATIFY:END -->\n#{l[1]}"
         layout.save
       end

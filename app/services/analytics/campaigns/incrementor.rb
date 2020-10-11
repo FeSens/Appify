@@ -8,7 +8,7 @@ module Analytics
         @campaign_id = campaign_id
         @column = column
       end
-      
+
       def call
         Campaign.increment_counter column, campaign_id
         if column == "impressions"

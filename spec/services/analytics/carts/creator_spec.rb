@@ -1,11 +1,11 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Analytics::Carts::Creator do
   let(:shop) { FactoryBot.create :shop }
   let(:campaign) { FactoryBot.create :campaign, shop: shop }
   let(:push) { FactoryBot.create :push }
   let(:params) do
-    { 
+    {
       token: rand(36**64).to_s(36),
       hexdigest: rand(36**64).to_s(36),
       utm_medium: "push",
@@ -16,7 +16,7 @@ describe Analytics::Carts::Creator do
   end
 
   let(:params_without_aplicatify) do
-    { 
+    {
       token: params[:token],
       hexdigest: rand(36**64).to_s(36),
       utm_medium: "push",
@@ -27,28 +27,31 @@ describe Analytics::Carts::Creator do
   end
 
   shared_examples "call" do
-    it { expect {described_class.call(params, push.subscriber_id, shop.id)}.to change { Cart.count }.by(1) }
+    it { expect { described_class.call(params, push.subscriber_id, shop.id) }.to change(Cart, :count).by(1) }
 
     it "calls are idempotent" do
-      expect do 
+      expect do
         described_class.call(params, push.subscriber_id, shop.id)
         described_class.call(params, push.subscriber_id, shop.id)
-      end .to change { Cart.count }.by(1) 
+      end .to change(Cart, :count).by(1)
     end
   end
 
   describe "with push subscriber" do
     let(:push) { FactoryBot.create :push }
+
     include_examples "call"
   end
 
   describe "without push subscriber" do
-    let(:push) { FactoryBot.create :push, subscriber_id: nil}
+    let(:push) { FactoryBot.create :push, subscriber_id: nil }
+
     include_examples "call"
   end
 
   describe "with unexistent push subscriber" do
-    let(:push) { FactoryBot.create :push, subscriber_id: 37821318}
+    let(:push) { FactoryBot.create :push, subscriber_id: 37_821_318 }
+
     include_examples "call"
   end
 
@@ -77,6 +80,7 @@ describe Analytics::Carts::Creator do
 
   describe "saves cart with params" do
     before { described_class.call(params, push.subscriber_id, shop.id) }
+
     it { expect(Cart.last).to have_attributes(params) }
   end
 end

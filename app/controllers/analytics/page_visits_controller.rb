@@ -1,6 +1,5 @@
 module Analytics
   class PageVisitsController < AnalyticsController
-
     def create
       params_recived = page_visit_params
       p = Push.find_by(subscriber_id: params[:subscriber_id])

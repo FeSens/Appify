@@ -1,7 +1,7 @@
 class CreateFilteredCampaingJob < ApplicationJob
   queue_as :critical
   attr_accessor :campaign
-  
+
   def perform(campaign, filter)
     @campaign = campaign
     return reschedule if postpone?
@@ -23,7 +23,7 @@ class CreateFilteredCampaingJob < ApplicationJob
     shop = campaign.shop
     return if shop.manifest.icon.blank?
 
-    shop.manifest.icon.variant(resize_to_fit: [192, 192]).processed.service_url.sub(/\?.*/, '')
+    shop.manifest.icon.variant(resize_to_fit: [192, 192]).processed.service_url.sub(/\?.*/, "")
   end
 
   def postpone?
@@ -34,4 +34,3 @@ class CreateFilteredCampaingJob < ApplicationJob
     CreateCampaignJob.set(wait_until: campaign.release_date).perform_later(campaign)
   end
 end
-
