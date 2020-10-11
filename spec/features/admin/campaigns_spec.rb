@@ -61,13 +61,13 @@ RSpec.describe "Campaigns", type: :feature do
     campaigns = FactoryBot.create_list :campaign, 3, shop: shop
     visit admin_campaigns_path
 
-    for campaign in campaigns do
+    campaigns.each do |campaign|
       expect(page).to have_text(campaign.name)
       expect(page).to have_text(campaign.clicks)
       expect(page).to have_text(campaign.impressions)
     end
 
-    for campaign in other_campaigns do
+    other_campaigns.each do |campaign|
       expect(page).not_to have_text(campaign.name)
     end
   end

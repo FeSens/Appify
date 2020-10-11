@@ -45,5 +45,5 @@ end
 
 def make_visits(n)
   (1..n).each { |_i|; Push.create; }
-  Push.first(n).each { |push| for i in 1..n; push.page_visits.create(time_spent: rand(1..600), path: "/dsada/#{rand(1..10)}"); end }
+  Push.first(n).each { |push| (1..n).each { |_i|; push.page_visits.create(time_spent: rand(1..600), path: "/dsada/#{rand(1..10)}"); } }
 end
