@@ -1,9 +1,9 @@
----
-
-require: rubocop-rails
+require:
+  - rubocop-performance
+  - rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 2.7
   StyleGuideBaseURL: https://github.com/zygotecnologia/guides/tree/master/style/ruby
   Exclude:
     - ".pryrc"
@@ -19,9 +19,14 @@ AllCops:
     - "config/routes.rb"
     - "config/routes/*.rb"
 
-
 Rails:
   Enabled: true
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
 
 Style/FrozenStringLiteralComment:
   Enabled: false
@@ -60,9 +65,6 @@ BlockLength:
 Metrics/ClassLength:
   Enabled: false
 
-Rails/SkipsModelValidations:
-  Enabled: false
-
 Style/AsciiComments:
   Enabled: false
 
@@ -76,3 +78,14 @@ Naming/PredicateName:
   - is_
   Exclude:
   - spec/**/*
+
+RSpec/ContextWording:
+  Prefixes:
+    - before
+    - after
+    - when
+    - with
+    - without
+    - if
+    - unless
+    - for
