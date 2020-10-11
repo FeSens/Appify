@@ -2,7 +2,10 @@ class IntercomSyncJob < ApplicationJob
   # Creates a user in intercom if it does not exist. If it does exist, it updates it
   def perform(user)
     # Creates the intercom client with that access token
-    intercom = Intercom::Client.new(token: Rails.application.credentials.dig(:intercom, :api_token), handle_rate_limit: true)
+    intercom = Intercom::Client.new(
+      token: Rails.application.credentials.dig(:intercom, :api_token),
+      handle_rate_limit: true
+    )
     intercom_user = begin
       # tries to find user with this id
       if user.metadata&.dig("intercom_user_id").present?

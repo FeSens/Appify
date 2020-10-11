@@ -11,9 +11,9 @@ module Analytics
 
       def call
         Campaign.increment_counter column, campaign_id
-        if column == "impressions"
-          PushInteraction.find_or_create_by(shop_id: shop_id, date: Date.today.at_beginning_of_month).increment
-        end
+        return unless column == "impressions"
+
+        PushInteraction.find_or_create_by(shop_id: shop_id, date: Date.today.at_beginning_of_month).increment
       end
     end
   end

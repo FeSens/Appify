@@ -4,6 +4,7 @@ module Campaigns
       attr_accessor :shop_id
       def initialize(shop_id, args: nil)
         @shop_id = shop_id
+        @args = args
       end
 
       def call

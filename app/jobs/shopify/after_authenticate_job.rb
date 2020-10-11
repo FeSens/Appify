@@ -32,8 +32,12 @@ module Shopify
     end
 
     def create_asset
-      ShopifyAPI::Asset.create(key: "snippets/aplicatify-snippet.liquid",
-                               value: "<link rel='manifest' href='#{manifest_url}'>\n<script type='text/javascript' async='' src='#{script_urls[0]}'></script>\n<script type='text/javascript' async='' src='#{script_urls[1]}'></script>")
+      ShopifyAPI::Asset.create(
+        key: "snippets/aplicatify-snippet.liquid",
+        value: "<link rel='manifest' href='#{manifest_url}'>\n\
+<script type='text/javascript' async='' src='#{script_urls[0]}'></script>\n\
+<script type='text/javascript' async='' src='#{script_urls[1]}'></script>"
+      )
     end
 
     def modify_theme!
@@ -41,7 +45,9 @@ module Shopify
       create_asset
       unless layout.value.include? "{% include 'aplicatify-snippet' %}"
         l = layout.value.split("<head>", 2)
-        layout.value = "#{l[0]}\n<head>\n  <!-- APLICATIFY:START -->\n {% include 'aplicatify-snippet' %}\n  <!-- APLICATIFY:END -->\n#{l[1]}"
+        layout.value = "#{l[0]}\n<head>\n<!-- APLICATIFY:START -->\n\
+{% include 'aplicatify-snippet' %}\n\
+<!-- APLICATIFY:END -->\n#{l[1]}"
         layout.save
       end
       shop.update(theme_verified: true)

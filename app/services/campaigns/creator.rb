@@ -30,7 +30,14 @@ module Campaigns
 
     def create_associations(targets)
       filterd_targets = filterd_targets(targets)
-      associations = filterd_targets.map { |p| { campaign_id: campaign.id, push_id: p.id, created_at: Time.now, updated_at: Time.now } }
+      associations = filterd_targets.map do |p|
+        {
+          campaign_id: campaign.id,
+          push_id: p.id,
+          created_at: Time.now,
+          updated_at: Time.now
+        }
+      end
       PushSubscriberCampaign.insert_all(associations) if associations.present?
     end
 

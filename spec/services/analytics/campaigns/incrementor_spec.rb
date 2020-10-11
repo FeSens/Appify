@@ -13,6 +13,6 @@ describe Analytics::Campaigns::Incrementor do
   describe "increment impressions" do
     it { expect { described_class.call(campaign.shop_id, campaign.id,  "impressions") }.to change { Campaign.find(campaign.id).impressions }.by(1) }
     it { expect { described_class.call(campaign.shop_id, campaign.id,  "impressions") }.to change { PushInteraction.find(push_interaction.id).count }.by(1) }
-    it { expect { described_class.call(campaign.shop_id, campaign.id,  "impressions") }.not_to change { PushInteraction.find(other_push_interaction.id).count } }
+    it { expect { described_class.call(campaign.shop_id, campaign.id,  "impressions") }.not_to(change { PushInteraction.find(other_push_interaction.id).count }) }
   end
 end

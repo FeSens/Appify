@@ -1,9 +1,10 @@
 require "rails_helper"
 
 RSpec.describe "Analytics::Carts", type: :request do
-  before { FactoryBot.create(:shop) }
-
-  before { post "/analytics/carts", params: params }
+  before do
+    FactoryBot.create(:shop)
+    post "/analytics/carts", params: params
+  end
 
   let(:campaign) { FactoryBot.create :campaign }
   let(:push) { FactoryBot.create :push }

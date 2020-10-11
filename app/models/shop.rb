@@ -26,7 +26,11 @@ class Shop < ApplicationRecord
                   accept_button: "Let's go!",
                   timer: 15)
     optins.create(kind: "push")
-    campaigns.create(name: "app", tag: "internal", url: "/?ref=aplicatify&utm_source=aplicatify&utm_medium=app&utm_campaign=app")
+    campaigns.create(
+      name: "app",
+      tag: "internal",
+      url: "/?ref=aplicatify&utm_source=aplicatify&utm_medium=app&utm_campaign=app"
+    )
   end
 
   def api_version

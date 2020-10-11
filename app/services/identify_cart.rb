@@ -27,9 +27,6 @@ class IdentifyCart
     hexdigest = Digest::SHA256.hexdigest s
     cart = Cart.where(hexdigest: hexdigest).update_all(abandoned: false)
 
-    cart > 0
+    cart.positive?
   end
 end
-
-{ "line_items" =>
-[{ "id" => 5_162_929_193_095, "variant_id" => 33_502_107_336_839, "title" => "CAmiseta", "quantity" => 1, "sku" => "1", "variant_title" => "", "vendor" => "Teste Giovanna", "fulfillment_service" => "manual", "product_id" => 4_806_096_846_983 }] }

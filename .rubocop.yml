@@ -18,6 +18,8 @@ AllCops:
     - "config/**/*"
     - "config/routes.rb"
     - "config/routes/*.rb"
+    - "lib/**/*"
+    - "app/jobs/intercom_sync_job.rb"
 
 Rails:
   Enabled: true
@@ -89,3 +91,11 @@ RSpec/ContextWording:
     - if
     - unless
     - for
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - "spec/features/**/*"
+
+RSpec/ExampleLength:
+  Exclude:
+    - "spec/features/**/*"
