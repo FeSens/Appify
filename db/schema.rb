@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_28_021057) do
+ActiveRecord::Schema.define(version: 2020_10_13_000304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,12 +37,12 @@ ActiveRecord::Schema.define(version: 2020_09_28_021057) do
   end
 
   create_table "automations", force: :cascade do |t|
+    t.string "name"
+    t.string "type"
+    t.jsonb "config"
     t.bigint "shop_id", null: false
-    t.jsonb "settings"
-    t.string "kind"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "enabled", default: false
     t.index ["shop_id"], name: "index_automations_on_shop_id"
   end
 
@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(version: 2020_09_28_021057) do
     t.integer "impressions", default: 0
     t.integer "clicks", default: 0
     t.datetime "release_date", default: "2020-05-24 23:34:31", null: false
+    t.bigint "automation_id"
+    t.index ["automation_id"], name: "index_campaigns_on_automation_id"
     t.index ["shop_id"], name: "index_campaigns_on_shop_id"
   end
 
@@ -261,6 +263,7 @@ ActiveRecord::Schema.define(version: 2020_09_28_021057) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "automations", "shops"
+  add_foreign_key "campaigns", "automations"
   add_foreign_key "campaigns", "shops"
   add_foreign_key "carts", "customers"
   add_foreign_key "carts", "pushes"
