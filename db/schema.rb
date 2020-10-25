@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2020_10_25_210448) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "impressions", default: 0
     t.integer "clicks", default: 0
-    t.datetime "release_date", default: "2020-05-24 23:34:31", null: false
+    t.datetime "release_date", default: "2020-10-25 21:29:13", null: false
     t.bigint "automatic_campaign_id"
     t.index ["automatic_campaign_id"], name: "index_campaigns_on_automatic_campaign_id"
     t.index ["shop_id"], name: "index_campaigns_on_shop_id"
@@ -75,7 +75,6 @@ ActiveRecord::Schema.define(version: 2020_10_25_210448) do
     t.boolean "abandoned", default: true
     t.bigint "shop_id"
     t.string "hexdigest"
-    t.integer "tries", default: 0
     t.string "utm_medium"
     t.string "utm_campaign"
     t.string "utm_source"
@@ -254,15 +253,6 @@ ActiveRecord::Schema.define(version: 2020_10_25_210448) do
     t.index ["shop_id"], name: "index_subscriber_counts_on_shop_id"
   end
 
-  create_table "track_installs", force: :cascade do |t|
-    t.bigint "shop_id", null: false
-    t.integer "count"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "date"
-    t.index ["shop_id"], name: "index_track_installs_on_shop_id"
-  end
-
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "automatic_campaigns", "shops"
   add_foreign_key "campaigns", "automatic_campaigns"
@@ -283,5 +273,4 @@ ActiveRecord::Schema.define(version: 2020_10_25_210448) do
   add_foreign_key "push_subscriber_campaigns", "pushes"
   add_foreign_key "pushes", "customers"
   add_foreign_key "subscriber_counts", "shops"
-  add_foreign_key "track_installs", "shops"
 end
