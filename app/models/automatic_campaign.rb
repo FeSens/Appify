@@ -1,4 +1,4 @@
-class Automation < ApplicationRecord
+class AutomaticCampaign < ApplicationRecord
   TYPES = %w[Test].freeze
   belongs_to :shop
   has_many :campaigns
