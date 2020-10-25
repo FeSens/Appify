@@ -2,7 +2,7 @@ module Campaigns
   module Targeters
     class All < ApplicationService
       attr_accessor :shop_id
-      def initialize(shop_id, args: nil)
+      def initialize(shop_id, **args)
         @shop_id = shop_id
         @args = args
       end

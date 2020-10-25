@@ -3,9 +3,9 @@ module Campaigns
     attr_accessor :campaign
     attr_reader :targeter
 
-    def initialize(campaign, targeter, args: nil)
+    def initialize(campaign, targeter, **args)
       @campaign = campaign
-      @targeter = "Campaigns::Targeters::#{targeter.to_s.classify}".constantize.new(campaign.shop_id, args: args)
+      @targeter = "Campaigns::Targeters::#{targeter.to_s.classify}".constantize.new(campaign.shop_id, **args)
     end
 
     def call

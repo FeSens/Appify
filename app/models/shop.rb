@@ -15,7 +15,7 @@ class Shop < ApplicationRecord
   has_many :page_visits, dependent: :destroy
   has_many :carts, dependent: :destroy
   has_many :opt_in_counts, dependent: :destroy
-
+  has_many :automatic_campaigns, dependent: :destroy
   after_create :init_models
 
   def init_models
