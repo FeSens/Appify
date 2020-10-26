@@ -223,7 +223,7 @@ pt-BR:
     pm: ''
 
   optin:
-    pwa: "PWA"
+    pwa: "App"
     push: "Push"
   
   admin_commons:
