@@ -41,6 +41,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'webpush'
 #web monitoring tool
 gem 'newrelic_rpm'
+gem 'barnes'
 #Exception Notifier
 gem 'rollbar'
 #Custumer Success App
