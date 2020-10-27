@@ -26,7 +26,7 @@ RSpec.describe "Configure Opt In", type: :feature do
   it "User Configure Pwa Opt In" do
     shop = FactoryBot.create :shop
     visit admin_optins_path
-    click_link "PWA"
+    click_link I18n.t("optin.pwa")
 
     within "form" do
       fill_in "optin_title", with: optin.title
