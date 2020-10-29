@@ -8,7 +8,9 @@ module Public
     def validate
       return @shop = Shop.last if Rails.env.development?
 
-      @shop = Shop.find_by(shopify_domain: params[:shop])
+      @shop = Rails.cache.fetch("Public/PublicController/#{params[:shop]}", expires_in: 60.seconds) do
+        Shop.find_by(shopify_domain: params[:shop])
+      end
       return head :no_content unless shop
     end
   end
