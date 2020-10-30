@@ -6,11 +6,11 @@ module Admin
     end
 
     def app_installs
-      current_shop.subscriber_counts.pwa.sum(:count)
+      @app_installs ||= current_shop.subscriber_counts.pwa.sum(:count)
     end
 
     def push_subscribers
-      current_shop.pushes.count
+      @push_subscribers ||= current_shop.pushes.count
     end
 
     def shop_name
