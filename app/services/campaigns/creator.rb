@@ -56,7 +56,8 @@ module Campaigns
 
       message_list = [message] * targets.length
       if Flipper['jaiminho'].enabled?(campaign.shop)
-        Pushes::Sender.new(broker: :jaiminho).deliver_batch(targets, message_list)
+        jaiminho = Pushes::broker::Jaiminho.new
+        Pushes::Sender.new(broker: jaiminho).deliver_batch(targets, message_list)
       else
         Pushes::Sender.new.deliver_batch(targets, message_list)
       end
