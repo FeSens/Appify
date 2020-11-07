@@ -5,7 +5,7 @@ module Pushes
       attr_reader :sqs
       URL = Rails.application.config.jaminho_sqs
       BATCH_SIZE = 10 #Maximum allowed 
-      THREAD_POOL_SIZE = 100 #Number of threads
+      THREAD_POOL_SIZE = 10 #Number of threads
 
       def initialize
         @sqs = Aws::SQS::Client.new(

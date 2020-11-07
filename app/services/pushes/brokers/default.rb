@@ -1,7 +1,7 @@
 module Pushes
   module Brokers
     class Default < Base
-      THREAD_POOL_SIZE = 100 #Number of threads
+      THREAD_POOL_SIZE = 10 #Number of threads
 
       def deliver(customer, message, **args)
         call(customer, message)
