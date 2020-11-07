@@ -50,6 +50,10 @@ gem 'rollbar'
 #Custumer Success App
 gem "intercom-rails"
 gem 'intercom', '~> 4.1'
+# Feature flipping for ruby
+gem 'flipper', '~> 0.19'
+gem 'flipper-ui', '~> 0.19'
+gem 'flipper-redis', '~> 0.19'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
