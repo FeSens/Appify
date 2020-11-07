@@ -46,17 +46,16 @@ module Campaigns
 
       create_associations(targets)
 
-      targets.each do |customer|
-        message = {
-          title: campaign.title,
-          body: campaign.body,
-          url: campaign.url,
-          campaign_id: campaign.id,
-          icon: icon
-        }
+      message = {
+        title: campaign.title,
+        body: campaign.body,
+        url: campaign.url,
+        campaign_id: campaign.id,
+        icon: icon
+      }
 
-        PushSenderJob.perform_later(customer, message)
-      end
+      message_list = [message] * targets.length
+      Pushes::Sender.new.deliver_batch(targets, message_list)
     end
   end
 end

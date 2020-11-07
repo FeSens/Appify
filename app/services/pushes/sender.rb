@@ -1,30 +1,21 @@
 module Pushes
-  class Sender < ApplicationService
-    attr_reader :customer, :message
+  class Sender
+    attr_reader :broker
 
-    def initialize(customer, message)
-      @customer = customer
-      @message = message
+    cattr_accessor :default_adapter do
+      "Pushes::Brokers::#{Rails.application.config.pushes_broker.to_s.classify}".constantize.new
     end
 
-    def call
-      call! if Rails.env.production?
-    rescue Webpush::ExpiredSubscription, Webpush::Unauthorized
-      customer.destroy
+    def initialize(broker: nil)
+      @broker = broker.presence || default_adapter
     end
 
-    def call!
-      Webpush.payload_send(
-        endpoint: customer.endpoint,
-        message: message.to_json,
-        p256dh: customer.p256dh,
-        auth: customer.auth,
-        vapid: {
-          subject: "mailto:suporte@appify.com",
-          public_key: Rails.application.credentials.dig(:webpush, :public_key),
-          private_key: Rails.application.credentials.dig(:webpush, :private_key)
-        }
-      )
+    def deliver(customer, message, **args)
+      broker.deliver(customer, message, **args)
+    end
+
+    def deliver_batch(customers, messages, **args)
+      broker.deliver_batch(customers, messages, **args)
     end
   end
 end

@@ -45,4 +45,6 @@ Rails.application.configure do
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
+  config.jaminho_sqs = "https://sqs.us-east-1.amazonaws.com/343793152121/jaiminho-webpush"
+  config.pushes_broker = :default
 end

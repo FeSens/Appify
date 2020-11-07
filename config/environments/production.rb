@@ -112,5 +112,5 @@ Rails.application.configure do
 
   #sqs arn for Jaminho Messaging Service
   config.jaminho_sqs = "https://sqs.us-east-1.amazonaws.com/343793152121/jaiminho-webpush"
-  config.pushes_broker = :jaiminho
+  config.pushes_broker = :default
 end
