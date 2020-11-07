@@ -109,4 +109,8 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+
+  #sqs arn for Jaminho Messaging Service
+  config.jaminho_sqs = "https://sqs.us-east-1.amazonaws.com/343793152121/jaiminho-webpush"
+  config.pushes_broker = :jaiminho
 end

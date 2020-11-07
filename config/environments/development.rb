@@ -54,6 +54,10 @@ Rails.application.configure do
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
+  
+  #sqs arn for Jaminho Messaging Service
+  config.jaminho_sqs = "https://sqs.us-east-1.amazonaws.com/343793152121/jaiminho-webpush"
+  config.pushes_broker = :jaiminho
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
