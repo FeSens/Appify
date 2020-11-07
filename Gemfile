@@ -29,6 +29,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'aws-sdk-s3', require: false
+gem 'aws-sdk-sqs'
 gem 'bootstrap', '~>4.3.1'
 gem 'image_processing', '~> 1.2'
 gem 'pry'
