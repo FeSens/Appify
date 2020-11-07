@@ -31,6 +31,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'aws-sdk-s3', require: false
 gem 'aws-sdk-sqs'
 gem 'bootstrap', '~>4.3.1'
+#Add Trhead Pools
+gem 'concurrent-ruby', require: 'concurrent'
 gem 'image_processing', '~> 1.2'
 gem 'pry'
 gem 'redis'
