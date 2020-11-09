@@ -1,7 +1,8 @@
 module Admin
   class PlansController < AuthenticatedController
     def index
-      @plans = Plan.all
+      @plans = Plan.all.reject{ |u| u.name == "Influencer" }
+      @plans = Plan.all if Flipper['influencer'].enabled?(current_shop)
       activated_plan = Rails.env.development? ? Plan.last : ShopifyAPI::RecurringApplicationCharge.current
       @current_plan = Plan.find_by(name: activated_plan&.name)
     end
