@@ -1,5 +1,5 @@
 const RequestCORS = {
-  requestWillFetch: async ({request}) => {
+  requestWillFetch(request) {
     // Return `request` or a different `Request` object.
     const url = new URL(request.url)
     if(url.host === "cdn.shopify.com") {
