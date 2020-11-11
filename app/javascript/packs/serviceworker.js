@@ -22,7 +22,7 @@ self.addEventListener("message", (event) => {
 
 self.addEventListener('fetch', function (event) {
   const url = new URL(event.request.url)
-  console.log("flag A")
+  console.log(url.host)
   if(url.host === "cdn.shopify.com") {
     console.log('flag B')
     var req = new Request(event.request, {
