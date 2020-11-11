@@ -65,6 +65,38 @@ registerRoute(
   })
 );
 
+registerRoute(
+  ({event}) => event.request.destination === 'style',
+  new StaleWhileRevalidate({
+    cacheName: STYLE_CACHE,
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
+      new ExpirationPlugin({
+        maxEntries: 15, 
+        purgeOnQuotaError: true,
+      }),
+    ],
+  })
+);
+
+registerRoute(
+  ({event}) => event.request.destination === 'document',
+  new StaleWhileRevalidate({
+    cacheName: HTML_CACHE,
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
+      new ExpirationPlugin({
+        maxEntries: 15, 
+        purgeOnQuotaError: true,
+      }),
+    ],
+  })
+);
+
 self.addEventListener("push", function(event) {
   var data = event.data.json();
   var title = data.title;
