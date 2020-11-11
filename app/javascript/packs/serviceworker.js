@@ -189,7 +189,9 @@ function sendAnalytics(data, attr) {
 
 self.addEventListener('fetch', function (event) {
   const url = new URL(event.request.url)
+  console.log("flag A")
   if(url.host === "cdn.shopify.com") {
+    console.log('flag B')
     var req = new Request(event.request, {
       headers: {
         ...event.request.headers,
