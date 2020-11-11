@@ -4,6 +4,7 @@ import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute } from 'workbox-precaching';
 import { idbKeyval } from 'indexdb'
+import { RequestCORS } from 'workbox-custom'
 //This is the service worker with the Advanced caching
 const HTML_CACHE = "html";
 const JS_CACHE = "javascript";
@@ -42,6 +43,7 @@ registerRoute(
   new StaleWhileRevalidate({
     cacheName: IMAGE_CACHE,
     plugins: [
+      new RequestCORS(),
       new CacheableResponsePlugin({
         statuses: [200],
       }),
