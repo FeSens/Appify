@@ -8,7 +8,6 @@ import { idbKeyval } from 'indexdb'
 const HTML_CACHE = "html";
 const JS_CACHE = "javascript";
 const STYLE_CACHE = "stylesheets";
-const STYLE_CACHE_OPAQUE = "stylesheetsopaque";
 const IMAGE_CACHE = "images";
 const FONT_CACHE = "fonts";
 const CACHE = "pwabuilder-offline";
@@ -67,9 +66,9 @@ registerRoute(
 );
 
 registerRoute(
-  new RegExp('cdn.*\.css'), // Cache only from CDN 
+  ({event}) => event.request.destination === 'style',
   new StaleWhileRevalidate({
-    cacheName: STYLE_CACHE_OPAQUE,
+    cacheName: STYLE_CACHE,
     plugins: [
       new CacheableResponsePlugin({
         statuses: [0, 200],
