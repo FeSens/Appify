@@ -8,7 +8,7 @@ import { idbKeyval } from 'indexdb'
 const HTML_CACHE = "html";
 const JS_CACHE = "javascript";
 const STYLE_CACHE = "stylesheets";
-const STYLE_CACHE_OPAQUE = "stylesheets-opaque";
+const STYLE_CACHE_OPAQUE = "stylesheetsopaque";
 const IMAGE_CACHE = "images";
 const FONT_CACHE = "fonts";
 const CACHE = "pwabuilder-offline";
