@@ -20,6 +20,24 @@ self.addEventListener("message", (event) => {
   }
 });
 
+self.addEventListener('fetch', function (event) {
+  const url = new URL(event.request.url)
+  console.log("flag A")
+  if(url.host === "cdn.shopify.com") {
+    console.log('flag B')
+    var req = new Request(event.request, {
+      headers: {
+        ...event.request.headers,
+        origin: location.origin
+      }
+    })
+    event.respondWith(fetch(req));
+  } 
+  else {
+    event.respondWith(fetch(event.request));
+  }
+});
+
 registerRoute(
   ({event}) => event.request.destination === 'image',
   new StaleWhileRevalidate({
@@ -186,21 +204,3 @@ function sendAnalytics(data, attr) {
     })
   });
 }
-
-self.addEventListener('fetch', function (event) {
-  const url = new URL(event.request.url)
-  console.log("flag A")
-  if(url.host === "cdn.shopify.com") {
-    console.log('flag B')
-    var req = new Request(event.request, {
-      headers: {
-        ...event.request.headers,
-        origin: location.origin
-      }
-    })
-    event.respondWith(fetch(req));
-  } 
-  else {
-    event.respondWith(fetch(event.request));
-  }
-});
