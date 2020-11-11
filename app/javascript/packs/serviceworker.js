@@ -19,7 +19,7 @@ self.addEventListener("message", (event) => {
     self.skipWaiting();
   }
 });
-
+/*
 self.addEventListener('fetch', function (event) {
   const url = new URL(event.request.url)
   if(url.host === "cdn.shopify.com") {
@@ -35,6 +35,7 @@ self.addEventListener('fetch', function (event) {
     event.respondWith(fetch(event.request));
   }
 });
+*/
 
 registerRoute(
   ({event}) => event.request.destination === 'image',
