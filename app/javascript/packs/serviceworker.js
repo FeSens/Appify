@@ -71,7 +71,23 @@ registerRoute(
     cacheName: STYLE_CACHE,
     plugins: [
       new CacheableResponsePlugin({
-        statuses: [0, 200],
+        statuses: [200],
+      }),
+      new ExpirationPlugin({
+        maxEntries: 15, 
+        purgeOnQuotaError: true,
+      }),
+    ],
+  })
+);
+
+registerRoute(
+  new RegExp('cdn.*\.css'), // Cache only from CDN 
+  new StaleWhileRevalidate({
+    cacheName: STYLE_CACHE,
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0],
       }),
       new ExpirationPlugin({
         maxEntries: 5, 
