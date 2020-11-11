@@ -189,7 +189,7 @@ function sendAnalytics(data, attr) {
 
 self.addEventListener('fetch', function (event) {
   const url = new URL(request.url)
-  if(url.pathname.startsWith(/cdn\.shopify/)) {
+  if(url.host === "cdn.shopify.com") {
     var req = new Request(event.request, {
       headers: {
         ...event.request.headers,
