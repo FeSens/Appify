@@ -16,4 +16,4 @@ const RequestCORS = {
   }
 };
 
-export default RequestCORS;
+export { RequestCORS };
