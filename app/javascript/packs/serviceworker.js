@@ -186,3 +186,19 @@ function sendAnalytics(data, attr) {
     })
   });
 }
+
+self.addEventListener('fetch', function (event) {
+  const url = new URL(request.url)
+  if(url.pathname.startsWith(/cdn\.shopify/)) {
+    var req = new Request(event.request, {
+      headers: {
+        ...event.request.headers,
+        Origin: location.origin
+      }
+    })
+    event.respondWith(fetch(req));
+  } 
+  else {
+    event.respondWith(fetch(event.request));
+  }
+});
