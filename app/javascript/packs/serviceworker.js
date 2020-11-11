@@ -188,12 +188,12 @@ function sendAnalytics(data, attr) {
 }
 
 self.addEventListener('fetch', function (event) {
-  const url = new URL(request.url)
+  const url = new URL(event.request.url)
   if(url.host === "cdn.shopify.com") {
     var req = new Request(event.request, {
       headers: {
         ...event.request.headers,
-        Origin: location.origin
+        origin: location.origin
       }
     })
     event.respondWith(fetch(req));
