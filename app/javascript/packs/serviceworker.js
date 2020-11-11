@@ -43,7 +43,7 @@ registerRoute(
   new StaleWhileRevalidate({
     cacheName: IMAGE_CACHE,
     plugins: [
-      new RequestCORS(),
+      new RequestCORS,
       new CacheableResponsePlugin({
         statuses: [200],
       }),
