@@ -71,10 +71,10 @@ registerRoute(
     cacheName: STYLE_CACHE,
     plugins: [
       new CacheableResponsePlugin({
-        statuses: [200],
+        statuses: [0, 200],
       }),
       new ExpirationPlugin({
-        maxEntries: 15, 
+        maxEntries: 5, 
         purgeOnQuotaError: true,
       }),
     ],
