@@ -33,6 +33,10 @@ gem 'aws-sdk-sqs'
 gem 'bootstrap', '~>4.3.1'
 #Add Trhead Pools
 gem 'concurrent-ruby', require: 'concurrent'
+#Add Users Auth
+gem 'devise'
+#Validation for the API
+gem 'dry-validation'
 gem 'image_processing', '~> 1.2'
 gem 'pry'
 gem 'redis'
@@ -57,6 +61,7 @@ gem 'flipper-redis', '~> 0.19'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem "benchmark-memory"
   gem 'rspec-rails', '~> 4.0.1'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 5.1.1'
