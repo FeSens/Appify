@@ -18,7 +18,7 @@ module Api
           push = Push.find_by!(subscriber_id: attributes[:subscriber_id], shop_id: current_shop.id)
           campaign = current_shop.campaigns.find_by(tag: "integration-#{webhook.emitter}")
           url = UrlBuilder.call(attributes[:url], campaign.name)
-          message = Pushes::MessageBuilder.call(campaign, attributes[:message], url, title: attributes[:status])
+          message = Pushes::MessageBuilder.call(campaign, attributes[:message], url, title: attributes[:title])
           PushSenderJob.perform_later(push, message)
         end
       end
