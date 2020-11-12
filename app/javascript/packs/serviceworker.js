@@ -4,6 +4,7 @@ import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute } from 'workbox-precaching';
 import { idbKeyval } from 'indexdb'
+import { RequestCORS } from 'workbox-custom'
 //This is the service worker with the Advanced caching
 const HTML_CACHE = "html";
 const JS_CACHE = "javascript";
@@ -19,6 +20,23 @@ self.addEventListener("message", (event) => {
     self.skipWaiting();
   }
 });
+/*
+self.addEventListener('fetch', function (event) {
+  const url = new URL(event.request.url)
+  if(url.host === "cdn.shopify.com") {
+    var req = new Request(event.request, {
+      headers: {
+        ...event.request.headers,
+        origin: location.origin
+      }
+    })
+    event.respondWith(fetch(req));
+  } 
+  else {
+    event.respondWith(fetch(event.request));
+  }
+});
+*/
 
 registerRoute(
   ({event}) => event.request.destination === 'image',
@@ -41,6 +59,54 @@ registerRoute(
   new StaleWhileRevalidate({
     cacheName: FONT_CACHE,
     plugins: [
+      new ExpirationPlugin({
+        maxEntries: 15, 
+        purgeOnQuotaError: true,
+      }),
+    ],
+  })
+);
+
+registerRoute(
+  ({event}) => event.request.destination === 'script',
+  new StaleWhileRevalidate({
+    cacheName: JS_CACHE,
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
+      new ExpirationPlugin({
+        maxEntries: 15, 
+        purgeOnQuotaError: true,
+      }),
+    ],
+  })
+);
+
+registerRoute(
+  ({event}) => event.request.destination === 'style',
+  new StaleWhileRevalidate({
+    cacheName: STYLE_CACHE,
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+      new ExpirationPlugin({
+        maxEntries: 5, 
+        purgeOnQuotaError: true,
+      }),
+    ],
+  })
+);
+
+registerRoute(
+  ({event}) => event.request.destination === 'document',
+  new StaleWhileRevalidate({
+    cacheName: HTML_CACHE,
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
       new ExpirationPlugin({
         maxEntries: 15, 
         purgeOnQuotaError: true,
