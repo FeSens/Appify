@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_25_210448) do
+ActiveRecord::Schema.define(version: 2020_11_12_025124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -253,6 +253,16 @@ ActiveRecord::Schema.define(version: 2020_10_25_210448) do
     t.index ["shop_id"], name: "index_subscriber_counts_on_shop_id"
   end
 
+  create_table "webhooks", force: :cascade do |t|
+    t.bigint "shop_id"
+    t.string "scope"
+    t.string "token"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "emitter"
+    t.index ["shop_id"], name: "index_webhooks_on_shop_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "automatic_campaigns", "shops"
   add_foreign_key "campaigns", "automatic_campaigns"
@@ -273,4 +283,5 @@ ActiveRecord::Schema.define(version: 2020_10_25_210448) do
   add_foreign_key "push_subscriber_campaigns", "pushes"
   add_foreign_key "pushes", "customers"
   add_foreign_key "subscriber_counts", "shops"
+  add_foreign_key "webhooks", "shops"
 end

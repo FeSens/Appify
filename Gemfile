@@ -35,6 +35,8 @@ gem 'bootstrap', '~>4.3.1'
 gem 'concurrent-ruby', require: 'concurrent'
 #Add Users Auth
 gem 'devise'
+#Add API validations
+gem 'dry-validation'
 gem 'image_processing', '~> 1.2'
 gem 'pry'
 gem 'redis'
