@@ -3,6 +3,6 @@ class PushSenderJob < ApplicationJob
   discard_on ActiveJob::DeserializationError
 
   def perform(customer, message)
-    Pushes::Sender.deliver(customer, message)
+    Pushes::Sender.new.deliver(customer, message)
   end
 end
