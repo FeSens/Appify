@@ -36,8 +36,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       namespace :webhook do
-        resources :push_sender, only: %i[create]
+        resource :push, only: %i[create]
       end
+      resources :webhook, only: %i[index create]
     end
   end
 

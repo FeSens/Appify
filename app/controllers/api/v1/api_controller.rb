@@ -22,12 +22,11 @@ class Api::V1::ApiController < ActionController::API
   attr_reader :webhook
   
   def authenticate
-    authenticate_with_http_token do |token, _|
+    authenticate_with_http_token do |token|
       @webhook = Webhook.find_by(token: token)
-      raise InvalidAuthenticityToken, "Invalid Authenticity Token" unless webhook
-      raise InvalidAuthenticityToken, "Not enough premissions to make this action" unless validate_scope
-
     end
+    raise InvalidAuthenticityToken, "Invalid Authenticity Token" unless webhook
+    raise InvalidAuthenticityToken, "Not enough premissions to make this action" unless validate_scope
   end
 
   def current_shop
@@ -68,6 +67,13 @@ class Api::V1::ApiController < ActionController::API
   def base_response(status, exception=nil)
     return render status: status if exception.blank?
 
-    render json: {message: exception.message}, status: status
+    response = { 
+      error: {
+        status: Rack::Utils.status_code(status),
+        message: exception.message
+      }
+     }
+    render json: response, status: status
+    
   end
 end
