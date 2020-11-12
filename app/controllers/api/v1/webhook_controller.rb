@@ -19,7 +19,7 @@ module Api
         new_webhook = ::Webhook.find_or_initialize_by(shop_id: shop.id, emitter: webhook.emitter, scope: [attributes[:topic]])
         new_webhook.token = SecureRandom.urlsafe_base64(48)
 
-        shop.campaigns.create(name: "Integração #{webhook.emitter}", tag: "integration-#{webhook.emitter}") unless new_webhook.persisted?
+        shop.campaigns.create(name: "Integração #{webhook.emitter}", title: "Atualização no Pedido", tag: "integration-#{webhook.emitter}") unless new_webhook.persisted?
 
         new_webhook.save!
 

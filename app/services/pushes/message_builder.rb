@@ -1,16 +1,17 @@
 module Pushes
   class MessageBuilder < ApplicationService
-    attr_reader :campaign, :message, :url
+    attr_reader :campaign, :message, :url, :title
 
-    def initialize(campaign, message, url)
+    def initialize(campaign, message, url, title: nil)
       @campaign = campaign
       @message = message
       @url = url
+      @title = title
     end
 
     def call
       {
-        title: campaign.title,
+        title: title || campaign.title,
         body: message,
         url: url,
         campaign_id: campaign.id,
