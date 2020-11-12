@@ -27,6 +27,8 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+#serializers
+gem 'active_model_serializers'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'aws-sdk-s3', require: false
 gem 'aws-sdk-sqs'
@@ -35,7 +37,7 @@ gem 'bootstrap', '~>4.3.1'
 gem 'concurrent-ruby', require: 'concurrent'
 #Add Users Auth
 gem 'devise'
-#Validation for the API
+#Add API validations
 gem 'dry-validation'
 gem 'image_processing', '~> 1.2'
 gem 'pry'

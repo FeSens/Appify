@@ -33,6 +33,15 @@ Rails.application.routes.draw do
     resource :push, only: %i[create]
   end
 
+  namespace :api do
+    namespace :v1 do
+      namespace :webhook do
+        resource :push, only: %i[create]
+      end
+      resources :webhook, only: %i[index create]
+    end
+  end
+
   controller :mandatory_webhooks do
     post '/webhooks/shop_redact' => :shop_redact
     post '/webhooks/customers_redact' => :customers_redact
