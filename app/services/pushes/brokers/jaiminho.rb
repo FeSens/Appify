@@ -5,8 +5,6 @@ module Pushes
       attr_reader :sqs
       URL = Rails.application.config.jaminho_sqs
       BATCH_SIZE = 10 #Maximum allowed 
-      THREAD_POOL_SIZE = 10 #Number of threads
-      GARBAGE_THREAD = 100
 
       def initialize
         @sqs = Aws::SQS::Client.new(
@@ -21,18 +19,12 @@ module Pushes
       end
 
       def deliver_batch(customers, messages, **args)
-        pool = Concurrent::FixedThreadPool.new(THREAD_POOL_SIZE)
-        entries(customers, messages).each_slice(BATCH_SIZE).each_with_index do |entrie, i|
-          pool.post do
-            sqs.send_message_batch({
-              queue_url: URL,
-              entries: entrie
-            })
-            GC.start if (i % GARBAGE_THREAD) == 0
-          end
+        entries(customers, messages).each_slice(BATCH_SIZE).each do |entrie|
+          sqs.send_message_batch({
+            queue_url: URL,
+            entries: entrie
+          })
         end
-        pool.shutdown
-        pool.wait_for_termination
       end
 
       def payload(customer, message)
