@@ -6,7 +6,6 @@ module Pushes
       URL = Rails.application.config.jaminho_sqs
       BATCH_SIZE = 10 #Maximum allowed 
       THREAD_POOL_SIZE = 10 #Number of threads
-      GARBAGE_THREAD = 100
 
       def initialize
         @sqs = Aws::SQS::Client.new(
@@ -28,7 +27,6 @@ module Pushes
               queue_url: URL,
               entries: entrie
             })
-            GC.start if (i % GARBAGE_THREAD) == 0
           end
         end
         pool.shutdown

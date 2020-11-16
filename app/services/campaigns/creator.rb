@@ -9,7 +9,9 @@ module Campaigns
     end
 
     def call
-      send_push_messages
+      targeter.call.find_each do |targets|
+        send_push_messages(targets)
+      end
     end
 
     def icon
@@ -41,11 +43,8 @@ module Campaigns
       PushSubscriberCampaign.insert_all(associations) if associations.present?
     end
 
-    def send_push_messages
-      targets = targeter.call
-
+    def send_push_messages(targets)
       create_associations(targets)
-
       message = {
         title: campaign.title,
         body: campaign.body,
