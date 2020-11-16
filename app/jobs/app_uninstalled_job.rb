@@ -6,6 +6,6 @@ class AppUninstalledJob < ActiveJob::Base
 
     logger.error("#{self.class} failed: cannot find shop with domain '#{shop_domain}'")
 
-    shop.destroy
+    #shop.destroy
   end
 end
