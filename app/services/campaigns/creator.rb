@@ -9,7 +9,7 @@ module Campaigns
     end
 
     def call
-      targeter.call.find_each do |targets|
+      targeter.call.find_in_batches(batch_size: 1_000) do |targets|
         send_push_messages(targets)
       end
     end
