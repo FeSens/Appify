@@ -31,7 +31,7 @@ module Campaigns
     end
 
     def create_associations(targets)
-      filterd_targets = filterd_targets(targets)
+      filterd_targets = targets#filterd_targets(targets)
       associations = filterd_targets.map do |p|
         {
           campaign_id: campaign.id,
