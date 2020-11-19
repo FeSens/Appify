@@ -389,3 +389,34 @@ input:checked + .slider:before {
   color: #FFFFFF;
   opacity: 1;
 }
+
+.disabled {
+  filter:alpha(opacity=50); /* IE */
+  opacity: 0.5; /* Safari, Opera */
+  -moz-opacity:0.50; /* FireFox */
+  height: 100%;
+  width: 100%;
+  background-repeat:no-repeat;
+  background-position:center;
+  top: 0px;
+  left: 0px;
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+  filter: gray;
+  z-index: 20;
+
+  @media screen and (min-width: 1199px) and (max-width: 1599px) {
+    .value {
+      left: 48px !important;
+      font: Bold 24px/68px Varela Round !important;
+    }
+  }
+
+  .value {
+    left: 40px !important;
+    font: Bold 14px/36px Varela Round !important;
+  }
+}
