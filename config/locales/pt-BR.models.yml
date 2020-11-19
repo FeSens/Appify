@@ -46,7 +46,7 @@ pt-BR:
         enabled: "Habilitado"
       campaign:
         shop: "Loja"
-        name: "Nome Interno"
+        name: "Nome da campanha"
         tag: "Tag"
         segmentation_size: "Tamanho da segmentação"
         delivered: "Entregues"
