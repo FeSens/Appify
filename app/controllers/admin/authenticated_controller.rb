@@ -7,7 +7,7 @@ module Admin
     helper_method :current_shop
     before_action :set_locale
     after_action :set_activity, only: %i[index]
-    after_action :verify_billing_plan, only: %i[index]
+    before_action :verify_billing_plan, only: %i[index]
 
     private
 
