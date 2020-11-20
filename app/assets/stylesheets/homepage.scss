@@ -394,8 +394,6 @@ input:checked + .slider:before {
   filter:alpha(opacity=50); /* IE */
   opacity: 0.5; /* Safari, Opera */
   -moz-opacity:0.50; /* FireFox */
-  height: 100%;
-  width: 100%;
   background-repeat:no-repeat;
   background-position:center;
   top: 0px;
@@ -416,7 +414,7 @@ input:checked + .slider:before {
   }
 
   .value {
-    left: 40px !important;
+    left: 50px !important;
     font: Bold 14px/36px Varela Round !important;
   }
 }
