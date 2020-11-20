@@ -1,5 +1,6 @@
 module Admin
   class PlansController < AuthenticatedController
+    skip_before_action :verify_billing_plan
     def index
       @plans = Plan.all.reject{ |u| u.name == "Influencer" }
       @plans = Plan.all if Flipper['influencer'].enabled?(current_shop)
