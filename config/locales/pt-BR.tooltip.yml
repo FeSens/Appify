@@ -1,0 +1,16 @@
+pt-BR:
+  tooltip:
+    app_revenue: Aqui você poderá acompanhar a receita que a sua loja esta gerando com o aplicativo da sua loja.
+    app_users: Indica o numero de pessoas que baixaram o app da sua loja.
+    total_revenue: O total de vendas realizadas através do app e das notificações.
+    active_subscribers: O número total de pessoas que estão habilitadas as receber suas notificações através da Aplicatify.
+    interactions-container: Aqui você acompanha quantas notificações já foram enviadas esse mês e qual é o limite do seu plano atual.
+    chartjs-size-monitor: Aqui você acompanha diariamente quantos novos usuários estão se inscrevendo para receber suas notificações.
+
+    campaign:
+      name: Nome para uso interno. Este nome será utilizado para acompanhar a performance desta campanha dentro e fora do Aplicatify.
+      tag: Para uso interno dos desenvolvedores.
+      title: Titulo da notificação que irá aparecer para os seus clientes.
+      body: O corpo da mensagem que você quer enviar aos seus clientes.
+      url: O link de destino quando algum cliente clicar na notificação. Você pode leva-lo para algum produto especifico.
+      release_date: Data que será envia a campanha. Por pardão ela sera enviada imediatamente, você pode alterar esta data para um dia e hora especifico.

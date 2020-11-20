@@ -19,7 +19,7 @@ module Campaigns
         shop = campaign.shop
         return if shop.manifest.icon.blank?
 
-        shop.manifest.icon.variant(resize_to_fit: [192, 192]).processed.service_url.sub(/\?.*/, "")
+        shop.manifest.icon.variant(resize_to_fit: [192, 192]).processed.service_url.sub(/\?.*/, "") unless Rails.env.test?
       end
     end
 
@@ -27,11 +27,11 @@ module Campaigns
       ids = campaign.pushes.pluck(:id)
       return targets unless ids.present?
 
-      targets.where("id not in (?)", ids)
+      targets #targets.reject { |t| ids.include?(t.id) }
     end
 
     def create_associations(targets)
-      filterd_targets = targets#filterd_targets(targets)
+      filterd_targets = filterd_targets(targets)
       associations = filterd_targets.map do |p|
         {
           campaign_id: campaign.id,

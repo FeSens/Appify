@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "Campaigns", type: :feature do
   let(:campaign_name) { "Test Campaign 1" }
   let(:campaign) { FactoryBot.build :campaign }
-  let(:campaign_attributes) { campaign.attributes.slice("name", "tag", "title", "body", "url") }
+  let(:campaign_attributes) { campaign.attributes.slice("name", "title", "body", "url") }
 
   it "User creates a new campaign" do
     shop = FactoryBot.create :shop
@@ -11,7 +11,7 @@ RSpec.describe "Campaigns", type: :feature do
 
     within "form" do
       fill_in "campaign_name", with: campaign.name
-      fill_in "campaign_tag", with: campaign.tag
+      #fill_in "campaign_tag", with: campaign.tag
       fill_in "campaign_title", with: campaign.title
       fill_in "campaign_body", with: campaign.body
       fill_in "campaign_url", with: campaign.url
@@ -35,7 +35,7 @@ RSpec.describe "Campaigns", type: :feature do
 
     within "form" do
       fill_in "campaign_name", with: campaign.name
-      fill_in "campaign_tag", with: campaign.tag
+      #fill_in "campaign_tag", with: campaign.tag
       fill_in "campaign_title", with: campaign.title
       fill_in "campaign_body", with: campaign.body
       fill_in "campaign_url", with: campaign.url

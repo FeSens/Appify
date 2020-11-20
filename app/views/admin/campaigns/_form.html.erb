@@ -1,26 +1,21 @@
 <%= form_with model: @campaign, url: url, method: method do |f| %>
   <div class="form-group">
-    <%= label_tag :name, t('activerecord.attributes.campaign.name') %>
+    <%= label_tag :name, t('activerecord.attributes.campaign.name'), data: { toggle: "tooltip", placement: "right" }, title: t('tooltip.campaign.name') %>
     <%= f.text_field :name, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= label_tag :tag, t('activerecord.attributes.campaign.tag') %>
-    <%= f.text_field :tag, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= label_tag :title, t('activerecord.attributes.campaign.title') %>
+    <%= label_tag :title, t('activerecord.attributes.campaign.title'), data: { toggle: "tooltip", placement: "right" }, title: t('tooltip.campaign.title') %>
     <%= f.text_field :title, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= label_tag :body, t('activerecord.attributes.campaign.body') %>
+    <%= label_tag :body, t('activerecord.attributes.campaign.body'), data: { toggle: "tooltip", placement: "right" }, title: t('tooltip.campaign.body') %>
     <%= f.text_area :body, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= label_tag :url, t('activerecord.attributes.campaign.url') %>
+    <%= label_tag :url, t('activerecord.attributes.campaign.url'), data: { toggle: "tooltip", placement: "right" }, title: t('tooltip.campaign.url') %>
 
     <div class="input-group-prepend">
     <% if params[:action] == "edit" %>

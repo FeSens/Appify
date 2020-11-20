@@ -249,7 +249,7 @@ pt-BR:
     home:
       index:
         app_revenue_html: "Receita do<br>App"
-        app_users_html: "Usuários do<br>App"
+        app_users_html: "Downloads<br>do App"
         total_revenue_html: "Receita <br>Total"
         active_subscribers_html: "Inscritos <br>Ativos"
         subscriber_growth: "Novos Inscritos"

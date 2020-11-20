@@ -19,7 +19,7 @@ class Shop < ApplicationRecord
   after_create :init_models
 
   def init_models
-    create_manifest
+    create_manifest(name: self.name, short_name: self.name)
     optins.create(kind: "pwa",
                   title: "Put our store in your pocket!",
                   body: "Download our app and keep updated about your order and the newest products!",

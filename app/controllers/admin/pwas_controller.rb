@@ -16,8 +16,9 @@ module Admin
     private
 
     def manifest_params
-      params.require(:manifest).permit(:name, :short_name, :icon, :description,
-                                       :theme_color, :background_color)
+      params.require(:manifest).permit(:name, :short_name, :icon, :description, :background_color)
+        .merge(theme_color: params.dig(:manifest,:background_color),
+               short_name:  params.dig(:manifest,:name))
     end
 
     def load_manifest
