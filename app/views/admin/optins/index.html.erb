@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="col-6" data-toggle="tooltip" data-placement="right" title="<%= @optin.enabled ? t('tooltip.optin.my_store') : t('tooltip.optin.my_store_disabled') %>">
-          <a href="<%="http://#{current_shop.domain}/?t=0&vizualize=#{@optin.kind}" %>"
+          <a href="<%="http://#{current_shop.domain}/?t=5&vizualize=#{@optin.kind}" %>"
              target="_blank" class="btn btn-purple float-right px-4 mt-4 <%= "disabled" unless @optin.enabled%>">
             Ver na Minha Loja
           </a>
