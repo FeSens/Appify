@@ -32,7 +32,7 @@ pt-BR:
   activerecord:
     models:
       campaign: "Campanhas"
-      optin: "Gatilhos de Aceite"
+      optin: "Pop-Up's"
       manifest: "Configuraçōes"
     attributes:
       optin:
