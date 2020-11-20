@@ -118,7 +118,7 @@ window.closePopup = closePopup;
 <% end %>
 
 
-$(document).ready(function() {
+document.addEventListener("DOMContentLoaded", function(event) {
   var t = getParam("t")
   var vizualize = getParam("vizualize")
   if (t && vizualize) {
