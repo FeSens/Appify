@@ -75,7 +75,7 @@ function closePopup(type) {
 
 function pwa_prompt() {
   var el = document.getElementById('modal_pwa');
-  el.style.display = 'none';
+  if(el) { el.style.display = 'none'; }
   window.installPromptEvent.prompt();
   window.installPromptEvent.userChoice.then((choice) => {
     if (choice.outcome === 'accepted') {
