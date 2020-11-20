@@ -102,6 +102,10 @@ function showPrompt(type) {
   }
 }
 
+function getParam(param){
+  return new URLSearchParams(window.location.search).get(param);
+}
+
 window.showPrompt = showPrompt;
 window.closePopup = closePopup;
 
@@ -112,3 +116,21 @@ window.closePopup = closePopup;
 <% if @optins[:push].enabled %>
   setTimeout(addElement, <%= @optins[:push].timer * 1000 %>, 'push');
 <% end %>
+
+
+$(document).ready(function() {
+  var t = getParam("t")
+  var vizualize = getParam("vizualize")
+  if (t && vizualize) {
+    switch (vizualize) {
+      case 'push':
+      case 'pwa':
+        setTimeout(addElement, t * 1000, vizualize);
+      break;
+
+      case 'app':
+        pwa_prompt();
+      break;
+    }
+  }
+});
