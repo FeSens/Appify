@@ -125,6 +125,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     switch (vizualize) {
       case 'push':
       case 'pwa':
+        __setCookie__(`prompt_counter-${vizualize}`, 1)
         setTimeout(addElement, t * 1000, vizualize);
       break;
 
