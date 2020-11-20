@@ -29,6 +29,7 @@ module Admin
 
     def verify_billing_plan
       return unless current_shop.plan_name == "partner_test"
+      return if current_shop.shopify_domain == "teste-giovanna.myshopify.com"
 
       @recurring_application_charge = ShopifyAPI::RecurringApplicationCharge.new(plan_params)
       @recurring_application_charge.test = false
