@@ -118,7 +118,7 @@ window.closePopup = closePopup;
 <% end %>
 
 
-document.addEventListener("DOMContentLoaded", function(event) {
+window.onload = function () {
   var t = getParam("t")
   var vizualize = getParam("vizualize")
   if (t && vizualize) {
@@ -126,12 +126,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
       case 'push':
       case 'pwa':
         __setCookie__(`prompt_counter-${vizualize}`, 1)
-        setTimeout(addElement, t * 1000, vizualize);
+        setTimeout(addElement, t * 1000 + 1, vizualize);
       break;
 
       case 'app':
-        pwa_prompt();
+        setTimeout(window.installPromptEvent.prompt(), t * 1000 + 1);
       break;
     }
   }
-});
+}
