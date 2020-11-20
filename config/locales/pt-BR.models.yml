@@ -33,7 +33,7 @@ pt-BR:
     models:
       campaign: "Campanhas"
       optin: "Pop-Up's"
-      manifest: "Configuraçōes"
+      manifest: "App"
     attributes:
       optin:
         title: "Titulo"
