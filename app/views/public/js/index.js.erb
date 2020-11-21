@@ -57,12 +57,12 @@ function addElement (type) {
 }
 
 function openPopup(type) {
-  if(window.installPromptEvent && type == "pwa") {
+  if( (window.installPromptEvent && type == "pwa") || addElement("vizualize") == "pwa") {
     var el = document.getElementById(`modal_${type}`);
     el.style.display = 'block';
   }
 
-  if(type == "push" && Notification.permission == "default") {
+  if((type == "push" && Notification.permission == "default") || addElement("vizualize") == "push")) {
       var el = document.getElementById(`modal_${type}`);
       el.style.display = 'block';
   }
@@ -117,6 +117,13 @@ window.closePopup = closePopup;
   setTimeout(addElement, <%= @optins[:push].timer * 1000 %>, 'push');
 <% end %>
 
+function askDownload() {
+  if(!window.installPromptEvent) {
+    setTimeout(askDownload, 300);
+  } else {
+    window.installPromptEvent.prompt();
+  }
+}
 
 window.onload = function () {
   var t = getParam("t")
@@ -130,7 +137,7 @@ window.onload = function () {
       break;
 
       case 'app':
-        setTimeout(window.installPromptEvent.prompt, t * 1000 + 1);
+        setTimeout(askDownload, t * 1000 + 1);
       break;
     }
   }
