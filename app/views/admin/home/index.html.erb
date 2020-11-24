@@ -26,7 +26,7 @@
 </div>
 <div class="row mt-3">
   <div class="col-8">
-    <h4 class="pb-4"><%= t('.subscriber_growth')%><br>+ <%=new_subscribers%></h4>
+    <h4 class="pb-4"><span data-toggle="tooltip" data-placement="top" title="<%= t('tooltip.subscriber_growth')%>"><%= t('.subscriber_growth')%></span><br>+ <%=new_subscribers%></h4>
     <canvas id="push-subscribers" width="200" height="100"></canvas>
   </div>
   <div class="col-4">
@@ -34,7 +34,7 @@
       <div class="col-6 my-auto">
         <div class="row">
           <div class="col-12 mb-4">
-            <span class="title"><%= t('.impressions_consumed_html')%></span>
+            <span class="title" data-toggle="tooltip" data-placement="top" title="<%= t('tooltip.campaign.impressions')%>"><%= t('.impressions_consumed_html')%></span>
           </div>
           <div class="col-12 mb-3">
             <span class="consumed mr-3"> <%= push_interaction[:push_count] %> </span>
@@ -65,7 +65,7 @@
             </tr>
           </thead>
           <tbody>
-            <%campaigns.last(3).each_with_index do |campaign, i| %>
+            <%campaigns.last(3).reverse.each_with_index do |campaign, i| %>
               <tr>
                 <th scope="row" ><%= i + 1 %> </th>
                 <td> <%= campaign.name %> </td>

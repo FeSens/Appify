@@ -55,6 +55,9 @@ pt-BR:
         body: "Corpo da mensagem"
         url: "Url de Destino"
         release_date: "Data de Lançamento"
+        ctr: CTR
+        impressions: "Impressōes"
+        clicks: "Clicks"
       manifest:
         name: "Nome do App"
         short_name: "Nome Curto do App"

@@ -10,13 +10,13 @@ $(document).on('turbolinks:load', function() {
         datasets: [
           {
             maxBarThickness: 50,
-            label: "Subscribers",
+            label: "Inscritos",
             backgroundColor: "#E95362",
             data: data.push
           },
           {
             maxBarThickness: 50,
-            label: "New Subscribers",
+            label: "Novos Inscritos",
             backgroundColor: "#FF7595",
             data: data.push_new_subscribers
           }
