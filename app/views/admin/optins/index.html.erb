@@ -29,19 +29,19 @@
           </a>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group" data-toggle="tooltip" data-placement="right" title="<%= t('tooltip.optin.title')%>">
         <%= label_tag :title, t('activerecord.attributes.optin.title') %>
         <%= f.text_field :title, class: "form-control" %>
       </div>
-      <div class="form-group">
+      <div class="form-group" data-toggle="tooltip" data-placement="right" title="<%= t('tooltip.optin.body')%>">
         <%= label_tag :body, t('activerecord.attributes.optin.body') %>
         <%= f.text_field :body, class: "form-control" %>
       </div>
-      <div class="form-group">
+      <div class="form-group" data-toggle="tooltip" data-placement="right" title="<%= t('tooltip.optin.accept_button')%>">
         <%= label_tag :accept_button, t('activerecord.attributes.optin.accept_button') %>
         <%= f.text_field :accept_button, class: "form-control" %>
       </div>
-      <div class="form-group">
+      <div class="form-group" data-toggle="tooltip" data-placement="right" title="<%= t('tooltip.optin.decline_button')%>">
         <%= label_tag :decline_button, t('activerecord.attributes.optin.decline_button') %>
         <%= f.text_field :decline_button, class: "form-control" %>
       </div>
@@ -53,7 +53,7 @@
         <%= label_tag :text_color, t('activerecord.attributes.optin.text_color') %>
         <%= f.text_field :text_color, class: "form-control jscolor" %>
       </div>
-      <div class="form-group">
+      <div class="form-group" data-toggle="tooltip" data-placement="right" title="<%= t('tooltip.optin.timer')%>">
         <%= label_tag :timer, t('activerecord.attributes.optin.timer') %>
         <%= f.number_field :timer, class: "form-control" %>
       </div>
