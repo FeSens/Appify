@@ -21,11 +21,11 @@ module Admin
 
     def callback
       @recurring_application_charge = ShopifyAPI::RecurringApplicationCharge.find(params[:charge_id])
-      flash[:success] = "Your plan was not altered"
+      flash[:success] =  I18n.t("activerecord.successful.messages.not_saved", model: Plan.model_name.human)
       if @recurring_application_charge.status == "accepted"
         update_shop_limit
         @recurring_application_charge.activate
-        flash[:success] = "Plan updated successfully"
+        flash[:success] = I18n.t("activerecord.successful.messages.updated", model: Plan.model_name.human)
       end
 
       redirect_to admin_plans_path

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_025124) do
+ActiveRecord::Schema.define(version: 2020_11_24_181513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2020_11_12_025124) do
     t.boolean "enable_url", default: false, null: false
     t.boolean "enable_pages", default: false, null: false
     t.boolean "and", default: false, null: false
-    t.string "modal_text", default: "Do you want to install our app for exclusive promotions?", null: false
+    t.string "modal_text", default: "Você quer instalar o nosso app para promoçōes exclusuivas?", null: false
     t.integer "timer", default: 20000, null: false
     t.string "url", default: "/", null: false
     t.integer "pages", default: 2, null: false
@@ -113,8 +113,8 @@ ActiveRecord::Schema.define(version: 2020_11_12_025124) do
 
   create_table "manifests", force: :cascade do |t|
     t.bigint "shop_id", null: false
-    t.string "name", default: "My Store Name"
-    t.string "short_name", default: "My App name"
+    t.string "name", default: "O nome da sua loja"
+    t.string "short_name", default: "O nome do seu app"
     t.string "theme_color", default: "CB505A"
     t.string "background_color", default: "FFFFFF"
     t.string "display", default: "standalone"
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 2020_11_12_025124) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "start_url", default: "/?ref=aplicatify&utm_source=aplicatify&utm_medium=app&utm_campaign=app"
     t.string "lang", default: "pt-BR"
-    t.string "description", default: "Track your orders and receive special promos with our new brand app!"
+    t.string "description", default: "Rastreie os seus pedidos e receba promoçōes especiais"
     t.index ["shop_id"], name: "index_manifests_on_shop_id"
   end
 
@@ -138,10 +138,10 @@ ActiveRecord::Schema.define(version: 2020_11_12_025124) do
   end
 
   create_table "optins", force: :cascade do |t|
-    t.string "title", default: "Looking for special promos?", null: false
-    t.string "body", default: "Receive special notifications with the hottest offers!", null: false
-    t.string "accept_button", default: "Yes!", null: false
-    t.string "decline_button", default: "No", null: false
+    t.string "title", default: "Procurando por promoçōes especiais?", null: false
+    t.string "body", default: "Seja notificado das promoçōes mais quentes!", null: false
+    t.string "accept_button", default: "Sim!", null: false
+    t.string "decline_button", default: "Não", null: false
     t.string "background_color", default: "FFFFFF", null: false
     t.string "text_color", default: "000000", null: false
     t.integer "timer", default: 30, null: false

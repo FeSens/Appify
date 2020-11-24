@@ -9,7 +9,7 @@ module Admin
 
     def update
       manifest.update(manifest_params)
-      flash[:success] = "Updated with success"
+      flash[:success] = I18n.t("activerecord.successful.messages.updated", model: manifest.class.model_name.human)
       redirect_to edit_admin_pwa_path
     end
 

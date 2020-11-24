@@ -7,7 +7,7 @@ module Admin
 
     def update
       optin.update(optin_params)
-      flash[:success] = "Updated with success"
+      flash[:success] = I18n.t("activerecord.successful.messages.updated", model: optin.class.model_name.human)
       redirect_to admin_optins_path(tab: optin.kind)
     end
 
