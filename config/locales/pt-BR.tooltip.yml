@@ -1,11 +1,12 @@
 pt-BR:
   tooltip:
-    app_revenue: Aqui você poderá acompanhar a receita que a sua loja esta gerando com o aplicativo da sua loja.
-    app_users: Indica o numero de pessoas que baixaram o app da sua loja.
-    total_revenue: O total de vendas realizadas através do app e das notificações.
-    active_subscribers: O número total de pessoas que estão habilitadas as receber suas notificações através da Aplicatify.
+    app_revenue: Acompanhe a receita gerada pelo aplicativo da sua loja.
+    app_users: Número de downloads do aplicativo da sua loja.
+    total_revenue: Receita gerada pelo Aplicatify (Aplicativo + Mensagens Push)
+    active_subscribers: Quantidade de inscritos para receber as suas campanhas através da Aplicatify.
     interactions-container: Aqui você acompanha quantas notificações já foram enviadas esse mês e qual é o limite do seu plano atual.
     chartjs-size-monitor: Aqui você acompanha diariamente quantos novos usuários estão se inscrevendo para receber suas notificações.
+    subscriber_growth: Quantidade de novos inscritos nos últimos 14 dias.
 
     campaign:
       name: Nome que você utiliza para identificar a campanha no Aplicatify e Google Analytics.
@@ -14,8 +15,9 @@ pt-BR:
       body: O corpo da mensagem que você quer enviar aos seus clientes.
       url: Defina a página na qual o usuário é direcionado ao clicar na sua mensagem.
       release_date: Data que será envia a campanha. Por pardão ela sera enviada imediatamente, você pode alterar esta data para um dia e hora especifico.
-      impressions: Quantidade de vizualizações que a campanha teve até o momento.
-      clicks: Quantidade de pessoas que clicaram na campanha e foram para o site.
+      impressions: Número de vezes que suas mensagens foram exibidas na tela.
+      clicks: Número de cliques nas mensagens desta campanha.
+      ctr: Número de cliques nas mensagens desta campanha.
     
     optin:
       my_store: Veja na sua loja!
@@ -24,4 +26,8 @@ pt-BR:
       body: Texto central do Pop-Up. Emojis são permitidos.
       accept_button: Botão para que o visitante deve clicar para se inscrever para receber suas mensagens ou baixar o app.
       decline_button: Botão para que o visitante recuse se inscrever para receber suas mensagens ou app.
-      timer: Botão para que o visitante recuse se inscrever para receber suas mensagens.
+      timer: Defina em quantos segundos após a visita no seu site este Pop-Up aparece.
+
+    manifest:
+      name: Nome do aplicativo da sua loja no dispositivo do usuário.
+      background: Cor de fundo da tela de carregamento do aplicativo da sua loja.
