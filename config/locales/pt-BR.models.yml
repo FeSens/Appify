@@ -32,8 +32,9 @@ pt-BR:
   activerecord:
     models:
       campaign: "Campanhas"
-      optin: "Pop-Up's"
-      manifest: "Configuraçōes"
+      optin: "Pop-Up"
+      manifest: "App"
+      plan: "Plano"
     attributes:
       optin:
         title: "Titulo"
@@ -61,3 +62,9 @@ pt-BR:
         theme_color: "Cor do tema"
         background_color: "Cor de fundo"
         description: "Descrição"
+
+    successful:
+      messages:
+        created: "%{model} criado com sucesso."
+        updated: "%{model} salvo com sucesso."
+        not_saved: "%{model} não foi alterado"

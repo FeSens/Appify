@@ -22,11 +22,11 @@
             <div class="disabled"> $ (Em Breve) </div>
             <div class="sub-label"> <%= t('admin_commons.revenue')%> </div>
           </td>
-          <td>
+          <td data-toggle="tooltip" data-placement="bottom" title="<%= t('tooltip.campaign.impressions')%>">
             <div> <%= campaign.impressions %> </div>
             <div class="sub-label"> <%= t('admin_commons.impressions')%> </div>
           </td>
-          <td> 
+          <td data-toggle="tooltip" data-placement="bottom" title="<%= t('tooltip.campaign.clicks')%>" > 
             <div> <%= campaign.clicks %> </div>
             <div class="sub-label"> <%= t('admin_commons.clicks')%> </div>
           </td>

@@ -1,5 +1,6 @@
 module Admin
   class PlansController < AuthenticatedController
+    skip_before_action :verify_billing_plan
     def index
       @plans = Plan.all.reject{ |u| u.name == "Influencer" }
       @plans = Plan.all if Flipper['influencer'].enabled?(current_shop)
@@ -20,11 +21,11 @@ module Admin
 
     def callback
       @recurring_application_charge = ShopifyAPI::RecurringApplicationCharge.find(params[:charge_id])
-      flash[:success] = "Your plan was not altered"
+      flash[:success] =  I18n.t("activerecord.successful.messages.not_saved", model: Plan.model_name.human)
       if @recurring_application_charge.status == "accepted"
         update_shop_limit
         @recurring_application_charge.activate
-        flash[:success] = "Plan updated successfully"
+        flash[:success] = I18n.t("activerecord.successful.messages.updated", model: Plan.model_name.human)
       end
 
       redirect_to admin_plans_path
@@ -32,7 +33,7 @@ module Admin
 
     def update_shop_limit
       plan = Plan.find_by(name: @recurring_application_charge.name)
-      current_shop.update(push_limit: plan.push_limit)
+      current_shop.update(push_limit: plan.push_limit, plan_name: 1)
     end
 
     private

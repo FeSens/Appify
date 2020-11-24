@@ -2,7 +2,7 @@
   <% @plans.each do |plan| %>
     <div class="col-3 white shadow-sm p-4 mx-auto">
        <h3> <%= plan.name %> </h3> <br>
-       <h5> <%= "Current plan" if @current_plan == plan%> </h5> <br>
+       <h5> <%= "Seu plano" if @current_plan == plan%> </h5> <br>
         <%= t 'plans.store_app' %><br>
         <%= t 'plans.unlimited_customer_base' %><br>
         Dashboard<br>

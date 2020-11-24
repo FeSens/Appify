@@ -57,12 +57,12 @@ function addElement (type) {
 }
 
 function openPopup(type) {
-  if(window.installPromptEvent && type == "pwa") {
+  if( (window.installPromptEvent && type == "pwa") || getParam("vizualize") == "pwa") {
     var el = document.getElementById(`modal_${type}`);
     el.style.display = 'block';
   }
 
-  if(type == "push" && Notification.permission == "default") {
+  if((type == "push" && Notification.permission == "default") || getParam("vizualize") == "push") {
       var el = document.getElementById(`modal_${type}`);
       el.style.display = 'block';
   }
@@ -75,7 +75,7 @@ function closePopup(type) {
 
 function pwa_prompt() {
   var el = document.getElementById('modal_pwa');
-  el.style.display = 'none';
+  if(el) { el.style.display = 'none'; }
   window.installPromptEvent.prompt();
   window.installPromptEvent.userChoice.then((choice) => {
     if (choice.outcome === 'accepted') {
@@ -102,6 +102,10 @@ function showPrompt(type) {
   }
 }
 
+function getParam(param){
+  return new URLSearchParams(window.location.search).get(param);
+}
+
 window.showPrompt = showPrompt;
 window.closePopup = closePopup;
 
@@ -112,3 +116,25 @@ window.closePopup = closePopup;
 <% if @optins[:push].enabled %>
   setTimeout(addElement, <%= @optins[:push].timer * 1000 %>, 'push');
 <% end %>
+
+function askDownload() {
+  if(!window.installPromptEvent) {
+    setTimeout(askDownload, 300);
+  } else {
+    window.installPromptEvent.prompt();
+  }
+}
+
+window.onload = function () {
+  var t = getParam("t")
+  var vizualize = getParam("vizualize")
+  if (t && vizualize) {
+    switch (vizualize) {
+      case 'push':
+      case 'pwa':
+        __setCookie__(`prompt_counter-${vizualize}`, 1)
+        setTimeout(addElement, t * 1000 + 1, vizualize);
+      break;
+    }
+  }
+}

@@ -7,6 +7,7 @@ module Admin
     helper_method :current_shop
     before_action :set_locale
     after_action :set_activity, only: %i[index]
+    before_action :verify_billing_plan, only: %i[index]
 
     private
 
@@ -25,5 +26,25 @@ module Admin
     def set_locale
       I18n.locale = current_shop.locale if I18n.available_locales.include? current_shop.locale.to_sym
     end
+
+    def verify_billing_plan
+      return unless current_shop.plan_name == "partner_test"
+      return if current_shop.shopify_domain == "teste-giovanna.myshopify.com"
+
+      @recurring_application_charge = ShopifyAPI::RecurringApplicationCharge.new(plan_params)
+      @recurring_application_charge.test = false
+      @recurring_application_charge.return_url = callback_admin_plans_url
+
+      return fullpage_redirect_to @recurring_application_charge.confirmation_url if @recurring_application_charge.save
+
+      flash[:danger] = @recurring_application_charge.errors.full_messages.first.to_s.capitalize
+      redirect_to admin_plans_path
+    end
+
+    def plan_params
+      Plan.find_by(name:"Beginner").slice(:name, :price, :trial_days)
+    end
+
+
   end
 end
