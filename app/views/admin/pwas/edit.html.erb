@@ -15,10 +15,12 @@
          <%= label_tag :background_color, t('activerecord.attributes.manifest.background_color') %>
         <%= f.text_field :background_color, class: "form-control jscolor" %>
       </div>
-      <div class="form-group">
-         <%= label_tag :description, t('activerecord.attributes.manifest.description') %>
-        <%= f.text_area :description, class: "form-control" %>
-      </div>
+      <!--
+        <div class="form-group">
+          <%= label_tag :description, t('activerecord.attributes.manifest.description') %>
+          <%= f.text_area :description, class: "form-control" %>
+        </div>
+      -->
       <%= f.submit t('helpers.submit.submit'), class: "btn btn-purple float-right px-4", id: "submit" %>
     <% end %>
   </div>
