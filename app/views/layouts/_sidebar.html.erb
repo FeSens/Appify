@@ -25,17 +25,19 @@
         <a class="btn btn-red" href="<%= admin_plans_path %>" role="button"><%= t('admin_commons.upgrade') %></a>
       </div>
     </div>
-    <div class="row align-bottom">
-      <div class="col-12 text-center mt-4">
-        <span class="sidebar-text"><%= t('admin_commons.languages')%>:</span>
+    <!--
+      <div class="row align-bottom">
+        <div class="col-12 text-center mt-4">
+          <span class="sidebar-text"><%= t('admin_commons.languages')%>:</span>
+        </div>
+        <div class="col-6 text-center mt-4">
+          <%= link_to image_tag("brasil.svg", class: "flag"), admin_locales_path(locale: 'pt-BR', redirect_to: request.path), method: :patch %>
+        </div>
+        <div class="col-6 text-center mt-4">
+          <%= link_to image_tag("usa.svg", class: "flag"), admin_locales_path(locale: 'en', redirect_to: request.path), method: :patch %>
+        </div>
       </div>
-      <div class="col-6 text-center mt-4">
-        <%= link_to image_tag("brasil.svg", class: "flag"), admin_locales_path(locale: 'pt-BR', redirect_to: request.path), method: :patch %>
-      </div>
-      <div class="col-6 text-center mt-4">
-        <%= link_to image_tag("usa.svg", class: "flag"), admin_locales_path(locale: 'en', redirect_to: request.path), method: :patch %>
-      </div>
-    </div>
+    -->
   </div>
   <div class="wrapper">
     <div class="container-fluid">

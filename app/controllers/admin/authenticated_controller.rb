@@ -24,7 +24,7 @@ module Admin
     end
 
     def set_locale
-      I18n.locale = current_shop.locale if I18n.available_locales.include? current_shop.locale.to_sym
+      I18n.locale = "pt-BR"#current_shop.locale if I18n.available_locales.include? current_shop.locale.to_sym
     end
 
     def verify_billing_plan
