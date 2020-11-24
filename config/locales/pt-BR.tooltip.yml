@@ -17,7 +17,7 @@ pt-BR:
       release_date: Data que será envia a campanha. Por pardão ela sera enviada imediatamente, você pode alterar esta data para um dia e hora especifico.
       impressions: Número de vezes que suas mensagens foram exibidas na tela.
       clicks: Número de cliques nas mensagens desta campanha.
-      ctr: Número de cliques nas mensagens desta campanha.
+      ctr: Porcentagem de pessoas que viram sua mensagem e deram um clique no link.
     
     optin:
       my_store: Veja na sua loja!

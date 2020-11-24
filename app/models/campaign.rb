@@ -7,7 +7,7 @@ class Campaign < ApplicationRecord
   scope :sent, -> { where(arel_table[:release_date].lt(Time.now)) }
 
   def ctr
-    return ((clicks / impressions.to_f) * 100).to_i if impressions > 0
+    return ((clicks / impressions.to_f) * 100).round(2) if impressions > 0
     0
   end
 end
