@@ -65,14 +65,12 @@ Rails.application.routes.draw do
   end if Rails.env.production?
   mount Sidekiq::Web, at: "/sidekiq"
 
-  Flipper::UI.app.use Rack::Auth::Basic do |username, password|
-    # Protect against timing attacks:
-    # - See https://codahale.com/a-lesson-in-timing-attacks/
-    # - See https://thisdata.com/blog/timing-attacks-against-string-comparison/
-    # - Use & (do not use &&) so that it doesn't short circuit.
-    # - Use digests to stop length information leaking (see also ActiveSupport::SecurityUtils.variable_size_secure_compare)
-    ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username), ::Digest::SHA256.hexdigest("admin")) &
+
+  flipper_app = Flipper::UI.app(Flipper.instance) do |builder|
+    builder.use Rack::Auth::Basic do |username, password|
+      ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username), ::Digest::SHA256.hexdigest("admin")) &
       ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password), ::Digest::SHA256.hexdigest("jrqwknclqjpcniqiwuhnberuyb"))
-  end if Rails.env.production?
-  mount Flipper::UI.app(Flipper) => '/flipper'
+    end
+  end
+  mount flipper_app, at: '/flipper'
 end
