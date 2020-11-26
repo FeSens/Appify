@@ -39,7 +39,13 @@ module Admin
     private
 
     def plan_params
-      Plan.find(params[:id]).slice(:name, :price, :trial_days)
+      plan = Plan.find(params[:id]).slice(:name, :price, :trial_days)
+      plan["trial_days"] = [plan["trial_days"] - shop_age, 0].max
+      plan
+    end
+
+    def shop_age
+      (Time.zone.now - current_shop.created_at).to_i / 1.day
     end
   end
 end
