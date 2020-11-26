@@ -420,3 +420,21 @@ input:checked + .slider:before {
 }
 
 .bs-tooltip-right { margin-left: 10px; }
+
+.hover {
+  &-disabled {
+    opacity: 0.5;
+    background-repeat:no-repeat;
+    background-position:center;
+    top: 0px;
+    left: 0px;
+    filter: grayscale(100%);
+    z-index: 20;
+  }
+
+  &-disabled:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+  }
+  
+}

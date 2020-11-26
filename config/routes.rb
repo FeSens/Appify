@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :optins, only: %i[index update]
     resource :locales, only: %i[update]
     resources :automatic_campaigns
+    resources :integrations
     resources :plans, only: %i[index create callback] do
       collection do
         get :callback

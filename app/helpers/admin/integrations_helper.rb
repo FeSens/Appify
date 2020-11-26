@@ -1,0 +1,2 @@
+module Admin::IntegrationsHelper
+end
