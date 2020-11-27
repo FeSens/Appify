@@ -44,7 +44,5 @@ module Admin
     def plan_params
       Plan.find_by(name:"Beginner").slice(:name, :price, :trial_days)
     end
-
-
   end
 end
