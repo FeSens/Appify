@@ -37,7 +37,7 @@ pt-BR:
       plan: "Plano"
     attributes:
       optin:
-        title: "Titulo"
+        title: "Tîtulo"
         body: "Corpo da mensagem"
         accept_button: "Botão de aceite"
         decline_button: "Botão de recusa"
@@ -51,13 +51,13 @@ pt-BR:
         tag: "Tag"
         segmentation_size: "Tamanho da segmentação"
         delivered: "Entregues"
-        title: "Titulo"
+        title: "Tîtulo"
         body: "Corpo da mensagem"
-        url: "Url de Destino"
+        url: "URL de Destino"
         release_date: "Data de Lançamento"
         ctr: CTR
         impressions: "Impressōes"
-        clicks: "Clicks"
+        clicks: "Cliques"
       manifest:
         name: "Nome do App"
         short_name: "Nome Curto do App"
