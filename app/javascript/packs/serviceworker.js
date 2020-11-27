@@ -15,10 +15,8 @@ const CACHE = "pwabuilder-offline";
 
 // This is the "Offline copy of assets" service worker
 
-self.addEventListener("message", (event) => {
-  if (event.data && event.data.type === "SKIP_WAITING") {
-    self.skipWaiting();
-  }
+self.addEventListener('install', e => {
+  self.skipWaiting();
 });
 /*
 self.addEventListener('fetch', function (event) {
