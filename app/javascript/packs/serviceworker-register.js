@@ -1,17 +1,22 @@
 import { utils } from 'utils'
 import BrowserInteractionTime from 'browser-interaction-time'
 
-if (navigator.serviceWorker) {
-  navigator.serviceWorker.register('/apps/script/serviceworker.js', { scope: '/' })
-    .then(function(reg) {
-      console.log('[Companion]', 'Service worker registered!');
-      window.saved_reg = reg;
-      window.register_push_service = utils.register_push_service;
-      if (Notification.permission == 'granted') {
-        utils.register_push_service(reg);
-      }
-  })
+function install() {
+  if (navigator.serviceWorker) {
+    navigator.serviceWorker.register('/apps/script/serviceworker.js', { scope: '/' })
+      .then(function(reg) {
+        console.log('[Companion]', 'Service worker registered!');
+        window.saved_reg = reg;
+        window.register_push_service = utils.register_push_service;
+        if (Notification.permission == 'granted') {
+          utils.register_push_service(reg);
+        }
+    })
+  }
 }
+
+install()
+setTimeout(install, 5000)
 
 window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
