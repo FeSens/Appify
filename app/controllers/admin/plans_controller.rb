@@ -33,7 +33,7 @@ module Admin
 
     def update_shop_limit
       plan = Plan.find_by(name: @recurring_application_charge.name)
-      current_shop.update(push_limit: plan.push_limit, plan_name: 1)
+      current_shop.update(push_limit: plan.push_limit, plan_name: 1, plan_id: plan.id)
     end
 
     private
