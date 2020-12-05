@@ -2,7 +2,7 @@ module Admin
   class PlansController < AuthenticatedController
     skip_before_action :verify_billing_plan
     def index
-      @plans = Plan.all.reject{ |u| u.name == "Influencer" }
+      @plans = Plan.all.order(:id).reject{ |u| u.name == "Influencer" }
       @plans = Plan.all if Flipper['influencer'].enabled?(current_shop)
       activated_plan = Rails.env.development? ? Plan.last : ShopifyAPI::RecurringApplicationCharge.current
       @current_plan = Plan.find_by(name: activated_plan&.name)
@@ -33,7 +33,7 @@ module Admin
 
     def update_shop_limit
       plan = Plan.find_by(name: @recurring_application_charge.name)
-      current_shop.update(push_limit: plan.push_limit, plan_name: 1)
+      current_shop.update(push_limit: plan.push_limit, plan_name: 1, plan_id: plan.id)
     end
 
     private
