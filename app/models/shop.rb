@@ -16,6 +16,9 @@ class Shop < ApplicationRecord
   has_many :carts, dependent: :destroy
   has_many :opt_in_counts, dependent: :destroy
   has_many :automatic_campaigns, dependent: :destroy
+
+  belongs_to :plan
+
   after_create :init_models
 
   def init_models
