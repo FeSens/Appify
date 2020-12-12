@@ -32,7 +32,7 @@ module Admin
       return if current_shop.shopify_domain == "teste-giovanna.myshopify.com" # TODO: Put a flipper on it
       
       plan = Plan.find(1)
-      result = Plans::Creator.call(plan, current_shop)
+      result = Plans::Creator.call(plan, current_shop, callback_admin_plans_url)
       return fullpage_redirect_to result.success if result.success?
 
       flash[:danger] = result.failure

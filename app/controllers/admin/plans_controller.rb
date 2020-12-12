@@ -9,7 +9,7 @@ module Admin
     end
 
     def create
-      response = Plans::Creator.call(plan, current_shop)
+      response = Plans::Creator.call(plan, current_shop, callback_admin_plans_url)
       return fullpage_redirect_to response.success if response.success?
 
       flash[:danger] = response.failure
