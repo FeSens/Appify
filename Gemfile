@@ -42,6 +42,7 @@ gem 'concurrent-ruby', require: 'concurrent'
 gem 'devise'
 #Add API validations
 gem 'dry-validation'
+gem 'dry-monads'
 gem 'image_processing', '~> 1.2'
 gem 'pry'
 gem 'redis'
