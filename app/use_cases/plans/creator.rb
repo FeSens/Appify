@@ -10,10 +10,10 @@ module Plans
     def call
       current_shop.with_shopify_session do
         plan = ShopifyAPI::RecurringApplicationCharge.new(plan_params)
+        return Success(plan.confirmation_url) if plan.save
       end
 
-      return true if plan.save
-      plan.errors.full_messages.first.to_s.capitalize
+      Failure(plan.errors.full_messages.first.to_s.capitalize)
     end
 
     private
