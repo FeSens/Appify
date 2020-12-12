@@ -1,6 +1,9 @@
 Rails.application.configure do
   config.hosts = (config.hosts rescue []) << /\h+.ngrok.io/
   config.hosts << "teste-giovanna.myshopify.com"
+  config.hosts << "www.lvh.me"
+
+  config.action_controller.default_url_options = { host: 'www.lvh.me' }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on

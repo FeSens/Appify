@@ -1,5 +1,6 @@
 module Plans
   class Creator < ApplicationUseCase
+    include Rails.application.routes.url_helpers
     attr_reader :plan, :current_shop
 
     def initialize(plan, current_shop)
@@ -20,7 +21,7 @@ module Plans
 
     def plan_params
       params = plan.slice(:name, :price, :trial_days)
-      params["trial_days"] = [plan_dict["trial_days"] - shop_age, 0].max
+      params["trial_days"] = [params["trial_days"] - shop_age, 0].max
       params["test"] = false
       params["return_url"] = callback_admin_plans_url
       params
