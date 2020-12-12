@@ -21,7 +21,7 @@ RSpec.describe "Campaigns", type: :feature do
     # section = find(:css, '#mac-text')
     # expect(section).to have_text(campaign.body)
 
-    click_button "Send Now"
+    click_button "commit"
 
     expect(shop.reload.campaigns.last).to have_attributes campaign_attributes
     expect(page).to have_current_path(admin_campaigns_path)
@@ -45,7 +45,7 @@ RSpec.describe "Campaigns", type: :feature do
     # section = find(:css, '#mac-text')
     # expect(section).to have_text(campaign.body)
 
-    click_button "Send Now"
+    click_button "commit"
 
     expect(shop.reload.campaigns.last).to have_attributes campaign_attributes
     expect(page).to have_current_path(admin_campaigns_path)

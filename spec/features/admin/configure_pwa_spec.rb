@@ -13,10 +13,10 @@ RSpec.describe "Configure PWA", type: :feature do
       #fill_in "manifest_short_name", with: manifest.short_name
       #fill_in "manifest_theme_color", with: manifest.theme_color
       fill_in "manifest_background_color", with: manifest.background_color
-      fill_in "manifest_description", with: manifest.description
+      #fill_in "manifest_description", with: manifest.description
     end
 
-    click_button "Save"
+    click_button "commit"
 
     expect(shop.reload.manifest).to have_attributes manifest_attributes
   end

@@ -18,7 +18,7 @@ RSpec.describe "Configure Opt In", type: :feature do
       fill_in "optin_timer", with: optin.timer
     end
 
-    click_button "Save"
+    click_button "commit"
 
     expect(shop.reload.optins.push.first).to have_attributes optin_attributes
   end
@@ -26,7 +26,7 @@ RSpec.describe "Configure Opt In", type: :feature do
   it "User Configure Pwa Opt In" do
     shop = FactoryBot.create :shop
     visit admin_optins_path
-    click_link I18n.t("optin.pwa")
+    click_link(I18n.t("optin.pwa"), class: "nav-link")
 
     within "form" do
       fill_in "optin_title", with: optin.title
@@ -38,7 +38,7 @@ RSpec.describe "Configure Opt In", type: :feature do
       fill_in "optin_timer", with: optin.timer
     end
 
-    click_button "Save"
+    click_button "commit"
 
     expect(shop.reload.optins.pwa.first).to have_attributes optin_attributes
   end
