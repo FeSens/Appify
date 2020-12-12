@@ -24,25 +24,19 @@ module Admin
     end
 
     def set_locale
-      I18n.locale = "pt-BR"#current_shop.locale if I18n.available_locales.include? current_shop.locale.to_sym
+      I18n.locale = "pt-BR" # current_shop.locale if I18n.available_locales.include? current_shop.locale.to_sym
     end
 
     def verify_billing_plan
-      return unless current_shop.plan_name == "partner_test"
-      return if current_shop.shopify_domain == "teste-giovanna.myshopify.com"
+      return unless current_shop.plan.present?
+      return if current_shop.shopify_domain == "teste-giovanna.myshopify.com" # TODO: Put a flipper on it
+      
+      plan = Plan.find(1)
+      result = Plans::Creator.call(plan, current_shop)
+      return fullpage_redirect_to result.success if result.success?
 
-      @recurring_application_charge = ShopifyAPI::RecurringApplicationCharge.new(plan_params)
-      @recurring_application_charge.test = false
-      @recurring_application_charge.return_url = callback_admin_plans_url
-
-      return fullpage_redirect_to @recurring_application_charge.confirmation_url if @recurring_application_charge.save
-
-      flash[:danger] = @recurring_application_charge.errors.full_messages.first.to_s.capitalize
+      flash[:danger] = result.failure
       redirect_to admin_plans_path
-    end
-
-    def plan_params
-      Plan.find(1).slice(:name, :price, :trial_days)
     end
   end
 end
