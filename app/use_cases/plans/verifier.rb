@@ -1,9 +1,10 @@
 module Plans
   class Verifier < ApplicationUseCase
-    attr_reader :charge_id, :current_shop, :plan
+    attr_reader :charge_id, :current_shop
+    attr_accessor :plan
 
     def initialize(charge_id, current_shop)
-      @charge_id = plan
+      @charge_id = charge_id
       @current_shop = current_shop
     end
 
@@ -23,8 +24,8 @@ module Plans
     private
 
     def update_shop_limit
-      plan = Plan.find_by(name: plan.name)
-      current_shop.update(push_limit: plan.push_limit, plan_name: 1, plan_id: plan.id)
+      internal_plan = Plan.find_by(name: plan.name)
+      current_shop.update(push_limit: internal_plan.push_limit, plan_name: 1, plan_id: internal_plan.id)
     end
   end
 end
