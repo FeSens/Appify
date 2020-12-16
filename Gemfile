@@ -94,6 +94,9 @@ group :test do
   gem 'database_cleaner-active_record', '~> 1.8.0'
   gem 'simplecov', require: false
   gem 'shoulda-matchers', require: false
+  # Save externa HTTP requests for testing
+  gem 'vcr'
+  gem 'webmock'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
