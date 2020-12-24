@@ -40,6 +40,7 @@ gem 'bootstrap', '~>4.3.1'
 gem 'concurrent-ruby', require: 'concurrent'
 #Add Users Auth
 gem 'devise'
+gem 'omniauth-shopify-oauth2'
 #Add API validations
 gem 'dry-validation'
 gem 'dry-monads'

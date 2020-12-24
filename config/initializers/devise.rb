@@ -272,6 +272,9 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  config.omniauth :shopify, Rails.application.credentials.dig(:shopify, :api_key),
+                            Rails.application.credentials.dig(:shopify, :api_secret),
+                            scope: "read_themes, write_themes, read_orders, read_checkouts"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
