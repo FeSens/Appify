@@ -9,7 +9,24 @@ module Shopify
     end
 
     def call
-      User.create_with(uid: uid, credentials: credentials).find_or_create_by!(email: email)
+      shop.with_shopify_session do
+        @shop_data = ShopifyAPI::Shop.current
+      end
+      User.last#.create_with(uid: uid, credentials: credentials, shop_id: shop.id).find_or_create_by!(email: shop_email)
+    end
+
+    private
+
+    def shop_email
+      shop_data.email
+    end
+
+    def shop_data
+      shop_data ||= begin 
+        shop.with_shopify_session do
+          @shop_data = ShopifyAPI::Shop.current
+        end
+      end
     end
   end
 end

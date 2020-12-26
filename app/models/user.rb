@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, 
          :omniauthable, omniauth_providers: %i[shopify]
   
-  has_many :shops
+  belongs_to :shop, optional: true
 end
