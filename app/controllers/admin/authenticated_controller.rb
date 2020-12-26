@@ -2,7 +2,10 @@
 
 module Admin
   class AuthenticatedController < ApplicationController
-    include ShopifyApp::Authenticated if Rails.env.production?
+    layout "authenticated"
+    #include ShopifyApp::Authenticated #if Rails.env.production?
+    before_action :authenticate_user!
+
 
     helper_method :current_shop
     before_action :set_locale
