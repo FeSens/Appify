@@ -1,32 +1,34 @@
-<h2>Log in</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <div class="col-12 text-center mt-4">
+        <%= image_tag "favicon.png", class:"logo mx-auto" %>
+      </div>
+      <h2>Log in</h2>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-group">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+        </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+        <div class="form-group">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+        </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+        <% if devise_mapping.rememberable? %>
+          <div class="form-group">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+        <div class="form-group">
+          <%= f.submit "Entrar", class: "btn btn-purple btn-block text-center" %>
+        </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<form action="/users/auth/shopify" method="get">
-  <label for="shop">Enter your store's URL:</label>
-  <input type="text" name="shop" placeholder="your-shop-url.myshopify.com">
-  <button type="submit">Log In</button>
-</form>
-
-<%= render "devise/shared/links" %>
+</div>
