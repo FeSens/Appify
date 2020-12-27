@@ -2,9 +2,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   include ShopifyApp::LoginProtection
 
   def shopify
-    binding.pry
-    #Shopify::AuthCallback.call(auth, session, user_session, shop_session)
-    shop = Shop.find_by(shopify_domain: auth['uid'])
+    Shopify::AuthCallback.call(auth, session)
+    result = Shops::Creator.call(auth, session)
+    shop = result.success if result.success?
     user = Shopify::AuthUser.call(auth, shop)
     
     sign_in_and_redirect user, event: :authentication

@@ -1,24 +1,15 @@
 module Shopify
   # Performs login after OAuth completes
   class AuthCallback < ApplicationUseCase
-    attr_reader :auth_hash, :session, :user_session, :shop_session
+    attr_reader :auth_hash, :session
 
-    def initialize(auth, session, user_session, shop_session)
+    def initialize(auth, session)
       @auth_hash = auth
       @session = session
-      @user_session = user_session
-      @shop_session = shop_session
     end
 
     def call
-      return respond_with_error if invalid_request?
-
       store_access_token_and_build_session
-
-      if start_user_token_flow?
-        return respond_with_user_token_flow
-      end
-
       perform_post_authenticate_jobs
     end
 
@@ -41,27 +32,6 @@ module Shopify
       install_webhooks
       install_scripttags
       perform_after_authenticate_job
-    end
-
-    def respond_with_error
-      if jwt_request?
-        head(:unauthorized)
-      else
-        flash[:error] = I18n.t('could_not_log_in')
-        redirect_to(login_url_with_optional_shop)
-      end
-    end
-
-    def start_user_token_flow?
-      if jwt_request?
-        false
-      else
-        ShopifyApp::SessionRepository.user_storage.present? && user_session.blank?
-      end
-    end
-
-    def jwt_request?
-      false
     end
 
     def shop_name
@@ -96,11 +66,11 @@ module Shopify
 
       session[:shopify_user] = associated_user
       if session[:shopify_user].present?
-        session[:shop_id] = nil if shop_session && shop_session.domain != shop_name
+        session[:shop_id] = nil
         session[:user_id] = ShopifyApp::SessionRepository.store_user_session(session_store, associated_user)
       else
         session[:shop_id] = ShopifyApp::SessionRepository.store_shop_session(session_store)
-        session[:user_id] = nil if user_session && user_session.domain != shop_name
+        session[:user_id] = nil
       end
       session[:shopify_domain] = shop_name
       session[:user_session] = auth_hash&.extra&.session
@@ -111,7 +81,7 @@ module Shopify
 
       ShopifyApp::WebhooksManager.queue(
         shop_name,
-        shop_session&.token || user_session.token,
+        token,
         ShopifyApp.configuration.webhooks
       )
     end
@@ -121,7 +91,7 @@ module Shopify
 
       ScripttagsManager.queue(
         shop_name,
-        shop_session&.token || user_session.token,
+        token,
         ShopifyApp.configuration.scripttags
       )
     end
