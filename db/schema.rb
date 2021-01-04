@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2020_12_05_213356) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "impressions", default: 0
     t.integer "clicks", default: 0
-    t.datetime "release_date", default: "2020-10-25 21:29:13", null: false
+    t.datetime "release_date", default: "2021-01-04 02:46:05", null: false
     t.bigint "automatic_campaign_id"
     t.index ["automatic_campaign_id"], name: "index_campaigns_on_automatic_campaign_id"
     t.index ["shop_id"], name: "index_campaigns_on_shop_id"
