@@ -18,8 +18,10 @@
   <%= link_to "Didn't receive unlock instructions?", new_user_unlock_path %><br />
 <% end %>
 
+<hr>
+
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", user_shopify_omniauth_authorize_path %><br />
+    <%= link_to "Entrar com #{OmniAuth::Utils.camelize(provider)}", user_shopify_omniauth_authorize_path, class: "btn btn-primary btn-block text-center" %><br />
   <% end %>
 <% end %>

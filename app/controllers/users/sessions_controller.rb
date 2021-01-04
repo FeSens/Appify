@@ -7,6 +7,11 @@ class Users::SessionsController < Devise::SessionsController
     super
   end
 
+  def create
+    binding.pry
+    super
+  end
+
   def after_sign_out_path_for(_resource_or_scope)
     admin_home_index_path
   end
@@ -24,6 +29,10 @@ class Users::SessionsController < Devise::SessionsController
   def sanitize_shop_param(params)
     return unless params[:shop].present?
     ShopifyApp::Utils.sanitize_shop_domain(params[:shop])
+  end
+
+  def auth
+    @auth ||= request.env['omniauth.auth']
   end
 
   
