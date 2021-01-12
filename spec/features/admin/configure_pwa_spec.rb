@@ -3,9 +3,15 @@ require "rails_helper"
 RSpec.describe "Configure PWA", type: :feature do
   let(:manifest) { FactoryBot.build :manifest }
   let(:manifest_attributes) { manifest.attributes.except("theme_color", "short_name", "created_at", "id", "updated_at", "shop_id") }
+  let(:user) { FactoryBot.build :user }
+  let(:shop) { FactoryBot.build :shop }
+  
+  before(:each) do
+    user.update(shop: shop)
+    login_as(user, :scope => :user)
+  end
 
   it "User Configure PWA" do
-    shop = FactoryBot.create :shop
     visit edit_admin_pwa_path
 
     within "form" do

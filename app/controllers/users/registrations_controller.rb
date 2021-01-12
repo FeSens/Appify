@@ -13,7 +13,6 @@ module Users
         raise LoginError unless shop.success
 
         @user.update(shop: shop.success)
-        session[:shop_id] = @user.shop_id
       end
     rescue LoginError => e
     end

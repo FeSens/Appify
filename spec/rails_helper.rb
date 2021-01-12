@@ -86,4 +86,6 @@ RSpec.configure do |config|
   config.around(type: :worker) do |example|
     Sidekiq::Testing.fake! { example.run } if example.metadata[:sidekiq_fake] == true
   end
+  # For Devise > 4.1.1
+  config.include Warden::Test::Helpers, :type => :feature
 end

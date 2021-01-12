@@ -15,7 +15,7 @@ module Admin
 
     def current_shop
       @current_shop ||= begin
-        Shop.find(session[:shop_id])
+        current_user.shop
       end
     end
 

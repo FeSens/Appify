@@ -3,9 +3,15 @@ require "rails_helper"
 RSpec.describe "Configure Opt In", type: :feature do
   let(:optin) { FactoryBot.build :optin }
   let(:optin_attributes) { optin.attributes.except("created_at", "id", "updated_at", "shop_id", "kind") }
+  let(:user) { FactoryBot.build :user }
+  let(:shop) { FactoryBot.build :shop }
+  
+  before(:each) do
+    user.update(shop: shop)
+    login_as(user, :scope => :user)
+  end
 
   it "User Configure Push Opt In" do
-    shop = FactoryBot.create :shop
     visit admin_optins_path
 
     within "form" do
@@ -24,7 +30,6 @@ RSpec.describe "Configure Opt In", type: :feature do
   end
 
   it "User Configure Pwa Opt In" do
-    shop = FactoryBot.create :shop
     visit admin_optins_path
     click_link(I18n.t("optin.pwa"), class: "nav-link")
 
