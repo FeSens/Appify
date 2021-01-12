@@ -7,6 +7,11 @@ class Users::SessionsController < Devise::SessionsController
     super
   end
 
+  def create
+    super
+    session[:shop_id] = @user.shop_id
+  end
+
   def after_sign_out_path_for(_resource_or_scope)
     admin_home_index_path
   end

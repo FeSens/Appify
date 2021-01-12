@@ -15,8 +15,6 @@ module Admin
 
     def current_shop
       @current_shop ||= begin
-        return Shop.last unless Rails.env.production?
-
         Shop.find(session[:shop_id])
       end
     end

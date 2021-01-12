@@ -6,4 +6,6 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[shopify]
   
   belongs_to :shop, optional: true
+
+  attr_accessor :name, :domain, :provider
 end
