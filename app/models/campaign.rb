@@ -8,6 +8,7 @@ class Campaign < ApplicationRecord
 
   def ctr
     return ((clicks / impressions.to_f) * 100).round(2) if impressions > 0
+
     0
   end
 end
