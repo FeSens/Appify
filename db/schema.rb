@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_24_182246) do
+ActiveRecord::Schema.define(version: 2021_01_12_152529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -259,7 +259,6 @@ ActiveRecord::Schema.define(version: 2020_12_24_182246) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "domain"
     t.integer "push_limit", default: 25000
-    t.integer "plan_name", default: 0
     t.string "name"
     t.boolean "theme_verified", default: false
     t.datetime "last_auth"
@@ -267,6 +266,7 @@ ActiveRecord::Schema.define(version: 2020_12_24_182246) do
     t.jsonb "metadata"
     t.string "locale", default: "en"
     t.bigint "plan_id"
+    t.string "type", default: "shopify"
     t.index ["plan_id"], name: "index_shops_on_plan_id"
     t.index ["shopify_domain"], name: "index_shops_on_shopify_domain", unique: true
   end
