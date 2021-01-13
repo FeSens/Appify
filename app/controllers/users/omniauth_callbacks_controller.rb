@@ -4,12 +4,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def shopify
     result = Shops::Creator.call(auth, session)
     shop = result.success if result.success?
-    
-    Shopify::AuthCallback.call(auth, session)
     user = Shopify::AuthUser.call(auth, shop)
     
     sign_in_and_redirect user, event: :authentication
-    set_flash_message(:notice, :success, kind: "Facebook") if is_navigational_format?
+    set_flash_message(:notice, :success, kind: "Shopify") if is_navigational_format?
   end
 
   protected

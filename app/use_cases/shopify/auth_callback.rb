@@ -10,7 +10,9 @@ module Shopify
 
     def call
       store_access_token_and_build_session
+      binding.pry
       perform_post_authenticate_jobs
+      Shop.find(session[:shop_id])
     end
 
     private

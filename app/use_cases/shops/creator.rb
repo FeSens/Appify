@@ -9,7 +9,7 @@ module Shops
 
     def call
       shop = create_shop
-      return Success(shop) if shop.save
+      return Success(shop) if shop.persisted?
 
       Failure(shop.errors.full_messages.first.to_s.capitalize)
     end
