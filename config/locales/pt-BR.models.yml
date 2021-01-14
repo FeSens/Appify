@@ -42,6 +42,7 @@ pt-BR:
         password_confirmation: "Confirmar a Senha"
         name: "Nome"
         domain: "Website"
+        remember_me: "Me mantenha conectado"
       optin:
         title: "Tîtulo"
         body: "Corpo da mensagem"
