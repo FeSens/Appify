@@ -4,6 +4,11 @@
     border-top-right-radius: 0.5em;
     border-bottom-right-radius: 0.5em;
     border-bottom-left-radius: 0.5em;
+
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
   }
   h3, .heading--3 {
     -webkit-font-smoothing: antialiased;
