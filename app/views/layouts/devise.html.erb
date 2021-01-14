@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang=<%= I18n.locale %>>
+  <head>
+    <title>Aplicatify</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= favicon_link_tag asset_path('favicon.png') %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href='https://fonts.googleapis.com/css?family=Varela Round' rel='stylesheet'>
+    <%= render partial: "layouts/analytics" %>
+    <script src="https://sak.userreport.com/aplicatify/launcher.js" async id="userreport-launcher-script"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-6 mx-auto mt-5 card">
+          <div class="col-12 text-center mt-4">
+            <%= image_tag "favicon.png", class:"logo mx-auto" %>
+          </div>
+            <div class="row">
+              <div class="col-12">
+                <ul class="nav nav-tabs">
+                  <li class="nav-item">
+                    <a class="nav-link <%= "active" if current_page?(new_user_session_path) %>" href="/users/sign_in"> Login </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link <%= "active" if current_page?(new_user_registration_path) %>" href="/users/sign_up"> Registrar </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

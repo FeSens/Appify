@@ -1,4 +1,5 @@
 class Users::SessionsController < Devise::SessionsController
+  layout "devise"
   include ShopifyApp::LoginProtection
 
   def new
