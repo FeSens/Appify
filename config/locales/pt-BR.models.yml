@@ -35,7 +35,13 @@ pt-BR:
       optin: "Pop-Up"
       manifest: "App"
       plan: "Plano"
+      user: "Usuario"
     attributes:
+      user:
+        password: "Senha"
+        password_confirmation: "Confirmar a Senha"
+        name: "Nome"
+        domain: "Website"
       optin:
         title: "Tîtulo"
         body: "Corpo da mensagem"
