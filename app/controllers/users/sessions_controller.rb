@@ -5,6 +5,8 @@ class Users::SessionsController < Devise::SessionsController
   def new
     session['shopify.omniauth_params'] = { shop: referer_sanitized_shop_name } if  referer_sanitized_shop_name.present?
     session['shopify.omniauth_params'] = { shop: sanitized_shop_name } if sanitized_shop_name.present?
+    return redirect_to user_shopify_omniauth_authorize_path if session['shopify.omniauth_params'].present?
+
     super
   end
 

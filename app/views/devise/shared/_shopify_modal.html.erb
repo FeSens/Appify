@@ -1,0 +1,118 @@
+<div class="modal shopify" tabindex="-1" role="dialog" id="UiModalContainer">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Fazer login na sua loja da Shopify</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="AuthLoginForm" action="/login/initiate_shopify_auth/aplicatify?locale=pt-BR" accept-charset="UTF-8"
+          method="post"><input name="utf8" type="hidden" value="✓">
+          <label class="marketing-input-wrapper"><span
+              class="marketing-label marketing-label--in-field marketing-label--floating">URL de sua loja</span><input
+              type="text" name="shop" id="AuthLoginShopInput" value="" placeholder="url-de-sua-loja.myshopify.com"
+              size="120" class="marketing-input marketing-input--floating"><span
+              class="marketing-form__messages"></span>
+          </label>
+
+          <p class="text-minor">Ainda não criou uma loja? Saiba mais em <a href="//shopify.com" rel="noopener nofollow"
+              target="_blank" class="link--external">pt.shopify.com</a></p>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="marketing-button marketing-button--small marketing-button--secondary ui-modal__secondary-action">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="s" class="modal shopify" tabindex="-1" role="dialog">
+  <div id="UiModalBackdrop" class="ui-modal-backdrop ui-modal-backdrop--visible"></div>
+  <div id="UiModalContents" class="ui-modal-contents">
+    <div id="AuthModal" class="ui-modal ui-modal--tall ui-modal--visible" role="dialog"
+      aria-labelledby="AuthModalHeaderTitle" aria-hidden="false" tabindex="0">
+      <div class="ui-modal__header">
+        <h3 id="AuthModalHeaderTitle" class="ui-modal__header-title heading--3">Fazer login na sua loja da Shopify</h3>
+        <button class="ui-modal__close-btn" type="button" aria-label="Close dialog"><svg class="icon" aria-hidden="true"
+            focusable="false">
+            <use xlink:href="#modules-close"></use>
+          </svg></button>
+      </div>
+      <div class="ui-modal__body" role="document">
+        <form id="AuthLoginForm" action="/login/initiate_shopify_auth/aplicatify?locale=pt-BR" accept-charset="UTF-8"
+          method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token"
+            value="O4lXCHstzTt6jCVJjkehlb2Gvtoo6A9zBuDwFMK4putv3ni2V4x/KVF206c0EIGqRA4hjxDQps6rfO27Vs2Fbg==">
+          <input type="hidden" name="auth_intent" id="auth_intent" value="install">
+          <input type="hidden" name="return_to" id="return_to" value="/login?locale=pt-BR">
+          <label class="marketing-input-wrapper"><span
+              class="marketing-label marketing-label--in-field marketing-label--floating">URL de sua loja</span><input
+              type="text" name="shop" id="AuthLoginShopInput" value="" placeholder="url-de-sua-loja.myshopify.com"
+              size="120" class="marketing-input marketing-input--floating"><span
+              class="marketing-form__messages"></span></label>
+
+          <p class="text-minor">Ainda não criou uma loja? Saiba mais em <a href="//shopify.com" rel="noopener nofollow"
+              target="_blank" class="link--external">pt.shopify.com <span class="visuallyhidden">(abre em uma nova
+                janela)</span></a></p>
+        </form>
+      </div>
+      <div class="ui-modal__footer">
+        <div class="ui-modal__tertiary-action">
+          <form class="button_to" method="post"
+            action="https://apps.shopify.com/partner/login?locale=pt-BR&amp;return_path=%2Faplicatify%3Flocale%3Dpt-BR">
+            <input class="button-as-link ui-modal__tertiary-action" type="submit"
+              value="Login de desenvolvedores"><input type="hidden" name="authenticity_token"
+              value="2FfR93dL/YOUnryAfZbKZLkBn1G3zr/QYZtQ/nY0YS6MAP5JW+pPkb9kSm7HwepbQIkABI/2Fm3MB01R4kFCqw=="></form>
+        </div>
+        <button class="marketing-button marketing-button--small marketing-button--secondary ui-modal__secondary-action"
+          type="button">Cancelar</button>
+        <button class="marketing-button marketing-button--small ui-modal__primary-action" type="button"
+          disabled="">Fazer login</button>
+      </div>
+    </div>
+  </div>
+  <div id="AuthModal" class="ui-modal ui-modal--tall ui-modal--visible" role="dialog"
+    aria-labelledby="AuthModalHeaderTitle" aria-hidden="false" tabindex="0">
+    <div class="ui-modal__header">
+      <h3 id="AuthModalHeaderTitle" class="ui-modal__header-title heading--3">Fazer login na sua loja da Shopify</h3>
+      <button class="ui-modal__close-btn" type="button" aria-label="Close dialog"><svg class="icon" aria-hidden="true"
+          focusable="false">
+          <use xlink:href="#modules-close"></use>
+        </svg></button>
+    </div>
+    <div class="ui-modal__body" role="document">
+
+
+      <form id="AuthLoginForm" action="/login/initiate_shopify_auth/aplicatify?locale=pt-BR" accept-charset="UTF-8"
+        method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token"
+          value="O4lXCHstzTt6jCVJjkehlb2Gvtoo6A9zBuDwFMK4putv3ni2V4x/KVF206c0EIGqRA4hjxDQps6rfO27Vs2Fbg==">
+        <input type="hidden" name="auth_intent" id="auth_intent" value="install">
+        <input type="hidden" name="return_to" id="return_to" value="/login?locale=pt-BR">
+        <label class="marketing-input-wrapper"><span
+            class="marketing-label marketing-label--in-field marketing-label--floating">URL de sua loja</span><input
+            type="text" name="shop" id="AuthLoginShopInput" value="" placeholder="url-de-sua-loja.myshopify.com"
+            size="120" class="marketing-input marketing-input--floating"><span
+            class="marketing-form__messages"></span></label>
+
+        <p class="text-minor">Ainda não criou uma loja? Saiba mais em <a href="//shopify.com" rel="noopener nofollow"
+            target="_blank" class="link--external">pt.shopify.com <span class="visuallyhidden">(abre em uma nova
+              janela)</span></a></p>
+      </form>
+    </div>
+    <div class="ui-modal__footer">
+      <div class="ui-modal__tertiary-action">
+        <form class="button_to" method="post"
+          action="https://apps.shopify.com/partner/login?locale=pt-BR&amp;return_path=%2Faplicatify%3Flocale%3Dpt-BR">
+          <input class="button-as-link ui-modal__tertiary-action" type="submit" value="Login de desenvolvedores"><input
+            type="hidden" name="authenticity_token"
+            value="2FfR93dL/YOUnryAfZbKZLkBn1G3zr/QYZtQ/nY0YS6MAP5JW+pPkb9kSm7HwepbQIkABI/2Fm3MB01R4kFCqw=="></form>
+      </div>
+      <button class="marketing-button marketing-button--small marketing-button--secondary ui-modal__secondary-action"
+        type="button">Cancelar</button>
+      <button class="marketing-button marketing-button--small ui-modal__primary-action" type="button" disabled="">Fazer
+        login</button>
+    </div>
+  </div>
+</div>

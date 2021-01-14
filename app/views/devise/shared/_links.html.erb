@@ -23,7 +23,13 @@
 <hr>
 
 <%- if devise_mapping.omniauthable? %>
-  <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "Entrar com #{OmniAuth::Utils.camelize(provider)}", user_shopify_omniauth_authorize_path, class: "btn btn-primary btn-block text-center" %><br />
+  <%- if session["dad"].present? %>
+    <%= link_to "Entrar com #{OmniAuth::Utils.camelize("shopify")}", user_shopify_omniauth_authorize_path, class: "btn btn-primary btn-block text-center" %><br />
+  <%- else %>
+    <button type="button" class="btn btn-primary btn-block text-center" data-toggle="modal" data-target="#UiModalContainer">
+      <%= "Entrar com #{OmniAuth::Utils.camelize("shopify")}" %>
+    </button><br />
   <% end %>
 <% end %>
+
+<%= render "devise/shared/shopify_modal" %>
