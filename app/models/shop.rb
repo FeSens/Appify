@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
 class Shop < ApplicationRecord
-  include ShopifyApp::ShopSessionStorage
-
-  enum plan_name: { partner_test: 0, retainer: 1, influencer: 2, beginner: 3}
   has_one :manifest, dependent: :destroy
   has_one :configuration, dependent: :destroy
+
+  has_many :user, dependent: :nullify
   has_many :pushes, dependent: :destroy
   has_many :push_interactions, dependent: :destroy
   has_many :subscriber_counts, dependent: :destroy
@@ -16,6 +15,7 @@ class Shop < ApplicationRecord
   has_many :carts, dependent: :destroy
   has_many :opt_in_counts, dependent: :destroy
   has_many :automatic_campaigns, dependent: :destroy
+  has_many :webhooks, dependent: :destroy
 
   belongs_to :plan, optional: true
 
@@ -34,10 +34,6 @@ class Shop < ApplicationRecord
       tag: "internal",
       url: "/?ref=aplicatify&utm_source=aplicatify&utm_medium=app&utm_campaign=app"
     )
-  end
-
-  def api_version
-    ShopifyApp.configuration.api_version
   end
 
   def custom_data

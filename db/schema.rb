@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_05_213356) do
+ActiveRecord::Schema.define(version: 2021_01_12_155603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -253,13 +253,12 @@ ActiveRecord::Schema.define(version: 2020_12_05_213356) do
   end
 
   create_table "shops", force: :cascade do |t|
-    t.string "shopify_domain", null: false
-    t.string "shopify_token", null: false
+    t.string "shopify_domain"
+    t.string "shopify_token"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "domain"
     t.integer "push_limit", default: 25000
-    t.integer "plan_name", default: 0
     t.string "name"
     t.boolean "theme_verified", default: false
     t.datetime "last_auth"
@@ -267,6 +266,7 @@ ActiveRecord::Schema.define(version: 2020_12_05_213356) do
     t.jsonb "metadata"
     t.string "locale", default: "en"
     t.bigint "plan_id"
+    t.string "type", default: "Shop::Shopify"
     t.index ["plan_id"], name: "index_shops_on_plan_id"
     t.index ["shopify_domain"], name: "index_shops_on_shopify_domain", unique: true
   end
@@ -279,6 +279,27 @@ ActiveRecord::Schema.define(version: 2020_12_05_213356) do
     t.datetime "updated_at", precision: 6, null: false
     t.date "date", default: -> { "CURRENT_DATE" }
     t.index ["shop_id"], name: "index_subscriber_counts_on_shop_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "uid"
+    t.jsonb "credentials"
+    t.bigint "shop_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["shop_id"], name: "index_users_on_shop_id"
   end
 
   create_table "webhooks", force: :cascade do |t|
@@ -312,5 +333,6 @@ ActiveRecord::Schema.define(version: 2020_12_05_213356) do
   add_foreign_key "pushes", "customers"
   add_foreign_key "shops", "plans"
   add_foreign_key "subscriber_counts", "shops"
+  add_foreign_key "users", "shops"
   add_foreign_key "webhooks", "shops"
 end

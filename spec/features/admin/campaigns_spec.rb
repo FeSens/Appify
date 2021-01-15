@@ -4,9 +4,15 @@ RSpec.describe "Campaigns", type: :feature do
   let(:campaign_name) { "Test Campaign 1" }
   let(:campaign) { FactoryBot.build :campaign }
   let(:campaign_attributes) { campaign.attributes.slice("name", "title", "body", "url") }
+  let(:user) { FactoryBot.build :user }
+  let(:shop) { FactoryBot.build :shop }
+  
+  before(:each) do
+    user.update(shop: shop)
+    login_as(user, :scope => :user)
+  end
 
   it "User creates a new campaign" do
-    shop = FactoryBot.create :shop
     visit new_admin_campaign_path
 
     within "form" do
@@ -21,7 +27,7 @@ RSpec.describe "Campaigns", type: :feature do
     # section = find(:css, '#mac-text')
     # expect(section).to have_text(campaign.body)
 
-    click_button "Send Now"
+    click_button "commit"
 
     expect(shop.reload.campaigns.last).to have_attributes campaign_attributes
     expect(page).to have_current_path(admin_campaigns_path)
@@ -29,7 +35,6 @@ RSpec.describe "Campaigns", type: :feature do
   end
 
   it "User edit an existing campaign" do
-    shop = FactoryBot.create :shop
     existing_campaign = FactoryBot.create :campaign, shop: shop
     visit edit_admin_campaign_path(existing_campaign)
 
@@ -45,7 +50,7 @@ RSpec.describe "Campaigns", type: :feature do
     # section = find(:css, '#mac-text')
     # expect(section).to have_text(campaign.body)
 
-    click_button "Send Now"
+    click_button "commit"
 
     expect(shop.reload.campaigns.last).to have_attributes campaign_attributes
     expect(page).to have_current_path(admin_campaigns_path)
@@ -57,7 +62,6 @@ RSpec.describe "Campaigns", type: :feature do
 
   it "User list all campaigns" do
     other_campaigns = FactoryBot.create_list :campaign, 3
-    shop = FactoryBot.create :shop
     campaigns = FactoryBot.create_list :campaign, 3, shop: shop
     visit admin_campaigns_path
 

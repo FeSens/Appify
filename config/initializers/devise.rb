@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'fe024a13aa8c048b86638b3fd2fce44cc68f4e1729ead935b8945644ac635fc06afb7c4d38d2d26923075fd4912fe019c0d8d33fed48ae452f97c738bda70c8d'
+  # config.secret_key = '2917cf87639a33bdc7bb025b5b6e08c005b61542205d84863cf23cde5c9798ca2d0fe364ca0355b1b73f2215423233298f5355781bfe0400cef13e935268f312'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '9dadf530c7ea8669d438c4b9e9b7015886bf76bf2ee7b6e08222a42a42f95044d87a8f80114b2165c66f6af542bf386e99a7785c949aa657a27f17222124480a'
+  # config.pepper = 'e2d086035d152a86e31f66f7b4f221e625a68e78a3955807fd36336e3514e8f386dc8ba7f661a2ec1833d90cb457368f774b294ee184802a0b97da47e95a46fa'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -272,6 +272,23 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  config.omniauth :shopify, Rails.application.credentials.dig(:shopify, :api_key),
+                            Rails.application.credentials.dig(:shopify, :api_secret),
+                            scope: "read_themes, write_themes, read_orders, read_checkouts",
+                            setup: lambda { |env|
+                              strategy = env['omniauth.strategy']
+                          
+                              shopify_auth_params = strategy.session['shopify.omniauth_params']&.with_indifferent_access
+                              shop = if shopify_auth_params.present?
+                                "https://#{shopify_auth_params[:shop]}"
+                              else
+                                ''
+                              end
+                          
+                              strategy.options[:client_options][:site] = shop
+                              strategy.options[:old_client_secret] = ShopifyApp.configuration.old_secret
+                              strategy.options[:per_user_permissions] = strategy.session[:user_tokens]
+                            }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

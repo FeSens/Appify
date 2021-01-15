@@ -1,0 +1,38 @@
+<div class="modal shopify" tabindex="-1" role="dialog" id="UiModalContainer">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Fazer login na sua loja da Shopify</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="shopify-form" action= <%= user_session_path %> accept-charset="UTF-8"
+          method="get"><input name="utf8" type="hidden" value="✓">
+          <label class="marketing-input-wrapper"><span
+              class="marketing-label marketing-label--in-field marketing-label--floating">URL de sua loja</span><input
+              type="text" name="shop" id="shop" value="" placeholder="url-de-sua-loja.myshopify.com"
+              size="120" class="marketing-input marketing-input--floating"><span
+              class="marketing-form__messages"></span>
+          </label>
+
+          <p class="text-minor">Ainda não criou uma loja? Saiba mais em <a href="//shopify.com" rel="noopener nofollow"
+              target="_blank" class="link--external">pt.shopify.com</a></p>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="marketing-button marketing-button--small marketing-button--secondary ui-modal__secondary-action" data-dismiss="modal">Cancelar</button>
+        <button id="submit-shopify" type="button" class="marketing-button marketing-button--small ui-modal__primary-action" >Fazer login</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+       $("#submit-shopify").click(function() {
+           $("#shopify-form").submit();
+       });
+    });
+</script>

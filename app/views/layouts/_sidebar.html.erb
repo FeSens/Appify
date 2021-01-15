@@ -51,11 +51,18 @@
     <div class="container-fluid">
       <div class="row">
         <nav class="navbar navbar-expand-lg w-100">
-          <span class="greetings" ><%= t('admin_commons.greetings')%>,</span>
-          <span class="name ml-2" ><%= shop_name %></span>
+          <div class="col-9">
+            <span class="greetings" ><%= t('admin_commons.greetings')%>,</span>
+            <span class="name ml-2" ><%= shop_name %></span>
+          </div>
+          <% if user_signed_in? %>
+            <div class="col-3 text-right">
+              <span class="logout ml-2" ><%= link_to "Sair", destroy_user_session_path, method: :delete, :class => 'navbar-link'%></span>
+            </div>
+          <% end %>
         </nav>
       </div>
-      <% unless theme_verified? %>
+      <% unless theme_verified? || current_shop.type != "Shop::Shopify"%>
         <div class="row">
           <div class="alert-danger w-100">
             Sorry, an error occurred during the installation process and your theme was not automatically modified.<br>

@@ -40,8 +40,10 @@ gem 'bootstrap', '~>4.3.1'
 gem 'concurrent-ruby', require: 'concurrent'
 #Add Users Auth
 gem 'devise'
+gem 'omniauth-shopify-oauth2'
 #Add API validations
 gem 'dry-validation'
+gem 'dry-monads'
 gem 'image_processing', '~> 1.2'
 gem 'pry'
 gem 'redis'
@@ -93,6 +95,9 @@ group :test do
   gem 'database_cleaner-active_record', '~> 1.8.0'
   gem 'simplecov', require: false
   gem 'shoulda-matchers', require: false
+  # Save externa HTTP requests for testing
+  gem 'vcr'
+  gem 'webmock'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end

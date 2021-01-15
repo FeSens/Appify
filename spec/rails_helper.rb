@@ -20,6 +20,13 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+VCR.configure do |c|
+  c.configure_rspec_metadata!
+  c.cassette_library_dir = "spec/vcr"
+  c.hook_into :webmock
+  c.allow_http_connections_when_no_cassette = true
+end
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -79,4 +86,6 @@ RSpec.configure do |config|
   config.around(type: :worker) do |example|
     Sidekiq::Testing.fake! { example.run } if example.metadata[:sidekiq_fake] == true
   end
+  # For Devise > 4.1.1
+  config.include Warden::Test::Helpers, :type => :feature
 end

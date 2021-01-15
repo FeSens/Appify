@@ -2,20 +2,21 @@
 
 module Admin
   class AuthenticatedController < ApplicationController
-    include ShopifyApp::Authenticated if Rails.env.production?
+    layout "authenticated"
+    #include ShopifyApp::Authenticated #if Rails.env.production?
+    before_action :save_login_params
+    before_action :authenticate_user!
 
     helper_method :current_shop
     before_action :set_locale
+    before_action :verify_billing_plan, only: %i[index] if Rails.env.production?
     after_action :set_activity, only: %i[index]
-    before_action :verify_billing_plan, only: %i[index]
 
     private
 
     def current_shop
       @current_shop ||= begin
-        return Shop.last unless Rails.env.production?
-
-        Shop.find(session[:shop_id])
+        current_user.shop
       end
     end
 
@@ -24,25 +25,21 @@ module Admin
     end
 
     def set_locale
-      I18n.locale = "pt-BR"#current_shop.locale if I18n.available_locales.include? current_shop.locale.to_sym
+      I18n.locale = "pt-BR" # current_shop.locale if I18n.available_locales.include? current_shop.locale.to_sym
     end
 
     def verify_billing_plan
-      return unless current_shop.plan_name == "partner_test"
-      return if current_shop.shopify_domain == "teste-giovanna.myshopify.com"
+      return if current_shop.plan.present?
+      return if current_shop.shopify_domain == "teste-giovanna.myshopify.com" # TODO: Put a flipper on it
+      return unless current_shop.type == "Shop::Shopify"
+      # TODO: Refactor Plans::Creator to take shop type in to account
 
-      @recurring_application_charge = ShopifyAPI::RecurringApplicationCharge.new(plan_params)
-      @recurring_application_charge.test = false
-      @recurring_application_charge.return_url = callback_admin_plans_url
+      plan = Plan.find(1)
+      result = Plans::Creator.call(plan, current_shop, callback_admin_plans_url)
+      return fullpage_redirect_to result.success if result.success?
 
-      return fullpage_redirect_to @recurring_application_charge.confirmation_url if @recurring_application_charge.save
-
-      flash[:danger] = @recurring_application_charge.errors.full_messages.first.to_s.capitalize
+      flash[:danger] = result.failure
       redirect_to admin_plans_path
-    end
-
-    def plan_params
-      Plan.find(1).slice(:name, :price, :trial_days)
     end
   end
 end
