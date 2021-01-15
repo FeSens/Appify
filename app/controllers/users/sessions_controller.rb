@@ -2,9 +2,9 @@ class Users::SessionsController < Devise::SessionsController
   layout "devise"
   include ShopifyApp::LoginProtection
 
+  before_action :save_login_params
+
   def new
-    session['shopify.omniauth_params'] = { shop: referer_sanitized_shop_name } if  referer_sanitized_shop_name.present?
-    session['shopify.omniauth_params'] = { shop: sanitized_shop_name } if sanitized_shop_name.present?
     return redirect_to user_shopify_omniauth_authorize_path if session['shopify.omniauth_params'].present?
 
     super
@@ -19,15 +19,6 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   private
-  
-  def sanitized_shop_name
-    @sanitized_shop_name ||= sanitize_shop_param(params)
-  end
-
-  def sanitize_shop_param(params)
-    return unless params[:shop].present?
-    ShopifyApp::Utils.sanitize_shop_domain(params[:shop])
-  end
 
   def auth
     @auth ||= request.env['omniauth.auth']

@@ -5,6 +5,7 @@ module Admin
     layout "authenticated"
     #include ShopifyApp::Authenticated #if Rails.env.production?
     before_action :authenticate_user!
+    before_action :save_login_params
 
     helper_method :current_shop
     before_action :set_locale
