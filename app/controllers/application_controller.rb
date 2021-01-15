@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   private
 
   def save_login_params
+    return if current_user.present?
+
     session['shopify.omniauth_params'] = shopify_omniauth_params if sanitized_shop_name.present?
   end
 
