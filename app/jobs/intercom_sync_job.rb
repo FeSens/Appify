@@ -1,4 +1,5 @@
 class IntercomSyncJob < ApplicationJob
+  sidekiq_options retry: false
   # Creates a user in intercom if it does not exist. If it does exist, it updates it
   def perform(user)
     # Creates the intercom client with that access token
