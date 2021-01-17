@@ -7,5 +7,13 @@ module Public
         { pwa: pwa, push: push }
       end
     end
+
+    def show
+      @optins = Rails.cache.fetch("public/jscontroller/#{params[:id]}", expires_in: 5.seconds) do
+        pwa  = Optin.find_by(shop_id: params[:id], kind: "pwa")
+        push = Optin.find_by(shop_id: params[:id], kind: "push")
+        { pwa: pwa, push: push }
+      end
+    end
   end
 end

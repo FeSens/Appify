@@ -1,3 +1,13 @@
-<link rel='manifest' href= <%= public_manifest_index_path(h: current_shop.id) %>>
-<script type='text/javascript' async='' src= <%= public_js_path(h: current_shop.id) %>></script>
-<script type='text/javascript' async='' src= <%= public_service_worker_path(h: current_shop.id) %>></script>
+<!-- APLICATIFY:START -->
+<pre><code>
+  <link rel='manifest' href= <%= public_manifest_path(current_shop.manifest) %>>
+  <script type='text/javascript' async='' src= <%= public_j_path(current_shop) %>></script>
+  <script type='text/javascript' async='' src= <%= public_service_worker_path(h: current_shop.id) %>></script>
+</code></pre>
+<!-- APLICATIFY:END -->
+
+<!-- APLICATIFY:START -->
+<link rel='manifest' href='/apps/script/public/manifest.json'>
+<script type='text/javascript' async='' src='/apps/script/serviceworker-register.js'></script>
+<script type='text/javascript' async='' src='/apps/script/public/preferences.js'></script>
+<!-- APLICATIFY:END -->

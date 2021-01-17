@@ -1,0 +1,20 @@
+<% cache @manifest do %>
+  {
+    "name": "<%= @manifest.name %>",
+    "short_name": "<%= @manifest.short_name %>",
+    "start_url": "/?ref=aplicatify&utm_source=aplicatify&utm_medium=app&utm_campaign=app",
+    "icons": [
+    <% icon_sizes.each.with_index do |dim, i| %>
+      {
+        "src": "<%=  @manifest.icon.variant(resize: dim).processed.service_url.sub(/\?.*/, '') if @manifest.icon.present? %>",
+        "sizes": "<%= dim %>",
+        "type": "<%= @manifest.icon.content_type if @manifest.icon.present? %>"
+      }<%= i == (icon_sizes.length - 1) ? '' : ',' %>
+    <% end %>
+    ],
+    "theme_color":  "<%= hash_color(@manifest.theme_color) %>",
+    "background_color": "<%= hash_color(@manifest.background_color) %>",
+    "display": "<%= @manifest.display %>",
+    "orientation": "<%= @manifest.orientation %>"
+  }
+<% end %>

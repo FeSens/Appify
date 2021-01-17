@@ -6,6 +6,10 @@ module Public
       @manifest = shop.manifest
     end
 
+    def show
+      @manifest = Manifest.find(params[:id])
+    end
+
     def hash_color(color)
       "##{color.delete("#")}"
     end
