@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resource :locales, only: %i[update]
     resources :automatic_campaigns
     resources :integrations
+    resources :installation
     resources :plans, only: %i[index create callback] do
       collection do
         get :callback
