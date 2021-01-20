@@ -7,8 +7,12 @@ Rails.application.configure do
       headers: { "Service-Worker-Allowed" => "/" }
     match '/serviceworker-register-os.js' => 'serviceworker-register-os.js', pack: true,
       headers: { "Service-Worker-Allowed" => "/" }
+    
     match '/serviceworker.js' => 'serviceworker.js', pack: true,
       headers: { "Service-Worker-Allowed" => "/" }
+    match '/aplicatify-serviceworker.js' => 'serviceworker.js', pack: true,
+      headers: { "Service-Worker-Allowed" => "/" }
+
     # Examples
     #
     # map to a named asset explicitly
