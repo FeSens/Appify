@@ -5,5 +5,6 @@ FactoryBot.define do
     capped_amount { rand(price..price+100) }
     trial_days { rand(0..90) }
     terms { Faker::Marketing.buzzwords }
+    push_limit { rand(100..100_000)}
   end
 end
