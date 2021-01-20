@@ -6,11 +6,7 @@ module Public
     attr_accessor :shop
 
     def validate
-      #return @shop = Shop.last if Rails.env.development?
-
-      @shop = Rails.cache.fetch("Public/PublicController/#{params[:shop]}/#{params[:h]}", expires_in: 60.seconds) do
-        return Shop.find(params[:h]) if params[:h].present?
-
+      @shop = Rails.cache.fetch("Public/PublicController/#{params[:shop]}}", expires_in: 60.seconds) do
         Shop.find_by(shopify_domain: params[:shop])
       end
 
