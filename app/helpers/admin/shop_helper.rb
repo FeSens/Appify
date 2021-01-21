@@ -6,11 +6,11 @@ module Admin
     end
 
     def app_installs
-      @app_installs ||= current_shop.subscriber_counts.pwa.sum(:count)
+      @app_installs ||= number_to_human(current_shop.subscriber_counts.pwa.sum(:count))
     end
 
     def push_subscribers
-      @push_subscribers ||= current_shop.pushes.count
+      @push_subscribers ||= number_to_human(current_shop.pushes.count, precision: 4)
     end
 
     def shop_name
@@ -25,14 +25,18 @@ module Admin
       current_shop.campaigns
     end
 
-    def revenue
-      @revenue ||= current_shop.orders.sum(:total)
-      number_to_currency(@revenue)
+    def campaigns_revenue
+      @revenue ||= current_shop.campaigns.sum(:clicks) * current_shop.marketing_value.cpc
+      number_to_currency(@revenue, precision: 0, locale: "pt-BR")
     end
 
     def app_revenue
-      @app_revenue ||= current_shop.campaigns.find_by(name: "app").orders.sum(:total)
-      number_to_currency(@app_revenue)
+      @app_revenue ||= current_shop.subscriber_counts.pwa.sum(:count) * current_shop.marketing_value.cpd
+      number_to_currency(@app_revenue, precision: 0, locale: "pt-BR")
+    end
+
+    def campaign_revenue(campaign)
+      number_to_currency(campaign.clicks * current_shop.marketing_value.cpc, locale: "pt-BR")
     end
 
     def new_subscribers

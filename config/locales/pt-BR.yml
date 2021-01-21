@@ -250,9 +250,9 @@ pt-BR:
   admin:
     home:
       index:
-        app_revenue_html: "Receita do<br>App"
+        app_revenue_html: "Valor do<br>App"
         app_users_html: "Downloads<br>do App"
-        total_revenue_html: "Receita <br>Total"
+        campaigns_revenue_html: "Valor das<br>Push's"
         active_subscribers_html: "Inscritos <br>Ativos"
         subscriber_growth: "Novos Inscritos"
         impressions_consumed_html: "Impressōes<br>Utilizadas"
@@ -260,3 +260,15 @@ pt-BR:
         audience: "Público"
         last_campaigns: "Ultimas Campanhas"
 
+  number:
+    human:
+      decimal_units:
+       format: "%n%u"
+       precision: 3
+       units:
+         unit: ""
+         thousand: K
+         million: M
+         billion: B
+         trillion: T
+         quadrillion: Q
