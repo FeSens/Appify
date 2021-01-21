@@ -252,7 +252,7 @@ pt-BR:
       index:
         app_revenue_html: "Valor do<br>App"
         app_users_html: "Downloads<br>do App"
-        campaigns_revenue_html: "Valor das<br>Push's"
+        campaigns_revenue_html: "Valor das<br>Pushs"
         active_subscribers_html: "Inscritos <br>Ativos"
         subscriber_growth: "Novos Inscritos"
         impressions_consumed_html: "Impressōes<br>Utilizadas"
