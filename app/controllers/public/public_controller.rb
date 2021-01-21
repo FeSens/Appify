@@ -1,8 +1,8 @@
 module Public
-  class PublicController < ApplicationController
+  class PublicController < ActionController::Base
     skip_before_action :verify_authenticity_token
     skip_after_action :intercom_rails_auto_include
-    before_action :validate, only: %i[index]
+    before_action :validate
     attr_accessor :shop
 
     def validate
