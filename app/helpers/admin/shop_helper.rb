@@ -27,16 +27,16 @@ module Admin
 
     def campaigns_revenue
       @revenue ||= current_shop.campaigns.sum(:clicks) * current_shop.marketing_value.cpc
-      number_to_currency(@revenue, precision: 0, locale: "pt-BR")
+      number_to_currency(@revenue, precision: 0, locale: "pt-BR", unit: "R$")
     end
 
     def app_revenue
       @app_revenue ||= current_shop.subscriber_counts.pwa.sum(:count) * current_shop.marketing_value.cpd
-      number_to_currency(@app_revenue, precision: 0, locale: "pt-BR")
+      number_to_currency(@app_revenue, precision: 0, locale: "pt-BR", unit: "R$")
     end
 
     def campaign_revenue(campaign)
-      number_to_currency(campaign.clicks * current_shop.marketing_value.cpc, locale: "pt-BR")
+      number_to_currency(campaign.clicks * current_shop.marketing_value.cpc, locale: "pt-BR", unit: "R$")
     end
 
     def new_subscribers
