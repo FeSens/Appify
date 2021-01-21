@@ -3,6 +3,7 @@
 class Shop < ApplicationRecord
   has_one :manifest, dependent: :destroy
   has_one :configuration, dependent: :destroy
+  has_one :marketing_value, dependent: :destroy
 
   has_many :user, dependent: :nullify
   has_many :pushes, dependent: :destroy
@@ -34,6 +35,7 @@ class Shop < ApplicationRecord
       tag: "internal",
       url: "/?ref=aplicatify&utm_source=aplicatify&utm_medium=app&utm_campaign=app"
     )
+    create_marketing_values(cpc: 0.47, cps: 3.00, cpd: 3.50)
   end
 
   def custom_data
