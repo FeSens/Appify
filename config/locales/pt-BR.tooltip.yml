@@ -1,8 +1,8 @@
 pt-BR:
   tooltip:
-    app_revenue: Acompanhe a receita gerada pelo aplicativo da sua loja.
+    app_revenue: Acompanhe o valor gerado pelo aplicativo da sua loja.
     app_users: Número de downloads do aplicativo da sua loja.
-    total_revenue: Receita gerada pelo Aplicatify (Aplicativo + Mensagens Push)
+    campaigns_revenue: Valor gerado por todas as suas campanhas feitas na Aplicatify.
     active_subscribers: Quantidade de inscritos para receber as suas campanhas através da Aplicatify.
     interactions-container: Aqui você acompanha quantas notificações já foram enviadas esse mês e qual é o limite do seu plano atual.
     chartjs-size-monitor: Aqui você acompanha diariamente quantos novos usuários estão se inscrevendo para receber suas notificações.
@@ -16,6 +16,7 @@ pt-BR:
       url: Defina a página na qual o usuário é direcionado ao clicar na sua mensagem.
       release_date: Data que será envia a campanha. Por pardão ela sera enviada imediatamente, você pode alterar esta data para um dia e hora especifico.
       impressions: Número de vezes que suas mensagens foram exibidas na tela.
+      revenue: Valor gerado por todos os cliques na campanha.
       clicks: Número de cliques nas mensagens desta campanha.
       ctr: Porcentagem de pessoas que viram sua mensagem e deram um clique no link.
     

@@ -36,7 +36,12 @@ pt-BR:
       manifest: "App"
       plan: "Plano"
       user: "Usuario"
+      marketing_value: "Configurações"
     attributes:
+      marketing_value:
+        cpc: "Valor de um clique em uma notificação"
+        cps: "Valor de um novo inscrito em Push"
+        cpd: "Valor de um download do App"
       user:
         password: "Senha"
         password_confirmation: "Confirmar a Senha"
@@ -65,6 +70,7 @@ pt-BR:
         ctr: CTR
         impressions: "Impressōes"
         clicks: "Cliques"
+        revenue: "Valor Gerado"
       manifest:
         name: "Nome do App"
         short_name: "Nome Curto do App"

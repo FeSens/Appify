@@ -1,0 +1,44 @@
+<div class="row pl-3 pt-3">
+  <div class="col-6 white shadow-sm p-4">
+    <%= form_for @marketing_value, url: admin_marketing_values_path(@marketing_value), method: :patch do |f| %>
+      <p>
+        Na Aplicatify queremos ajudar você a acompanhar e otimizar o valor gerado através da nossa plataforma.
+        Simplesmente edite os valores para cada evento abaixo e nós atualizaremos os resultados nas nossas Dashboards.
+      </p>
+      <div class="form-group">
+        <%= label_tag :cpc, t('activerecord.attributes.marketing_value.cpc') %>
+        <small class="form-text text-muted mt-0 mb-2">Compare com o custo por clique das suas campanhas de anúncio.</small>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" style="backgoroud: #FFFF">R$</span>
+          </div>
+          <%= f.number_field :cpc, class: "form-control", step: :any %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :cps, t('activerecord.attributes.marketing_value.cps') %>
+        <small class="form-text text-muted mt-0 mb-2">Um cliente em potencial que você conquistou a confiança e pode comprar na sua loja a qualquer momento.</small>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" style="backgoroud: #FFFF">R$</span>
+          </div>
+          <%= f.number_field :cps, class: "form-control", step: :any %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :cpd, t('activerecord.attributes.marketing_value.cpd') %>
+        <small class="form-text text-muted mt-0 mb-2">Um cliente em potencial que baixou seu app e acessa sua loja de forma orgânica para ver novidades.</small>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" style="backgoroud: #FFFF">R$</span>
+          </div>
+          <%= f.number_field :cpd, class: "form-control", step: :any %>
+        </div>
+      </div>
+
+      <%= f.submit t('helpers.submit.submit'), class: "btn btn-purple float-right px-4", id: "submit" %>
+    <% end %>
+  </div>
+</div>

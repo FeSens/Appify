@@ -21,6 +21,11 @@
       left: 40px !important;
       font: Bold 30px/36px Varela Round !important;
     }
+
+    .money {
+      left: 40px !important;
+      font: Bold 20px/25px Varela Round !important;
+    }
   }
 
   .title {
@@ -40,6 +45,17 @@
     left: 50px;
     text-align: left;
     font: Bold 38px/45px Varela Round;
+    letter-spacing: 0px;
+    color: #2D366E;
+    opacity: 1;
+  }
+
+  .money {
+    position: absolute;
+    top: 48%;
+    left: 50px;
+    text-align: left;
+    font: Bold 25px/30px Varela Round;
     letter-spacing: 0px;
     color: #2D366E;
     opacity: 1;

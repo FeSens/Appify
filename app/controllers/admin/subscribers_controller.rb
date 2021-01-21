@@ -18,9 +18,11 @@ module Admin
 
       render json: { pwa: subscriber_count.pwa.pluck(:count),
                      push: push,
+                     value: push_new_subscribers.map { |v| v * (current_shop.marketing_value.cps) },
                      push_new_subscribers: push_new_subscribers,
                      date_pwa: subscriber_count.pwa.pluck(:date),
-                     date_push: subscriber_count.push.pluck(:date) }
+                     date_push: subscriber_count.push.pluck(:date),
+                     date_value: subscriber_count.push.pluck(:date) }
     end
   end
 end

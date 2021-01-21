@@ -18,9 +18,9 @@
               <%= t('targter.all_subscribers')%> | <%= distance_of_time_in_words(Time.now, campaign.release_date) %> | Campaign ID: <%= campaign.id %>
             </div>
           </td>
-          <td>
-            <div class="disabled"> $ (Em Breve) </div>
-            <div class="sub-label"> <%= t('admin_commons.revenue')%> </div>
+          <td data-toggle="tooltip" data-placement="bottom" title="<%= t('tooltip.campaign.revenue')%>">
+            <div> <%= campaign_revenue(campaign) %> </div>
+            <div class="sub-label"> <%= Campaign.human_attribute_name("revenue") %> </div>
           </td>
           <td data-toggle="tooltip" data-placement="bottom" title="<%= t('tooltip.campaign.impressions')%>">
             <div> <%= campaign.impressions %> </div>

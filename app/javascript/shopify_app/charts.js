@@ -19,6 +19,12 @@ $(document).on('turbolinks:load', function() {
             label: "Novos Inscritos",
             backgroundColor: "#FF7595",
             data: data.push_new_subscribers
+          },
+          {
+            maxBarThickness: 50,
+            label: "Valor Gerado",
+            backgroundColor: "#2D366E",
+            data: data.value 
           }
         ]
       },
