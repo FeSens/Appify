@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :automatic_campaigns
     resources :integrations
     resources :installation
+    resource :marketing_values, only: %i[edit update]
     resources :plans, only: %i[index create callback] do
       collection do
         get :callback

@@ -1,0 +1,16 @@
+// Place all the styles related to the admin/marketing_value controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.input-group {
+  .input-group-text { 
+    background-color: #ffffff;
+    color: #a4a2a3
+  }
+  .form-control {
+    border-left: 0px;
+  }
+  .input-group-prepend {
+    margin-right: -10px;
+  }
+}
