@@ -9,7 +9,7 @@ module Admin
 
     helper_method :current_shop
     before_action :set_locale
-    before_action :verify_billing_plan, only: %i[index] if Rails.env.production?
+    before_action :verify_billing_plan, only: %i[index] #if Rails.env.production?
     after_action :set_activity, only: %i[index]
 
     private
@@ -36,7 +36,7 @@ module Admin
 
       plan = Plan.find(1)
       result = Plans::Creator.call(plan, current_shop, callback_admin_plans_url)
-      return fullpage_redirect_to result.success if result.success?
+      return redirect_to result.success if result.success?
 
       flash[:danger] = result.failure
       redirect_to admin_plans_path
