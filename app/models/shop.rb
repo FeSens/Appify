@@ -35,7 +35,7 @@ class Shop < ApplicationRecord
       tag: "internal",
       url: "/?ref=aplicatify&utm_source=aplicatify&utm_medium=app&utm_campaign=app"
     )
-    create_marketing_value(cpc: 0.27, cps: 2.50, cpd: 3.50)
+    create_marketing_value(cpc: 0.446, cps: 1.78, cpd: 3.47)
   end
 
   def custom_data

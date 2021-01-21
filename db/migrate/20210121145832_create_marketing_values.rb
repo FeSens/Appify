@@ -10,7 +10,7 @@ class CreateMarketingValues < ActiveRecord::Migration[6.0]
     end
 
     Shop.all.each do |shop|
-      shop.create_marketing_value(cpc: 0.27, cps: 2.50, cpd: 3.50)
+      shop.create_marketing_value(cpc: 0.446, cps: 1.78, cpd: 3.47)
     end
   end
 
