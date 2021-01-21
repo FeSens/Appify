@@ -14,6 +14,7 @@ module Admin
     end
 
     def shop_name
+      return "Gustavo M." if Flipper['live-mode'].enabled?(current_shop)
       current_shop.name
     end
 
