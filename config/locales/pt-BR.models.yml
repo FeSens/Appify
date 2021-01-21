@@ -70,7 +70,7 @@ pt-BR:
         ctr: CTR
         impressions: "Impressōes"
         clicks: "Cliques"
-        revenue: "Valor Gerado"
+        revenue: "Retorno Gerado"
       manifest:
         name: "Nome do App"
         short_name: "Nome Curto do App"

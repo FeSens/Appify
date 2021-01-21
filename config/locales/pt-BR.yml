@@ -250,9 +250,9 @@ pt-BR:
   admin:
     home:
       index:
-        app_revenue_html: "Valor do<br>App"
+        app_revenue_html: "Retorno do<br>App"
         app_users_html: "Downloads<br>do App"
-        campaigns_revenue_html: "Valor das<br>Campanhas"
+        campaigns_revenue_html: "Retorno das<br>Campanhas"
         active_subscribers_html: "Inscritos <br>Ativos"
         subscriber_growth: "Novos Inscritos"
         impressions_consumed_html: "Impressōes<br>Utilizadas"
