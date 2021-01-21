@@ -32,6 +32,11 @@
           <a class="btn btn-red" href="<%= admin_integrations_path %>" role="button"><%= t('admin_commons.integrations') %></a>
         </div>
       <% end %>
+      <% if current_shop.type != 'Shop::Shopify'%>
+        <div class="col-12 text-center mt-4">
+          <a class="btn btn-red" href="<%= admin_installation_index_path %>" role="button"><%= t('admin_commons.installation') %></a>
+        </div>
+      <% end %>
     </div>
     <!--
       <div class="row align-bottom">

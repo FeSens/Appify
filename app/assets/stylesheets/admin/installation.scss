@@ -1,0 +1,92 @@
+// Place all the styles related to the admin/installation controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+/*! CSS Used from: https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css */
+.highlight {
+  padding-top: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  background-color: #f7f7f8;
+}
+
+.bd-content .highlight {
+  margin-right: -0.75rem;
+  margin-left: -0.75rem;
+}
+.bd-clipboard + .highlight {
+  margin-top: 0px;
+}
+code, kbd, pre, samp {
+  font-family: var(--bs-font-monospace);
+  font-size: 1em;
+  direction: ltr;
+  unicode-bidi: bidi-override;
+}
+pre {
+  display: block;
+  margin-top: 0px;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  overflow-y: auto;
+  font-size: 0.875em;
+}
+.highlight pre {
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  margin-top: 0.65rem;
+  margin-bottom: 0.65rem;
+  white-space: pre;
+  background-color: transparent;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: initial;
+  border-right-style: initial;
+  border-bottom-style: initial;
+  border-left-style: initial;
+  border-top-color: initial;
+  border-right-color: initial;
+  border-bottom-color: initial;
+  border-left-color: initial;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+}
+pre code {
+  font-size: inherit;
+  color: inherit;
+  word-break: normal;
+}
+code {
+  font-size: 0.875em;
+  color: rgb(214, 51, 132);
+  overflow-wrap: break-word;
+}
+.highlight pre code {
+  font-size: inherit;
+  color: rgb(33, 37, 41);
+  overflow-wrap: normal;
+}
+.chroma .nt {
+  color: rgb(47, 111, 159);
+}
+.chroma .na {
+  color: rgb(0, 110, 224);
+}
+.chroma .o {
+  color: rgb(85, 85, 85);
+}
+.chroma .s {
+  color: rgb(215, 48, 56);
+}
+.chroma .c{
+  color:#727272;
+}

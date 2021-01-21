@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resource :locales, only: %i[update]
     resources :automatic_campaigns
     resources :integrations
+    resources :installation
     resources :plans, only: %i[index create callback] do
       collection do
         get :callback
@@ -32,8 +33,8 @@ Rails.application.routes.draw do
   end
 
   namespace :public do
-    resources :js, only: %i[index], path: '/preferences'
-    resources :manifest, only: %i[index]
+    resources :js, only: %i[index show], path: '/preferences'
+    resources :manifest, only: %i[index show]
     resource :push, only: %i[create]
   end
 

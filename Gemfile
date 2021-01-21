@@ -38,6 +38,8 @@ gem 'aws-sdk-sqs'
 gem 'bootstrap', '~>4.3.1'
 #Add Trhead Pools
 gem 'concurrent-ruby', require: 'concurrent'
+#Add Cors Response
+gem 'rack-cors'
 #Add Users Auth
 gem 'devise'
 gem 'omniauth-shopify-oauth2'

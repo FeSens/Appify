@@ -1,0 +1,2 @@
+module Admin::InstallationHelper
+end

@@ -21,6 +21,7 @@ module Admin
       flash[:success] = response.success if response.success?
       flash[:warning] = response.failure if response.failure?
 
+      return redirect_to admin_home_index_path if response.success
       redirect_to admin_plans_path
     end
 

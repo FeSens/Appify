@@ -25,7 +25,7 @@ module Plans
 
     def update_shop_limit
       internal_plan = Plan.find_by(name: plan.name)
-      current_shop.update(push_limit: internal_plan.push_limit, plan_name: 1, plan_id: internal_plan.id)
+      current_shop.update(push_limit: internal_plan.push_limit, plan_id: internal_plan.id)
     end
   end
 end

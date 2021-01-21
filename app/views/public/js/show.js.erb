@@ -1,0 +1,140 @@
+function __setCookie__(name, value) {
+  var expires = "";
+  document.cookie = name + "=" + (value || "") + expires + "; path=/"
+}
+
+function __getCookie__(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
+}
+
+function incrementCookie(name, n) {
+  var value = __getCookie__(name)
+  if (!value) {
+    __setCookie__(name, 1)
+    return 1
+  }
+  value = parseInt(value) + n;
+  __setCookie__(name, value)
+  return value
+}
+
+function sendOptInAnalytics(type){
+  fetch("/apps/script/analytics/opt_ins",
+    {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ service: type })
+    })
+}
+
+function addElement (type) { 
+  // create a new div element 
+  // and give it popup content 
+  var newDiv = document.createElement("div"); 
+  
+  if (type == "pwa") {
+    newDiv.innerHTML += `<%= render partial: 'public/modal', locals: { optin: @optins[:pwa], preview: false } %>`;
+  } else {
+    newDiv.innerHTML += `<%= render partial: 'public/modal', locals: { optin: @optins[:push], preview: false } %>`;
+  }
+  // add the newly created element and its content into the DOM 
+  var currentDiv = document.getElementById("main_container"); 
+  document.body.insertBefore(newDiv, currentDiv); 
+
+  // open popup onload
+  if (incrementCookie(`prompt_counter-${type}`, 0) <= 1) {
+    openPopup(type);
+    incrementCookie(`prompt_counter-${type}`, 1);
+    sendOptInAnalytics(type);
+  }
+}
+
+function openPopup(type) {
+  if( (window.installPromptEvent && type == "pwa") || getParam("vizualize") == "pwa") {
+    var el = document.getElementById(`modal_${type}`);
+    el.style.display = 'block';
+  }
+
+  if((type == "push" && Notification.permission == "default") || getParam("vizualize") == "push") {
+      var el = document.getElementById(`modal_${type}`);
+      el.style.display = 'block';
+  }
+}
+
+function closePopup(type) {
+  var el = document.getElementById(`modal_${type}`);
+  el.style.display = 'none';
+}
+
+function pwa_prompt() {
+  var el = document.getElementById('modal_pwa');
+  if(el) { el.style.display = 'none'; }
+  window.installPromptEvent.prompt();
+  window.installPromptEvent.userChoice.then((choice) => {
+    if (choice.outcome === 'accepted') {
+      console.log('User accepted the A2HS prompt');
+    } else {
+      console.log('User dismissed the A2HS prompt');
+    }
+    // Clear the saved prompt since it can't be used again
+    installPromptEvent = null;
+  });
+}
+
+function push_prompt() {
+  window.register_push_service(window.saved_reg);
+  var el = document.getElementById('modal_push');
+  el.style.display = 'none';
+}
+
+function showPrompt(type) {
+  if (type == 'pwa') {
+    pwa_prompt();
+  } else {
+    push_prompt();
+  }
+}
+
+function getParam(param){
+  return new URLSearchParams(window.location.search).get(param);
+}
+
+window.showPrompt = showPrompt;
+window.closePopup = closePopup;
+
+<% if @optins[:pwa].enabled %>
+  setTimeout(addElement, <%= @optins[:pwa].timer * 1000 %>, 'pwa');
+<% end %>
+
+<% if @optins[:push].enabled %>
+  setTimeout(addElement, <%= @optins[:push].timer * 1000 %>, 'push');
+<% end %>
+
+function askDownload() {
+  if(!window.installPromptEvent) {
+    setTimeout(askDownload, 300);
+  } else {
+    window.installPromptEvent.prompt();
+  }
+}
+
+window.onload = function () {
+  var t = getParam("t")
+  var vizualize = getParam("vizualize")
+  if (t && vizualize) {
+    switch (vizualize) {
+      case 'push':
+      case 'pwa':
+        __setCookie__(`prompt_counter-${vizualize}`, 1)
+        setTimeout(addElement, t * 1000 + 1, vizualize);
+      break;
+    }
+  }
+}

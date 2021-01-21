@@ -22,7 +22,7 @@ module Plans
     def plan_params
       params = plan.slice(:name, :price, :trial_days)
       params["trial_days"] = [params["trial_days"] - shop_age, 0].max
-      params["test"] = Rails.env.production? ? false : true
+      params["test"] = (Rails.env.production? ? false : true) | (current_shop.shopify_domain == "teste-giovanna.myshopify.com")
       params["return_url"] = callback_url
       params
     end
