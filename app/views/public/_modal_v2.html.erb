@@ -23,93 +23,93 @@
               0px 7px 31px rgba(0,0,0,0.04),
               0px 13px 53px rgba(0,0,0,0.05),
               0px 33px 94px rgba(0,0,0,0.07);
+}
 
-  .aplicatify-message{
-    display:flex;
-    -webkit-box-align:start;
-    align-items:flex-start;
-  }
+.aplicatify-message{
+  display:flex;
+  -webkit-box-align:start;
+  align-items:flex-start;
+}
 
-  .modal-logo{
-    flex:0 0 auto;
-    width:80px;
-    height:80px;
-    margin-right:24px;
-    border-radius:4px;
-  }
+.modal-logo{
+  flex:0 0 auto;
+  width:80px;
+  height:80px;
+  margin-right:24px;
+  border-radius:4px;
+}
 
-  .modal-text{
-    flex:1 1 0px;
-  }
-  .modal-title{
-    word-wrap:break-word;
-    font-size:20px;
-    font-weight:600;
-    line-height:1.2em;
-    text-align:left;
-    color:#43464b;
-  }
+.modal-text{
+  flex:1 1 0px;
+}
+.modal-title{
+  word-wrap:break-word;
+  font-size:20px;
+  font-weight:600;
+  line-height:1.2em;
+  text-align:left;
+  color:#43464b;
+}
 
-  .modal-body{
-    color:#788;
-    text-align:left;
-    padding: 0
-  }
+.modal-body{
+  color:#788;
+  text-align:left;
+  padding: 0
+}
 
-  .modal-line{
-    border:none;
-    width:30%;
-    margin:16px 0;
-  }
-  .aling-bottom{
-    display:flex;
-    margin-top:24px;
-  }
+.modal-line{
+  border:none;
+  width:30%;
+  margin:16px 0;
+}
+.aling-bottom{
+  display:flex;
+  margin-top:24px;
+}
 
-  .aplicatify-btn {
-    font-family:"Catamaran", "Helvetica Neue", sans-serif;
-    flex:1 1 0px;
-    display:block;
-    background-color:#ddd;
-    border:0;
-    border-radius:4px;
-    color:#484848;
-    height:36px;
-    font-size:15px;
-    font-weight:600;
-    line-height:1em;
-    margin-right:16px;
-    text-align:center;
-    text-decoration:none;
-  }
+.aplicatify-btn {
+  font-family:"Catamaran", "Helvetica Neue", sans-serif;
+  flex:1 1 0px;
+  display:block;
+  background-color:#ddd;
+  border:0;
+  border-radius:4px;
+  color:#484848;
+  height:36px;
+  font-size:15px;
+  font-weight:600;
+  line-height:1em;
+  margin-right:16px;
+  text-align:center;
+  text-decoration:none;
+}
 
-  .accept{
-    color:white;
-    margin-right:0;
-  }
+.accept{
+  color:white;
+  margin-right:0;
+}
 
-  .branding-container{
-    margin-top:18px;
-  }
+.branding-container{
+  margin-top:18px;
+}
 
-  .branding{
-    color:#43464b;
-    font-size:0.7em;
-    font-weight:normal;
-    min-width:182px;
-    text-align:left;
-    line-height:1.3em;
-    letter-spacing:0.05em;
-  }
+.branding{
+  color:#43464b;
+  font-size:0.7em;
+  font-weight:normal;
+  min-width:182px;
+  text-align:left;
+  line-height:1.3em;
+  letter-spacing:0.05em;
+}
 
-  .brand-link{
-    font-weight:600;
-  }
+.brand-link{
+  font-weight:600;
+}
 
-  .brand-link a{
-    font-variant:normal;
-    text-decoration:none;
-  }
+.brand-link a{
+  font-variant:normal;
+  text-decoration:none;
 }
 </style>
 
@@ -117,7 +117,8 @@
   <div class="aplicatify-message">
     <div class="modal-logo">
       <%if @current_shop.manifest.icon.attached? %>
-        <%= image_tag @current_shop.manifest.icon, id: "logo-preview", class: "modal-logo" %>
+        <%= image_tag @current_shop.manifest.icon.variant(resize: "80x80").processed.service_url.sub(/\?.*/, ''), id: "logo-preview", class: "modal-logo" if Rails.env.production? %>
+        <%= image_tag @current_shop.manifest.icon.variant(resize: "80x80"), id: "logo-preview", class: "modal-logo" unless Rails.env.production? %>
       <% end %>
     </div>
     <div class="modal-text">
