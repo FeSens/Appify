@@ -61,7 +61,7 @@
     <% end %>
   </div>
   <div class="col-6 d-flex justify-content-center">
-    <%= render partial: 'public/modal', locals: {optin: @optin, preview: true} %>
+    <%= render partial: 'public/modal_v2', locals: {optin: @optin, preview: true} %>
   </div>
 </div>
 
@@ -72,7 +72,8 @@
   $(`#modal_${this.id}`).html($(this).val())
 
   if (this.id.includes("background_color")) {
-      $('.aplicatify-modal').css('background', `#${$(this).val()}`)
+      $('.modal-hr, .primary-action').css('background', `#${$(this).val()}`)
+      $('#brand-link').css('color', `#${$(this).val()}`)
   }
   if (this.id.includes("text_color")) {
       $('.aplicatify-modal-title, .aplicatify-modal-body').css('color', `#${$(this).val()}`)
