@@ -1,4 +1,3 @@
-<% cache @current_shop do %>
 <style>
   .aplicatify-modal {
   position: fixed;
@@ -115,9 +114,11 @@
 <div class="aplicatify-modal" id="modal_<%=optin.kind%>">
   <div class="aplicatify-message">
     <div class="modal-logo">
-      <%if @current_shop.manifest.icon.attached? %>
-        <%= image_tag @current_shop.manifest.icon.variant(resize: "80x80").processed.service_url.sub(/\?.*/, ''), id: "logo-preview", class: "modal-logo" if Rails.env.production? %>
-        <%= image_tag @current_shop.manifest.icon.variant(resize: "80x80"), id: "logo-preview", class: "modal-logo" unless Rails.env.production? %>
+      <% cache @current_shop.manifest do %>
+        <%if @current_shop.manifest.icon.attached? %>
+          <%= image_tag @current_shop.manifest.icon.variant(resize: "80x80").processed.service_url.sub(/\?.*/, ''), id: "logo-preview", class: "modal-logo" if Rails.env.production? %>
+          <%= image_tag @current_shop.manifest.icon.variant(resize: "80x80"), id: "logo-preview", class: "modal-logo" unless Rails.env.production? %>
+        <% end %>
       <% end %>
     </div>
     <div class="modal-text">
@@ -144,4 +145,3 @@
   <% end %>
   </div>
 </div>
-<% end %>
