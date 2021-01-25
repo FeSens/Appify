@@ -112,7 +112,7 @@
 }
 </style>
 
-<div class="aplicatify-modal" id="modal_<%=optin.kind%>" style="display: none;">
+<div class="aplicatify-modal" id="modal_<%=optin.kind%>" style="display: none; <%= "z-index: 0;" if preview == true %>">
   <div class="aplicatify-message">
     <div class="modal-logo">
       <% cache @current_shop.manifest do %>

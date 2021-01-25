@@ -46,13 +46,20 @@
         <%= f.text_field :decline_button, class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= label_tag :background_color, t('activerecord.attributes.optin.background_color') %>
+        <%= label_tag :background_color, Flipper['new-modal'].enabled?(current_shop) ? t('activerecord.attributes.optin.background_color_v2') : t('activerecord.attributes.optin.background_color') %>
         <%= f.text_field :background_color, class: "form-control jscolor" %>
       </div>
-      <div class="form-group">
-        <%= label_tag :text_color, t('activerecord.attributes.optin.text_color') %>
-        <%= f.text_field :text_color, class: "form-control jscolor" %>
-      </div>
+      <% if Flipper['new-modal'].enabled?(current_shop) %>
+        <div class="form-group">
+          <%= label_tag :icon, t('activerecord.attributes.manifest.icon') %>
+          <small class="form-text text-muted mt-0 mb-2">A logo dos Popups e a mesma do app, para altera-la <a href=<%= edit_admin_pwa_path %>>clique aqui</a></small>
+        </div>
+      <% else %>
+        <div class="form-group">
+          <%= label_tag :text_color, t('activerecord.attributes.optin.text_color') %>
+          <%= f.text_field :text_color, class: "form-control jscolor" %>
+        </div>
+      <% end %>
       <div class="form-group" data-toggle="tooltip" data-placement="right" title="<%= t('tooltip.optin.timer')%>">
         <%= label_tag :timer, t('activerecord.attributes.optin.timer') %>
         <%= f.number_field :timer, class: "form-control" %>
