@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_21_145832) do
+ActiveRecord::Schema.define(version: 2021_01_25_191345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -178,7 +178,7 @@ ActiveRecord::Schema.define(version: 2021_01_21_145832) do
     t.string "body", default: "Seja notificado das promoçōes mais quentes!", null: false
     t.string "accept_button", default: "Sim!", null: false
     t.string "decline_button", default: "Não", null: false
-    t.string "background_color", default: "FFFFFF", null: false
+    t.string "background_color", default: "007bff", null: false
     t.string "text_color", default: "000000", null: false
     t.integer "timer", default: 30, null: false
     t.boolean "enabled", default: false, null: false
@@ -277,6 +277,7 @@ ActiveRecord::Schema.define(version: 2021_01_21_145832) do
     t.string "locale", default: "en"
     t.bigint "plan_id"
     t.string "type", default: "Shop::Shopify"
+    t.boolean "active", default: true
     t.index ["plan_id"], name: "index_shops_on_plan_id"
     t.index ["shopify_domain"], name: "index_shops_on_shopify_domain", unique: true
   end
