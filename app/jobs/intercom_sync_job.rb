@@ -129,11 +129,9 @@ class IntercomSyncJob < ApplicationJob
   private
 
   def shopify_data(shop)
-    shop.update(active: false)
     shop.with_shopify_session do
       @shop_data = ShopifyAPI::Shop.current
     end
-    shop.update(active: true)
 
     @shop_data.attributes.slice(:email, :shop_owner, :city, :country, :id, :phone, :address1, :address2, :zip, :plan_name)
   end
