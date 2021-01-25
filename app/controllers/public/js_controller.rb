@@ -6,6 +6,7 @@ module Public
         push = Optin.find_by(shop_id: shop.id, kind: "push")
         { pwa: pwa, push: push }
       end
+      @current_shop = shop
     end
 
     def show
@@ -14,6 +15,7 @@ module Public
         push = Optin.find_by(shop_id: params[:id], kind: "push")
         { pwa: pwa, push: push }
       end
+      @current_shop = Shop.find(params[:id])
     end
   end
 end

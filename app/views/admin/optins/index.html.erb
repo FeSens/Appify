@@ -46,13 +46,20 @@
         <%= f.text_field :decline_button, class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= label_tag :background_color, t('activerecord.attributes.optin.background_color') %>
+        <%= label_tag :background_color, Flipper['new-modal'].enabled?(current_shop) ? t('activerecord.attributes.optin.background_color_v2') : t('activerecord.attributes.optin.background_color') %>
         <%= f.text_field :background_color, class: "form-control jscolor" %>
       </div>
-      <div class="form-group">
-        <%= label_tag :text_color, t('activerecord.attributes.optin.text_color') %>
-        <%= f.text_field :text_color, class: "form-control jscolor" %>
-      </div>
+      <% if Flipper['new-modal'].enabled?(current_shop) %>
+        <div class="form-group">
+          <%= label_tag :icon, t('activerecord.attributes.manifest.icon') %>
+          <small class="form-text text-muted mt-0 mb-2">A logo dos Popups é a mesma do app, para altera-la <a href=<%= edit_admin_pwa_path %>>clique aqui</a></small>
+        </div>
+      <% else %>
+        <div class="form-group">
+          <%= label_tag :text_color, t('activerecord.attributes.optin.text_color') %>
+          <%= f.text_field :text_color, class: "form-control jscolor" %>
+        </div>
+      <% end %>
       <div class="form-group" data-toggle="tooltip" data-placement="right" title="<%= t('tooltip.optin.timer')%>">
         <%= label_tag :timer, t('activerecord.attributes.optin.timer') %>
         <%= f.number_field :timer, class: "form-control" %>
@@ -61,21 +68,40 @@
     <% end %>
   </div>
   <div class="col-6 d-flex justify-content-center">
-    <%= render partial: 'public/modal', locals: {optin: @optin, preview: true} %>
+    <%= render partial: Flipper['new-modal'].enabled?(current_shop) ? 'public/modal_v2' : 'public/modal', locals: {optin: @optin, preview: true} %>
   </div>
 </div>
 
-<script>
-  var el = document.getElementById('modal_<%=@optin.kind%>');
-  el.style.display = 'block';
-  $("input").on('keyup change', function (){
-  $(`#modal_${this.id}`).html($(this).val())
+<% if Flipper['new-modal'].enabled?(current_shop) %>
+  <script>
+    var el = document.getElementById('modal_<%=@optin.kind%>');
+    el.style.display = 'block';
+    $("input").on('keyup change', function (){
+    $(`#modal_${this.id}`).html($(this).val())
 
-  if (this.id.includes("background_color")) {
-      $('.aplicatify-modal').css('background', `#${$(this).val()}`)
-  }
-  if (this.id.includes("text_color")) {
-      $('.aplicatify-modal-title, .aplicatify-modal-body').css('color', `#${$(this).val()}`)
-  }
-  });
-</script>
+    if (this.id.includes("background_color")) {
+        $('.modal-line, .accept').css('background', `#${$(this).val()}`)
+        $('.modal-line').css('border-bottom', `1px solid #${$(this).val()}`)
+        $('#brand-link').css('color', `#${$(this).val()}`)
+    }
+    if (this.id.includes("text_color")) {
+        $('.aplicatify-modal-title, .aplicatify-modal-body').css('color', `#${$(this).val()}`)
+    }
+    });
+  </script>
+<% else %>
+  <script>
+    var el = document.getElementById('modal_<%=@optin.kind%>');
+    el.style.display = 'block';
+    $("input").on('keyup change', function (){
+    $(`#modal_${this.id}`).html($(this).val())
+
+    if (this.id.includes("background_color")) {
+        $('.aplicatify-modal').css('background', `#${$(this).val()}`)
+    }
+    if (this.id.includes("text_color")) {
+        $('.aplicatify-modal-title, .aplicatify-modal-body').css('color', `#${$(this).val()}`)
+    }
+    });
+  </script>
+<% end %>

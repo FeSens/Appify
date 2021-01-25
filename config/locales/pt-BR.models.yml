@@ -54,6 +54,7 @@ pt-BR:
         accept_button: "Botão de aceite"
         decline_button: "Botão de recusa"
         background_color: "Cor de fundo"
+        background_color_v2: "Cor do botão de aceite"
         text_color: "Cor do texto"
         timer: "Tempo de espera"
         enabled: "Habilitado"

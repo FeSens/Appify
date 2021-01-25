@@ -40,9 +40,9 @@ function addElement (type) {
   var newDiv = document.createElement("div"); 
   
   if (type == "pwa") {
-    newDiv.innerHTML += `<%= render partial: 'public/modal', locals: { optin: @optins[:pwa], preview: false } %>`;
+    newDiv.innerHTML += `<%= render partial: Flipper['new-modal'].enabled?(@current_shop) ? 'public/modal_v2' : 'public/modal', locals: { optin: @optins[:pwa], preview: false } %>`;
   } else {
-    newDiv.innerHTML += `<%= render partial: 'public/modal', locals: { optin: @optins[:push], preview: false } %>`;
+    newDiv.innerHTML += `<%= render partial: Flipper['new-modal'].enabled?(@current_shop) ? 'public/modal_v2' : 'public/modal', locals: { optin: @optins[:push], preview: false } %>`;
   }
   // add the newly created element and its content into the DOM 
   var currentDiv = document.getElementById("main_container"); 
