@@ -138,3 +138,8 @@ window.onload = function () {
     }
   }
 }
+
+navigator.serviceWorker.addEventListener('message', event => {
+  console.log("subscriber id:", event.data.id);
+  __setCookie__("subscriber_id", event.data.id)
+});

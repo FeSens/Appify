@@ -178,6 +178,8 @@ idbKeyval.get("push-subscriber").then(function(result){
     id = create_UUID()
     idbKeyval.set("push-subscriber", id)
   }
+
+  client.postMessage({id: id});
 })
 
 function create_UUID() {
