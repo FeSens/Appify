@@ -44,6 +44,9 @@ Rails.application.routes.draw do
       namespace :webhook do
         resource :push, only: %i[create]
       end
+      namespace :yampi do
+        resource :purchase, only: %i[create]
+      end
       resources :webhook, only: %i[index create]
     end
   end
