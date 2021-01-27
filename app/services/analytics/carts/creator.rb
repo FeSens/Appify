@@ -16,7 +16,7 @@ module Analytics
       end
 
       def call!
-        cart = Cart.find_or_initialize_by(token: params[:token])
+        cart = Cart.create_with(shop_id: shop_id).find_or_initialize_by(token: params[:token])
         cart.update(cart_params)
       end
 
