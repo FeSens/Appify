@@ -1,6 +1,6 @@
 desc "Find which shop have an active billing on Shopify"
 
-task intercom_sync_task: :environment do
+task active_shop_task: :environment do
   Shop.all.each do |current_shop|
     next if current_shop.type == "Shop::Devise"
     current_shop.with_shopify_session do
