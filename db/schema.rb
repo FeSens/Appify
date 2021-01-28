@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_25_191345) do
+ActiveRecord::Schema.define(version: 2021_01_27_203106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -230,6 +230,13 @@ ActiveRecord::Schema.define(version: 2021_01_25_191345) do
     t.integer "push_limit"
   end
 
+  create_table "purchases", force: :cascade do |t|
+    t.bigint "push_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["push_id"], name: "index_purchases_on_push_id"
+  end
+
   create_table "push_interactions", force: :cascade do |t|
     t.bigint "shop_id", null: false
     t.date "date"
@@ -339,6 +346,7 @@ ActiveRecord::Schema.define(version: 2021_01_25_191345) do
   add_foreign_key "orders", "shops"
   add_foreign_key "page_visits", "pushes"
   add_foreign_key "page_visits", "shops"
+  add_foreign_key "purchases", "pushes"
   add_foreign_key "push_interactions", "shops"
   add_foreign_key "push_subscriber_campaigns", "campaigns"
   add_foreign_key "push_subscriber_campaigns", "pushes"

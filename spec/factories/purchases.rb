@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :purchase do
-    push { push }
+    push
   end
 end
