@@ -10,7 +10,7 @@
   max-width: 500px;
   max-height: 360px;
   margin:0 auto;
-  padding:33px 17px;
+  padding:33px 17px 15px 17px;
   font-family:'Roboto', sans-serif;
   font-size:13px;
   line-height:17px;
@@ -102,6 +102,11 @@
   letter-spacing:0.05em;
 }
 
+.brading-img {
+  height: 15px;
+  width: 60px;
+}
+
 .brand-link{
   font-weight:600;
 }
@@ -136,13 +141,11 @@
     <button id="modal_optin_decline_button" class="aplicatify-btn close_button" onClick="closePopup('<%=optin.kind%>')"><%=optin.decline_button%></button>
     <button id="modal_optin_accept_button"  style="background: #<%= optin.background_color %>;" class="aplicatify-btn accept" onClick="showPrompt('<%=optin.kind%>')"><%=optin.accept_button%></button>
   </div>
-  <% if false %>
+  <% if branding %>
     <div class="branding-container">
-      <div class="branding">Feito por 
-        <strong class="brand-link">
-          <a id="brand-link" href="https://www.aplicatify.com" target="_blank"  style="color: #<%= optin.background_color %>;">aplicatify</a>
-        </strong>
+      <div class="branding">Feito por
+        <img src="https://appify-skin.s3.amazonaws.com/assets/Aplicatify+Marca.svg" class="brading-img">
       </div>
+    </div>
   <% end %>
-  </div>
 </div>
