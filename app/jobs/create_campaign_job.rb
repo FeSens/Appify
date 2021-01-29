@@ -5,6 +5,7 @@ class CreateCampaignJob < ApplicationJob
   def perform(campaign, targeter, **args)
     @campaign = campaign
     return reschedule if postpone?
+    return if campaign.sent?
 
     Campaigns::Creator.call(campaign, targeter, **args)
   end

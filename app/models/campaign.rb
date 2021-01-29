@@ -13,6 +13,6 @@ class Campaign < ApplicationRecord
   end
 
   def sent?
-    release_date < Time.now
+    impressions != 0
   end
 end
