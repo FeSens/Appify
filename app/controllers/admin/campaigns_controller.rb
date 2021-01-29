@@ -9,7 +9,7 @@ module Admin
     end
 
     def new
-      @campaign = current_shop.campaigns.new
+      @campaign = current_shop.campaigns.new(duplicate_campaing_params)
     end
 
     def edit; end
@@ -29,6 +29,12 @@ module Admin
     def campaing_params
       c = params.require(:campaign).permit(:name, :tag, :title, :body, :url, :release_date)
       c[:url] = UrlBuilder.call(params[:campaign][:url], params[:campaign][:name])
+      c
+    end
+
+    def duplicate_campaing_params
+      c = params.permit(:name, :tag, :title, :body, :url, :release_date)
+      c[:url] = UrlBuilder.call(params[:url], params[:name]) if params[:url].present?
       c
     end
 

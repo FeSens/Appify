@@ -31,5 +31,9 @@
     <!--<%= label_tag 'campaign_release_date', 'Release Date:' %>-->
     <%= f.hidden_field :release_date, value: Time.now, class: "form-control" %>
   <!--</div>-->
-  <%= f.submit t('helpers.submit.send_now'), class: "btn btn-purple float-right px-4" %>
+  <% if params[:action] == "edit" && !@campaign.sent? %>
+     <%= f.submit t('helpers.submit.send_now'), class: "btn btn-purple float-right px-4 disabled", disabled: :true %>
+  <% else %>
+    <%= f.submit t('helpers.submit.send_now'), class: "btn btn-purple float-right px-4" %>
+  <% end %>
 <% end %>
