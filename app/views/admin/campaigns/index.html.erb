@@ -35,7 +35,7 @@
             <div class="sub-label"> <%= Campaign.human_attribute_name("ctr") %> </div>
           </td>
           <td class="align-middle">
-            <% if campaign.sent? %>
+            <% unless campaign.sent? %>
               <a class="btn btn-red" href="<%= edit_admin_campaign_path(campaign) %>" role="button"> <%= t('admin_commons.edit')%> </a>
             <% else %>
               <a class="btn btn-red" href="<%= edit_admin_campaign_path(campaign) %>" role="button"> <%= t('admin_commons.visualize_html')%> </a>

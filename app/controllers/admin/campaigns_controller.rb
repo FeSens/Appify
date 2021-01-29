@@ -35,6 +35,7 @@ module Admin
     def duplicate_campaing_params
       c = params.permit(:name, :tag, :title, :body, :url, :release_date)
       c[:url] = UrlBuilder.call(params[:url], params[:name]) if params[:url].present?
+      c[:release_date] = Time.now unless params[:release_date].present?
       c
     end
 

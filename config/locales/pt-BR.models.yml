@@ -31,7 +31,9 @@
 pt-BR:
   activerecord:
     models:
-      campaign: "Campanhas"
+      campaign: 
+        other: "Campanhas"
+        one: "Campanha"
       optin: "Pop-Up"
       manifest: "App"
       plan: "Plano"

@@ -150,7 +150,7 @@ pt-BR:
       create: Criar %{model}
       submit: Salvar
       update: Atualizar %{model}
-      send_now: Enviar Agora
+      send_now: Enviar
   number:
     currency:
       format:

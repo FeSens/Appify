@@ -13,6 +13,6 @@ class Campaign < ApplicationRecord
   end
 
   def sent?
-    release_date > Time.now
+    release_date < Time.now
   end
 end
