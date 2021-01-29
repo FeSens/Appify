@@ -14,6 +14,7 @@ module Appify
 
     config.i18n.available_locales = %i[en pt-BR]
     config.i18n.default_locale = 'pt-BR'
+    config.time_zone = "Brasilia"
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

@@ -11,4 +11,8 @@ class Campaign < ApplicationRecord
 
     0
   end
+
+  def sent?
+    release_date < Time.now
+  end
 end
