@@ -5,7 +5,7 @@ class Shop < ApplicationRecord
   has_one :configuration, dependent: :destroy
   has_one :marketing_value, dependent: :destroy
 
-  has_many :user, dependent: :nullify
+  has_many :users, dependent: :nullify
   has_many :pushes, dependent: :destroy
   has_many :push_interactions, dependent: :destroy
   has_many :subscriber_counts, dependent: :destroy
