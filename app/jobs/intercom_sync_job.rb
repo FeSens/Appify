@@ -30,7 +30,7 @@ class IntercomSyncJob < ApplicationJob
 
     # We store intercom id and shopify metadata in our db
     metadata = { intercom_user_id: intercom_user.id }
-    metadata = metadata.merge(shopify_data(user)) unless user.metadata&.dig("email").present? || user.type =! "Shop::Shopify"
+    metadata = metadata.merge(shopify_data(user)) unless user.metadata&.dig("email").present? || user.type != "Shop::Shopify"
     user.update metadata: metadata if metadata.present?
 
     # Sometimes intercom knows time zone of user and we don’t so we use their information on the time zone
