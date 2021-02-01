@@ -134,5 +134,8 @@ class IntercomSyncJob < ApplicationJob
     end
 
     @shop_data.attributes.slice(:email, :shop_owner, :city, :country, :id, :phone, :address1, :address2, :zip, :plan_name)
+
+  rescue ActiveResource::ClientError
+    shop.update(active: false)
   end
 end
