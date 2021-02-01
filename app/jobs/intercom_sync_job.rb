@@ -137,5 +137,6 @@ class IntercomSyncJob < ApplicationJob
 
   rescue ActiveResource::ClientError
     shop.update(active: false)
+    {}
   end
 end
