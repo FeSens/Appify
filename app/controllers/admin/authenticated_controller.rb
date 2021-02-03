@@ -45,7 +45,7 @@ module Admin
     end
 
     def logout_on_failure(exception=nil)
-      flash[:danger] = exception.message if exception.present?
+      flash[:error] = exception.message if exception.present?
       sign_out current_user
       redirect_to admin_home_index_path
     end

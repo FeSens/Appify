@@ -1,4 +1,6 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  rescue_from ActiveRecord::RecordInvalid, with: :on_login_error
+
   include ShopifyApp::LoginProtection
 
   def shopify
@@ -24,5 +26,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def auth
     @auth ||= request.env['omniauth.auth']
+  end
+
+  def on_login_error(exception=nil)
+    flash[:error] = exception.message if exception.present?
+    session['shopify.omniauth_params'] = nil
+    redirect_to new_user_session_path
   end
 end
