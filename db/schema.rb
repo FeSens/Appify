@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_25_191345) do
+ActiveRecord::Schema.define(version: 2021_02_02_145531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,16 +62,6 @@ ActiveRecord::Schema.define(version: 2021_01_25_191345) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "automatic_campaigns", force: :cascade do |t|
-    t.string "name"
-    t.string "type"
-    t.jsonb "config"
-    t.bigint "shop_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["shop_id"], name: "index_automatic_campaigns_on_shop_id"
-  end
-
   create_table "campaigns", force: :cascade do |t|
     t.bigint "shop_id", null: false
     t.string "name"
@@ -86,8 +76,6 @@ ActiveRecord::Schema.define(version: 2021_01_25_191345) do
     t.integer "impressions", default: 0
     t.integer "clicks", default: 0
     t.datetime "release_date", default: "2021-01-04 02:46:05", null: false
-    t.bigint "automatic_campaign_id"
-    t.index ["automatic_campaign_id"], name: "index_campaigns_on_automatic_campaign_id"
     t.index ["shop_id"], name: "index_campaigns_on_shop_id"
   end
 
@@ -230,6 +218,13 @@ ActiveRecord::Schema.define(version: 2021_01_25_191345) do
     t.integer "push_limit"
   end
 
+  create_table "purchases", force: :cascade do |t|
+    t.bigint "push_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["push_id"], name: "index_purchases_on_push_id"
+  end
+
   create_table "push_interactions", force: :cascade do |t|
     t.bigint "shop_id", null: false
     t.date "date"
@@ -324,8 +319,6 @@ ActiveRecord::Schema.define(version: 2021_01_25_191345) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "automatic_campaigns", "shops"
-  add_foreign_key "campaigns", "automatic_campaigns"
   add_foreign_key "campaigns", "shops"
   add_foreign_key "carts", "customers"
   add_foreign_key "carts", "pushes"
@@ -339,6 +332,7 @@ ActiveRecord::Schema.define(version: 2021_01_25_191345) do
   add_foreign_key "orders", "shops"
   add_foreign_key "page_visits", "pushes"
   add_foreign_key "page_visits", "shops"
+  add_foreign_key "purchases", "pushes"
   add_foreign_key "push_interactions", "shops"
   add_foreign_key "push_subscriber_campaigns", "campaigns"
   add_foreign_key "push_subscriber_campaigns", "pushes"

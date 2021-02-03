@@ -14,7 +14,6 @@ Rails.application.routes.draw do
     resources :subscribers, only: %i[index]
     resources :optins, only: %i[index update]
     resource :locales, only: %i[update]
-    resources :automatic_campaigns
     resources :integrations
     resources :installation
     resource :marketing_values, only: %i[edit update]
