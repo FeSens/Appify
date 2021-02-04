@@ -10,8 +10,6 @@ module Public
 
           Shop.find_by(shopify_domain: params[:shop])
       end
-
-      return head :no_content unless shop
     end
   end
 end
