@@ -1,0 +1,51 @@
+<div class="row py-3">
+  <div class="col-6 my-auto">
+    <h2><%= t('admin_commons.your_automations') %></h2>
+  </div>
+
+  <div class="col-6 my-auto">
+    <a class="btn btn-purple text-center btn-lg float-right" href="<%= new_admin_automation_path %>" role="button">+ <%= t('admin_commons.new_automation') %></a>
+  </div>
+</div>
+<div class="row">
+  <table class="table automations">
+    <tbody>
+      <%@automations.each_with_index do |automation, i| %>
+        <tr>
+          <td> 
+            <div> <%= automation.name %> </div>
+            <div class="sub-label"> 
+              <%= t('targter.all_subscribers')%> | <%= distance_of_time_in_words(Time.now, automation.release_date) %> | automation ID: <%= automation.id %>
+            </div>
+          </td>
+          <td data-toggle="tooltip" data-placement="bottom" title="<%= t('tooltip.automation.revenue')%>">
+            <div> <%= automation_revenue(automation) %> </div>
+            <div class="sub-label"> <%= automation.human_attribute_name("revenue") %> </div>
+          </td>
+          <td data-toggle="tooltip" data-placement="bottom" title="<%= t('tooltip.automation.impressions')%>">
+            <div> <%= automation.impressions %> </div>
+            <div class="sub-label"> <%= automation.human_attribute_name("impressions") %> </div>
+          </td>
+          <td data-toggle="tooltip" data-placement="bottom" title="<%= t('tooltip.automation.clicks')%>" > 
+            <div> <%= automation.clicks %> </div>
+            <div class="sub-label"> <%= automation.human_attribute_name("clicks") %> </div>
+          </td>
+          <td data-toggle="tooltip" data-placement="bottom" title="<%= t('tooltip.automation.ctr')%>" > 
+            <div> <%= automation.ctr %>%</div>
+            <div class="sub-label"> <%= automation.human_attribute_name("ctr") %> </div>
+          </td>
+          <td class="align-middle">
+            <% unless automation.sent? %>
+              <a class="btn btn-red" href="<%= edit_admin_automation_path(automation) %>" role="button"> <%= t('admin_commons.edit')%> </a>
+            <% else %>
+              <a class="btn btn-red" href="<%= edit_admin_automation_path(automation) %>" role="button"> <%= t('admin_commons.visualize_html')%> </a>
+            <% end %>
+          </td>
+          <td class="align-middle">
+            <a class="btn btn-red" href="<%= new_admin_automation_path(automation.attributes) %>" role="button"> <%= t('admin_commons.duplicate')%> </a>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

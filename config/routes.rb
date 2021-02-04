@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :home
     resources :campaigns
+    resources :automations
     resource :pwa, only: %i[edit update]
     resources :subscribers, only: %i[index]
     resources :optins, only: %i[index update]
