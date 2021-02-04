@@ -15,7 +15,6 @@ class Shop < ApplicationRecord
   has_many :page_visits, dependent: :destroy
   has_many :carts, dependent: :destroy
   has_many :opt_in_counts, dependent: :destroy
-  has_many :automatic_campaigns, dependent: :destroy
   has_many :webhooks, dependent: :destroy
 
   belongs_to :plan, optional: true
