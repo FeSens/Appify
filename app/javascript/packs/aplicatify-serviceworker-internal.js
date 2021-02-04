@@ -160,7 +160,7 @@ idbKeyval.get("push-subscriber").then(function(result){
 })
 
 function sendKeys(s){
-  return fetch(' https://3fce11bad687.ngrok.io/public/push', {
+  return fetch('https://appify-skin.herokuapp.com/public/push', {
     method: 'post',
     headers: {
       'Content-type': 'application/json'
@@ -186,7 +186,7 @@ function create_UUID() {
 }
 
 function sendAnalytics(data, attr) {
-  return fetch(' https://3fce11bad687.ngrok.io/analytics/campaigns', {
+  return fetch('https://appify-skin.herokuapp.com/analytics/campaigns', {
     method: 'post',
     headers: {
       'Content-type': 'application/json'

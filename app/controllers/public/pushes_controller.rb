@@ -14,9 +14,7 @@ module Public
     private
 
     def subscription_params
-      return params.permit(:subscriber_id, :endpoint, :auth, :p256dh, :shop_id).merge(shop_id: shop.id) if shop.present?
-
-      params.permit(:subscriber_id, :endpoint, :auth, :p256dh, :shop_id)
+      params.permit(:subscriber_id, :endpoint, :auth, :p256dh).merge(shop_id: shop.id) if shop.present?
     end
   end
 end

@@ -62,7 +62,7 @@ export let utils = (() => {
   }
 
   const sendKeys = async (s) => {
-    return $.post(' https://3fce11bad687.ngrok.io/public/push', {
+    return $.post('https://appify-skin.herokuapp.com/public/push', {
       shop_id: window.AplicatifyShopId,
       subscriber_id: await get_or_create_id(),
       endpoint: s.endpoint,
@@ -72,12 +72,12 @@ export let utils = (() => {
   }
 
   function computeSubscriber(service) {
-    $.post(' https://3fce11bad687.ngrok.io/analytics/subscribers', { service, shop_id: window.AplicatifyShopId });
+    $.post('https://appify-skin.herokuapp.com/analytics/subscribers', { service, shop_id: window.AplicatifyShopId });
   }
 
   const pageVisit = async () => {
     return $.ajax({
-        url: ' https://3fce11bad687.ngrok.io/analytics/page_visits',
+        url: 'https://appify-skin.herokuapp.com/analytics/page_visits',
         type: 'POST',
         async: false,
         contentType : "application/json", 
