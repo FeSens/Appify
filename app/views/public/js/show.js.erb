@@ -26,8 +26,9 @@ function incrementCookie(name, n) {
 }
 
 function sendOptInAnalytics(type){
-  fetch("/apps/script/analytics/opt_ins",
+  fetch("https://3fce11bad687.ngrok.io/analytics/opt_ins",
     {
+      shop_id: window.AplicatifyShopId,
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ service: type })

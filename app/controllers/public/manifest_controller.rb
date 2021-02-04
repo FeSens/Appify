@@ -7,7 +7,7 @@ module Public
     end
 
     def show
-      @manifest = Manifest.find(params[:id])
+      @manifest = Manifest.find_by(shop_id: params[:id])
     end
 
     def hash_color(color)

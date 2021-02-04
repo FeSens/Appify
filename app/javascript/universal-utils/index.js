@@ -62,8 +62,8 @@ export let utils = (() => {
   }
 
   const sendKeys = async (s) => {
-    return $.post('https://appify-skin.herokuapp.com/public/push', {
-      shop_id,
+    return $.post(' https://3fce11bad687.ngrok.io/public/push', {
+      shop_id: window.AplicatifyShopId,
       subscriber_id: await get_or_create_id(),
       endpoint: s.endpoint,
       p256dh: btoa(String.fromCharCode.apply(null, new Uint8Array(s.getKey('p256dh')))).replace(/\+/g, '-').replace(/\//g, '_'),
@@ -72,17 +72,17 @@ export let utils = (() => {
   }
 
   function computeSubscriber(service) {
-    $.post('https://appify-skin.herokuapp.com/analytics/subscribers', { service, shop_id });
+    $.post(' https://3fce11bad687.ngrok.io/analytics/subscribers', { service, shop_id: window.AplicatifyShopId });
   }
 
   const pageVisit = async () => {
     return $.ajax({
-        url: 'https://appify-skin.herokuapp.com/analytics/page_visits',
+        url: ' https://3fce11bad687.ngrok.io/analytics/page_visits',
         type: 'POST',
         async: false,
         contentType : "application/json", 
         data: JSON.stringify({
-        shop_id,
+        shop_id: window.AplicatifyShopId,
         subscriber_id: await idbKeyval.get("push-subscriber"),
         path: window.location.pathname,
         time_spent: window.browserInteractionTime.getTimeInMilliseconds() | 0,
@@ -95,7 +95,7 @@ export let utils = (() => {
   
   function initialize() {
     get_or_create_id();
-    idbKeyval.set("shop_id", shop_id)
+    idbKeyval.set("shop_id", window.AplicatifyShopId)
     get_or_create_cookie("session");
   }
 

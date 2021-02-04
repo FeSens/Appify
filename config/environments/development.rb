@@ -1,7 +1,7 @@
 Rails.application.configure do
   config.hosts = (config.hosts rescue []) << /\h+.ngrok.io/
   config.hosts << "www.lvh.me"
-  config.action_controller.default_url_options = { host: 'www.lvh.me' }
+  config.action_controller.default_url_options = { host: '3fce11bad687.ngrok.io' }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
