@@ -5,12 +5,12 @@ Rails.application.configure do
     # map to assets implicitly
     match '/serviceworker-register.js' => 'serviceworker-register.js', pack: true,
       headers: { "Service-Worker-Allowed" => "/" }
-    match '/serviceworker-register-os.js' => 'serviceworker-register-os.js', pack: true,
+    match '/serviceworker-register-aplicatify.js' => 'serviceworker-register-aplicatify.js', pack: true,
       headers: { "Service-Worker-Allowed" => "/" }
     
     match '/serviceworker.js' => 'serviceworker.js', pack: true,
       headers: { "Service-Worker-Allowed" => "/" }
-    match '/aplicatify-serviceworker.js' => 'serviceworker.js', pack: true,
+    match '/aplicatify-serviceworker.js' => 'aplicatify-serviceworker.js', pack: true,
       headers: { "Service-Worker-Allowed" => "/" }
 
     # Examples
