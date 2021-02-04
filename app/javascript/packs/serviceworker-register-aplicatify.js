@@ -1,9 +1,9 @@
-import { utils } from 'utils'
+import { utils } from 'universal-utils'
 import BrowserInteractionTime from 'browser-interaction-time'
 
 function install() {
   if (navigator.serviceWorker) {
-    navigator.serviceWorker.register('https://appify-skin.herokuapp.com/serviceworker.js', { scope: '/' })
+    navigator.serviceWorker.register('aplicatify-serviceworker.js', { scope: '/' })
       .then(function(reg) {
         console.log('[Companion]', 'Service worker registered!');
         window.saved_reg = reg;
