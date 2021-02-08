@@ -32,7 +32,7 @@ module Admin
 
     def available_plans
       Plan.all.order(:id).select do |u|
-        Flipper[u.name].enabled?() || 
+        Flipper[u.name].enabled?(current_shop) || 
         ["Intermediário", "Avançado", "Iniciante"].include?(u.name)
       end
     end
