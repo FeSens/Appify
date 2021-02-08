@@ -3,8 +3,7 @@ module Admin
     skip_before_action :verify_billing_plan if Rails.env.production?
 
     def index
-      @plans = Plan.all.order(:id).reject{ |u| u.name == "Influencer" }
-      @plans = Plan.all if Flipper['influencer'].enabled?(current_shop)
+      @plans = available_plans
       @current_plan = current_shop.plan
     end
 
@@ -29,6 +28,13 @@ module Admin
 
     def plan
       Plan.find(params[:id])
+    end
+
+    def available_plans
+      Plan.all.order(:id).select do |u|
+        Flipper[u.name].enabled?() || 
+        ["Intermediário", "Avançado", "Iniciante"].include?(u.name)
+      end
     end
   end
 end
