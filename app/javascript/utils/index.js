@@ -20,9 +20,9 @@ export let utils = (() => {
   }
 
   function __setCookie__(name, value) {
-    var expires = "";
-    document.cookie = name + "=" + (value || "") + expires + "; path=/"
+    document.cookie = `${name}=${value || ""}; path=/; domain=.${psl.parse(location.hostname).domain}`;
   }
+
   function __getCookie__(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
@@ -59,6 +59,8 @@ export let utils = (() => {
       id = create_UUID()
       idbKeyval.set("push-subscriber", id)
     }
+    __setCookie__("push-subscriber", id)
+
     return id
   }
 
@@ -169,6 +171,7 @@ export let utils = (() => {
     }
     if (searchParams.get("utm_campaign")) {
       $.post('/cart/update.js', cart_attributes);
+      __setCookie__("utm_campaign", searchParams.get("utm_campaign"))
     }
     
   }
