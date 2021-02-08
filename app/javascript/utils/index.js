@@ -1,4 +1,5 @@
 import { idbKeyval } from 'indexdb'
+import { psl } from 'psl'
 
 export let utils = (() => {
   var vapidPublicKey = 'BOrPeoGdzvXg1OuNhjqYpCFof8D5QnDu4v1td5GTBBrXoVU-MhufANWOmWaHLH5ZXv3BUEFmP-I4m9Olme7V_VY';
