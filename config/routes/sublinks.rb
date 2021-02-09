@@ -1,3 +1,3 @@
-constraints subdomain: /!(www|app|athena)/ do
-  get '/new', to: 'public/pushes#index', as: 'pushes'
+constraints subdomain: /(?!www|app|athena)(\S{3,30})/ do
+  get '/new', to: 'public/pushes#new', as: 'pushes'
 end
