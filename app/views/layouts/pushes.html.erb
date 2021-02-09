@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang=<%= I18n.locale %>>
+  <head>
+    <title>Aplicatify</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= javascript_pack_tag 'pushes', 'data-turbolinks-track': 'reload' %>
+    <script type="text/javascript"> var AplicatifyShopId= <%=@id%> </script>
+    <%= favicon_link_tag asset_path('favicon.png') %>
+  </head>
+
+  <body>
+    <%= yield%>
+  </body>
+</html>

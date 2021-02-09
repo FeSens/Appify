@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     namespace :public do
       resources :js, only: %i[index show], path: '/preferences'
       resources :manifest, only: %i[index show]
-      resource :push, only: %i[create]
+      resource :push, only: %i[create, new]
     end
 
     namespace :api do
