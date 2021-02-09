@@ -79,6 +79,8 @@
   text-align: center;
   height: 1.5em;
   opacity: .5;
+  font: revert !important;
+
   &:before {
     content: '';
     // use the linear-gradient for the fading effect
@@ -126,4 +128,8 @@
 
 tr.spacer td {
   border: none;
+}
+
+td.no-font{
+  font: revert !important;
 }
