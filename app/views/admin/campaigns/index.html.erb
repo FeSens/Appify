@@ -8,43 +8,50 @@
   </div>
 </div>
 <div class="row">
-  <table class="table campaigns">
+  <table class="table campaigns mb-0">
     <tbody>
-      <%@campaigns.each_with_index do |campaign, i| %>
-        <tr>
-          <td> 
-            <div> <%= campaign.name %> </div>
-            <div class="sub-label"> 
-              <%= t('targter.all_subscribers')%> | <%= distance_of_time_in_words(Time.now, campaign.release_date) %> | Campaign ID: <%= campaign.id %>
-            </div>
-          </td>
-          <td data-toggle="tooltip" data-placement="bottom" title="<%= t('tooltip.campaign.revenue')%>">
-            <div> <%= campaign_revenue(campaign) %> </div>
-            <div class="sub-label"> <%= Campaign.human_attribute_name("revenue") %> </div>
-          </td>
-          <td data-toggle="tooltip" data-placement="bottom" title="<%= t('tooltip.campaign.impressions')%>">
-            <div> <%= campaign.impressions %> </div>
-            <div class="sub-label"> <%= Campaign.human_attribute_name("impressions") %> </div>
-          </td>
-          <td data-toggle="tooltip" data-placement="bottom" title="<%= t('tooltip.campaign.clicks')%>" > 
-            <div> <%= campaign.clicks %> </div>
-            <div class="sub-label"> <%= Campaign.human_attribute_name("clicks") %> </div>
-          </td>
-          <td data-toggle="tooltip" data-placement="bottom" title="<%= t('tooltip.campaign.ctr')%>" > 
-            <div> <%= campaign.ctr %>%</div>
-            <div class="sub-label"> <%= Campaign.human_attribute_name("ctr") %> </div>
-          </td>
-          <td class="align-middle">
-            <% unless campaign.sent? %>
-              <a class="btn btn-red" href="<%= edit_admin_campaign_path(campaign) %>" role="button"> <%= t('admin_commons.edit')%> </a>
-            <% else %>
-              <a class="btn btn-red" href="<%= edit_admin_campaign_path(campaign) %>" role="button"> <%= t('admin_commons.visualize_html')%> </a>
-            <% end %>
-          </td>
-          <td class="align-middle">
-            <a class="btn btn-red" href="<%= new_admin_campaign_path(campaign.attributes) %>" role="button"> <%= t('admin_commons.duplicate')%> </a>
-          </td>
-        </tr>
+      <%@campaigns.group_by{ |t| (t.release_date > t.created_at ? "#{t.release_date.year}/#{t.release_date.month}/#{t.release_date.day}" : "#{t.created_at.year}/#{t.created_at.month}/#{t.created_at.day}") }.sort_by { |k, v| k.to_date }.reverse.each do |k, campaigns| %>
+        <%campaigns.each_with_index do |campaign, i| %>
+          <% if i == 0%>
+            <tr class="spacer">
+              <td colspan="7" class="no-font p-0"><hr class="hr-text m-0" data-content=<%= k %>></td>
+            </tr>
+          <% end %>
+          <tr class=<%= "spacer" if i < 1 %>>
+            <td> 
+              <div> <%= campaign.name %> </div>
+              <div class="sub-label"> 
+                <%= t('targter.all_subscribers')%> | <%= distance_of_time_in_words(Time.now, campaign.release_date) %> | Campaign ID: <%= campaign.id %>
+              </div>
+            </td>
+            <td data-toggle="tooltip" data-placement="bottom" title="<%= t('tooltip.campaign.revenue')%>">
+              <div> <%= campaign_revenue(campaign) %> </div>
+              <div class="sub-label"> <%= Campaign.human_attribute_name("revenue") %> </div>
+            </td>
+            <td data-toggle="tooltip" data-placement="bottom" title="<%= t('tooltip.campaign.impressions')%>">
+              <div> <%= campaign.impressions %> </div>
+              <div class="sub-label"> <%= Campaign.human_attribute_name("impressions") %> </div>
+            </td>
+            <td data-toggle="tooltip" data-placement="bottom" title="<%= t('tooltip.campaign.clicks')%>" > 
+              <div> <%= campaign.clicks %> </div>
+              <div class="sub-label"> <%= Campaign.human_attribute_name("clicks") %> </div>
+            </td>
+            <td data-toggle="tooltip" data-placement="bottom" title="<%= t('tooltip.campaign.ctr')%>" > 
+              <div> <%= campaign.ctr %>%</div>
+              <div class="sub-label"> <%= Campaign.human_attribute_name("ctr") %> </div>
+            </td>
+            <td class="align-middle">
+              <% unless campaign.sent? %>
+                <a class="btn btn-red" href="<%= edit_admin_campaign_path(campaign) %>" role="button"> <%= t('admin_commons.edit')%> </a>
+              <% else %>
+                <a class="btn btn-red" href="<%= edit_admin_campaign_path(campaign) %>" role="button"> <%= t('admin_commons.visualize_html')%> </a>
+              <% end %>
+            </td>
+            <td class="align-middle">
+              <a class="btn btn-red" href="<%= new_admin_campaign_path(campaign.attributes) %>" role="button"> <%= t('admin_commons.duplicate')%> </a>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>

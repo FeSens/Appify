@@ -10,5 +10,6 @@ FactoryBot.define do
     title { Faker::Marketing.buzzwords }
     body { Faker::Marketing.buzzwords }
     url { UrlBuilder.call(shop.domain, name) }
+    release_date { Time.at(rand(Time.now.to_f..15.days.from_now.to_f)) }
   end
 end
