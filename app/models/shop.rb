@@ -4,7 +4,6 @@ class Shop < ApplicationRecord
   has_one :manifest, dependent: :destroy
   has_one :configuration, dependent: :destroy
   has_one :marketing_value, dependent: :destroy
-
   has_many :user, dependent: :destroy
   has_many :pushes, dependent: :destroy
   has_many :push_interactions, dependent: :destroy
@@ -19,6 +18,7 @@ class Shop < ApplicationRecord
 
   belongs_to :plan, optional: true
 
+  before_create :generate_random_id
   after_create :init_models
 
   def init_models
@@ -52,4 +52,13 @@ class Shop < ApplicationRecord
               app_icon: manifest.icon.present?
             )
   end
+
+  private
+
+  def generate_random_id
+    begin
+      self.id = SecureRandom.random_number(9223372036854775807)
+    end while Shop.where(id: self.id).exists?
+  end 
+  
 end
