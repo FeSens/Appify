@@ -6,6 +6,10 @@
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= javascript_pack_tag 'pushes', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'pushes', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+
     <script type="text/javascript"> var AplicatifyShopId= <%=@id%> </script>
     <%= favicon_link_tag asset_path('favicon.png') %>
   </head>
