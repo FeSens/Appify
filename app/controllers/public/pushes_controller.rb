@@ -2,7 +2,7 @@ module Public
   class PushesController < PublicController
     layout "pushes"
     def new
-      @id = 1 if request.subdomain == "7588c26c7ddd"
+      @id = Shop.find_by(subdomain: request.subdomain)&.id
     end
 
     def create
