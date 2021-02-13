@@ -1,10 +1,10 @@
-<div class="brand-bar"></div>
+<div class="brand-bar" style=<%= "background-color:\##{@current_shop.optins.page.last.background_color}" %>></div>
 <div class="brand-logo">
   <%= image_tag @current_shop.manifest.icon.variant(resize: "80x80").processed.service_url.sub(/\?.*/, '') if Rails.env.production? %>
   <%= image_tag @current_shop.manifest.icon.variant(resize: "80x80") unless Rails.env.production? %>
 </div>
 
 <div class="brand-message">
-  <h1>Tudo pronto para uma experiência premium de compra</h1>
+  <h1><%= @current_shop.optins.page.last.title %></h1>
   <h2>Só falta clicar em <i>Permitir</i></h2>
 </div>
