@@ -2,7 +2,7 @@
   <div class="form-group row">
     <div class="col-6"></div>
     <div class="col-6" data-toggle="tooltip" data-placement="right">
-      <%= link_to 'Dashboard', "#{root_url(subdomain: current_shop.subdomain)}new", target:"_blank"%>
+      <%= link_to 'Testar Pop-Up', "#{root_url(subdomain: current_shop.subdomain)}new", class:"btn btn-purple float-right px-4 mt-4", id:"popup-link", target:"_blank"%>
     </div>
   </div>
   <div class="form-group" data-toggle="tooltip" data-placement="right" title="<%= t('tooltip.optin.title')%>">
@@ -20,3 +20,14 @@
 
   <%= f.submit t('helpers.submit.submit'), class: "btn btn-purple float-right px-4" %>
 <% end %>
+
+<a class="hidden" id="src_lala" hidden="true" href= <%= "#{root_url(subdomain: current_shop.subdomain)}new" %>></a>
+
+<script type="text/javascript">
+$("#popup-link").on('click', function (){
+  var src = $("#src_lala").attr('href')
+  new_src = src + `?title=${$("#optin_title").val()}&background_color=${$("#optin_background_color").val()}`
+
+  $("#popup-link").attr("href", new_src)
+});
+</script>

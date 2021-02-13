@@ -1,9 +1,9 @@
-<% unless params[:tab] %>
+<% unless params[:tab] == "page" %>
   <div class="col-6 d-flex justify-content-center">
     <%= render partial: Flipper['new-modal'].enabled?(current_shop) ? 'public/modal_v2' : 'public/modal', locals: {optin: @optin, preview: true, branding: Flipper['branding-modal'].enabled?(current_shop)} %>
   </div>
-<% else %>
+  <% else %>
   <div class="col-6 d-flex justify-content-center">
-    lalal
+
   </div>
 <% end %>
