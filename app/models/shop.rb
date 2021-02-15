@@ -52,7 +52,7 @@ class Shop < ApplicationRecord
 
   def generate_random_id
     begin
-      self.id = SecureRandom.random_number(9223372036854775807)
+      self.id = SecureRandom.random_number(9_999_999_999_999)
     end while Shop.where(id: self.id).exists?
   end
 
