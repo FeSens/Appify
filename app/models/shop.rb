@@ -20,6 +20,7 @@ class Shop < ApplicationRecord
 
   before_create :generate_random_id
   after_create :init_models
+  after_create :create_optins
 
   def init_models
     create_manifest(name: self.name, short_name: self.name)
