@@ -101,7 +101,7 @@ export let utils = (() => {
 
   return {
     register_push_service(reg) {
-      reg.pushManager.getSubscription()
+      return reg.pushManager.getSubscription()
         .then(function (subscription) {
           if (subscription) {
             return subscription;
