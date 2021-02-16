@@ -103,3 +103,86 @@ h2 {
 .hide {
   visibility: hidden;
 }
+
+//----------------------------- V2 ----------------------------
+
+
+
+.brand-bar-2 {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  height: 100%;
+  width: 45%;
+  background-color: #E95362;
+  //transform: translate(-50%, -50%);
+
+  @media screen and (max-width: 1080px) {
+    height: 17%;
+    width: 100%
+  }
+}
+
+.brand-logo-2 {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+
+  img {
+    transform: translate(10%, 10%);
+    height: 60px;
+    width: 60px;
+  }
+
+  @media screen and (max-width: 1080px) {
+    top: 17%;
+    width: 100px;
+    height: 100px;
+    left: 50%;
+
+    img {
+      height: 80px;
+      width: 80px;
+      transform: translate(10px, 10px);
+    }
+  }
+}
+
+.brand-message-2 {
+  top: 50%;
+  left: 45%;
+  position: absolute;
+  transform: translate(0%, -50%);
+  text-align: center;
+  width: 55%;
+
+  @media screen and (max-width: 1080px) {
+    transform: translate(0%, -35%);
+    width: 100%;
+    top: 50%;
+    left: 0%;
+  }
+}
+
+.youtube {
+  position: fixed;
+  top: 50%;
+  left: 0%;
+  width: 40%;
+  height: 40%;
+  transform: translate(6%, -50%);
+}
+
+.flywheel-link-2 {
+  position: fixed;
+  bottom: 5%;
+  left: 47%;
+  color:black;
+}
