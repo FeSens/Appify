@@ -64,11 +64,11 @@ class Shop < ApplicationRecord
       timer: 90)
     optins.create(kind: "push")
 
-    if type == "Shop::Devise"
-      optins.create(kind: "page",
-        title: "Tudo pronto para uma nova experiência de compra",
-        background_color: "FFFFFF")
-    end
+    #if type == "Shop::Devise"
+    #  optins.create(kind: "page",
+    #    title: "Tudo pronto para uma nova experiência de compra",
+    #    background_color: "FFFFFF")
+    #end
   end
   
 end
