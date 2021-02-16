@@ -1,12 +1,36 @@
-<div class="brand-bar" style=<%= "background-color:\##{background_color || current_shop.optins.page.last.background_color}" %>></div>
-<div class="brand-logo">
-  <%= image_tag current_shop.manifest.icon.variant(resize: "80x80").processed.service_url.sub(/\?.*/, '') if Rails.env.production? %>
-  <%= image_tag current_shop.manifest.icon.variant(resize: "80x80") unless Rails.env.production? %>
+<div id="main">
+  <div class="brand-bar" style=<%= "background-color:\##{background_color || current_shop.optins.page.last.background_color}" %>></div>
+  <div class="brand-logo">
+    <%= image_tag current_shop.manifest.icon.variant(resize: "80x80").processed.service_url.sub(/\?.*/, '') if Rails.env.production? %>
+    <%= image_tag current_shop.manifest.icon.variant(resize: "80x80") unless Rails.env.production? %>
+  </div>
+
+  <div class="brand-message">
+    <h1><%= title || current_shop.optins.page.last.title %></h1>
+    <h2>Só falta clicar em <i>Permitir</i></h2>
+  </div>
+
+  <a class="flywheel-link" href="https://www.aplicatify.com/">Quer bombar o seu canal?</a>
 </div>
 
-<div class="brand-message">
-  <h1><%= title || current_shop.optins.page.last.title %></h1>
-  <h2>Só falta clicar em <i>Permitir</i></h2>
+<div id="secondary" class="hide">
+  <div class="brand-bar" style=<%= "background-color:\##{background_color || current_shop.optins.page.last.background_color}" %>></div>
+  <div class="brand-logo">
+    <%= image_tag current_shop.manifest.icon.variant(resize: "80x80").processed.service_url.sub(/\?.*/, '') if Rails.env.production? %>
+    <%= image_tag current_shop.manifest.icon.variant(resize: "80x80") unless Rails.env.production? %>
+  </div>
+
+  <div class="brand-message">
+    <h1>Infelizmente o seu dispositivo não suporta notificações Web =(</h1>
+  </div>
+
+  <a class="flywheel-link" href="https://www.aplicatify.com/">Quer bombar o seu canal?</a>
 </div>
 
-<a class="flywheel-link" href="https://www.aplicatify.com/">Quer bombar o seu canal?</a>
+
+<script>
+  if(!'PushManager' in window) {
+    document.getElementById("main").classList.add('hide');
+    document.getElementById("secondary").classList.remove('hide');
+  }
+</script>
