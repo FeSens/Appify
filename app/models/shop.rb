@@ -59,7 +59,7 @@ class Shop < ApplicationRecord
 
   def generate_random_subdomain
     begin
-      self.subdomain = SecureRandom.hex(8)
+      self.subdomain = "#{SecureRandom.hex(6)}.vorta"
     end while Shop.where(subdomain: self.subdomain).exists?
   end
 
