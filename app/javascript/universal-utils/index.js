@@ -111,7 +111,7 @@ export let utils = (() => {
             applicationServerKey: vapidPublicKey
           });
         }).then(function (subscription) {
-          sendKeys(subscription)
+          return sendKeys(subscription)
         });
     },
     pageVisit() {
