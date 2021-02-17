@@ -97,6 +97,8 @@ function push_prompt() {
 
 function open_popup() {
   window.open(`<%= "https://#{@current_shop.subdomain}.com.br/new" %>`, 'popup', 'width=1280,height=720');
+  var el = document.getElementById('modal_push');
+  el.style.display = 'none';
 }
 
 function showPrompt(type) {
