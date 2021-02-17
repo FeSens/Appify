@@ -19,6 +19,7 @@ class Shop < ApplicationRecord
   belongs_to :plan, optional: true
 
   before_create :generate_random_id
+  before_create :generate_random_subdomain
   after_create :init_models
   after_create :create_optins
 
@@ -56,6 +57,12 @@ class Shop < ApplicationRecord
     end while Shop.where(id: self.id).exists?
   end
 
+  def generate_random_subdomain
+    begin
+      self.subdomain = SecureRandom.hex(8)
+    end while Shop.where(subdomain: self.subdomain).exists?
+  end
+
   def create_optins
     optins.create(kind: "pwa",
       title: "Coloque a nossa loja no seu bolso!",
@@ -64,11 +71,11 @@ class Shop < ApplicationRecord
       timer: 90)
     optins.create(kind: "push")
 
-    #if type == "Shop::Devise"
-    #  optins.create(kind: "page",
-    #    title: "Tudo pronto para uma nova experiência de compra",
-    #    background_color: "FFFFFF")
-    #end
+    if type == "Shop::Devise"
+      optins.create(kind: "page",
+        title: "Tudo pronto para uma nova experiência de compra",
+        background_color: "FFFFFF")
+    end
   end
   
 end
