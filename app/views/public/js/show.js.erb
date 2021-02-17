@@ -95,11 +95,20 @@ function push_prompt() {
   el.style.display = 'none';
 }
 
+function open_popup() {
+  window.open(`<%= "https://#{@current_shop.subdomain}.vorta.com.br" %>`, 'popup', 'width=1280,height=720');
+}
+
 function showPrompt(type) {
   if (type == 'pwa') {
     pwa_prompt();
   } else {
-    push_prompt();
+    if (window.saved_reg) {
+      push_prompt();
+    }
+    else {
+      open_popup();
+    }
   }
 }
 
