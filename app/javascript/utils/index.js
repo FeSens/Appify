@@ -1,4 +1,5 @@
 import { idbKeyval } from 'indexdb'
+var psl = require('psl');
 
 export let utils = (() => {
   var vapidPublicKey = 'BOrPeoGdzvXg1OuNhjqYpCFof8D5QnDu4v1td5GTBBrXoVU-MhufANWOmWaHLH5ZXv3BUEFmP-I4m9Olme7V_VY';
@@ -19,10 +20,16 @@ export let utils = (() => {
     return digged; 
   }
 
-  function __setCookie__(name, value) {
-    var expires = "";
-    document.cookie = name + "=" + (value || "") + expires + "; path=/"
+  function __setCookie__(name, value, expire="") {
+    var now = new Date();
+    var time = now.getTime();
+    var expireTime = time + 1000*expire;
+    now.setTime(expireTime);
+    if(expire) expire = now.toUTCString()
+
+    document.cookie = `${name}=${value || ""}; expires=${expire}; path=/; domain=.${psl.parse(location.hostname).domain}`;
   }
+
   function __getCookie__(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
@@ -59,6 +66,8 @@ export let utils = (() => {
       id = create_UUID()
       idbKeyval.set("push-subscriber", id)
     }
+    __setCookie__("push-subscriber", id)
+
     return id
   }
 
@@ -169,6 +178,7 @@ export let utils = (() => {
     }
     if (searchParams.get("utm_campaign")) {
       $.post('/cart/update.js', cart_attributes);
+      if (searchParams.get("utm_source") === "aplicatify") __setCookie__("utm_campaign", searchParams.get("utm_campaign"), 60*60)
     }
     
   }
