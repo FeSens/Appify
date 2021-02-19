@@ -225,6 +225,7 @@ pt-BR:
   optin:
     pwa: "App"
     push: "Push"
+    page: "PopUp"
   
   admin_commons:
     greetings: "Olá"

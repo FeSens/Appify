@@ -2,10 +2,10 @@ require "rails_helper"
 
 RSpec.describe "Analytics::Carts", type: :request do
   before do
-    FactoryBot.create(:shop)
     post "/analytics/carts", params: params
   end
 
+  let!(:shop) { FactoryBot.create(:shop) }
   let(:campaign) { FactoryBot.create :campaign }
   let(:push) { FactoryBot.create :push }
   let(:status) { :no_content }
@@ -17,7 +17,8 @@ RSpec.describe "Analytics::Carts", type: :request do
 
   describe "with push subscriber" do
     let(:params) do
-      {
+      { 
+        shop_id: shop.id,
         subscriber_id: push.subscriber_id,
         token: rand(36**64).to_s(36),
         hexdigest: rand(36**64).to_s(36),
@@ -33,7 +34,8 @@ RSpec.describe "Analytics::Carts", type: :request do
 
   describe "without push subscriber" do
     let(:params) do
-      {
+      { 
+        shop_id: shop.id,
         subscriber_id: nil,
         token: rand(36**64).to_s(36),
         hexdigest: rand(36**64).to_s(36),

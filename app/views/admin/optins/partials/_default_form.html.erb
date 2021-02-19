@@ -1,0 +1,55 @@
+<%= form_with model: @optin, method: 'patch', url: admin_optin_path(@optin), class:"mt-3", local: true do |f| %>
+  <div class="form-group row">
+    <div class="col-6">
+      <%= label_tag :enabled, t('activerecord.attributes.optin.enabled') %>
+      <div>
+        <label class="switch">
+          <%= f.check_box :enabled %>
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+    <div class="col-6" data-toggle="tooltip" data-placement="right" title="<%= @optin.enabled ? t('tooltip.optin.my_store') : t('tooltip.optin.my_store_disabled') %>">
+      <a href="<%="http://#{current_shop.domain}/?t=5&vizualize=#{@optin.kind}" %>"
+          target="_blank" class="btn btn-purple float-right px-4 mt-4 <%= "disabled" unless @optin.enabled%>">
+        Ver na Minha Loja
+      </a>
+    </div>
+  </div>
+  <div class="form-group" data-toggle="tooltip" data-placement="right" title="<%= t('tooltip.optin.title')%>">
+    <%= label_tag :title, t('activerecord.attributes.optin.title') %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="form-group" data-toggle="tooltip" data-placement="right" title="<%= t('tooltip.optin.body')%>">
+    <%= label_tag :body, t('activerecord.attributes.optin.body') %>
+    <%= f.text_field :body, class: "form-control" %>
+  </div>
+  <div class="form-group" data-toggle="tooltip" data-placement="right" title="<%= t('tooltip.optin.accept_button')%>">
+    <%= label_tag :accept_button, t('activerecord.attributes.optin.accept_button') %>
+    <%= f.text_field :accept_button, class: "form-control" %>
+  </div>
+  <div class="form-group" data-toggle="tooltip" data-placement="right" title="<%= t('tooltip.optin.decline_button')%>">
+    <%= label_tag :decline_button, t('activerecord.attributes.optin.decline_button') %>
+    <%= f.text_field :decline_button, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :background_color, Flipper['new-modal'].enabled?(current_shop) ? t('activerecord.attributes.optin.background_color_v2') : t('activerecord.attributes.optin.background_color') %>
+    <%= f.text_field :background_color, class: "form-control jscolor" %>
+  </div>
+  <% if Flipper['new-modal'].enabled?(current_shop) %>
+    <div class="form-group">
+      <%= label_tag :icon, t('activerecord.attributes.manifest.icon') %>
+      <small class="form-text text-muted mt-0 mb-2">A logo dos Popups é a mesma do app, para altera-la <a href=<%= edit_admin_pwa_path %>>clique aqui</a></small>
+    </div>
+  <% else %>
+    <div class="form-group">
+      <%= label_tag :text_color, t('activerecord.attributes.optin.text_color') %>
+      <%= f.text_field :text_color, class: "form-control jscolor" %>
+    </div>
+  <% end %>
+  <div class="form-group" data-toggle="tooltip" data-placement="right" title="<%= t('tooltip.optin.timer')%>">
+    <%= label_tag :timer, t('activerecord.attributes.optin.timer') %>
+    <%= f.number_field :timer, class: "form-control" %>
+  </div>
+  <%= f.submit t('helpers.submit.submit'), class: "btn btn-purple float-right px-4" %>
+<% end %>

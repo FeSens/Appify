@@ -1,2 +1,2 @@
 /* Aplicatify */
-importScripts("https://appify-skin.herokuapp.com/aplicatify-serviceworker-internal.js");
+importScripts("https://app.vorta.com.br/aplicatify-serviceworker-internal.js");

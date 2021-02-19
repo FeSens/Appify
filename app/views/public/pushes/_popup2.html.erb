@@ -1,0 +1,16 @@
+<div id="main">
+  <div class="brand-bar-2" style=<%= "background-color:\##{background_color || current_shop.optins.page.last.background_color}" %>></div>
+  <div class="brand-message-2">
+    <h1><%= title || current_shop.optins.page.last.title %></h1>
+    <h2>Só falta clicar em <i>Permitir</i></h2>
+  </div>
+
+  <div class="brand-logo-2">
+    <%= image_tag current_shop.manifest.icon.variant(resize: "80x80").processed.service_url.sub(/\?.*/, '') if Rails.env.production? %>
+    <%= image_tag current_shop.manifest.icon.variant(resize: "80x80") unless Rails.env.production? %>
+  </div>
+
+  <iframe width="420" height="315" class="youtube" src="https://www.youtube.com/embed/y5vc9lL7lKI"></iframe>
+
+  <a class="flywheel-link-2" href="https://www.aplicatify.com/">Quer bombar o seu canal?</a>
+</div>

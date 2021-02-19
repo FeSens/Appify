@@ -26,7 +26,7 @@ function incrementCookie(name, n) {
 }
 
 function sendOptInAnalytics(type){
-  fetch("https://appify-skin.herokuapp.com/analytics/opt_ins",
+  fetch("https://app.vorta.com.br/analytics/opt_ins",
     {
       shop_id: window.AplicatifyShopId,
       method: "POST",
@@ -95,11 +95,22 @@ function push_prompt() {
   el.style.display = 'none';
 }
 
+function open_popup() {
+  window.open(`<%= "https://#{@current_shop.subdomain}.com.br/new" %>`, 'popup', 'width=1280,height=720');
+  var el = document.getElementById('modal_push');
+  el.style.display = 'none';
+}
+
 function showPrompt(type) {
   if (type == 'pwa') {
     pwa_prompt();
   } else {
-    push_prompt();
+    if (window.saved_reg) {
+      push_prompt();
+    }
+    else {
+      open_popup();
+    }
   }
 }
 

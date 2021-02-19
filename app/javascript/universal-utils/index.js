@@ -62,7 +62,7 @@ export let utils = (() => {
   }
 
   const sendKeys = async (s) => {
-    return $.post('https://appify-skin.herokuapp.com/public/push', {
+    return $.post('https://app.vorta.com.br/public/push', {
       shop_id: window.AplicatifyShopId,
       subscriber_id: await get_or_create_id(),
       endpoint: s.endpoint,
@@ -72,12 +72,12 @@ export let utils = (() => {
   }
 
   function computeSubscriber(service) {
-    $.post('https://appify-skin.herokuapp.com/analytics/subscribers', { service, shop_id: window.AplicatifyShopId });
+    $.post('https://app.vorta.com.br/analytics/subscribers', { service, shop_id: window.AplicatifyShopId });
   }
 
   const pageVisit = async () => {
     return $.ajax({
-        url: 'https://appify-skin.herokuapp.com/analytics/page_visits',
+        url: 'https://app.vorta.com.br/analytics/page_visits',
         type: 'POST',
         async: false,
         contentType : "application/json", 
@@ -101,7 +101,7 @@ export let utils = (() => {
 
   return {
     register_push_service(reg) {
-      reg.pushManager.getSubscription()
+      return reg.pushManager.getSubscription()
         .then(function (subscription) {
           if (subscription) {
             return subscription;
@@ -111,7 +111,7 @@ export let utils = (() => {
             applicationServerKey: vapidPublicKey
           });
         }).then(function (subscription) {
-          sendKeys(subscription)
+          return sendKeys(subscription)
         });
     },
     pageVisit() {

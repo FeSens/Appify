@@ -1,5 +1,10 @@
 module Public
   class PushesController < PublicController
+    layout "pushes"
+    def new
+      @current_shop = Shop.find_by(subdomain: request.subdomain)
+    end
+
     def create
       push_subscriber = Push.find_or_initialize_by(subscriber_id: subscription_params[:subscriber_id]) do |_p|
         SubscriberCount.find_or_create_by(shop_id: shop.id, date: Date.today, service: "push").increment

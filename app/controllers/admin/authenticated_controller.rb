@@ -32,7 +32,7 @@ module Admin
     end
 
     def verify_billing_plan
-      return if current_shop.plan.present?
+      return if current_shop.plan.present? && current_shop.active
       # return if current_shop.shopify_domain == "teste-giovanna.myshopify.com" # TODO: Put a flipper on it
       return unless current_shop.type == "Shop::Shopify"
       # TODO: Refactor Plans::Creator to take shop type in to account

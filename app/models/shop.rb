@@ -4,7 +4,6 @@ class Shop < ApplicationRecord
   has_one :manifest, dependent: :destroy
   has_one :configuration, dependent: :destroy
   has_one :marketing_value, dependent: :destroy
-
   has_many :user, dependent: :destroy
   has_many :pushes, dependent: :destroy
   has_many :push_interactions, dependent: :destroy
@@ -19,22 +18,19 @@ class Shop < ApplicationRecord
 
   belongs_to :plan, optional: true
 
+  before_create :generate_random_id
+  before_create :generate_random_subdomain
   after_create :init_models
+  after_create :create_optins
 
   def init_models
     create_manifest(name: self.name, short_name: self.name)
-    optins.create(kind: "pwa",
-                  title: "Put our store in your pocket!",
-                  body: "Download our app and keep updated about your order and the newest products!",
-                  accept_button: "Let's go!",
-                  timer: 15)
-    optins.create(kind: "push")
+    create_marketing_value(cpc: 0.446, cps: 1.78, cpd: 3.47)
     campaigns.create(
       name: "app",
       tag: "internal",
       url: "/?ref=aplicatify&utm_source=aplicatify&utm_medium=app&utm_campaign=app"
     )
-    create_marketing_value(cpc: 0.446, cps: 1.78, cpd: 3.47)
   end
 
   def custom_data
@@ -52,4 +48,34 @@ class Shop < ApplicationRecord
               app_icon: manifest.icon.present?
             )
   end
+
+  private
+
+  def generate_random_id
+    begin
+      self.id = SecureRandom.random_number(9_999_999_999_999)
+    end while Shop.where(id: self.id).exists?
+  end
+
+  def generate_random_subdomain
+    begin
+      self.subdomain = "#{SecureRandom.hex(6)}.vorta"
+    end while Shop.where(subdomain: self.subdomain).exists?
+  end
+
+  def create_optins
+    optins.create(kind: "pwa",
+      title: "Coloque a nossa loja no seu bolso!",
+      body: "Baixe o nosso App e fique por dentro de tudo!",
+      accept_button: "Sim",
+      timer: 90)
+    optins.create(kind: "push")
+
+    if type == "Shop::Devise"
+      optins.create(kind: "page",
+        title: "Tudo pronto para uma nova experiência de compra",
+        background_color: "FFFFFF")
+    end
+  end
+  
 end

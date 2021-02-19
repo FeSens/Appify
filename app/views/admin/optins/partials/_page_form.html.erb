@@ -1,0 +1,33 @@
+<%= form_with model: @optin, method: 'patch', url: admin_optin_path(@optin), class:"mt-3", local: true do |f| %>
+  <div class="form-group row">
+    <div class="col-6"></div>
+    <div class="col-6" data-toggle="tooltip" data-placement="right">
+      <%= link_to 'Testar Pop-Up', "#{root_url(subdomain: current_shop.subdomain)}new", class:"btn btn-purple float-right px-4 mt-4", id:"popup-link", target:"_blank"%>
+    </div>
+  </div>
+  <div class="form-group" data-toggle="tooltip" data-placement="right" title="<%= t('tooltip.optin.title')%>">
+    <%= label_tag :title, t('activerecord.attributes.optin.title') %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :background_color, Flipper['new-modal'].enabled?(current_shop) ? t('activerecord.attributes.optin.background_color_v2') : t('activerecord.attributes.optin.background_color') %>
+    <%= f.text_field :background_color, class: "form-control jscolor" %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :icon, t('activerecord.attributes.manifest.icon') %>
+    <small class="form-text text-muted mt-0 mb-2">A logo dos Popups é a mesma do app, para altera-la <a href=<%= edit_admin_pwa_path %>>clique aqui</a></small>
+  </div>
+
+  <%= f.submit t('helpers.submit.submit'), class: "btn btn-purple float-right px-4" %>
+<% end %>
+
+<a class="hidden" id="src_lala" hidden="true" href= <%= "#{root_url(subdomain: current_shop.subdomain)}new" %>></a>
+
+<script type="text/javascript">
+$("#popup-link").on('click', function (){
+  var src = $("#src_lala").attr('href')
+  new_src = src + `?title=${$("#optin_title").val()}&background_color=${$("#optin_background_color").val()}`
+
+  $("#popup-link").attr("href", new_src)
+});
+</script>

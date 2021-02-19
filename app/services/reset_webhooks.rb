@@ -2,14 +2,14 @@
 class ResetWebhooks
   def init_webhooks
     webhooks = [
-      { topic: "checkouts/create", address: "https://appify-skin.herokuapp.com/webhooks/checkouts_create",
+      { topic: "checkouts/create", address: "https://app.vorta.com.br/webhooks/checkouts_create",
         format: "json",
         fields: %w[id token cart_token line_items] },
       { topic: "app/uninstalled",
-        address: "https://appify-skin.herokuapp.com/webhooks/app_uninstalled",
+        address: "https://app.vorta.com.br/webhooks/app_uninstalled",
         format: "json" },
       { topic: "orders/create",
-        address: "https://appify-skin.herokuapp.com/webhooks/orders_create",
+        address: "https://app.vorta.com.br/webhooks/orders_create",
         format: "json",
         fields: %w[checkout_token cart_token line_items admin_graphql_api_id total_line_items_price name] }
     ]
