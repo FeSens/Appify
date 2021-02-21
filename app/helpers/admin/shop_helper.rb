@@ -47,7 +47,7 @@ module Admin
     def push_interaction
       @push_interaction ||= begin
         push = PushInteraction.find_or_create_by(shop_id: current_shop.id, date: Date.today.at_beginning_of_month)
-        { push_count: push.count, push_limit: current_shop.push_limit }
+        { push_count: push.count, push_limit: [0, current_shop.push_limit - push.count].max }
       end
     end
 

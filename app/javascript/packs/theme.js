@@ -24,6 +24,8 @@ require("chart.js")
 
 import "../vendor/hs/hs.core"
 import "../vendor/hs/hs.chartjs"
+import HSMegaMenu from "../vendor/hs/hs-mega-menu"
+import HSUnfold from "../vendor/hs/hs-unfold"
 
 document.addEventListener("turbolinks:load", () => {
   console.log("we are here")
@@ -31,6 +33,11 @@ document.addEventListener("turbolinks:load", () => {
   $('[data-toggle="popover"]').popover()
   $('.toast').toast({ autohide: false })
   $('#toast').toast('show')
+  var megaMenu = new HSMegaMenu($('.js-mega-menu')).init();
+
+  $('.js-hs-unfold-invoker').each(function () {
+    var unfold = new HSUnfold($(this)).init();
+  });
 })
 
 
