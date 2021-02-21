@@ -280,27 +280,28 @@
         </div>
         <!-- End Badge -->
 
-        <!-- Chart Half -->
-        <div class="chartjs-doughnut-custom" style="height: 12rem;"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-          <canvas class="js-chartjs-doughnut-half chartjs-render-monitor" data-hs-chartjs-options="{
-                  &quot;type&quot;: &quot;doughnut&quot;,
-                  &quot;data&quot;: {
-                    &quot;labels&quot;: [&quot;Current status&quot;, &quot;Goal&quot;],
-                    &quot;datasets&quot;: [{
-                      &quot;data&quot;: [64, 35],
-                      &quot;backgroundColor&quot;: [&quot;#377dff&quot;, &quot;rgba(55,125,255,.35)&quot;],
-                      &quot;borderWidth&quot;: 4,
-                      &quot;hoverBorderColor&quot;: &quot;#ffffff&quot;
-                    }]
-                  }
-                }" width="312" height="192" style="display: block; width: 312px; height: 192px;"></canvas>
+<!-- Chart Half -->
+<div class="chartjs-doughnut-custom" style="height: 12rem;">
+  <canvas class="js-chartjs-doughnut-half"
+          data-hs-chartjs-options='{
+          "type": "doughnut",
+          "data": {
+            "labels": ["Current status", "Goal"],
+            "datasets": [{
+              "data": [64, 35],
+              "backgroundColor": ["#377dff", "rgba(55, 125, 255, 0.35)"],
+              "borderWidth": 4,
+              "hoverBorderColor": "#ffffff"
+            }]
+          }
+        }'></canvas>
 
-          <div class="chartjs-doughnut-custom-stat">
-            <small class="text-cap">Impressōes Consumuidas</small>
-            <span class="h1">$150,238.00</span>
-          </div>
-        </div>
-        <!-- End Chart Half -->
+  <div class="chartjs-doughnut-custom-stat">
+    <small class="text-cap">Project balance</small>
+    <span class="h1">$150,238.00</span>
+  </div>
+</div>
+<!-- End Chart Half -->
 
         <hr>
 
@@ -355,3 +356,20 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).on('turbolinks:load', function () {
+    // INITIALIZATION OF CHARTJS
+    // =======================================================
+    $.HSCore.components.HSChartJS.init($('.js-chartjs-doughnut-half'), {
+      options: {
+        tooltips: {
+          postfix: "%"
+        },
+        cutoutPercentage: 85,
+        rotation: 1 * Math.PI,
+        circumference: 1 * Math.PI
+      }
+    });
+  });
+</script>
