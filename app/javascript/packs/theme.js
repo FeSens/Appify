@@ -22,11 +22,16 @@ import "../vendor/icon-set/liga"
 
 require("chart.js")
 
+import "../vendor/hs/hs.core"
+import "../vendor/hs/hs.chartjs"
+
 document.addEventListener("turbolinks:load", () => {
+  console.log("we are here")
   $('[data-toggle="tooltip"]').tooltip()
   $('[data-toggle="popover"]').popover()
   $('.toast').toast({ autohide: false })
   $('#toast').toast('show')
 })
+
 
 window.$ = $;
