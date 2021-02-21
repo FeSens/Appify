@@ -18,7 +18,7 @@
   <body>      
     <%= flash_messages %>
     <!-- ========== HEADER ========== -->
-    <%= render partial: "partials/header/main-fluid" %>
+    <%= render partial: "partials/header/navbar" %>
     <!-- ========== END HEADER ========== -->
 
     <!-- ========== MAIN CONTENT ========== -->
@@ -30,32 +30,5 @@
       <!-- End Content -->
     </main>
     <!-- ========== END MAIN CONTENT ========== -->
-
-    <!-- JS Plugins Init. -->
-  <script>
-    $(document).on('ready', function () {
-      // INITIALIZATION OF UNFOLD
-      // =======================================================
-      $('.js-hs-unfold-invoker').each(function () {
-        var unfold = new HSUnfold($(this)).init();
-      });
-
-
-      // INITIALIZATION OF FORM SEARCH
-      // =======================================================
-      $('.js-form-search').each(function () {
-        new HSFormSearch($(this)).init()
-      });
-
-
-      // INITIALIZATION OF MEGA MENU
-      // =======================================================
-      var megaMenu = new HSMegaMenu($('.js-mega-menu'), {
-        desktop: {
-          position: 'left'
-        }
-      }).init();
-    });
-  </script>
   </body>
 </html>

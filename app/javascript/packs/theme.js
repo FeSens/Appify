@@ -18,8 +18,9 @@ require("shopify_app")
 
 import "bootstrap";
 import "../stylesheets/theme"
-
 import "../vendor/icon-set/liga"
+
+require("chart.js")
 
 document.addEventListener("turbolinks:load", () => {
   $('[data-toggle="tooltip"]').tooltip()

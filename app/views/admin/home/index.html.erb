@@ -1,29 +1,330 @@
-<div class="row">
-  <div class="col-12">
-    <div class="row my-3">
-      <div class="col-md-6 col-xl-3  mx-auto info-card" data-toggle="tooltip" data-placement="bottom" title="<%= t('tooltip.app_revenue')%>">
-        <%= image_tag "Componente 1 – 1.svg" %>
-        <div class="title"><%= t('.app_revenue_html')%></div>
-        <div class="money"><%= app_revenue %></div>
-      </div>
-      <div class="col-md-6 col-xl-3  mx-auto info-card" data-toggle="tooltip" data-placement="bottom" title="<%= t('tooltip.app_users')%>">
-        <%= image_tag "Componente 4 – 1.png" %>
-        <div class="title"><%= t('.app_users_html')%></div>
-        <div class="value"><%= app_installs %></div>
-      </div>
-     <div class="col-md-6 col-xl-3  mx-auto info-card" data-toggle="tooltip" data-placement="bottom" title="<%= t('tooltip.campaigns_revenue')%>">
-        <%= image_tag "Componente 3 – 1.svg" %>
-        <div class="title"><%= t('.campaigns_revenue_html')%></div>
-        <div class="money"><%= campaigns_revenue %></div>
-      </div>
-      <div class="col-md-6 col-xl-3  mx-auto info-card" data-toggle="tooltip" data-placement="bottom" title="<%= t('tooltip.active_subscribers')%>">
-        <%= image_tag "Componente 2 – 1.svg" %>
-        <div class="title"><%= t('.active_subscribers_html')%></div>
-        <div class="value"><%= push_subscribers %></div>
-      </div>
+<div class="page-header">
+  <div class="row align-items-center">
+    <div class="col-sm mb-2 mb-sm-0">
+      <h1 class="page-header-title">Dashboard</h1>
+    </div>
+
+    <div class="col-sm-auto">
+      <a class="btn btn-primary" href="<%= new_admin_campaign_path %>">
+        <i class="tio-user-add mr-1"></i> <%= t('admin_commons.new_campaign') %>
+      </a>
     </div>
   </div>
 </div>
+
+<!-- Card de Indicadores -->
+<div class="row gx-2 gx-lg-3">
+  <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
+    <!-- Card -->
+    <div class="card h-100">
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2">Downloads do App</h6>
+
+        <div class="row align-items-center gx-2">
+          <div class="col">
+            <span class="js-counter display-4 text-dark" data-value="<%= app_installs %>"><%= app_installs %></span>
+            <span class="text-body font-size-sm ml-1">Antes eram <%= app_installs(7.days.ago) %></span>
+          </div>
+
+          <div class="col-auto">
+            <%= raw growth_badge(app_installs, app_installs(7.days.ago)) %>
+          </div>
+        </div>
+        <!-- End Row -->
+      </div>
+    </div>
+    <!-- End Card -->
+  </div>
+
+  <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
+    <!-- Card -->
+    <div class="card h-100">
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2">Inscritos Ativos</h6>
+
+        <div class="row align-items-center gx-2">
+          <div class="col">
+            <span class="js-counter display-4 text-dark" data-value="<%= push_subscribers %>"><%= push_subscribers %></span>
+            <!-- <span class="text-body font-size-sm ml-1">from 11</span> -->
+          </div>
+
+          <!-- <div class="col-auto">
+            <span class="badge badge-soft-success p-1">
+              <i class="tio-trending-up"></i> 1.2%
+            </span>
+          </div> -->
+        </div>
+        <!-- End Row -->
+      </div>
+    </div>
+    <!-- End Card -->
+  </div>
+
+  <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
+    <!-- Card -->
+    <div class="card h-100">
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2">Valor gerado pelo App</h6>
+
+        <div class="row align-items-center gx-2">
+          <div class="col">
+            <span class="js-counter display-4 text-dark" data-value="<%= app_revenue %>"><%= app_revenue %></span>
+          </div>
+
+          <div class="col-auto">
+            <span class="badge badge-soft-success p-1">
+              <i class="tio-trending-up"></i> <%= app_revenue_delta %>
+            </span>
+          </div>
+        </div>
+        <!-- End Row -->
+      </div>
+    </div>
+    <!-- End Card -->
+  </div>
+
+  <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
+    <!-- Card -->
+    <div class="card h-100">
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2">Valor gerado pelas campanhas</h6>
+
+        <div class="row align-items-center gx-2">
+          <div class="col">
+            <span class="js-counter display-4 text-dark" data-value="<%= campaigns_revenue %>"><%= campaigns_revenue %></span>
+          </div>
+
+          <div class="col-auto">
+            <span class="badge badge-soft-success p-1">
+              <i class="tio-trending-up"></i> <%= campaigns_revenue_delta %>
+            </span>
+          </div>
+        </div>
+        <!-- End Row -->
+      </div>
+    </div>
+    <!-- End Card -->
+  </div>
+</div>
+<!-- Fim do Card de Indicadores -->
+
+<div class="row gx-2 gx-lg-3">
+  <div class="col-lg-8 mb-3 mb-lg-5">
+    <!-- Card -->
+    <div class="card h-100">
+      <!-- Header -->
+      <div class="card-header">
+        <h5 class="card-header-title">Monthly expenses</h5>
+
+        <!-- Nav -->
+        <ul class="nav nav-segment" id="expensesTab" role="tablist">
+          <li class="nav-item" data-toggle="chart-bar" data-datasets="thisWeek" data-trigger="click" data-action="toggle">
+            <a class="nav-link active" href="javascript:;" data-toggle="tab">This week</a>
+          </li>
+          <li class="nav-item" data-toggle="chart-bar" data-datasets="lastWeek" data-trigger="click" data-action="toggle">
+            <a class="nav-link" href="javascript:;" data-toggle="tab">Last week</a>
+          </li>
+        </ul>
+        <!-- End Nav -->
+      </div>
+      <!-- End Header -->
+
+      <!-- Body -->
+      <div class="card-body">
+        <div class="row mb-4">
+          <div class="col-sm mb-2 mb-sm-0">
+            <div class="d-flex align-items-center">
+              <span class="h1 mb-0">35%</span>
+              <span class="text-success ml-2">
+                <i class="tio-trending-up"></i> 25.3%
+              </span>
+            </div>
+          </div>
+
+          <div class="col-sm-auto align-self-sm-end">
+            <!-- Legend Indicators -->
+            <div class="row font-size-sm">
+              <div class="col-auto">
+                <span class="legend-indicator bg-primary"></span> New
+              </div>
+              <div class="col-auto">
+                <span class="legend-indicator"></span> Overdue
+              </div>
+            </div>
+            <!-- End Legend Indicators -->
+          </div>
+        </div>
+        <!-- End Row -->
+
+        <!-- Bar Chart -->
+        <div class="chartjs-custom"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+          <canvas id="updatingData" style="height: 320px; display: block; width: 600px;" data-hs-chartjs-options="{
+                    &quot;type&quot;: &quot;bar&quot;,
+                    &quot;data&quot;: {
+                      &quot;labels&quot;: [&quot;May 1&quot;, &quot;May 2&quot;, &quot;May 3&quot;, &quot;May 4&quot;, &quot;May 5&quot;, &quot;May 6&quot;, &quot;May 7&quot;, &quot;May 8&quot;, &quot;May 9&quot;, &quot;May 10&quot;],
+                      &quot;datasets&quot;: [{
+                        &quot;data&quot;: [200, 300, 290, 350, 150, 350, 300, 100, 125, 220],
+                        &quot;backgroundColor&quot;: &quot;#377dff&quot;,
+                        &quot;hoverBackgroundColor&quot;: &quot;#377dff&quot;,
+                        &quot;borderColor&quot;: &quot;#377dff&quot;
+                      },
+                      {
+                        &quot;data&quot;: [150, 230, 382, 204, 169, 290, 300, 100, 300, 225, 120],
+                        &quot;backgroundColor&quot;: &quot;#e7eaf3&quot;,
+                        &quot;borderColor&quot;: &quot;#e7eaf3&quot;
+                      }]
+                    },
+                    &quot;options&quot;: {
+                      &quot;scales&quot;: {
+                        &quot;yAxes&quot;: [{
+                          &quot;gridLines&quot;: {
+                            &quot;color&quot;: &quot;#e7eaf3&quot;,
+                            &quot;drawBorder&quot;: false,
+                            &quot;zeroLineColor&quot;: &quot;#e7eaf3&quot;
+                          },
+                          &quot;ticks&quot;: {
+                            &quot;beginAtZero&quot;: true,
+                            &quot;stepSize&quot;: 100,
+                            &quot;fontSize&quot;: 12,
+                            &quot;fontColor&quot;: &quot;#97a4af&quot;,
+                            &quot;fontFamily&quot;: &quot;Open Sans, sans-serif&quot;,
+                            &quot;padding&quot;: 10,
+                            &quot;postfix&quot;: &quot;$&quot;
+                          }
+                        }],
+                        &quot;xAxes&quot;: [{
+                          &quot;gridLines&quot;: {
+                            &quot;display&quot;: false,
+                            &quot;drawBorder&quot;: false
+                          },
+                          &quot;ticks&quot;: {
+                            &quot;fontSize&quot;: 12,
+                            &quot;fontColor&quot;: &quot;#97a4af&quot;,
+                            &quot;fontFamily&quot;: &quot;Open Sans, sans-serif&quot;,
+                            &quot;padding&quot;: 5
+                          },
+                          &quot;categoryPercentage&quot;: 0.5,
+                          &quot;maxBarThickness&quot;: &quot;10&quot;
+                        }]
+                      },
+                      &quot;cornerRadius&quot;: 2,
+                      &quot;tooltips&quot;: {
+                        &quot;prefix&quot;: &quot;$&quot;,
+                        &quot;hasIndicator&quot;: true,
+                        &quot;mode&quot;: &quot;index&quot;,
+                        &quot;intersect&quot;: false
+                      },
+                      &quot;hover&quot;: {
+                        &quot;mode&quot;: &quot;nearest&quot;,
+                        &quot;intersect&quot;: true
+                      }
+                    }
+                  }" width="600" height="320" class="chartjs-render-monitor"></canvas>
+        </div>
+        <!-- End Bar Chart -->
+      </div>
+      <!-- End Body -->
+    </div>
+    <!-- End Card -->
+  </div>
+
+  <div class="col-lg-4 mb-3 mb-lg-5">
+    <!-- Card -->
+    <div class="card h-100">
+      <!-- Header -->
+      <div class="card-header">
+        <h4 class="card-header-title">Uso #TODO melhorar esse titulo</h4>
+
+        <!-- Unfold -->
+        <div class="hs-unfold">
+          <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-ghost-secondary rounded-circle" href="javascript:;" data-hs-unfold-options="{
+                &quot;target&quot;: &quot;#reportsOverviewDropdown1&quot;,
+                &quot;type&quot;: &quot;css-animation&quot;
+              }" data-hs-unfold-target="#reportsOverviewDropdown1" data-hs-unfold-invoker="">
+            <i class="tio-more-vertical"></i>
+          </a>
+
+          <div id="reportsOverviewDropdown1" class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right mt-1 hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated" data-hs-target-height="243" data-hs-unfold-content="" data-hs-unfold-content-animation-in="slideInUp" data-hs-unfold-content-animation-out="fadeOut" style="animation-duration: 300ms;">
+            <span class="dropdown-header">Settings</span>
+
+            <a class="dropdown-item" href="#">
+              <i class="tio-share dropdown-item-icon"></i> Share reports
+            </a>
+            <a class="dropdown-item" href="#">
+              <i class="tio-download-to dropdown-item-icon"></i> Download
+            </a>
+            <a class="dropdown-item" href="#">
+              <i class="tio-alt dropdown-item-icon"></i> Connect other apps
+            </a>
+
+            <div class="dropdown-divider"></div>
+
+            <span class="dropdown-header">Feedback</span>
+
+            <a class="dropdown-item" href="#">
+              <i class="tio-chat-outlined dropdown-item-icon"></i> Report
+            </a>
+          </div>
+        </div>
+        <!-- End Unfold -->
+      </div>
+      <!-- End Header -->
+
+      <!-- Body -->
+      <div class="card-body text-center">
+        <!-- Badge -->
+        <div class="h3">
+          <span class="badge badge-soft-info badge-pill">
+            <i class="tio-checkmark-circle"></i> On track
+          </span>
+        </div>
+        <!-- End Badge -->
+
+        <!-- Chart Half -->
+        <div class="chartjs-doughnut-custom" style="height: 12rem;"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+          <canvas class="js-chartjs-doughnut-half chartjs-render-monitor" data-hs-chartjs-options="{
+                  &quot;type&quot;: &quot;doughnut&quot;,
+                  &quot;data&quot;: {
+                    &quot;labels&quot;: [&quot;Current status&quot;, &quot;Goal&quot;],
+                    &quot;datasets&quot;: [{
+                      &quot;data&quot;: [64, 35],
+                      &quot;backgroundColor&quot;: [&quot;#377dff&quot;, &quot;rgba(55,125,255,.35)&quot;],
+                      &quot;borderWidth&quot;: 4,
+                      &quot;hoverBorderColor&quot;: &quot;#ffffff&quot;
+                    }]
+                  }
+                }" width="312" height="192" style="display: block; width: 312px; height: 192px;"></canvas>
+
+          <div class="chartjs-doughnut-custom-stat">
+            <small class="text-cap">Impressōes Consumuidas</small>
+            <span class="h1">$150,238.00</span>
+          </div>
+        </div>
+        <!-- End Chart Half -->
+
+        <hr>
+
+        <div class="row">
+          <div class="col text-right">
+            <span class="d-block h4 mb-0">$72.46</span>
+            <span class="d-block">Cliques</span>
+          </div>
+
+          <div class="col column-divider text-left">
+            <span class="d-block h4 text-success mb-0">
+              <i class="tio-trending-up"></i> 12%
+            </span>
+            <span class="d-block">CTR</span>
+          </div>
+        </div>
+        <!-- End Row -->
+      </div>
+      <!-- End Body -->
+    </div>
+    <!-- End Card -->
+  </div>
+</div>
+
 <div class="row mt-3">
   <div class="col-8">
     <h4 class="pb-4"><span data-toggle="tooltip" data-placement="top" title="<%= t('tooltip.subscriber_growth')%>"><%= t('.subscriber_growth')%></span><br>+ <%=new_subscribers%></h4>
@@ -50,31 +351,6 @@
       </div>
       <div class="col-6 my-auto">
         <%= image_tag "Componente 5 – 1.svg" %>
-      </div>
-    </div>
-    <div class="row latest-campaigns float-right mt-4 py-4">
-      <div class="col-12 my-auto">
-        <div class="title"><%= t('.last_campaigns')%></div>
-        <div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col"><%= t('.name')%></th>
-              <th scope="col"><%= t('.audience')%></th>
-            </tr>
-          </thead>
-          <tbody>
-            <%campaigns.last(3).reverse.each_with_index do |campaign, i| %>
-              <tr>
-                <th scope="row" ><%= i + 1 %> </th>
-                <td> <%= campaign.name %> </td>
-                <td> <%= campaign.segmentation_size %> </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-        </div>
       </div>
     </div>
   </div>
