@@ -9,4 +9,12 @@ class Push < ApplicationRecord
   scope :last_month, -> { where("created_at > ?", 30.days.ago) }
   scope :last_half, -> { where("created_at > ?", 14.days.ago) }
   scope :active, -> { where("updated_at > ?", 12.hours.ago) }
+
+  before_destroy :increment_unsubscribed_counter
+
+  private
+
+  def increment_unsubscribed_counter
+    SubscriberCount.find_or_create_by(shop_id: shop_id, date: Date.today, service: "push_unsubscribed").increment
+  end
 end
