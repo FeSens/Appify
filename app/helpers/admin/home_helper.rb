@@ -7,7 +7,7 @@ module Admin::HomeHelper
     ((a.to_i-b.to_i)/(b.to_f + 1e-5)).round(2)
   end
 
-  #TODO: Move this to a badge
+  #TODO: Move this to a partial
   def growth_badge(a, b)
     return "<span class='badge badge-soft-secondary p-1'>0.0</span>" if a == b
 
@@ -35,7 +35,23 @@ module Admin::HomeHelper
   end
 
   def push_subscribers_delta(delta=7.days.ago)
-    n = current_shop.subscriber_counts.push.where('created_at >= ?', delta).sum(:count) - current_shop.subscriber_counts.push_unsubscribed.where('created_at >= ?', delta).sum(:count)
-    @push_subscribers_delta = current_shop.pushes.count - n
+    @push_subscribers_delta = current_shop.pushes.count - net_subscribers(delta)
+  end
+
+  def net_subscribers(delta=14.days.ago)
+    current_shop.subscriber_counts.push.where('created_at >= ?', delta).sum(:count) - current_shop.subscriber_counts.push_unsubscribed.where('created_at >= ?', delta).sum(:count)
+  end
+
+  def chart_data_labels
+    date = []
+    subs = []
+    unsubs = []
+    (14.days.ago.to_date..Date.today).each do |d| 
+      date << d.to_formatted_s(:short)
+      subs << (current_shop.subscriber_counts.push.find_by(date: d)&.count || 0)
+      unsubs << (current_shop.subscriber_counts.push_unsubscribed.find_by(date: d)&.count || 0)
+    end
+
+    return date, subs, unsubs
   end
 end
