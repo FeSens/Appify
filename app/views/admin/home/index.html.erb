@@ -22,8 +22,8 @@
 
         <div class="row align-items-center gx-2">
           <div class="col">
-            <span class="js-counter display-4 text-dark" data-value="<%= app_installs %>"><%= app_installs %></span>
-            <span class="text-body font-size-sm ml-1">Antes eram <%= app_installs(7.days.ago) %></span>
+            <span class="js-counter display-4 text-dark" data-value="<%= app_installs %>"><%= number_to_human(app_installs) %></span>
+            <span class="text-body font-size-sm ml-1">Antes eram <%= number_to_human(app_installs(7.days.ago)) %></span>
           </div>
 
           <div class="col-auto">
@@ -44,15 +44,13 @@
 
         <div class="row align-items-center gx-2">
           <div class="col">
-            <span class="js-counter display-4 text-dark" data-value="<%= push_subscribers %>"><%= push_subscribers %></span>
-            <!-- <span class="text-body font-size-sm ml-1">from 11</span> -->
+            <span class="js-counter display-4 text-dark" data-value="<%= push_subscribers %>"><%= number_to_human(push_subscribers) %></span>
+            <span class="text-body font-size-sm ml-1">Antes eram <%= number_to_human(push_subscribers_delta) %></span>
           </div>
 
-          <!-- <div class="col-auto">
-            <span class="badge badge-soft-success p-1">
-              <i class="tio-trending-up"></i> 1.2%
-            </span>
-          </div> -->
+          <div class="col-auto">
+            <%= raw growth_badge(push_subscribers, push_subscribers_delta) %>
+          </div>
         </div>
         <!-- End Row -->
       </div>

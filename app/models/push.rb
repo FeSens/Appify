@@ -12,9 +12,15 @@ class Push < ApplicationRecord
 
   before_destroy :increment_unsubscribed_counter
 
+  after_create :increment_subscribed_counter
+
   private
 
   def increment_unsubscribed_counter
     SubscriberCount.find_or_create_by(shop_id: shop_id, date: Date.today, service: "push_unsubscribed").increment
+  end
+
+  def increment_subscribed_counter
+    SubscriberCount.find_or_create_by(shop_id: shop_id, date: Date.today, service: "push").increment
   end
 end

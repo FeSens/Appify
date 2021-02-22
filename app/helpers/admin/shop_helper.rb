@@ -5,10 +5,6 @@ module Admin
       push&.count || 0
     end
 
-    def push_subscribers
-      @push_subscribers ||= number_to_human(current_shop.pushes.count, precision: 4)
-    end
-
     def shop_name
       return "Gustavo M." if Flipper['live-mode'].enabled?(current_shop)
       current_shop.name
@@ -34,10 +30,6 @@ module Admin
 
     def campaign_revenue(campaign)
       number_to_currency(campaign.clicks * current_shop.marketing_value.cpc, locale: "pt-BR", unit: "R$")
-    end
-    
-    def push_subscribers
-      @push_subscribers ||= number_to_human(current_shop.pushes.count, precision: 4)
     end
 
     def new_subscribers
