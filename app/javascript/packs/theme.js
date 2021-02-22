@@ -38,6 +38,21 @@ document.addEventListener("turbolinks:load", () => {
   $('.js-hs-unfold-invoker').each(function () {
     var unfold = new HSUnfold($(this)).init();
   });
+
+  $.HSCore.components.HSChartJS.init($('.js-chartjs-doughnut-half'), {
+    options: {
+      tooltips: {
+        postfix: ""
+      },
+      cutoutPercentage: 85,
+      rotation: 1 * Math.PI,
+      circumference: 1 * Math.PI
+    }
+  });
+
+  $('.js-chart').each(function () {
+    $.HSCore.components.HSChartJS.init($(this));
+  });
 })
 
 

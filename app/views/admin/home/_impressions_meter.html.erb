@@ -92,20 +92,3 @@
   <!-- End Body -->
 </div>
 <!-- End Card -->
-
-<script>
-  $(document).on('turbolinks:load', function () {
-    // INITIALIZATION OF CHARTJS
-    // =======================================================
-    $.HSCore.components.HSChartJS.init($('.js-chartjs-doughnut-half'), {
-      options: {
-        tooltips: {
-          postfix: ""
-        },
-        cutoutPercentage: 85,
-        rotation: 1 * Math.PI,
-        circumference: 1 * Math.PI
-      }
-    });
-  });
-</script>

@@ -1,0 +1,119 @@
+<!-- Card -->
+<div class="card h-100">
+  <!-- Header -->
+  <div class="card-header">
+    <h5 class="card-header-title">Monthly expenses</h5>
+  </div>
+  <!-- End Header -->
+
+  <!-- Body -->
+  <div class="card-body">
+    <div class="row align-items-sm-center mb-4">
+      <div class="col-sm mb-3 mb-sm-0">
+        <div class="d-flex align-items-center">
+          <span class="h1 mb-0">$7,431.14 USD</span>
+
+          <span class="text-success ml-2">
+            <i class="tio-trending-up"></i> 25.3%
+          </span>
+        </div>
+      </div>
+
+      <div class="col-sm-auto">
+        <!-- Legend Indicators -->
+        <div class="row font-size-sm">
+          <div class="col-auto">
+            <span class="legend-indicator bg-primary"></span> Income
+          </div>
+          <div class="col-auto">
+            <span class="legend-indicator bg-info"></span> Expenses
+          </div>
+        </div>
+        <!-- End Legend Indicators -->
+      </div>
+    </div>
+    <!-- End Row -->
+
+    <!-- Bar Chart -->
+<div class="chartjs-custom" style="height: 18rem;">
+  <canvas class="js-chart"
+          data-hs-chartjs-options='{
+            "type": "line",
+            "data": {
+               "labels": ["Feb","Jan","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+               "datasets": [{
+                "data": [18,51,60,38,88,50,40,52,88,80,60,70],
+                "backgroundColor": "transparent",
+                "borderColor": "#377dff",
+                "borderWidth": 2,
+                "pointRadius": 0,
+                "hoverBorderColor": "#377dff",
+                "pointBackgroundColor": "#377dff",
+                "pointBorderColor": "#fff",
+                "pointHoverRadius": 0
+              },
+              {
+                "data": [27,38,60,77,40,50,49,29,42,27,42,50],
+                "backgroundColor": "transparent",
+                "borderColor": "#00c9db",
+                "borderWidth": 2,
+                "pointRadius": 0,
+                "hoverBorderColor": "#00c9db",
+                "pointBackgroundColor": "#00c9db",
+                "pointBorderColor": "#fff",
+                "pointHoverRadius": 0
+              }]
+            },
+            "options": {
+               "scales": {
+                  "yAxes": [{
+                    "gridLines": {
+                      "color": "#e7eaf3",
+                      "drawBorder": false,
+                      "zeroLineColor": "#e7eaf3"
+                    },
+                    "ticks": {
+                      "min": 0,
+                      "max": 100,
+                      "stepSize": 20,
+                      "fontColor": "#97a4af",
+                      "fontFamily": "Open Sans, sans-serif",
+                      "padding": 10,
+                      "postfix": "k"
+                    }
+                  }],
+                  "xAxes": [{
+                    "gridLines": {
+                      "display": false,
+                      "drawBorder": false
+                    },
+                    "ticks": {
+                      "fontSize": 12,
+                      "fontColor": "#97a4af",
+                      "fontFamily": "Open Sans, sans-serif",
+                      "padding": 5
+                    }
+                  }]
+              },
+              "tooltips": {
+                "prefix": "$",
+                "postfix": "k",
+                "hasIndicator": true,
+                "mode": "index",
+                "intersect": false,
+                "lineMode": true,
+                "lineWithLineColor": "rgba(19, 33, 68, 0.075)"
+              },
+              "hover": {
+                "mode": "nearest",
+                "intersect": true
+              }
+            }
+          }'>
+  </canvas>
+</div>
+<!-- End Bar Chart -->
+  </div>
+  <!-- End Body -->
+</div>
+<!-- End Card -->
