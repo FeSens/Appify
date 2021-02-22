@@ -21,9 +21,14 @@ import "../stylesheets/theme"
 import "../vendor/icon-set/liga"
 
 require("chart.js")
+require("datatables")
+require("daterangepicker")
+require("moment")
 
 import "../vendor/hs/hs.core"
 import "../vendor/hs/hs.chartjs"
+import "../vendor/hs/hs.datatables"
+import "../vendor/hs/hs.daterangepicker"
 import HSMegaMenu from "../vendor/hs/hs-mega-menu"
 import HSUnfold from "../vendor/hs/hs-unfold"
 
@@ -34,6 +39,7 @@ document.addEventListener("turbolinks:load", () => {
   $('.toast').toast({ autohide: false })
   $('#toast').toast('show')
   var megaMenu = new HSMegaMenu($('.js-mega-menu')).init();
+  var datatable = $.HSCore.components.HSDatatables.init($('#datatable'));
 
   $('.js-hs-unfold-invoker').each(function () {
     var unfold = new HSUnfold($(this)).init();
@@ -53,6 +59,34 @@ document.addEventListener("turbolinks:load", () => {
   $('.js-chart').each(function () {
     $.HSCore.components.HSChartJS.init($(this));
   });
+
+  $('.js-daterangepicker').on('apply.daterangepicker', function(ev, picker) {
+    $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+
+    startDate = moment(picker.startDate.format('MM/DD/YYYY'));
+    endDate = moment(picker.endDate.format('MM/DD/YYYY'));
+
+    datatable.draw();
+  });
+
+  $('.js-daterangepicker').on('cancel.daterangepicker', function(ev, picker) {
+    $(this).val('');
+
+    startDate = null;
+    endDate = null;
+
+    datatable.draw();
+  });
+
+  /*$.fn.dataTable.ext.search.push(
+    function (settings, data, dataIndex) {
+      if (!startDate || !endDate) return true;
+
+      let compareDate = moment(moment(data[4]).format('MM/DD/YYYY'));
+
+      return compareDate.isBetween(startDate, endDate);
+    }
+  );*/
 })
 
 
