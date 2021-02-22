@@ -1,3 +1,19 @@
+<%= render layout: "partials/page_header", locals: {title: "Campanhas" } do %>
+  <!-- Nav -->
+  <ul class="nav nav-tabs page-header-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" href="#">Active</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+  </ul>
+  <!-- End Nav -->
+<% end %>
+
 <div class="row py-3">
   <div class="col-6 my-auto">
     <h2><%= t('admin_commons.your_campaigns') %></h2>

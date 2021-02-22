@@ -1,16 +1,4 @@
-<div class="page-header">
-  <div class="row align-items-center">
-    <div class="col-sm mb-2 mb-sm-0">
-      <h1 class="page-header-title">Dashboard</h1>
-    </div>
-
-    <div class="col-sm-auto">
-      <a class="btn btn-primary" href="<%= new_admin_campaign_path %>">
-        <i class="tio-user-add mr-1"></i> <%= t('admin_commons.new_campaign') %>
-      </a>
-    </div>
-  </div>
-</div>
+<%= render partial: "partials/page_header", locals: {title: "Home" } %>
 
 <!-- Card de Indicadores -->
 <div class="row gx-2 gx-lg-3">
