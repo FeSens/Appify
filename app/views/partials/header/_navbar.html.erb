@@ -1,5 +1,5 @@
 <header id="header" class="navbar navbar-expand-xl navbar-fixed navbar-height navbar-flush navbar-container navbar-bordered">
-  <div class="navbar-nav-wrap">
+  <div class="navbar-nav-wrap js-mega-menu">
     <div class="navbar-brand-wrapper">
       <!-- Logo -->
         #TODO put logo
@@ -32,19 +32,36 @@
             </a>
           </li>
           <!-- End Home -->
-          <!-- Home -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle navbar-nav-link nav-link nav-link-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="tio-home-vs-1-outlined nav-icon"></i> Dashboards
+          <!-- Campanhas -->
+          <li class="nav-item ">
+            <a class="navbar-nav-link nav-link" href="<%= admin_campaigns_path %>">
+              <i class="tio-date-range nav-icon"></i> Campanhas
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
+          </li>
+          <!-- End Campanhas -->
+
+          <!-- Planos -->
+          <li class="nav-item ">
+            <a class="navbar-nav-link nav-link" href="<%= admin_plans_path %>">
+              <i class="tio-labels-outlined nav-icon"></i> Planos
+            </a>
+          </li>
+          <!-- End Planos -->
+          
+          <!-- Configuracoes -->
+          <li class="nav-item dropdown hs-has-mega-menu ">
+            <a class="navbar-nav-link nav-link hs-mega-menu-invoker" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="tio-settings-outlined nav-icon"></i> Configuracoes
+            </a>
+            <div class="dropdown-menu hs-mega-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Pop Ups</a>
+              <a class="dropdown-item" href="#">App</a>
+              <a class="dropdown-item" href="#">Logo</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </li>
-          <!-- End Home -->
+          <!-- End Configuracoes -->
         </ul>
       </div>
     </div>

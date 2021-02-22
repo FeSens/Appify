@@ -32,9 +32,11 @@
     <%= f.datetime_local_field :release_date, class: "form-control" %>
   </div>
 
-  <% if params[:action] == "edit" %>
-     <%= f.submit t('helpers.submit.update', model: Campaign.model_name.human), class: "btn btn-purple float-right px-4 #{"disabled" if @campaign.sent?}", disabled: @campaign.sent? %>
-  <% else %>
-    <%= f.submit t('helpers.submit.send_now'), class: "btn btn-purple float-right px-4" %>
-  <% end %>
+  <div class="d-flex justify-content-end">
+    <% if params[:action] == "edit" %>
+      <%= f.submit t('helpers.submit.update', model: Campaign.model_name.human), class: "btn btn-primary px-4 #{"disabled" if @campaign.sent?}", disabled: @campaign.sent? %>
+    <% else %>
+      <%= f.submit t('helpers.submit.send_now'), class: "btn btn-primary px-4" %>
+    <% end %>
+  </div>
 <% end %>

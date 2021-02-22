@@ -42,9 +42,15 @@
   <div class="card-body text-center">
     <!-- Badge -->
     <div class="h3">
-      <span class="badge badge-soft-info badge-pill">
-        <i class="tio-checkmark-circle"></i> Tudo certo
-      </span>
+      <% if push_interaction[:push_limit] > 0 %>
+        <span class="badge badge-soft-info badge-pill">
+          <i class="tio-checkmark-circle"></i> Tudo certo
+        </span>
+      <% else %>
+        <span class="badge badge-soft-danger badge-pill">
+          <i class="tio-clear-circle"></i> Você não possui mais impressões disponíveis
+        </span>
+      <% end%>
     </div>
     <!-- End Badge -->
 
@@ -80,9 +86,15 @@
       </div>
 
       <div class="col column-divider text-left">
-        <span class="d-block h4 text-success mb-0">
-          <i class="tio-trending-up"></i> <%= campaigns_last_month_ctr %>%
-        </span>
+        <% if campaigns_this_week_ctr > campaigns_last_week_ctr %>
+          <span class="d-block h4 text-success mb-0">
+            <i class="tio-trending-up"></i> <%= campaigns_this_week_ctr %>%
+          </span>
+        <% else %>
+          <span class="d-block h4 text-danger mb-0">
+            <i class="tio-trending-down"></i> <%= campaigns_this_week_ctr %>%
+          </span>
+        <% end %>
         <span class="d-block">CTR</span>
       </div>
     </div>
