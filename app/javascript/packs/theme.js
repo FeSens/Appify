@@ -29,6 +29,8 @@ import "../vendor/hs/hs.core"
 import "../vendor/hs/hs.chartjs"
 import "../vendor/hs/hs.datatables"
 import "../vendor/hs/hs.daterangepicker"
+import "../vendor/hs/hs.fullcalendar"
+
 import HSMegaMenu from "../vendor/hs/hs-mega-menu"
 import HSUnfold from "../vendor/hs/hs-unfold"
 
@@ -60,33 +62,10 @@ document.addEventListener("turbolinks:load", () => {
     $.HSCore.components.HSChartJS.init($(this));
   });
 
-  $('.js-daterangepicker').on('apply.daterangepicker', function(ev, picker) {
-    $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
-
-    startDate = moment(picker.startDate.format('MM/DD/YYYY'));
-    endDate = moment(picker.endDate.format('MM/DD/YYYY'));
-
-    datatable.draw();
+  // initialization of fullcalendar
+  $('.js-fullcalendar').each(function () {
+    var fullcalendar = $.HSCore.components.HSFullcalendar.init($(this));
   });
-
-  $('.js-daterangepicker').on('cancel.daterangepicker', function(ev, picker) {
-    $(this).val('');
-
-    startDate = null;
-    endDate = null;
-
-    datatable.draw();
-  });
-
-  /*$.fn.dataTable.ext.search.push(
-    function (settings, data, dataIndex) {
-      if (!startDate || !endDate) return true;
-
-      let compareDate = moment(moment(data[4]).format('MM/DD/YYYY'));
-
-      return compareDate.isBetween(startDate, endDate);
-    }
-  );*/
 })
 
 
