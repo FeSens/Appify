@@ -25,6 +25,10 @@ require("datatables")
 require("daterangepicker")
 require("moment")
 
+import { Calendar } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
 import "../vendor/hs/hs.core"
 import "../vendor/hs/hs.chartjs"
 import "../vendor/hs/hs.datatables"

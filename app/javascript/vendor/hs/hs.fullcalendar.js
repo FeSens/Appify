@@ -7,14 +7,19 @@
 * @license: Htmlstream Libraries (https://htmlstream.com/)
 * Copyright 2020 Htmlstream
 */
-import "../fullcalendar/main.min.js"
+import { Calendar } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
 ;(function ($) {
 	'use strict';
 	
 	$.HSCore.components.HSFullcalendar = {
 		defaults: {
 			contentHeight:"auto",
-			dayMaxEventRows: 2
+			dayMaxEventRows: 2,
+			plugins: [ dayGridPlugin ],
+			initialView: "dayGridMonth"
 		},
 		
 		init: function (el, options) {
@@ -28,7 +33,7 @@ import "../fullcalendar/main.min.js"
 			
 			/* Start : Init */
 			
-			var newFullcalendar = new FullCalendar.Calendar(el[0], settings);
+			var newFullcalendar = new Calendar(el[0], settings);
 			
 			newFullcalendar.render();
 			
