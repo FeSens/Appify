@@ -1,23 +1,11 @@
 <form>
 <!-- Form Group -->
-<div class="form-group">
-  <label for="projectDeadlineFlatpickrNewProjectLabel" class="input-label">Due date</label>
-
-  <div id="projectDeadlineNewProjectFlatpickr" class="js-flatpickr flatpickr-custom input-group input-group-merge"
+<!-- Flatpickr -->
+<input type="text" class="js-flatpickr form-control flatpickr-custom" placeholder="Select dates"
        data-hs-flatpickr-options='{
-        "appendTo": "#projectDeadlineNewProjectFlatpickr",
-        "dateFormat": "d/m/Y",
-        "wrap": true
-      }'>
-    <div class="input-group-prepend" data-toggle>
-      <div class="input-group-text">
-        <i class="tio-date-range"></i>
-      </div>
-    </div>
-
-    <input type="text" class="flatpickr-custom-form-control form-control" id="projectDeadlineFlatpickrNewProjectLabel" placeholder="Select dates" data-input value="29/06/2020">
-  </div>
-</div>
+         "dateFormat": "d/m/Y"
+       }'>
+<!-- End Flatpickr -->
 <!-- End Form Group -->
   <div class="form-group">
     <label class="input-label" for="exampleFormControlTitleInput">Text</label>
