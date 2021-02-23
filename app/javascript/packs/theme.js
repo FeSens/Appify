@@ -24,6 +24,7 @@ require("chart.js")
 require("datatables")
 require("daterangepicker")
 require("moment")
+require("flatpickr")
 
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -34,6 +35,7 @@ import "../vendor/hs/hs.chartjs"
 import "../vendor/hs/hs.datatables"
 import "../vendor/hs/hs.daterangepicker"
 import "../vendor/hs/hs.fullcalendar"
+import "../vendor/hs/hs.flatpickr"
 
 import HSMegaMenu from "../vendor/hs/hs-mega-menu"
 import HSUnfold from "../vendor/hs/hs-unfold"
@@ -70,7 +72,11 @@ document.addEventListener("turbolinks:load", () => {
   $('.js-fullcalendar').each(function () {
     var fullcalendar = $.HSCore.components.HSFullcalendar.init($(this));
   });
-})
 
+  // INITIALIZATION OF FLATPICKR
+  $('.js-flatpickr').each(function () {
+    $.HSCore.components.HSFlatpickr.init($(this));
+  });
+})
 
 window.$ = $;
