@@ -7,7 +7,7 @@
 * @license: Htmlstream Libraries (https://htmlstream.com/)
 * Copyright 2020 Htmlstream
 */
-import { Calendar } from '@fullcalendar/core';
+import "../fullcalendar/main.min.js"
 ;(function ($) {
 	'use strict';
 	
@@ -28,7 +28,7 @@ import { Calendar } from '@fullcalendar/core';
 			
 			/* Start : Init */
 			
-			var newFullcalendar = new Calendar(el[0], settings);
+			var newFullcalendar = new FullCalendar.Calendar(el[0], settings);
 			
 			newFullcalendar.render();
 			
