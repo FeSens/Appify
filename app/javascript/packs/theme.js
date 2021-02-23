@@ -72,8 +72,9 @@ document.addEventListener("turbolinks:load", () => {
   $('.js-fullcalendar').each(function () {
     var fullcalendar = $.HSCore.components.HSFullcalendar.init($(this));
   });
-
+  
   // INITIALIZATION OF FLATPICKR
+  // =======================================================
   $('.js-flatpickr').each(function () {
     $.HSCore.components.HSFlatpickr.init($(this));
   });
