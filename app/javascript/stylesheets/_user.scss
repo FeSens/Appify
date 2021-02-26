@@ -163,6 +163,14 @@
 }
 //----------------------END OPTIN PREVIEW --------------------
 
+.alert {
+  position: fixed;
+  right: 0%;
+  margin-right: 2rem;
+  margin-top: 2rem;
+  z-index: 10;
+}
+
 html {
   scroll-padding-top: 90px;
 }

@@ -16,7 +16,6 @@
   </head>
 
   <body>      
-    <%= flash_messages %>
     <!-- ========== HEADER ========== -->
     <%= render partial: "partials/navbar" %>
     <!-- ========== END HEADER ========== -->
@@ -24,6 +23,7 @@
     <!-- ========== MAIN CONTENT ========== -->
     <main id="content" role="main" class="main">
       <!-- Content -->
+      <%= flash_messages %>
       <div class="content container-fluid">
         <%= yield %>
       </div>

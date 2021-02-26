@@ -80,7 +80,7 @@ document.addEventListener("turbolinks:load", () => {
   $('.js-flatpickr').each(function () {
     $.HSCore.components.HSFlatpickr.init($(this));
   });
-
+  
   // INITIALIZATION OF STICKY BLOCKS
   // =======================================================
   $('.js-sticky-block').each(function () {
