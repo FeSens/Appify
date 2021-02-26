@@ -48,7 +48,6 @@ document.addEventListener("turbolinks:load", () => {
   $('[data-toggle="popover"]').popover()
   $('.toast').toast({ autohide: false })
   $('#toast').toast('show')
-  var megaMenu = new HSMegaMenu($('.js-mega-menu')).init();
   var datatable = $.HSCore.components.HSDatatables.init($('#datatable'));
 
   $('.js-hs-unfold-invoker').each(function () {

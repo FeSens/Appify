@@ -2,7 +2,9 @@
   <div class="navbar-nav-wrap js-mega-menu">
     <div class="navbar-brand-wrapper">
       <!-- Logo -->
-        #TODO put logo
+      <a class="navbar-brand" href="<%= admin_home_index_path %>" aria-label="Vorta">
+        <%= image_tag "vorta.png", class:"navbar-brand-logo", alt: "Logo" %>
+      </a>
       <!-- End Logo -->
     </div>
 
@@ -50,16 +52,9 @@
           
           <!-- Configuracoes -->
           <li class="nav-item dropdown hs-has-mega-menu" data-turbolinks="false">
-            <a class="navbar-nav-link nav-link hs-mega-menu-invoker" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="navbar-nav-link nav-link" data-turbolinks="false" href="<%= admin_settings_path %>">
               <i class="tio-settings-outlined nav-icon"></i> Configurações
             </a>
-            <div class="dropdown-menu hs-mega-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Pop Ups</a>
-              <a class="dropdown-item" href="#">App</a>
-              <a class="dropdown-item" href="#">Logo</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
           </li>
           <!-- End Configuracoes -->
         </ul>
