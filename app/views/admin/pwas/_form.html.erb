@@ -19,5 +19,66 @@
       <%= f.text_area :description, class: "form-control" %>
     </div>
   -->
-  <%= f.submit t('helpers.submit.submit'), class: "btn btn-purple float-right px-4", id: "submit" %>
+  <%= f.submit t('helpers.submit.submit'), class: "btn btn-primary float-right px-4", id: "submit" %>
 <% end %>
+
+<script>
+  $.fn.hasExtension = function(exts) {
+      return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$')).test($(this).val());
+  }
+
+  $("input").on('keyup change', function (){
+    $(`#prev_${this.id}`).css('background', `#${$(this).val()}`);
+    $("#prev_manifest_theme_color").css('background', `#${$(this).val()}`);
+    if (this.id.includes("icon")) {
+      readURL(this)
+    }
+  });
+
+  function readURL(input) {
+    $("#icon-errors").text("")
+    window.valid_extention = true
+    var extention = $(input).val().toLowerCase().split(".").slice(-1).pop();
+    if (!["png", "svg", "webp"].includes(extention)) {
+      $("#icon-errors").append("Os formatos suportados são .PNG, .SVG, .WebP<br>")
+      window.valid_extention = false
+    }
+
+    if(!window.valid_extention) {
+      $("#manifest_icon").addClass("is-invalid")
+      $("#manifest_icon").val('');
+      $('#submit').prop('disabled', true);
+    }
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var image = new Image();
+        image.src = e.target.result;
+        image.onload = function () {
+          var valid = true
+          var height = this.height;
+          var width = this.width;
+          window.test = this
+          if (height <= 192 || width <= 192) {
+            $("#icon-errors").append("O icone deve ter ao menos 192x192 pixels<br>")
+            valid = false
+          }
+          if (width != height) {
+            $("#icon-errors").append("A imagem deve ser quadrada<br>")
+            valid = false
+          }
+
+          if (valid && window.valid_extention) {
+            $('#logo-preview').attr('src', e.target.result);
+            $('#submit').prop('disabled', false);
+          } else {
+            $("#manifest_icon").addClass("is-invalid")
+            $("#manifest_icon").val('');
+            $('#submit').prop('disabled', true);
+          }
+        }
+      }
+      reader.readAsDataURL(input.files[0]); // convert to base64 string
+    }
+  }
+</script>

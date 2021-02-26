@@ -32,27 +32,21 @@
              "stickyOffsetTop": 20
            }'>
           <li class="nav-item">
-            <a class="nav-link active" href="#basicInfo">
+            <a class="nav-link active" href="#App">
               <i class="tio-user-outlined nav-icon"></i>
-              Basic information
+              Configurações do App
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#emailSection">
+            <a class="nav-link" href="#Optin">
               <i class="tio-online nav-icon"></i>
-              Email
+              Ganhe Inscritos
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#passwordSection">
+            <a class="nav-link" href="#Marketing">
               <i class="tio-lock-outlined nav-icon"></i>
-              Password
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#preferencesSection">
-              <i class="tio-settings-outlined nav-icon"></i>
-              Preferences
+              Retorno de Marketing
             </a>
           </li>
         </ul>
@@ -64,48 +58,84 @@
 
   <div class="col-lg-9">
     <!-- Card -->
-    <div id="basicInfo" class="card mb-5">
+    <div id="App" class="card mb-5">
       <div class="card-header">
-        <h3 class="card-title h4">Configuracao do App</h3>
+        <h3 class="card-title h4">Configurações do App</h3>
       </div>
       <div class="card-body">
-        <%= render "/admin/pwas/form" %>
+        <div class="row">
+          <div class="col-lg-12 col-xl-6 mb-5">
+            <%= render "/admin/pwas/form" %>
+          </div>
+          <div class="col-lg-12 col-xl-6">
+            <div class="mx-auto">
+              <%= image_tag "iphone-x-minimal-buttons.svg", class: "iphone" %>
+              <div class="logo-preview">
+                <%if @manifest.icon.attached? %>
+                  <%= image_tag @manifest.icon, id: "logo-preview" %>
+                <% else %>
+                  <img id="logo-preview" src="">
+                <% end %>
+              </div>
+              <div id="prev_manifest_theme_color" class="top-bar" style="background: #<%= @manifest.theme_color%>;"> </div>
+              <div id="prev_manifest_background_color" class="background" style="background: #<%= @manifest.background_color%>;"> </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- End Card -->
 
     <!-- Card -->
-    <div id="emailSection" class="card mb-5">
+    <div id="Optin" class="card mb-5">
       <div class="card-header">
-        <h3 class="card-title h4">Email</h3>
+        <h3 class="card-title h4">Ganhe Inscritos</h3>
       </div>
       <div class="card-body">
-        <!--<%= render "/admin/optins/index" %>-->
+        <div class="row">
+          <div class="col-lg-12 col-xl-6 mb-5">
+            <div class="row">
+              <div class="col-12">
+                <ul class="nav nav-tabs">
+                  <% for tab in optins_kind %>
+                    <li class="nav-item">
+                      <a class="nav-link <%= active_tab(tab, params[:tab]) %>" data-turbolinks="true" href= <%= "?tab=#{tab}#Optin" %>> <%= I18n.t "optin.#{tab}" %> </a>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+            <%= render partial: "admin/optins/partials/#{params[:tab] || "push"}_form" %>
+          </div>
+          <div class="col-lg-12 col-xl-6 my-auto">
+             <%= render partial: Flipper['new-modal'].enabled?(current_shop) ? 'public/modal_v2' : 'public/modal', locals: {optin: @optin, preview: true, branding: Flipper['branding-modal'].enabled?(current_shop)} %>
+          </div>
+        </div>
       </div>
     </div>
     <!-- End Card -->
 
     <!-- Card -->
+    <div id="Marketing" class="card mb-5">
+      <div class="card-header">
+        <h3 class="card-title h4">Retorno de Marketing</h3>
+      </div>
+      <div class="card-body">
+        <%= render partial: "admin/marketing_values/form" %>
+      </div>
+    </div>
+    <!-- End Card -->
+
+    <!-- Card 
     <div id="passwordSection" class="card mb-5">
       <div class="card-header">
-        <h3 class="card-title h4">Password</h3>
+        <h3 class="card-title h4">Retorno de Marketing</h3>
       </div>
       <div class="card-body">
         This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
       </div>
     </div>
-    <!-- End Card -->
-
-    <!-- Card -->
-    <div id="preferencesSection" class="card mb-5">
-      <div class="card-header">
-        <h3 class="card-title h4">Preferences</h3>
-      </div>
-      <div class="card-body">
-        This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-      </div>
-    </div>
-    <!-- End Card -->
+     End Card -->
 
     <!-- Sticky Block End Point -->
     <div id="stickyBlockEndPoint"></div>
