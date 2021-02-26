@@ -39,6 +39,8 @@ import "../vendor/hs/hs.flatpickr"
 
 import HSMegaMenu from "../vendor/hs/hs-mega-menu"
 import HSUnfold from "../vendor/hs/hs-unfold"
+import HSStickyBlock from "../vendor/hs/hs-sticky-block"
+import HSScrollspy from "../vendor/hs/hs-scrollspy"
 
 document.addEventListener("turbolinks:load", () => {
   console.log("we are here")
@@ -78,6 +80,28 @@ document.addEventListener("turbolinks:load", () => {
   $('.js-flatpickr').each(function () {
     $.HSCore.components.HSFlatpickr.init($(this));
   });
+
+  // INITIALIZATION OF STICKY BLOCKS
+  // =======================================================
+  $('.js-sticky-block').each(function () {
+    var stickyBlock = new HSStickyBlock($(this)).init();
+  });
+
+
+  // INITIALIZATION OF SCROLLSPY
+  // =======================================================
+  var scrollspy = new HSScrollspy($('body'), {
+    // !SETTING "resolve" PARAMETER AND RETURNING "resolve('completed')" IS REQUIRED
+    beforeScroll: function(resolve) {
+      if (window.innerWidth < 992) {
+        $('#navbarVerticalNavMenu').collapse('hide').on('hidden.bs.collapse', function () {
+          return resolve('completed');
+        });
+      } else {
+        return resolve('completed');
+      }
+    }
+  }).init();
 })
 
 window.$ = $;

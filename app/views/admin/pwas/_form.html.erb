@@ -1,0 +1,23 @@
+<%= form_for @manifest, url: admin_pwa_path(@manifest), method: :patch do |f| %>
+  <div class="form-group">
+    <%= label_tag :name, t('activerecord.attributes.manifest.name') %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :icon, t('activerecord.attributes.manifest.icon') %>
+    <small class="form-text text-muted mt-0 mb-2">A imagem deve ser quadrada, em PNG, SVG ou WebP e maior que 192x192 pixels.</small>
+    <%= f.file_field :icon, class: "form-control-file" %>
+    <div id="icon-errors" class="invalid-feedback"></div>
+  </div>
+  <div class="form-group">
+      <%= label_tag :background_color, t('activerecord.attributes.manifest.background_color') %>
+    <%= f.text_field :background_color, class: "form-control jscolor" %>
+  </div>
+  <!--
+    <div class="form-group">
+      <%= label_tag :description, t('activerecord.attributes.manifest.description') %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+  -->
+  <%= f.submit t('helpers.submit.submit'), class: "btn btn-purple float-right px-4", id: "submit" %>
+<% end %>

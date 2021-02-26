@@ -33,10 +33,13 @@
   <div class="table-responsive datatable-custom">
     <table id="datatable" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
           data-hs-datatables-options='{
-            "order": [],
-            "search": "#datatableWithSearchInput",
-            "pagination": "datatableWithSearch"
-          }'>
+             "order": [[2, "asc"]],
+             "search": "#datatableWithSearchInput",
+             "isResponsive": false,
+             "isShowPaging": false,
+             "pageLength": "7",
+             "pagination": "datatableWithSearch"
+           }'>
       <thead class="thead-light">
         <tr>
           <th>Nome</th>
@@ -81,5 +84,15 @@
     </table>
   </div>
   <!-- End Table -->
+
+  <!-- Footer -->
+  <div class="card-footer">
+    <!-- Pagination -->
+    <div class="d-flex justify-content-center justify-content-sm-end">
+      <nav id="datatableWithSearch" aria-label="Activity pagination"></nav>
+    </div>
+    <!-- End Pagination -->
+  </div>
+  <!-- End Footer -->
 </div>
 <!-- End Card -->
