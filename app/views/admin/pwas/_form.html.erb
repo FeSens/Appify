@@ -1,4 +1,8 @@
 <%= form_for @manifest, url: admin_pwa_path(@manifest), method: :patch do |f| %>
+  <p>
+    Esse é o momento de configurar a tela inicial do aplicativo Android da sua loja. 
+    Lembrando que por dentro ele é idêntico ao seu site, mas possui velocidade de carregamento mais alta, permitindo que seus clientes comprem com mais facilidade!
+  </p>
   <div class="form-group">
     <%= label_tag :name, t('activerecord.attributes.manifest.name') %>
     <%= f.text_field :name, class: "form-control" %>
