@@ -1,0 +1,182 @@
+/*------------------------------------
+  File for your custom SCSS style
+------------------------------------*/
+
+.logo-preview {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+
+  img {
+    height: 60px;
+    width: 60px;
+  }
+}
+
+.iphone {
+  height: 600px;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  z-index: 2;
+}
+
+
+.background{
+  height: 480px;
+  width: 230px;
+  position: absolute;
+  left: 50%;
+  z-index: 0;
+  top: 70px;
+  transform: translate(-50%);
+}
+
+.top-bar{
+  height: 20px;
+  width: 230px;
+  left: 50%;
+  transform: translate(-50%);
+  position: absolute;
+  z-index: 1;
+  top: 50px;
+}
+
+// Optin preview inside settings pages
+.aplicatify-modal {
+  position: relative;
+  /* top: 50%; */
+  /* left: 50%; */
+  /* transform: translate(-50%, -50%); */
+  z-index: 2147483647;
+  /* width: 30%; */
+  min-width: 310px;
+  max-width: 500px;
+  max-height: 360px;
+  margin: 0 auto;
+  padding: 33px 17px 15px 17px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  line-height: 17px;
+  color: #333;
+  word-wrap: break-word;
+  background-color: white;
+  border-radius: 9px;
+  box-shadow: 0px 1px 2px rgba(0,0,0,0.02),
+  0px 2px 7px rgba(0,0,0,0.03),
+  0px 13px 53px rgba(0,0,0,0.05),
+  0px 33px 94px rgba(0,0,0,0.09);
+}
+
+.aplicatify-message{
+  display:flex;
+  -webkit-box-align:start;
+  align-items:flex-start;
+}
+
+.modal-logo{
+  flex:0 0 auto;
+  width:80px;
+  height:80px;
+  margin-right:24px;
+  border-radius:4px;
+}
+
+.modal-text{
+  flex:1 1 0px;
+}
+.modal-title{
+  word-wrap:break-word;
+  font-size:20px;
+  font-weight:600;
+  line-height:1.2em;
+  text-align:left;
+  color:#43464b;
+}
+
+.modal-body{
+  color:#788;
+  text-align:left;
+  padding: 0
+}
+
+.modal-line{
+  border:none;
+  width:30%;
+  margin:16px 0;
+}
+.aling-bottom{
+  display:flex;
+  margin-top:24px;
+}
+
+.aplicatify-btn {
+  font-family:"Catamaran", "Helvetica Neue", sans-serif;
+  flex:1 1 0px;
+  display:block;
+  background-color:#eee;
+  border:0;
+  border-radius:4px;
+  color:#484848;
+  height:36px;
+  font-size:15px;
+  font-weight:600;
+  line-height:1em;
+  margin-right:16px;
+  text-align:center;
+  text-decoration:none;
+}
+
+.accept{
+  color:white;
+  margin-right:0;
+}
+
+.branding-container{
+  margin-top:18px;
+}
+
+.branding{
+  color:#43464b;
+  font-size:0.7em;
+  font-weight:normal;
+  min-width:182px;
+  text-align:left;
+  line-height:1.3em;
+  letter-spacing:0.05em;
+}
+
+.brading-img {
+  height: 15px;
+  width: 60px;
+}
+
+.brand-link{
+  font-weight:600;
+}
+
+.brand-link a{
+  font-variant:normal;
+  text-decoration:none;
+}
+//----------------------END OPTIN PREVIEW --------------------
+
+.alert {
+  position: fixed;
+  right: 0%;
+  margin-right: 2rem;
+  margin-top: 2rem;
+  z-index: 10;
+}
+
+html {
+  scroll-padding-top: 90px;
+}
+
+.brand-logo{
+  width: 100%;
+  min-width: 10.5rem;
+  max-width: 10.5rem;
+}

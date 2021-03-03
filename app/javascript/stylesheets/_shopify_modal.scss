@@ -1,0 +1,202 @@
+.shopify {
+  .modal-dialog {
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+  }
+  h3, .heading--3 {
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.25em;
+    color: rgb(33, 43, 53);
+    line-height: 1.2;
+    font-weight: 700;
+    font-family: ShopifySans, Helvetica, Arial, sans-serif;
+  }
+
+  .modal-header {
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    font-weight: normal;
+  }
+
+  .modal-body {
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+  }
+
+  .text-minor {
+    font-size: 0.75em;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .marketing-input {
+    display: inline-block;
+    height: 3.2em;
+    width: 100%;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 15px;
+    margin-left: 0px;
+    padding-top: 1em;
+    padding-right: 1em;
+    padding-bottom: 1em;
+    padding-left: 1em;
+    color: rgb(33, 43, 53);
+    font-family: ShopifySans, Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    box-shadow: rgb(99, 115, 129) 0px 0px 0px 1px;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    transition-duration: 150ms;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+    transition-property: padding;
+    appearance: none;
+  }
+
+  .marketing-button {
+    display: inline-block;
+    padding-top: 1.0625em;
+    padding-right: 1.875em;
+    padding-bottom: 1.0625em;
+    padding-left: 1.875em;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    font-family: ShopifySans, Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 1em;
+    line-height: 1.133;
+    -webkit-font-smoothing: antialiased;
+    transition-duration: 150ms;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+    transition-property: background-color, border-color, box-shadow, color;
+    text-align: center;
+    user-select: none;
+    appearance: none;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    background-color: rgb(92, 106, 196);
+    color: rgb(255, 255, 255);
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+  .marketing-button, .marketing-button:hover, .marketing-button:focus {
+    text-decoration-line: none;
+    text-decoration-thickness: initial;
+    text-decoration-style: initial;
+    text-decoration-color: initial;
+  }
+  .marketing-button:focus {
+    outline-color: initial;
+    outline-style: initial;
+    outline-width: 0px;
+    box-shadow: rgba(92, 106, 196, 0.5) 0px 0px 0.1875em 0.1875em;
+  }
+  .marketing-button:active {
+    background-color: rgb(0, 6, 57);
+    color: rgb(255, 255, 255);
+    border-top-color: rgb(0, 6, 57);
+    border-right-color: rgb(0, 6, 57);
+    border-bottom-color: rgb(0, 6, 57);
+    border-left-color: rgb(0, 6, 57);
+  }
+  .marketing-button:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 25px 0px;
+  }
+  .marketing-button--secondary {
+    box-shadow: none;
+    background-color: transparent;
+    color: rgb(92, 106, 196);
+    border-top-width: 0.125em;
+    border-right-width: 0.125em;
+    border-bottom-width: 0.125em;
+    border-left-width: 0.125em;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: rgb(92, 106, 196);
+    border-right-color: rgb(92, 106, 196);
+    border-bottom-color: rgb(92, 106, 196);
+    border-left-color: rgb(92, 106, 196);
+    padding-top: 1em;
+    padding-right: 1.75em;
+    padding-bottom: 1em;
+    padding-left: 1.75em;
+  }
+  .marketing-button--secondary:active {
+    background-color: rgb(32, 46, 120);
+    color: rgb(255, 255, 255);
+    border-top-color: rgb(32, 46, 120);
+    border-right-color: rgb(32, 46, 120);
+    border-bottom-color: rgb(32, 46, 120);
+    border-left-color: rgb(32, 46, 120);
+  }
+  .marketing-button--secondary:hover {
+    box-shadow: none;
+    background-color: rgb(92, 106, 196);
+    color: rgb(255, 255, 255);
+  }
+  .marketing-button--secondary:focus {
+    box-shadow: rgba(92, 106, 196, 0.5) 0px 0px 0.1875em 0.1875em;
+    background-color: rgb(32, 46, 120);
+    color: rgb(255, 255, 255);
+    border-top-color: rgb(32, 46, 120);
+    border-right-color: rgb(32, 46, 120);
+    border-bottom-color: rgb(32, 46, 120);
+    border-left-color: rgb(32, 46, 120);
+  }
+  .marketing-button--small {
+    padding-top: 0.8125em;
+    padding-right: 1.875em;
+    padding-bottom: 0.8125em;
+    padding-left: 1.875em;
+  }
+  .marketing-button--small.marketing-button--secondary {
+    padding-top: 0.6875em;
+    padding-right: 1.75em;
+    padding-bottom: 0.6875em;
+    padding-left: 1.75em;
+  }
+  .ui-modal__footer .marketing-button {
+    width: 100%;
+  }
+  .ui-modal__footer .marketing-button, .ui-modal__footer .marketing-button:hover {
+    box-shadow: none;
+  }
+}

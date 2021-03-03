@@ -6,7 +6,7 @@ module Admin
     def update
       marketing_value.update(marketing_value_params)
       flash[:success] = I18n.t("activerecord.successful.messages.updated", model: marketing_value.class.model_name.human)
-      redirect_to edit_admin_marketing_values_url
+      redirect_to admin_settings_path(anchor: "Marketing")
     end
 
     private

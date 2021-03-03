@@ -223,9 +223,9 @@ pt-BR:
     pm: ''
 
   optin:
-    pwa: "App"
-    push: "Push"
-    page: "PopUp"
+    pwa_html: <i class='tio-android'></i> App
+    push_html: Push
+    page_html: PopUp
   
   admin_commons:
     greetings: "Olá"

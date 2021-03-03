@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2021_02_12_015424) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "impressions", default: 0
     t.integer "clicks", default: 0
-    t.datetime "release_date", default: "2021-01-04 02:46:05", null: false
+    t.datetime "release_date", default: "2021-03-03 18:32:35", null: false
     t.index ["shop_id"], name: "index_campaigns_on_shop_id"
   end
 
@@ -226,13 +226,6 @@ ActiveRecord::Schema.define(version: 2021_02_12_015424) do
     t.integer "push_limit"
   end
 
-  create_table "purchases", force: :cascade do |t|
-    t.bigint "push_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["push_id"], name: "index_purchases_on_push_id"
-  end
-
   create_table "push_interactions", force: :cascade do |t|
     t.bigint "shop_id", null: false
     t.date "date"
@@ -342,7 +335,6 @@ ActiveRecord::Schema.define(version: 2021_02_12_015424) do
   add_foreign_key "orders", "shops"
   add_foreign_key "page_visits", "pushes"
   add_foreign_key "page_visits", "shops"
-  add_foreign_key "purchases", "pushes"
   add_foreign_key "push_interactions", "shops"
   add_foreign_key "push_subscriber_campaigns", "campaigns"
   add_foreign_key "push_subscriber_campaigns", "pushes"

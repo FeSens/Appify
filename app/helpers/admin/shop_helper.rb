@@ -5,14 +5,6 @@ module Admin
       push&.count || 0
     end
 
-    def app_installs
-      @app_installs ||= number_to_human(current_shop.subscriber_counts.pwa.sum(:count))
-    end
-
-    def push_subscribers
-      @push_subscribers ||= number_to_human(current_shop.pushes.count, precision: 4)
-    end
-
     def shop_name
       return "Gustavo M." if Flipper['live-mode'].enabled?(current_shop)
       current_shop.name
@@ -47,7 +39,7 @@ module Admin
     def push_interaction
       @push_interaction ||= begin
         push = PushInteraction.find_or_create_by(shop_id: current_shop.id, date: Date.today.at_beginning_of_month)
-        { push_count: push.count, push_limit: current_shop.push_limit }
+        { push_count: push.count, push_limit: [0, current_shop.push_limit - push.count].max }
       end
     end
 

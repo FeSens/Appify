@@ -1,4 +1,4 @@
-<%= form_for(resource, as: resource_name, url: user_registration_path) do |f| %>
+<%= form_for(resource, as: resource_name, url: user_registration_path, html: { class: 'js-validate' }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="form-group">
@@ -11,9 +11,11 @@
     <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control' %>
   </div>
 
-  <div class="form-group">
+  <div class="form-group js-form-message">
     <%= f.label :domain %><br />
-    <%= f.text_field :domain, autofocus: true, autocomplete: "name", class: 'form-control' %>
+    <%= f.text_field :domain, autofocus: true, autocomplete: "url", class: 'form-control', type: 'url', placeholder: 'https://example.com',
+        data: {msg: "Entre uma URL valida, começando com https://"}
+    %>
   </div>
 
   <%= f.hidden_field :provider, value: "devise", class: "form-control" %>
@@ -28,11 +30,11 @@
 
   <div class="form-group">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', data: { "rule-equalTo": "#user_password" } %>
   </div>
 
   <div class="form-group">
-    <%= f.submit "Cadastrar", class: "btn btn-purple btn-block text-center" %>
+    <%= f.submit "Cadastrar", class: "btn btn-primary btn-block text-center" %>
   </div>
 <% end %>
 

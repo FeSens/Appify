@@ -1,0 +1,107 @@
+<!-- Card -->
+<div class="card h-100">
+  <!-- Header -->
+  <div class="card-header">
+    <h4 class="card-header-title">Novos Usuários</h4>
+  </div>
+  <!-- End Header -->
+
+  <!-- Body -->
+  <div class="card-body">
+    <div class="row align-items-sm-center mb-4">
+      <div class="col-sm mb-3 mb-sm-0">
+        <div class="d-flex align-items-center">
+          <span class="h1 mb-0"><%= net_subscribers %></span>
+
+          <!--<span class="text-success ml-2">
+            <i class="tio-trending-up"></i> 25.3%
+          </span> -->
+        </div>
+      </div>
+
+      <div class="col-sm-auto">
+        <!-- Legend Indicators -->
+        <div class="row font-size-sm">
+          <div class="col-auto">
+            <span class="legend-indicator bg-primary"></span> Inscritos
+          </div>
+          <div class="col-auto">
+            <span class="legend-indicator"></span> Desinscritos
+          </div>
+        </div>
+        <!-- End Legend Indicators -->
+      </div>
+    </div>
+    <!-- End Row -->
+    <!-- Bar Chart -->
+    <div class="chartjs-custom">
+      <canvas class="js-chart" style="height: 15rem;"
+              data-hs-chartjs-options='{
+                "type": "bar",
+                "data": {
+                  "labels": <%= chart_data_labels[0] %>,
+                  "datasets": [{
+                    "data": <%= chart_data_labels[1] %>,
+                    "backgroundColor": "#377dff",
+                    "hoverBackgroundColor": "#377dff",
+                    "borderColor": "#377dff"
+                  },
+                  {
+                    "data": <%= chart_data_labels[2] %>,
+                    "backgroundColor": "#e7eaf3",
+                    "borderColor": "#e7eaf3"
+                  }
+                  ]
+                },
+                "options": {
+                  "scales": {
+                    "yAxes": [{
+                      "gridLines": {
+                        "color": "#e7eaf3",
+                        "drawBorder": false,
+                        "zeroLineColor": "#e7eaf3"
+                      },
+                      "ticks": {
+                        "beginAtZero": true,
+                        "stepSize": 10,
+                        "fontSize": 12,
+                        "fontColor": "#97a4af",
+                        "fontFamily": "Open Sans, sans-serif",
+                        "padding": 10,
+                        "postfix": ""
+                      }
+                    }],
+                    "xAxes": [{
+                      "gridLines": {
+                        "display": false,
+                        "drawBorder": false
+                      },
+                      "ticks": {
+                        "fontSize": 12,
+                        "fontColor": "#97a4af",
+                        "fontFamily": "Open Sans, sans-serif",
+                        "padding": 5
+                      },
+                      "categoryPercentage": 0.5,
+                      "maxBarThickness": "10"
+                    }]
+                  },
+                  "cornerRadius": 2,
+                  "tooltips": {
+                    "prefix": "",
+                    "hasIndicator": true,
+                    "mode": "index",
+                    "intersect": false
+                  },
+                  "hover": {
+                    "mode": "nearest",
+                    "intersect": true
+                  }
+                }
+              }'></canvas>
+    </div>
+    <!-- End Bar Chart -->
+  </div>
+  <!-- End Body -->
+</div>
+<!-- End Card -->

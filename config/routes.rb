@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :integrations
     resources :installation
     resource :marketing_values, only: %i[edit update]
+    resources :settings, only: %i[index]
     resources :plans, only: %i[index create callback] do
       collection do
         get :callback

@@ -1,0 +1,98 @@
+<!-- Card -->
+<div class="card">
+  <!-- Header -->
+  <div class="card-header">
+    <div class="row justify-content-between align-items-center flex-grow-1">
+      <div class="col-12 col-md">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="card-header-title">Lista de Campanhas</h5>
+        </div>
+      </div>
+
+      <div class="col-auto">
+        <!-- Filter -->
+        <form>
+          <!-- Search -->
+          <div class="input-group input-group-merge input-group-flush">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="tio-search"></i>
+              </div>
+            </div>
+            <input id="datatableWithSearchInput" type="search" class="form-control" placeholder="Procurar campanhas" aria-label="Procurar campanhas">
+          </div>
+          <!-- End Search -->
+        </form>
+        <!-- End Filter -->
+      </div>
+    </div>
+  </div>
+  <!-- End Header -->
+
+  <!-- Table -->
+  <div class="table-responsive datatable-custom">
+    <table id="datatable" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
+          data-hs-datatables-options='{
+             "order": [[1, "asc"]],
+             "search": "#datatableWithSearchInput",
+             "isResponsive": false,
+             "isShowPaging": false,
+             "pageLength": "7",
+             "pagination": "datatableWithSearch"
+           }'>
+      <thead class="thead-light">
+        <tr>
+          <th>Nome</th>
+          <th>Data de Envio</th>
+          <th>Retorno Gerado</th>
+          <th>Impressões</th>
+          <th>Cliques</th>
+          <th>CTR</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% campaigns.each do |campaign| %>
+          <tr>
+            <td>
+              <a class="media align-items-center" href="<%= campaign.sent? ? new_admin_campaign_path(campaign.attributes) : edit_admin_campaign_path(campaign) %>">
+                <div class="media-body">
+                  <span class="d-block h5 text-hover-primary mb-0"><%= campaign.name %></span>
+                  <span class="d-block font-size-sm text-body"><%= campaign.title %></span>
+                </div>
+              </a>
+            </td>
+            <td>
+              <span class="d-block h5 mb-0"><%= campaign.release_date.to_formatted_s(:short) %></span>
+              <span class="d-block font-size-sm"><%= distance_of_time_in_words(Time.now, campaign.release_date) %></span>
+            </td>
+            <td><%= campaign_revenue(campaign) %></td>
+            <td><%= campaign.impressions %></td>
+            <td><%= campaign.clicks %></td>
+            <td><%= campaign.ctr %></td>
+            <td>
+              <% if campaign.sent? %>
+                <span class="legend-indicator bg-success"></span>Enviada
+              <% else %>
+                <span class="legend-indicator bg-warning"></span>Aguardando Envio
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <!-- End Table -->
+
+  <!-- Footer -->
+  <div class="card-footer">
+    <!-- Pagination -->
+    <div class="d-flex justify-content-center justify-content-sm-end">
+      <nav id="datatableWithSearch" aria-label="Activity pagination"></nav>
+    </div>
+    <!-- End Pagination -->
+  </div>
+  <!-- End Footer -->
+</div>
+<!-- End Card -->

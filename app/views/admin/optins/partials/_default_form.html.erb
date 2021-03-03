@@ -1,4 +1,8 @@
 <%= form_with model: @optin, method: 'patch', url: admin_optin_path(@optin), class:"mt-3", local: true do |f| %>
+  <p>
+  Aqui você vai configurar os pop-ups que permitem seus visitantes baixarem seu app e se inscreverem nas suas notificações. 
+  Faça títulos claros e persuasivos para que seu cliente entenda e configure um tempo que não o pegue de surpresa nem perca sua visita.
+  </p>
   <div class="form-group row">
     <div class="col-6">
       <%= label_tag :enabled, t('activerecord.attributes.optin.enabled') %>
@@ -11,7 +15,7 @@
     </div>
     <div class="col-6" data-toggle="tooltip" data-placement="right" title="<%= @optin.enabled ? t('tooltip.optin.my_store') : t('tooltip.optin.my_store_disabled') %>">
       <a href="<%="http://#{current_shop.domain}/?t=5&vizualize=#{@optin.kind}" %>"
-          target="_blank" class="btn btn-purple float-right px-4 mt-4 <%= "disabled" unless @optin.enabled%>">
+          target="_blank" class="btn btn-primary float-right px-4 mt-4 <%= "disabled" unless @optin.enabled%>">
         Ver na Minha Loja
       </a>
     </div>
@@ -39,7 +43,7 @@
   <% if Flipper['new-modal'].enabled?(current_shop) %>
     <div class="form-group">
       <%= label_tag :icon, t('activerecord.attributes.manifest.icon') %>
-      <small class="form-text text-muted mt-0 mb-2">A logo dos Popups é a mesma do app, para altera-la <a href=<%= edit_admin_pwa_path %>>clique aqui</a></small>
+      <small class="form-text text-muted mt-0 mb-2">A logo dos Popups é a mesma do app, para altera-la <a href="#App">clique aqui</a></small>
     </div>
   <% else %>
     <div class="form-group">
@@ -51,5 +55,42 @@
     <%= label_tag :timer, t('activerecord.attributes.optin.timer') %>
     <%= f.number_field :timer, class: "form-control" %>
   </div>
-  <%= f.submit t('helpers.submit.submit'), class: "btn btn-purple float-right px-4" %>
+  <%= f.submit t('helpers.submit.submit'), class: "btn btn-primary float-right px-4" %>
+<% end %>
+
+
+<% if Flipper['new-modal'].enabled?(current_shop) %>
+  <script>
+    document.addEventListener("turbolinks:load", () => {
+      var el = document.getElementById('modal_<%=@optin.kind%>');
+      el.style.display = 'block';
+      $("input").on('keyup change', function (){
+      $(`#modal_${this.id}`).html($(this).val())
+
+      if (this.id.includes("background_color")) {
+          $('.modal-line, .accept').css('background', `#${$(this).val()}`)
+          $('.modal-line').css('border-bottom', `1px solid #${$(this).val()}`)
+          $('#brand-link').css('color', `#${$(this).val()}`)
+      }
+      if (this.id.includes("text_color")) {
+          $('.aplicatify-modal-title, .aplicatify-modal-body').css('color', `#${$(this).val()}`)
+      }
+      });
+    });
+  </script>
+<% else %>
+  <script>
+    var el = document.getElementById('modal_<%=@optin.kind%>');
+    el.style.display = 'block';
+    $("input").on('keyup change', function (){
+    $(`#modal_${this.id}`).html($(this).val())
+
+    if (this.id.includes("background_color")) {
+        $('.aplicatify-modal').css('background', `#${$(this).val()}`)
+    }
+    if (this.id.includes("text_color")) {
+        $('.aplicatify-modal-title, .aplicatify-modal-body').css('color', `#${$(this).val()}`)
+    }
+    });
+  </script>
 <% end %>

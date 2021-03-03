@@ -1,0 +1,72 @@
+<header id="header" class="navbar navbar-expand-xl navbar-fixed navbar-height navbar-flush navbar-container navbar-bordered">
+  <div class="navbar-nav-wrap js-mega-menu">
+    <div class="navbar-brand-wrapper">
+      <!-- Logo -->
+      <a class="navbar-brand" href="<%= admin_home_index_path %>" aria-label="Vorta">
+        <%= image_tag "vorta.png", class:"navbar-brand-logo", alt: "Logo" %>
+      </a>
+      <!-- End Logo -->
+    </div>
+
+    <!-- Secondary Content -->
+    <div class="navbar-nav-wrap-content-right">
+      <ul class="navbar-nav align-items-center flex-row">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to destroy_user_session_path, method: :delete, :class => 'navbar-nav-link nav-link' do %>
+              Sair <i class="tio-sign-out nav-icon"></i>
+            <% end %>
+          </li>
+        <% end %>
+        <li class="nav-item">
+          <!-- Toggle -->
+          <button type="button" class="navbar-toggler btn btn-ghost-secondary rounded-circle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarNavMenu" data-toggle="collapse" data-target="#navbarNavMenu">
+            <i class="tio-menu-hamburger"></i>
+          </button>
+          <!-- End Toggle -->
+        </li>
+      </ul>
+    </div>
+    <!-- End Secondary Content -->
+
+
+    <!-- Navbar -->
+    <div class="navbar-nav-wrap-content-left collapse navbar-collapse" id="navbarNavMenu">
+      <div class="navbar-body">
+        <ul class="navbar-nav flex-grow-1">
+          <!-- Home -->
+          <li class="nav-item ">
+            <a class="navbar-nav-link nav-link" data-turbolinks="false" href="<%= admin_home_index_path %>">
+              <i class="tio-home-vs-1-outlined nav-icon"></i> Home
+            </a>
+          </li>
+          <!-- End Home -->
+          <!-- Campanhas -->
+          <li class="nav-item ">
+            <a class="navbar-nav-link nav-link" data-turbolinks="false" href="<%= admin_campaigns_path %>">
+              <i class="tio-date-range nav-icon"></i> Campanhas
+            </a>
+          </li>
+          <!-- End Campanhas -->
+
+          <!-- Planos -->
+          <li class="nav-item ">
+            <a class="navbar-nav-link nav-link" data-turbolinks="false" href="<%= admin_plans_path %>">
+              <i class="tio-labels-outlined nav-icon"></i> Planos
+            </a>
+          </li>
+          <!-- End Planos -->
+          
+          <!-- Configuracoes -->
+          <li class="nav-item dropdown hs-has-mega-menu" data-turbolinks="false">
+            <a class="navbar-nav-link nav-link" data-turbolinks="false" href="<%= admin_settings_path %>">
+              <i class="tio-settings-outlined nav-icon"></i> Configurações
+            </a>
+          </li>
+          <!-- End Configuracoes -->
+        </ul>
+      </div>
+    </div>
+    <!-- End Navbar -->
+  </div>
+</header>
