@@ -25,6 +25,7 @@ require("datatables")
 require("daterangepicker")
 require("moment")
 require("flatpickr")
+require("jquery-validation")
 
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -36,6 +37,7 @@ import "../vendor/hs/hs.datatables"
 import "../vendor/hs/hs.daterangepicker"
 import "../vendor/hs/hs.fullcalendar"
 import "../vendor/hs/hs.flatpickr"
+import "../vendor/hs/hs.validation"
 
 import HSMegaMenu from "../vendor/hs/hs-mega-menu"
 import HSUnfold from "../vendor/hs/hs-unfold"
@@ -79,7 +81,13 @@ document.addEventListener("turbolinks:load", () => {
   $('.js-flatpickr').each(function () {
     $.HSCore.components.HSFlatpickr.init($(this));
   });
-  
+
+  // INITIALIZATION OF FORM VALIDATION
+  // =======================================================
+  $('.js-validate').each(function() {
+    $.HSCore.components.HSValidation.init($(this));
+  });
+
   // INITIALIZATION OF STICKY BLOCKS
   // =======================================================
   $('.js-sticky-block').each(function () {
