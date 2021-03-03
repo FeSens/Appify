@@ -33,12 +33,14 @@
   <div class="table-responsive datatable-custom">
     <table id="datatable" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
           data-hs-datatables-options='{
-             "order": [[1, "asc"]],
+             "order": [[1, "desc"]],
              "search": "#datatableWithSearchInput",
              "isResponsive": false,
              "isShowPaging": false,
              "pageLength": "7",
-             "pagination": "datatableWithSearch"
+             "pagination": "datatableWithSearch",
+             "paginationPrevLinkMarkup": "<span aria-hidden=\"true\">Anterior</span>",
+             "paginationNextLinkMarkup": "<span aria-hidden=\"true\">Próxima</span>"
            }'>
       <thead class="thead-light">
         <tr>
