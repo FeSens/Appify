@@ -64,6 +64,15 @@
             </a>
           </li>
           <!-- End Configuracoes -->
+          <% if current_shop.type != "Shop::Shopify" %>
+            <!-- Instalação -->
+            <li class="nav-item dropdown hs-has-mega-menu" data-turbolinks="false">
+              <a class="navbar-nav-link nav-link" data-turbolinks="false" href="<%= admin_installation_index_path %>">
+                <i class="tio-document-text-outlined nav-icon"></i> Instalação
+              </a>
+            </li>
+            <!-- End Instalação -->
+          <% end %>
         </ul>
       </div>
     </div>

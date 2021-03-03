@@ -3,7 +3,7 @@
   Alguém está se sentindo corajoso! Brincadeira, a instalação manual é fácil – Basta seguir as instruções abaixo. Você vai precisar acessar o codigo fonte do seu site e (idealmente)
   fazer o upload de um arquivo lá.
 </p>
-<p><b>1.</b> Copie o código abaixo e cole imediatamente antes da tag <code>&lt;/head&gt;</code> em cada página do seu site.</p>
+<p><b>1.</b> Copie o código abaixo e cole imediatamente antes da tag <code>&lt;/head&gt;</code> na página do seu site.</p>
 <%= render partial: 'public/install' %>
 
 <p><b>2.</b> Visto que o seu site deve usar o protocolo <code>https</code>, você precisará fazer o upload de um arquivo contendo um <code>service worker</code>
@@ -11,7 +11,7 @@
   baixe o arquivo abaixo e faça o seu upload para a pasta principal do seu site.
 </p>
 
-<a class="btn btn-purple text-center" href="/aplicatify-serviceworker.js" download="aplicatify-serviceworker.js">Baixar ServiceWorker</a>
+<a class="btn btn-primary text-center" href="/aplicatify-serviceworker.js" download="aplicatify-serviceworker.js">Baixar ServiceWorker</a>
 
 <p class="mt-4 mb-0">Quando você realizar o upload do arquivo, ele devera estar acessivel em:</p>
 <a class="mb-3" href=<%="https://" + current_shop.domain + "/aplicatify-serviceworker.js"%>><%= current_shop.domain + "/aplicatify-serviceworker.js"%></a>
