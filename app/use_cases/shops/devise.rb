@@ -19,7 +19,7 @@ module Shops
 
     def shop_params
       p = auth.slice(:name, :domain)
-      p[:domain] = pad_url(t[:domain])
+      p[:domain] = pad_url(p[:domain])
       p
     end
 
