@@ -23,6 +23,8 @@ class Shop < ApplicationRecord
   after_create :init_models
   after_create :create_optins
 
+  validates :domain, url: { allow_nil: true }
+
   def init_models
     create_manifest(name: self.name, short_name: self.name)
     create_marketing_value(cpc: 0.446, cps: 1.78, cpd: 3.47)
@@ -77,5 +79,4 @@ class Shop < ApplicationRecord
         background_color: "FFFFFF")
     end
   end
-  
 end

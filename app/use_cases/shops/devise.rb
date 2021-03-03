@@ -18,8 +18,14 @@ module Shops
     end
 
     def shop_params
-      auth.slice(:name, :domain)
+      p = auth.slice(:name, :domain)
+      p[:domain] = pad_url(t[:domain])
+      p
     end
 
+    def pad_url(url)
+      u = url.gsub("https://", "").gsub("http://", "")
+      "https://#{u}"
+    end
   end
 end

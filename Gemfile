@@ -60,6 +60,8 @@ gem 'newrelic_rpm'
 gem 'barnes'
 #Exception Notifier
 gem 'rollbar'
+#Validate URLs
+gem "validate_url"
 #Custumer Success App
 gem "intercom-rails"
 gem 'intercom', '~> 4.1'
