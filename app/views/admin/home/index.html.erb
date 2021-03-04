@@ -2,27 +2,29 @@
 
 <!-- Card de Indicadores -->
 <div class="row gx-2 gx-lg-3">
-  <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
-    <!-- Card -->
-    <div class="card h-100">
-      <div class="card-body">
-        <h6 class="card-subtitle mb-2">Downloads do App</h6>
+  <% if current_shop.type != "Shop::Shopify" %>
+    <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
+      <!-- Card -->
+      <div class="card h-100">
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2">Downloads do App</h6>
 
-        <div class="row align-items-center gx-2">
-          <div class="col">
-            <span class="js-counter display-4 text-dark" data-value="<%= app_installs %>"><%= number_to_human(app_installs) %></span>
-            <span class="text-body font-size-sm ml-1">Antes eram <%= number_to_human(app_installs(7.days.ago)) %></span>
-          </div>
+          <div class="row align-items-center gx-2">
+            <div class="col">
+              <span class="js-counter display-4 text-dark" data-value="<%= app_installs %>"><%= number_to_human(app_installs) %></span>
+              <span class="text-body font-size-sm ml-1">Antes eram <%= number_to_human(app_installs(7.days.ago)) %></span>
+            </div>
 
-          <div class="col-auto">
-            <%= raw growth_badge(app_installs, app_installs(7.days.ago)) %>
+            <div class="col-auto">
+              <%= raw growth_badge(app_installs, app_installs(7.days.ago)) %>
+            </div>
           </div>
+          <!-- End Row -->
         </div>
-        <!-- End Row -->
       </div>
+      <!-- End Card -->
     </div>
-    <!-- End Card -->
-  </div>
+  <% end %>
 
   <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
     <!-- Card -->
@@ -45,29 +47,31 @@
     </div>
     <!-- End Card -->
   </div>
+  
+  <% if current_shop.type != "Shop::Shopify" %>
+    <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
+      <!-- Card -->
+      <div class="card h-100">
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2">Valor gerado pelo App</h6>
 
-  <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
-    <!-- Card -->
-    <div class="card h-100">
-      <div class="card-body">
-        <h6 class="card-subtitle mb-2">Valor gerado pelo App</h6>
+          <div class="row align-items-center gx-2">
+            <div class="col">
+              <span class="js-counter display-4 text-dark" data-value="<%= app_revenue %>"><%= app_revenue %></span>
+            </div>
 
-        <div class="row align-items-center gx-2">
-          <div class="col">
-            <span class="js-counter display-4 text-dark" data-value="<%= app_revenue %>"><%= app_revenue %></span>
+            <div class="col-auto">
+              <span class="badge badge-soft-success p-1">
+                <i class="tio-trending-up"></i> <%= app_revenue_delta %>
+              </span>
+            </div>
           </div>
-
-          <div class="col-auto">
-            <span class="badge badge-soft-success p-1">
-              <i class="tio-trending-up"></i> <%= app_revenue_delta %>
-            </span>
-          </div>
+          <!-- End Row -->
         </div>
-        <!-- End Row -->
       </div>
+      <!-- End Card -->
     </div>
-    <!-- End Card -->
-  </div>
+  <% end %>
 
   <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
     <!-- Card -->

@@ -24,17 +24,19 @@
       <%= f.number_field :cps, class: "form-control", step: :any %>
     </div>
   </div>
-
-  <div class="form-group">
-    <%= label_tag :cpd, t('activerecord.attributes.marketing_value.cpd') %>
-    <small class="form-text text-muted mt-0 mb-2">Um cliente em potencial que baixou seu app e acessa sua loja de forma orgânica para ver novidades.</small>
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text" style="backgoroud: #FFFF">R$</span>
+  
+  <% if current_shop.type != "Shop::Shopify" %>
+    <div class="form-group">
+      <%= label_tag :cpd, t('activerecord.attributes.marketing_value.cpd') %>
+      <small class="form-text text-muted mt-0 mb-2">Um cliente em potencial que baixou seu app e acessa sua loja de forma orgânica para ver novidades.</small>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="backgoroud: #FFFF">R$</span>
+        </div>
+        <%= f.number_field :cpd, class: "form-control", step: :any %>
       </div>
-      <%= f.number_field :cpd, class: "form-control", step: :any %>
     </div>
-  </div>
+  <% end %>
 
   <%= f.submit t('helpers.submit.submit'), class: "btn btn-primary float-right px-4", id: "submit" %>
 <% end %>
