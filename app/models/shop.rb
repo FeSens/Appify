@@ -76,7 +76,7 @@ class Shop < ApplicationRecord
     if type == "Shop::Devise"
       optins.create(kind: "page",
         title: "Tudo pronto para uma nova experiência de compra",
-        background_color: "FFFFFF")
+        background_color: "ECECEC")
     end
   end
 end

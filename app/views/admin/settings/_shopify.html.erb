@@ -1,0 +1,220 @@
+
+<body data-offset="0" data-hs-scrollspy-options='{ "offset": 90, "target": "#navbarSettings" }'>
+
+<div class="row">
+  <div class="col-lg-3">
+    <!-- Navbar -->
+    <div class="navbar-vertical navbar-expand-lg">
+      <!-- Navbar Toggle -->
+      <button type="button" class="navbar-toggler btn btn-block btn-white mb-3" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarVerticalNavMenu" data-toggle="collapse" data-target="#navbarVerticalNavMenu">
+        <span class="d-flex justify-content-between align-items-center">
+          <span class="h5 mb-0">Menu de Configurações</span>
+
+          <span class="navbar-toggle-default">
+            <i class="tio-menu-hamburger"></i>
+          </span>
+
+          <span class="navbar-toggle-toggled">
+            <i class="tio-clear"></i>
+          </span>
+        </span>
+      </button>
+      <!-- End Navbar Toggle -->
+
+      <!-- Navbar Collapse -->
+      <div id="navbarVerticalNavMenu" class="collapse navbar-collapse">
+        <ul id="navbarSettings" class="js-sticky-block js-scrollspy navbar-nav navbar-nav-lg nav-tabs card card-navbar-nav"
+            data-hs-sticky-block-options='{
+             "parentSelector": "#navbarVerticalNavMenu",
+             "targetSelector": "#header",
+             "breakpoint": "lg",
+             "startPoint": "#navbarVerticalNavMenu",
+             "endPoint": "#stickyBlockEndPoint",
+             "stickyOffsetTop": 20
+           }'>
+          <li class="nav-item">
+            <a class="nav-link active" href="#App">
+              <i class="tio-android nav-icon"></i>
+              Configure a sua Logo
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#Optin">
+              <i class="tio-notice-outlined nav-icon"></i>
+              Ganhe Inscritos
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#Marketing">
+              <i class="tio-money-vs nav-icon"></i>
+              Retorno de Marketing
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- End Navbar Collapse -->
+    </div>
+    <!-- End Navbar -->
+  </div>
+
+  <div class="col-lg-9">
+    <!-- Card -->
+    <div id="App" class="card mb-5 anchor">
+      <div class="card-header">
+        <h3 class="card-title h4">Configure a sua Logo</h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-12 col-xl-6 mb-5">
+            <%= form_for @manifest, url: admin_pwa_path(@manifest), method: :patch do |f| %>
+            <p>
+              Esse é o momento de configurar a logo que ira aparecer nas notificações para os seus clientes.
+            </p>
+            <div class="form-group">
+              <%= label_tag :icon, t('activerecord.attributes.manifest.icon') %>
+              <small class="form-text text-muted mt-0 mb-2">A imagem deve ser quadrada, em PNG, SVG ou WebP e maior que 192x192 pixels.</small>
+              <%= f.file_field :icon, class: "form-control-file" %>
+              <div id="icon-errors" class="invalid-feedback"></div>
+            </div>
+            <!--
+              <div class="form-group">
+                <%= label_tag :description, t('activerecord.attributes.manifest.description') %>
+                <%= f.text_area :description, class: "form-control" %>
+              </div>
+            -->
+            <%= f.submit t('helpers.submit.submit'), class: "btn btn-primary float-right px-4", id: "submit" %>
+          <% end %>
+          </div>
+          <div class="col-lg-12 col-xl-6">
+            <div class="mx-auto">
+              <div class="logo-preview">
+                <%if @manifest.icon.attached? %>
+                  <%= image_tag @manifest.icon, id: "logo-preview" %>
+                <% else %>
+                  <img id="logo-preview" src="">
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Card -->
+
+    <!-- Card -->
+    <div id="Optin" class="card mb-5 anchor">
+      <div class="card-header">
+        <h3 class="card-title h4">Ganhe Inscritos</h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-12 col-xl-6 mb-5">
+            <div class="row">
+              <div class="col-12">
+                <ul class="nav nav-tabs">
+                  <% for tab in optins_kind %>
+                    <li class="nav-item">
+                      <a class="nav-link <%= active_tab(tab, params[:tab]) %>" data-turbolinks="true" href= <%= "?tab=#{tab}#Optin" %>> <%= t "optin.#{tab}_html" %> </a>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+            <%= render partial: "admin/optins/partials/#{params[:tab] || "push"}_form" %>
+          </div>
+          <div class="col-lg-12 col-xl-6 my-auto">
+             <%= render partial: Flipper['new-modal'].enabled?(current_shop) ? 'public/modal_v2' : 'public/modal', locals: {optin: @optin, preview: true, branding: Flipper['branding-modal'].enabled?(current_shop)} %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Card -->
+
+    <!-- Card -->
+    <div id="Marketing" class="card mb-5 anchor">
+      <div class="card-header">
+        <h3 class="card-title h4">Retorno de Marketing</h3>
+      </div>
+      <div class="card-body">
+        <%= render partial: "admin/marketing_values/form" %>
+      </div>
+    </div>
+    <!-- End Card -->
+
+    <!-- Card 
+    <div id="passwordSection" class="card mb-5">
+      <div class="card-header">
+        <h3 class="card-title h4">Retorno de Marketing</h3>
+      </div>
+      <div class="card-body">
+        This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+      </div>
+    </div>
+     End Card -->
+
+    <!-- Sticky Block End Point -->
+    <div id="stickyBlockEndPoint"></div>
+  </div>
+</div>
+<!-- End Row -->
+
+<script>
+  $.fn.hasExtension = function(exts) {
+      return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$')).test($(this).val());
+  }
+
+  $("input").on('keyup change', function (){
+    $(`#prev_${this.id}`).css('background', `#${$(this).val()}`);
+    $("#prev_manifest_theme_color").css('background', `#${$(this).val()}`);
+    if (this.id.includes("icon")) {
+      readURL(this)
+    }
+  });
+
+  function readURL(input) {
+    $("#icon-errors").text("")
+    window.valid_extention = true
+    var extention = $(input).val().toLowerCase().split(".").slice(-1).pop();
+    if (!["png", "svg", "webp"].includes(extention)) {
+      $("#icon-errors").append("Os formatos suportados são .PNG, .SVG, .WebP<br>")
+      window.valid_extention = false
+    }
+
+    if(!window.valid_extention) {
+      $("#manifest_icon").addClass("is-invalid")
+      $("#manifest_icon").val('');
+      $('#submit').prop('disabled', true);
+    }
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var image = new Image();
+        image.src = e.target.result;
+        image.onload = function () {
+          var valid = true
+          var height = this.height;
+          var width = this.width;
+          window.test = this
+          if (height <= 192 || width <= 192) {
+            $("#icon-errors").append("O icone deve ter ao menos 192x192 pixels<br>")
+            valid = false
+          }
+          if (width != height) {
+            $("#icon-errors").append("A imagem deve ser quadrada<br>")
+            valid = false
+          }
+
+          if (valid && window.valid_extention) {
+            $('#logo-preview').attr('src', e.target.result);
+            $('#submit').prop('disabled', false);
+          } else {
+            $("#manifest_icon").addClass("is-invalid")
+            $("#manifest_icon").val('');
+            $('#submit').prop('disabled', true);
+          }
+        }
+      }
+      reader.readAsDataURL(input.files[0]); // convert to base64 string
+    }
+  }
+</script>

@@ -1,7 +1,6 @@
 <%= form_with model: @optin, method: 'patch', url: admin_optin_path(@optin), class:"mt-3", local: true do |f| %>
   <p>
-  Aqui você vai configurar os pop-ups que permitem seus visitantes baixarem seu app e se inscreverem nas suas notificações. 
-  Faça títulos claros e persuasivos para que seu cliente entenda e configure um tempo que não o pegue de surpresa nem perca sua visita.
+    <%= explanation %>
   </p>
   <div class="form-group row">
     <div class="col-6">
