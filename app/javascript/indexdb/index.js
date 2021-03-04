@@ -4,7 +4,7 @@ export let idbKeyval = (() => {
   function getDB() {
     if (!db) {
       db = new Promise((resolve, reject) => {
-        const openreq = indexedDB.open('appdata', 1);
+        const openreq = indexedDB.open('vorta', 1);
 
         openreq.onerror = () => {
           reject(openreq.error);
