@@ -24,6 +24,11 @@ module Admin
       redirect_to admin_campaigns_path
     end
 
+    def destroy
+      @campaign.destroy
+      redirect_to admin_campaigns_path
+    end
+
     private
 
     def campaing_params
