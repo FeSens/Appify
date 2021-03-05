@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, 
-         :omniauthable, omniauth_providers: %i[shopify]
+         :omniauthable, omniauth_providers: %i[shopify nuvemshop]
   
   belongs_to :shop, optional: true
 

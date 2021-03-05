@@ -15,6 +15,6 @@ module Strategies
       raise_errors: false,
     }
     
-    option :auth_token_params, { parse: :json } 
+    option :token_params, { parse: :json } 
   end
 end
