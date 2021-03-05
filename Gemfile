@@ -46,7 +46,6 @@ gem 'omniauth-shopify-oauth2'
 #Add API validations
 gem 'dry-validation'
 gem 'dry-monads'
-gem 'faraday_middleware'
 gem 'image_processing', '~> 1.2'
 gem 'pry'
 gem 'pry-remote'

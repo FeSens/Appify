@@ -7,14 +7,24 @@ module Strategies
     option :client_options, {
       site: "https://www.nuvemshop.com.br",
       token_url: 'apps/authorize/token',
-      connection_build: lambda { |builder|
-        builder.request :url_encoded
-        builder.response :json
-        builder.adapter Faraday.default_adapter
-       },
-      raise_errors: false,
+      raise_errors: false
     }
     
     option :token_params, { parse: :json } 
+
+    uid { raw_info['user_id'] }
+
+    info do
+      {
+        scope: raw_info['scope'],
+        token_type: raw_info['token_type'],
+        access_token: raw_info['access_token']
+        user_id: raw_info['user_id']
+      }
+    end
+
+    def raw_info
+      @raw_info ||= access_token.params
+    end
   end
 end

@@ -206,8 +206,6 @@ GEM
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
     faraday-net_http (1.0.1)
-    faraday_middleware (1.0.0)
-      faraday (~> 1.0)
     ffi (1.14.2)
     flipper (0.20.3)
     flipper-redis (0.20.3)
@@ -533,7 +531,6 @@ DEPENDENCIES
   dry-validation
   factory_bot_rails (~> 5.1.1)
   faker
-  faraday_middleware
   flipper (~> 0.19)
   flipper-redis (~> 0.19)
   flipper-ui (~> 0.19)
