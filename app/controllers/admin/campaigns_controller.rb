@@ -1,6 +1,6 @@
 module Admin
   class CampaignsController < AuthenticatedController
-    before_action :load_campaign, only: %i[edit update]
+    before_action :load_campaign, only: %i[edit update destroy]
     after_action :create_job, only: %i[update create]
     attr_accessor :campaign
 
@@ -21,6 +21,11 @@ module Admin
 
     def create
       @campaign = current_shop.campaigns.create(campaing_params)
+      redirect_to admin_campaigns_path
+    end
+
+    def destroy
+      @campaign.destroy
       redirect_to admin_campaigns_path
     end
 

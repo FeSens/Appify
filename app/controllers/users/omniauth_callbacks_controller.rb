@@ -12,6 +12,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     set_flash_message(:notice, :success, kind: "Shopify") if is_navigational_format?
   end
 
+  def nuvemshop
+    binding.pry
+    sign_in_and_redirect User.last, event: :authentication
+    set_flash_message(:notice, :success, kind: "Nuvemshop") if is_navigational_format?
+  end
+
   protected
 
   def after_omniauth_failure_path_for(_scope)
