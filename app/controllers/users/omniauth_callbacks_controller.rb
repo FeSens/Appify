@@ -13,7 +13,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def nuvemshop
-    binding.pry
+    #result = Shops::Creator.call(auth, session)
+    #shop = result.success if result.success?
+    #user = Nuvemshop::AuthUser.call(auth, shop)
+    Shop::Devise.last.update(shopify_token: auth["credentials"]["token"], shopify_domain: auth["uid"])
     sign_in_and_redirect User.last, event: :authentication
     set_flash_message(:notice, :success, kind: "Nuvemshop") if is_navigational_format?
   end

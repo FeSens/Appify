@@ -516,6 +516,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   activeadmin
+  activeresource
   aws-sdk-s3
   aws-sdk-sqs
   barnes

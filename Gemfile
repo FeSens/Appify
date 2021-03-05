@@ -33,6 +33,7 @@ gem 'activeadmin'
 #serializers
 gem 'active_model_serializers'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'activeresource'
 gem 'aws-sdk-s3', require: false
 gem 'aws-sdk-sqs'
 gem 'bootstrap', '~>4.3.1'

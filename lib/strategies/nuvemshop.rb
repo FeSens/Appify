@@ -18,7 +18,7 @@ module Strategies
       {
         scope: raw_info['scope'],
         token_type: raw_info['token_type'],
-        access_token: raw_info['access_token']
+        access_token: raw_info['access_token'],
         user_id: raw_info['user_id']
       }
     end
