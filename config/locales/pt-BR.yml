@@ -151,6 +151,7 @@ pt-BR:
       submit: Salvar
       update: Atualizar %{model}
       send_now: Enviar
+      delete: "Deletar %{model}"
   number:
     currency:
       format:
