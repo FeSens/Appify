@@ -1,6 +1,6 @@
 module Admin
   class CampaignsController < AuthenticatedController
-    before_action :load_campaign, only: %i[edit update]
+    before_action :load_campaign, only: %i[edit update destroy]
     after_action :create_job, only: %i[update create]
     attr_accessor :campaign
 
