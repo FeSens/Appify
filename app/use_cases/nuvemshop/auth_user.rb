@@ -25,8 +25,8 @@ module Nuvemshop
 
     def shop_data
       shop_data ||= begin 
-        shop.with_shopify_session do
-          @shop_data = ShopifyAPI::Shop.current
+        shop.with_nuvemshop_session do
+          @shop_data = NuvemshopAPI::Store.current
         end
       end
     end

@@ -1,5 +1,7 @@
 module NuvemshopAPI
   class Base < ::ActiveResource::Base
+    class InvalidSessionError < StandardError; end
+
     self.include_format_in_path = false
     self.headers['Authentication'] = 'bearer fa57087f9031185562d0ded379d7e93f98b20ebe'
     self.headers['User-Agent'] = 'Vorta (felipesensbonetto@gmail.com)'

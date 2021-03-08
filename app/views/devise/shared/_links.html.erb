@@ -30,6 +30,9 @@
       <%= "Entrar com #{OmniAuth::Utils.camelize("shopify")}" %>
     </button><br />
   <% end %>
+
+  <%= link_to "Entrar com #{OmniAuth::Utils.camelize("nuvemshop")}", user_nuvemshop_omniauth_authorize_path, class: "btn btn-primary btn-block text-center" %><br />
+
 <% end %>
 
 <%= render "devise/shared/shopify_modal" %>

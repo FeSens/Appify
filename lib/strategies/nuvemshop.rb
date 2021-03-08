@@ -26,5 +26,10 @@ module Strategies
     def raw_info
       @raw_info ||= access_token.params
     end
+
+    def client
+      options.client_options["authorize_url"] = "apps/#{options.client_id}/authorize"
+      ::OAuth2::Client.new(options.client_id, options.client_secret, deep_symbolize(options.client_options))
+    end
   end
 end
