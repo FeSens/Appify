@@ -1,4 +1,4 @@
-<% if current_shop.type == "Shop::Shopify" %>
+<% if current_shop.type != "Shop::Devise" %>
   <%= render partial: "shopify" %>
 <% else %>
   <%= render partial: "default" %>
