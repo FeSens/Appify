@@ -8,7 +8,7 @@ class Manifest < ApplicationRecord
   
   def add_default_icon
     unless icon.attached?
-      self.icon.attach(io: File.open(Rails.root.join("app", "assets", "images", "default_app_logo.png")), filename: 'default_app_logo.png' , content_type: "image/png") if Rails.env.production?
+      self.icon.attach(io: File.open(Rails.root.join("app", "assets", "images", "default_app_logo.png")), filename: 'default_app_logo.png' , content_type: "image/png")
     end
   end
 end
