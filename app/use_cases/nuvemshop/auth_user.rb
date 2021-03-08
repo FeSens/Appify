@@ -28,7 +28,7 @@ module Nuvemshop
       shop_data.name.pt
     end
 
-    def shop_data(shop)
+    def shop_data
       shop_data ||= begin 
         shop.with_nuvemshop_session do
           @shop_data = NuvemshopAPI::Store.current
