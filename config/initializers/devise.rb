@@ -290,7 +290,7 @@ Devise.setup do |config|
                               strategy.options[:per_user_permissions] = strategy.session[:user_tokens]
                             }
   
-  config.omniauth :nuvemshop, '2777', 'KffzRiBBSYRTRVgHEYn9PiIwKU8CtljgnAOKQHT3aP2V8l80', :strategy_class => Strategies::Nuvemshop, provider_ignores_state: true
+  config.omniauth :nuvemshop, '2776', 't0K9St4n2DNUQ11Z6VrFuEG14KeksBg3lmRS5lhGSKgv0yvS', :strategy_class => Strategies::Nuvemshop, provider_ignores_state: true
     
 
   # ==> Warden configuration
