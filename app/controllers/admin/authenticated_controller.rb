@@ -5,7 +5,7 @@ module Admin
     layout "authenticated"
 
     rescue_from ActiveResource::UnauthorizedAccess, with: :logout_on_failure
-    rescue_from NoMethodError, with: :logout_on_failure
+    #rescue_from NoMethodError, with: :logout_on_failure
     #include ShopifyApp::Authenticated #if Rails.env.production?
     before_action :save_login_params
     before_action :authenticate_user!
