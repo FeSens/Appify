@@ -10,6 +10,7 @@ module Nuvemshop
     
 
     def call
+      shop.update(name: shop_name)
       User.create_with(uid: uid, credentials: credentials, password: password).find_or_create_by!(email: shop_email, shop_id: shop.id)
     end
 
@@ -23,7 +24,11 @@ module Nuvemshop
       shop_data.email
     end
 
-    def shop_data
+    def shop_name
+      shop_data.name.pt
+    end
+
+    def shop_data(shop)
       shop_data ||= begin 
         shop.with_nuvemshop_session do
           @shop_data = NuvemshopAPI::Store.current
