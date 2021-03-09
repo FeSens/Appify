@@ -5,7 +5,7 @@ class Nuvemshop::InstallScriptsJob < ApplicationJob
     shop.with_nuvemshop_session do
       scripts = NuvemshopAPI::Scripts.all
       unless scripts.map { |a| a.src.match(/preferences/) }.any?
-        script = NuvemshopAPI::Script.create(src:"https://app.vorta.com.br/public/preferences/#{shop.id}.js" , event:"onload", where:"store")
+        script = NuvemshopAPI::Scripts.create(src:"https://app.vorta.com.br/public/preferences/#{shop.id}.js" , event:"onload", where:"store")
       end
     end
   end
