@@ -1,6 +1,6 @@
 module Admin::OptinsHelper
   def optins_kind
-    if current_shop.type == "Shop::Shopify"
+    if current_shop.type != "Shop::Devise"
       return current_shop.optins.distinct.where.not(kind: :pwa).pluck(:kind)
     end
     current_shop.optins.distinct.pluck(:kind)

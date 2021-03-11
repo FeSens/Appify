@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require "strategies/nuvemshop"
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
 # are not: uncommented lines are intended to protect your configuration from
@@ -289,6 +289,9 @@ Devise.setup do |config|
                               strategy.options[:old_client_secret] = ShopifyApp.configuration.old_secret
                               strategy.options[:per_user_permissions] = strategy.session[:user_tokens]
                             }
+  
+  config.omniauth :nuvemshop, '2776', 't0K9St4n2DNUQ11Z6VrFuEG14KeksBg3lmRS5lhGSKgv0yvS', :strategy_class => Strategies::Nuvemshop, provider_ignores_state: true
+    
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

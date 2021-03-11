@@ -25,7 +25,7 @@
     </div>
   </div>
   
-  <% if current_shop.type != "Shop::Shopify" %>
+  <% if current_shop.type == "Shop::Devise" %>
     <div class="form-group">
       <%= label_tag :cpd, t('activerecord.attributes.marketing_value.cpd') %>
       <small class="form-text text-muted mt-0 mb-2">Um cliente em potencial que baixou seu app e acessa sua loja de forma orgânica para ver novidades.</small>

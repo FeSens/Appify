@@ -2,7 +2,7 @@
 
 <!-- Card de Indicadores -->
 <div class="row gx-2 gx-lg-3">
-  <% if current_shop.type != "Shop::Shopify" %>
+  <% if current_shop.type == "Shop::Devise" %>
     <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
       <!-- Card -->
       <div class="card h-100">
@@ -48,7 +48,7 @@
     <!-- End Card -->
   </div>
   
-  <% if current_shop.type != "Shop::Shopify" %>
+  <% if current_shop.type == "Shop::Devise" %>
     <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
       <!-- Card -->
       <div class="card h-100">

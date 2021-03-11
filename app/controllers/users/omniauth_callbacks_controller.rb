@@ -1,7 +1,8 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  rescue_from ActiveRecord::RecordInvalid, with: :on_login_error
-
   include ShopifyApp::LoginProtection
+  rescue_from ActiveRecord::RecordInvalid, with: :on_login_error
+  rescue_from ActiveResource::UnauthorizedAccess, with: :on_login_error
+
 
   def shopify
     result = Shops::Creator.call(auth, session)
@@ -10,6 +11,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     
     sign_in_and_redirect user, event: :authentication
     set_flash_message(:notice, :success, kind: "Shopify") if is_navigational_format?
+  end
+
+  def nuvemshop
+    result = Shops::Creator.call(auth, session)
+    shop = result.success if result.success?
+    user = Nuvemshop::AuthUser.call(auth, shop)
+    sign_in_and_redirect user, event: :authentication
+    set_flash_message(:notice, :success, kind: "Nuvemshop") if is_navigational_format?
   end
 
   protected
