@@ -5,7 +5,7 @@ module Admin
     attr_accessor :campaign
 
     def index
-      @campaigns = current_shop.campaigns.order(created_at: :desc)
+      @campaigns = current_shop.campaigns.order(release_date: :desc)
     end
 
     def new
