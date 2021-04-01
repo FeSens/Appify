@@ -63,7 +63,7 @@ export let utils = (() => {
 
   const sendKeys = async (s) => {
     return $.post('https://app.vorta.com.br/public/push', {
-      shop_id: window.AplicatifyShopId,
+      shop_id: document.currentScript.getAttribute('shop_id'),
       subscriber_id: await get_or_create_id(),
       endpoint: s.endpoint,
       p256dh: btoa(String.fromCharCode.apply(null, new Uint8Array(s.getKey('p256dh')))).replace(/\+/g, '-').replace(/\//g, '_'),
@@ -72,7 +72,7 @@ export let utils = (() => {
   }
 
   function computeSubscriber(service) {
-    $.post('https://app.vorta.com.br/analytics/subscribers', { service, shop_id: window.AplicatifyShopId });
+    $.post('https://app.vorta.com.br/analytics/subscribers', { service, shop_id: document.currentScript.getAttribute('shop_id') });
   }
 
   const pageVisit = async () => {
@@ -82,7 +82,7 @@ export let utils = (() => {
         async: false,
         contentType : "application/json", 
         data: JSON.stringify({
-        shop_id: window.AplicatifyShopId,
+        shop_id: document.currentScript.getAttribute('shop_id'),
         subscriber_id: await idbKeyval.get("push-subscriber"),
         path: window.location.pathname,
         time_spent: window.browserInteractionTime.getTimeInMilliseconds() | 0,
@@ -95,7 +95,7 @@ export let utils = (() => {
   
   function initialize() {
     get_or_create_id();
-    idbKeyval.set("shop_id", window.AplicatifyShopId)
+    idbKeyval.set("shop_id", document.currentScript.getAttribute('shop_id'))
     get_or_create_cookie("session");
   }
 
