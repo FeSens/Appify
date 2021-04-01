@@ -11,6 +11,9 @@ const IMAGE_CACHE = "images";
 const FONT_CACHE = "fonts";
 const CACHE = "pwabuilder-offline";
 
+const ANALYTICS = "https://app.vorta.com.br/analytics/campaigns"
+const SUBSCRIBER = "https://app.vorta.com.br/public/push"
+
 /* Variables Declaration */
 var id;
 var shop_id;
@@ -106,23 +109,10 @@ registerRoute(
 self.addEventListener("push", function(event) {
   var data = event.data.json();
   var title = data.title;
-  var body = data.body;
-  var tag = data.tag;
-  var icon = data.icon;
-  var url = data.url;
-  var campaign_id = data.campaign_id;
   sendAnalytics(data, "impressions");
   event.waitUntil(
-    self.registration.showNotification(title, {
-      body: body,
-      icon: icon,
-      tag: tag,
-      requireInteraction: true,
-      data: {
-        url: url,
-        campaign_id: campaign_id
-      }
-  }));
+    self.registration.showNotification(title, data)
+    );
 });
 
 self.addEventListener('notificationclick', function(event) {
@@ -158,7 +148,7 @@ idbKeyval.get("push-subscriber").then(function(result){
 })
 
 function sendKeys(s){
-  return fetch('https://app.vorta.com.br/public/push', {
+  return fetch(SUBSCRIBER, {
     method: 'post',
     headers: {
       'Content-type': 'application/json'
@@ -184,7 +174,7 @@ function create_UUID() {
 }
 
 function sendAnalytics(data, attr) {
-  return fetch('https://app.vorta.com.br/analytics/campaigns', {
+  return fetch(ANALYTICS, {
     method: 'post',
     headers: {
       'Content-type': 'application/json'

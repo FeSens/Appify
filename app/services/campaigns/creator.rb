@@ -50,7 +50,8 @@ module Campaigns
         body: campaign.body,
         url: campaign.url,
         campaign_id: campaign.id,
-        icon: icon
+        icon: icon,
+        requireInteraction: true,
       }
 
       message_list = [message] * targets.length
