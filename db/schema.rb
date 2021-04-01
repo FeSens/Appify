@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_01_191510) do
+ActiveRecord::Schema.define(version: 2021_04_01_220841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,15 @@ ActiveRecord::Schema.define(version: 2021_04_01_191510) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "automation_block_links", force: :cascade do |t|
+    t.bigint "automation_block_id", null: false
+    t.bigint "push_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["automation_block_id"], name: "index_automation_block_links_on_automation_block_id"
+    t.index ["push_id"], name: "index_automation_block_links_on_push_id"
   end
 
   create_table "automation_blocks", force: :cascade do |t|
@@ -344,6 +353,8 @@ ActiveRecord::Schema.define(version: 2021_04_01_191510) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "automation_block_links", "automation_blocks"
+  add_foreign_key "automation_block_links", "pushes"
   add_foreign_key "automation_blocks", "campaigns"
   add_foreign_key "automation_blocks", "shops"
   add_foreign_key "campaigns", "shops"
