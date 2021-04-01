@@ -2,9 +2,7 @@ import { registerRoute, setCatchHandler} from 'workbox-routing';
 import { CacheFirst, StaleWhileRevalidate, NetworkFirst, NetworkOnly } from 'workbox-strategies';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { ExpirationPlugin } from 'workbox-expiration';
-import { precacheAndRoute } from 'workbox-precaching';
 import { idbKeyval } from 'indexdb'
-import { RequestCORS } from 'workbox-custom'
 //This is the service worker with the Advanced caching
 const HTML_CACHE = "html";
 const JS_CACHE = "javascript";
