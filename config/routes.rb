@@ -45,6 +45,12 @@ Rails.application.routes.draw do
         resource :push, only: %i[create]
       end
       resources :webhook, only: %i[index create]
+
+      namespace :magazord do
+        resources :pedido, only: %i[create] do 
+          post '/' => 'pedido#update'
+        end
+      end
     end
   end
 
