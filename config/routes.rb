@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root :to => 'admin/home#index'
 
   resources :privacy, only: %i[index]
+  resource :demo_page, only: %i[show]
 
   namespace :admin do
     resources :home

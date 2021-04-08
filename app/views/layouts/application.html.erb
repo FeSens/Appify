@@ -4,13 +4,15 @@
     <title>Vorta</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= favicon_link_tag asset_path('favicon.png') %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href='https://fonts.googleapis.com/css?family=Varela Round' rel='stylesheet'>
+    <%= stylesheet_pack_tag 'theme', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'theme', 'data-turbolinks-track': 'reload' %>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
     <%= render partial: "layouts/analytics" %>
-    <script src="https://sak.userreport.com/aplicatify/launcher.js" async id="userreport-launcher-script"></script>
   </head>
 
   <body>
