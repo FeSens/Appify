@@ -17,5 +17,13 @@ FactoryBot.define do
     type { "AutomationBlock::Delay" }
     delay { 1_000 }
   end
+
+  factory :end_block, parent: :automation_block, class: 'AutomationBlock::EndBlock' do
+    type { "AutomationBlock::EndBlock" }
+  end
+
+  factory :send_push, parent: :automation_block, class: 'AutomationBlock::SendPush' do
+    type { "AutomationBlock::SendPush" }
+  end
   
 end
