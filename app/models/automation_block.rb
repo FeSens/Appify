@@ -1,18 +1,21 @@
 class AutomationBlock < ApplicationRecord
   class NotImplementedError < StandardError ; end
 
-  belongs_to :_next, :class_name => 'AutomationBlock', :foreign_key => '_next_id'
-  belongs_to :_prev, :class_name => 'AutomationBlock', :foreign_key => '_prev_id'
+  belongs_to :_next, :class_name => 'AutomationBlock', :foreign_key => '_next_id', optional: true
+  belongs_to :_prev, :class_name => 'AutomationBlock', :foreign_key => '_prev_id', optional: true
   belongs_to :campaign
   belongs_to :shop
   
   has_many :automation_block_links
   has_many :pushes, through: :automation_block_links
 
-  before_destroy :update_linked_list
+  before_destroy :update_linked_list, :forward_pushes
+
+  store :settings, coder: JSON
 
   def run
-    raise NotImplementedError
+    self.increment!(:count, pushes.count)
+    forward_pushes
   end
 
   def schedule
@@ -20,6 +23,10 @@ class AutomationBlock < ApplicationRecord
   end
 
   private
+
+  def forward_pushes
+    automation_block_links.update_all(automation_block_id: _next_id)
+  end
 
   def update_linked_list
     _prev.update(_next: _next) if _prev.present?
