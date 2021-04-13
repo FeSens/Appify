@@ -84,8 +84,11 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.around(type: :worker) do |example|
+    ActiveJob::Base.queue_adapter = :test
     Sidekiq::Testing.fake! { example.run } if example.metadata[:sidekiq_fake] == true
   end
   # For Devise > 4.1.1
   config.include Warden::Test::Helpers, :type => :feature
+
+  config.include ActiveSupport::Testing::TimeHelpers
 end

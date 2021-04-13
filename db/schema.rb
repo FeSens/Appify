@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_01_220841) do
+ActiveRecord::Schema.define(version: 2021_04_13_113502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 2021_04_01_220841) do
     t.string "type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "settings"
     t.index ["campaign_id"], name: "index_automation_blocks_on_campaign_id"
     t.index ["shop_id"], name: "index_automation_blocks_on_shop_id"
   end

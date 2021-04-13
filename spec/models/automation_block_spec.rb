@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe AutomationBlock, type: :model do
   it { is_expected.to belong_to(:shop).optional(false) }
-  it { is_expected.to belong_to(:campaign).optional(false) }
+  it { is_expected.to belong_to(:campaign).optional(true) }
   it { is_expected.to belong_to(:_next).optional(true) }
   it { is_expected.to belong_to(:_prev).optional(true) }
   
