@@ -25,7 +25,7 @@ class AutomationBlock < ApplicationRecord
   private
 
   def count_interactions
-    self.increment!(:count, delayed_push_links.count)
+    self.increment!(:count, automation_block_links.count)
   end
 
   def forward_pushes
