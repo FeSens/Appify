@@ -9,9 +9,12 @@ class AutomationBlock::Delay < AutomationBlock
   end
 
   def schedule
-    AutomationBlock::DelayEngineJob.set(wait_until: next_run_date).perform_later(self)
+    job.set(wait_until: next_run_date).perform_later(self)
   end
 
+  def job
+    "#{self.class.to_s.classify}EngineJob".constantize
+  end
 
   def count_interactions
     self.increment!(:count, delayed_push_links.count)

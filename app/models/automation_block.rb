@@ -19,7 +19,7 @@ class AutomationBlock < ApplicationRecord
   end
 
   def schedule
-    raise NotImplementedError
+    "#{self.class.to_s.classify}EngineJob".constantize.perform_later(self)
   end
 
   private
