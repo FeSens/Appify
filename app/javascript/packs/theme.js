@@ -38,7 +38,7 @@ import "../vendor/hs/hs.fullcalendar"
 import "../vendor/hs/hs.flatpickr"
 import "../vendor/hs/hs.validation"
 
-import "../scripts/flowy"
+import "../scripts/flowy/flowy"
 
 import HSMegaMenu from "../vendor/hs/hs-mega-menu"
 import HSUnfold from "../vendor/hs/hs-unfold"

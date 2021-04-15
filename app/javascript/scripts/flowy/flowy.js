@@ -1,4 +1,5 @@
-import { flowy } from "../vendor/flowy/flowy"
+import { flowy } from "../../vendor/flowy/flowy"
+import new_visitor from "../flowy/cards/page_view.html"
 
 document.addEventListener("turbolinks:load", () => {
   // INITIALIZATION OF FLOWY
@@ -21,7 +22,7 @@ document.addEventListener("turbolinks:load", () => {
       var blockin = drag.querySelector(".blockin");
       blockin.parentNode.removeChild(blockin);
       if (drag.querySelector(".blockelemtype").value == "1") {
-        drag.innerHTML += "<div class='blockyleft'><img src='assets/eyeblue.svg'><p class='blockyname'>New visitor</p></div><div class='blockyright'><img src='assets/more.svg'></div><div class='blockydiv'></div><div class='blockyinfo'>When a <span>new visitor</span> goes to <span>Site 1</span></div>";
+        drag.innerHTML += new_visitor;
       } else if (drag.querySelector(".blockelemtype").value == "2") {
         drag.innerHTML += "<div class='blockyleft'><img src='assets/actionblue.svg'><p class='blockyname'>Action is performed</p></div><div class='blockyright'><img src='assets/more.svg'></div><div class='blockydiv'></div><div class='blockyinfo'>When <span>Action 1</span> is performed</div>";
       } else if (drag.querySelector(".blockelemtype").value == "3") {
