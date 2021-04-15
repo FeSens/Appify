@@ -368,6 +368,10 @@ color: #C9C9D5;
   left: 361px;
   z-index: 0;
   overflow: auto;
+  background-image: url(https://appify-assets.s3.amazonaws.com/tile.png);
+  background-repeat: repeat;
+  background-size: 30px 30px;
+  background-color: #FBFBFB;
 }
 #propwrap {
   position: absolute;
