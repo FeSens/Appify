@@ -12,12 +12,15 @@ class Api::V1::Magazord::IconController < ApplicationController
 
   def get_image(dim)
     url = manifest.icon.variant(resize: dim).processed.service_url.sub(/\?.*/, '')
-    Net::HTTP.get_response(url)
+    escaped_address = URI.escape(url) 
+    uri = URI.parse(escaped_address)
+
+    Net::HTTP.get_response(uri)
   end
 
   def load_manifest
     @manifest = Manifest.find_by(shop_id: params[:id])
 
-    return render json: { error: "Store not found" }, status: :unprocessable_entity unless manifest.present?
+    #return render json: { error: "Store not found" }, status: :unprocessable_entity unless manifest.present?
   end
 end
