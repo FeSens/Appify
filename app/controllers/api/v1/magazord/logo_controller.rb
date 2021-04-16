@@ -3,7 +3,10 @@ class Api::V1::Magazord::LogoController < ApplicationController
   before_action :load_manifest, only: :show
 
   def show
-    icons = icon_sizes.map { |dim|  icon_dict (dim) } if manifest.icon.present?
+    icons = []
+    icons = Rails.cache.fetch("Logo/#{params[:dim]}/#{params[:id]}", expires_in: 1.minute) do
+      icon_sizes.map { |dim|  icon_dict (dim) } if manifest.icon.present?
+    end
 
     render json: icons
   end
@@ -11,7 +14,9 @@ class Api::V1::Magazord::LogoController < ApplicationController
   private
 
   def load_manifest
-    @manifest = Manifest.find_by(shop_id: params[:id])
+    @manifest = Rails.cache.fetch("Manifest/#{params[:id]}", expires_in: 1.minute) do
+      Manifest.find_by(shop_id: params[:id])
+    end
 
     return render json: { error: "Store not found" }, status: :unprocessable_entity unless manifest.present?
   end

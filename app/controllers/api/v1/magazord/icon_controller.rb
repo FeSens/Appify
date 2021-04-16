@@ -11,16 +11,20 @@ class Api::V1::Magazord::IconController < ApplicationController
   private
 
   def get_image(dim)
-    url = manifest.icon.variant(resize: dim).processed.service_url.sub(/\?.*/, '')
-    escaped_address = URI.escape(url) 
-    uri = URI.parse(escaped_address)
+    uri = Rails.cache.fetch("Icons/#{params[:id]}", expires_in: 1.minute) do
+      url = manifest.icon.variant(resize: dim).processed.service_url.sub(/\?.*/, '')
+      escaped_address = URI.escape(url) 
+      URI.parse(escaped_address)
+    end
 
     Net::HTTP.get_response(uri)
   end
 
   def load_manifest
-    @manifest = Manifest.find_by(shop_id: params[:id])
+    @manifest = Rails.cache.fetch("Manifest/#{params[:id]}", expires_in: 1.minute) do
+      Manifest.find_by(shop_id: params[:id])
+    end
 
-    #return render json: { error: "Store not found" }, status: :unprocessable_entity unless manifest.present?
+    return render json: { error: "Store not found" }, status: :unprocessable_entity unless manifest.present?
   end
 end
