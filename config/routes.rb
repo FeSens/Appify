@@ -50,6 +50,9 @@ Rails.application.routes.draw do
         resources :pedido, only: %i[create] do 
           post '/' => 'pedido#update'
         end
+        
+        resources :icon, only: %i[show], path: "icon/:dim" 
+        resources :logo, only: %i[show]
       end
     end
   end
