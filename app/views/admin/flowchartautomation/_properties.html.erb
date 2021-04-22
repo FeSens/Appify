@@ -1,0 +1,26 @@
+<div id="propwrap" data-controller="properties" data-properties-open-class="expanded" data-action="blur->properties#close" >
+  <div id="properties">
+      <div id="close" data-action="click->properties#close">
+          <img src="assets/close.svg">
+      </div>
+      <p id="header2">Properties</p>
+      <div id="propswitch">
+          <div id="dataprop">Data</div>
+          <div id="alertprop">Alerts</div>
+          <div id="logsprop">Logs</div>
+      </div>
+      <div id="proplist">
+          
+      </div>
+      <div id="divisionthing"></div>
+      <div id="removeblock">Delete blocks</div>
+  </div>
+</div>
+
+<template id="input-template">
+  <div class="form-group mx-5">
+    <!-- <label > Email address</label> -->
+    <input type="text" class="form-control" data-action="input->properties#onInputChange">
+    <!-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+  </div>
+</template>

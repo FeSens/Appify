@@ -137,6 +137,7 @@ var flowy = function(canvas, grab, release, snapping, rearrange, spacing_x, spac
                 event.target.closest(".create-flowy").classList.add("dragnow");
                 newNode.classList.add("block");
                 newNode.classList.remove("create-flowy");
+                //newNode.setAttribute("data-controller", "automation-blocks")
                 if (blocks.length === 0) {
                     newNode.innerHTML += "<input type='hidden' name='blockid' class='blockid' value='" + blocks.length + "'>";
                     document.body.appendChild(newNode);

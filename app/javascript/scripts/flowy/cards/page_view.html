@@ -1,11 +1,19 @@
-<div class='blockyleft'>
-  <i class="tio-lg tio-visible"></i>
-  <p class='blockyname my-2'>Pagina Vizualizada</p>
+<div data-controller="automation-blocks page-view" data-action="click->automation-blocks#openSidePanel" data-automation-blocks-selected-class="selectedblock">
+  <div class='blockyleft'>
+    <i class="tio-lg tio-visible"></i>
+    <p class='blockyname my-2'>Pagina Vizualizada</p>
+  </div>
+  <div class='blockyright'>
+    <i class="tio-more-vertical"></i>
+  </div>
+  <div class='blockydiv'>
+    <input type="hidden" name="page" data-action="input->page-view#setLables" data-automation-blocks-target="property" data-page-view-target="page" class="hidden-input" value="/product/lalal">
+    <input type="hidden" name="timer" data-action="input->page-view#setLables" data-automation-blocks-target="property" data-page-view-target="timer" class="hidden-input" value="60">
+  </div>
+  <div class='blockyinfo'>
+    Quando um visitante permanece na pagina 
+    <span data-page-view-target="pageLable">/produto/x</span> 
+    por mais de 
+    <span data-page-view-target="timerLable">1 minuto</span>
+  </div>
 </div>
-<div class='blockyright'>
-  <i class="tio-more-vertical"></i>
-</div>
-<div class='blockydiv'>
-
-</div>
-<div class='blockyinfo'>Quando um visitante permanece na pagina <span>/produto/x</span> por mais de <span>1 minuto</span></div>

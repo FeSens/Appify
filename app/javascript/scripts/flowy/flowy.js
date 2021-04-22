@@ -47,17 +47,6 @@ document.addEventListener("turbolinks:load", () => {
       }
     }
 
-    document.getElementById("close").addEventListener("click", function () {
-      if (rightcard) {
-        rightcard = false;
-        document.getElementById("properties").classList.remove("expanded");
-        setTimeout(function () {
-          document.getElementById("propwrap").classList.remove("itson");
-        }, 300);
-        tempblock.classList.remove("selectedblock");
-      }
-    });
-
     document.getElementById("removeblock").addEventListener("click", function () {
       flowy.deleteBlocks();
     });
@@ -78,9 +67,7 @@ document.addEventListener("turbolinks:load", () => {
         if (!rightcard && event.target.closest(".block") && !event.target.closest(".block").classList.contains("dragging")) {
           tempblock = event.target.closest(".block");
           rightcard = true;
-          document.getElementById("properties").classList.add("expanded");
-          document.getElementById("propwrap").classList.add("itson");
-          tempblock.classList.add("selectedblock");
+          //document.getElementById("properties").classList.add("expanded");
         }
       }
     }
@@ -90,35 +77,3 @@ document.addEventListener("turbolinks:load", () => {
     addEventListenerMulti("touchstart", beginTouch, false, ".block");
   }
 });
-
-
-// Get tempblock inputs
-function get_inputs(block) {
-  data = [];
-
-  block.querySelectorAll("input").forEach(function(input) {
-    var json_name = input.getAttribute("name");
-    var json_value = input.value;
-    data.push({
-        name: json_name,
-        value: json_value
-    });
-  });
-}
-
-// List them in the properties tab
-function list_inputs(data) {
-  data.forEach(function(input) {
-    html += html_tamplate_erb(input)
-  })
-}
-
-// Update inputs on card 
-function save_properties(block){
-  b = get_inputs($("#properties"))
-  b.forEach(function(input) {
-    input.attr("value", input.value)
-  })
-}
-
-// Update preview of input on card 

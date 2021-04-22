@@ -1,11 +1,13 @@
-<div class='blockyleft'>
-  <i class="tio-lg tio-timer-40-s"></i>
-  <p class='blockyname my-2'>Aguardar</p>
+<div data-controller="automation-blocks page-view" data-action="click->automation-blocks#openSidePanel" data-automation-blocks-selected-class="selectedblock">
+  <div class='blockyleft'>
+    <i class="tio-lg tio-timer-40-s"></i>
+    <p class='blockyname my-2'>Aguardar</p>
+  </div>
+  <div class='blockyright'>
+    <i class="tio-more-vertical"></i>
+  </div>
+  <div class='blockydiv'>
+    <input type="hidden" name="delay" data-action="input->page-view#setLables" data-automation-blocks-target="property" data-page-view-target="page" class="hidden-input" value="3">
+  </div>
+  <div class='blockyinfo'>Aguardar por <span>3 dias</span></div>
 </div>
-<div class='blockyright'>
-  <i class="tio-more-vertical"></i>
-</div>
-<div class='blockydiv'>
-
-</div>
-<div class='blockyinfo'>Aguardar por <span>3 dias</span></div>
