@@ -17,21 +17,26 @@
   </div>
 </div>
 
-<template id="input-template">
+<template id="page-view-properties-template">
   <div class="form-group mx-5">
-    <!-- <label > Email address</label> -->
-    <input type="text" class="form-control" data-action="input->properties#onInputChange">
+    <label>URL da pagina</label>
+    <input type="url" class="form-control" target-value="url" data-action="input->properties#onChange">
+  </div>
+
+  <div class="form-group mx-5">
+    <label>Tempo em Segundos</label>
+    <input type="number" class="form-control" target-value="timer" data-action="input->properties#onChange">
     <!-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> -->
   </div>
 </template>
 
-<template id="send-push-select2-template">
+<template id="send-push-properties-template">
   <div class="form-group mx-5" data-controller="select2">
     <!-- <label > Email address</label> -->
     <select class="js-select2-custom custom-select" size="1" style="opacity: 0;"
         data-hs-select2-options='{
           "minimumResultsForSearch": "Infinity"
-        }'>
+        }' data-action="input->properties#onChange" >
         <% @templates.each do |template| %>
           <option value=<%= template.id %>><%= template.name%></option>
         <% end %>

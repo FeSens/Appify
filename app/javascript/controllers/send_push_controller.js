@@ -2,27 +2,31 @@ import { Controller } from "stimulus"
 
 import AutomationBlocksController from "./automation_blocks_controller"
 export default class extends AutomationBlocksController {
-  static targets = [ "template", "templateLable", "property" ];
-
-  connect() {
-    //console.log("Hello, Stimulus!", this.page)
-    this.setLables()
+  static targets = ["cardInputs", "templateNameLable"]
+  static values = {
+    template: String,
+    templateName: String,
   }
 
-  setLables() {
-    this.templateLableTarget.innerHTML = this.template;
+  initialize() {
+    this.urlValue = this.templateValue || "bem vindo";
+    this.render_inputs()
   }
 
-  render() {
-    var template = document.querySelector('#send-push-select2-template');
-    return template.content.cloneNode(true);
+  templateValueChanged() {
+    this.templateNameLableTarget.innerHTML = this.templateNameValue;
+    this.render_inputs()
   }
 
-  set template(value) {
-    this.templateTarget.value = value;
+  render_inputs() {
+    this.cardInputsTarget.innerHTML = `
+      <input type="hidden" name="template" class="hidden-input" value="${this.templateValue}">
+    `
   }
 
-  get template() {
-    return this.templateTarget.value
+  render_properties() {
+    var template = this.properties_template.content.cloneNode(true)
+    return template 
   }
+
 }
