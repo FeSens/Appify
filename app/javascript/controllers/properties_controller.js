@@ -30,6 +30,7 @@ export default class extends Controller {
       var tinput = clone.querySelector("input");
       tinput.name = input.name
       tinput.value = input.value
+      tinput.type = input.attributes.dtype.value
       //tinput.type = input.type
 
       tbody.appendChild(clone);
