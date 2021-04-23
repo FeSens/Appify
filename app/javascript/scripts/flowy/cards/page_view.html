@@ -6,14 +6,26 @@
   <div class='blockyright'>
     <i class="tio-more-vertical"></i>
   </div>
-  <div class='blockydiv'>
+  <div class='blockydiv' data-page-view-target="cardInputs">
     <input type="hidden" dtype="url" name="page" data-action="input->page-view#setLables"  data-page-view-target="page property" class="hidden-input" value="/product/lalal">
     <input type="hidden" dtype="number" name="timer" data-action="input->page-view#setLables"  data-page-view-target="timer property" class="hidden-input" value="60">
   </div>
   <div class='blockyinfo'>
     Quando um visitante permanece na pagina 
-    <span data-page-view-target="pageLable">/produto/x</span> 
+    <span data-page-view-target="urlLable">/produto/x</span> 
     por mais de 
     <span data-page-view-target="timerLable">1 minuto</span>
   </div>
 </div>
+
+
+<template id="page-view-properties-template">
+  <div class="form-group mx-5">
+    <label>URL da pagina</label>
+    <input type="url" class="form-control" target-value="url" data-action="input->properties#onChange">
+
+    <label>Tempo em Segundos</label>
+    <input type="number" class="form-control" target-value="timer" data-action="input->properties#onChange">
+    <!-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+  </div>
+</template>

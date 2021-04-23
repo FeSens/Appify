@@ -10,6 +10,7 @@ export default class extends Controller {
 
   open(activeBlock) {
     this.element["activeBlock"] = activeBlock
+    window.block  = activeBlock
     this.element.classList.add("itson");
     this.children.addClass(this.openClass)
     this.list_properties()
@@ -24,36 +25,13 @@ export default class extends Controller {
   list_properties() {
     var tbody = document.querySelector("#proplist");
     tbody.innerHTML = ""
-    var template = document.querySelector('#input-template');
-    this.properties.forEach((input) => {
-      var clone = template.content.cloneNode(true);
-      var tinput = clone.querySelector("input");
-      tinput.name = input.name
-      tinput.value = input.value
-      tinput.type = input.attributes.dtype.value
-      //tinput.type = input.type
-
-      tbody.appendChild(clone);
-    })
-    window.block = this.activeBlock
-    if(this.activeBlock.render) {
-      tbody.appendChild(this.activeBlock.render());
-      $('.js-select2-custom').each(function () {
-        var select2 = $.HSCore.components.HSSelect2.init($(this));
-      });
-    }
+    tbody.appendChild(this.activeBlock.render_properties())
   }
 
-  onInputChange(event) {
-    this.activeBlock.properties.forEach((input) => {
-      if (input.name == event.target.name) {
-        input.value = event.target.value
-        this.fire_event(input, "input")
-      }
-    })
+  onChange(event) {
+    var target = event.target.attributes["target-value"].value
+    this.activeBlock[`${target}Value`] = event.target.value
   }
-
-
 
   fire_event(element, type) {
     var event = document.createEvent('Event');
