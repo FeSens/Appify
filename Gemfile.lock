@@ -97,6 +97,9 @@ GEM
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
       jmespath (~> 1.0)
+    aws-sdk-dynamodb (1.60.0)
+      aws-sdk-core (~> 3, >= 3.112.0)
+      aws-sigv4 (~> 1.1)
     aws-sdk-kms (1.42.0)
       aws-sdk-core (~> 3, >= 3.112.0)
       aws-sigv4 (~> 1.1)
@@ -517,6 +520,7 @@ DEPENDENCIES
   active_model_serializers
   activeadmin
   activeresource
+  aws-sdk-dynamodb
   aws-sdk-s3
   aws-sdk-sqs
   barnes

@@ -36,6 +36,7 @@ gem 'active_model_serializers'
 gem 'activeresource'
 gem 'aws-sdk-s3', require: false
 gem 'aws-sdk-sqs'
+gem 'aws-sdk-dynamodb'
 gem 'bootstrap', '~>4.3.1'
 #Add Trhead Pools
 gem 'concurrent-ruby', require: 'concurrent'
