@@ -35,6 +35,13 @@ export default class extends Controller {
 
       tbody.appendChild(clone);
     })
+    window.block = this.activeBlock
+    if(this.activeBlock.render) {
+      tbody.appendChild(this.activeBlock.render());
+      $('.js-select2-custom').each(function () {
+        var select2 = $.HSCore.components.HSSelect2.init($(this));
+      });
+    }
   }
 
   onInputChange(event) {
@@ -45,6 +52,8 @@ export default class extends Controller {
       }
     })
   }
+
+
 
   fire_event(element, type) {
     var event = document.createEvent('Event');

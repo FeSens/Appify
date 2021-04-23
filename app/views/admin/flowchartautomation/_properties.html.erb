@@ -24,3 +24,18 @@
     <!-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> -->
   </div>
 </template>
+
+<template id="send-push-select2-template">
+  <div class="form-group mx-5" data-controller="select2">
+    <!-- <label > Email address</label> -->
+    <select class="js-select2-custom custom-select" size="1" style="opacity: 0;"
+        data-hs-select2-options='{
+          "minimumResultsForSearch": "Infinity"
+        }'>
+        <% @templates.each do |template| %>
+          <option value=<%= template.id %>><%= template.name%></option>
+        <% end %>
+    </select>
+    <!-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+  </div>
+</template>

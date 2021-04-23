@@ -4,7 +4,9 @@ module Admin
 
     def edit; end
 
-    def new; end
+    def new 
+      @templates = current_shop.campaigns
+    end
 
     def create; end
 

@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
-
-export default class extends Controller {
-  static targets = [ "pageLable", "timerLable", "page", "timer" ];
+import AutomationBlocksController from "./automation_blocks_controller"
+export default class extends AutomationBlocksController {
+  static targets = [ "pageLable", "timerLable", "page", "timer", "property" ];
 
   connect() {
     //console.log("Hello, Stimulus!", this.page)

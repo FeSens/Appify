@@ -31,3 +31,7 @@
 @import '~flatpickr/dist/flatpickr';
 
 @import '../vendor/flowy/styles';
+
+.select2-container {
+  z-index: 999 !important;
+}

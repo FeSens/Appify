@@ -32,6 +32,7 @@ require("daterangepicker")
 require("moment")
 require("flatpickr")
 require("jquery-validation")
+require("select2")
 
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -44,6 +45,7 @@ import "../vendor/hs/hs.daterangepicker"
 import "../vendor/hs/hs.fullcalendar"
 import "../vendor/hs/hs.flatpickr"
 import "../vendor/hs/hs.validation"
+import "../vendor/hs/hs.select2"
 
 import "../scripts/flowy/flowy"
 
@@ -118,7 +120,6 @@ document.addEventListener("turbolinks:load", () => {
       }
     }).init();
   }
-
 })
 
 window.$ = $;
