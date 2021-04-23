@@ -29,6 +29,8 @@ export default class extends Controller {
   }
 
   onChange(event) {
+    console.log("mudou mudou")
+    window.event = event
     var target = event.target.attributes["target-value"].value
     this.activeBlock[`${target}Value`] = event.target.value
   }
@@ -37,10 +39,6 @@ export default class extends Controller {
     var event = document.createEvent('Event');
     event.initEvent(type, true, true); //can bubble, and is cancellable
     element.dispatchEvent(event);
-  }
-
-  get properties() {
-    return this.activeBlock.properties
   }
 
   get activeBlock() {

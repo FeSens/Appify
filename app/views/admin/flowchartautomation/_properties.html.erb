@@ -36,7 +36,7 @@
     <select class="js-select2-custom custom-select" size="1" style="opacity: 0;"
         data-hs-select2-options='{
           "minimumResultsForSearch": "Infinity"
-        }' data-action="input->properties#onChange" >
+        }' data-action="input->properties#onChange" target-value="template">
         <% @templates.each do |template| %>
           <option value=<%= template.id %>><%= template.name%></option>
         <% end %>
