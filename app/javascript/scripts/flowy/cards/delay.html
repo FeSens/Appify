@@ -1,4 +1,4 @@
-<div data-controller="automation-blocks delay" data-action="click->automation-blocks#openSidePanel" data-automation-blocks-selected-class="selectedblock">
+<div data-controller="delay" data-action="click->delay#openSidePanel" data-delay-selected-class="selectedblock">
   <div class='blockyleft'>
     <i class="tio-lg tio-timer-40-s"></i>
     <p class='blockyname my-2'>Aguardar</p>
@@ -6,8 +6,14 @@
   <div class='blockyright'>
     <i class="tio-more-vertical"></i>
   </div>
-  <div class='blockydiv'>
-    <input type="hidden" dtype="number" name="delay" data-action="input->delay#setLables" data-automation-blocks-target="property" data-delay-target="delay" class="hidden-input" value="3">
+  <div class='blockydiv' data-delay-target="cardInputs">
   </div>
   <div class='blockyinfo'>Aguardar por <span data-delay-target="delayLable" >3 dias</span></div>
 </div>
+
+<template id="delay-properties-template">
+  <div class="form-group mx-5">
+    <label>Delay em Minutos</label>
+    <input type="number" class="form-control" target-value="delay" data-action="input->properties#onChange">
+  </div>
+</template>

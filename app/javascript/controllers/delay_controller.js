@@ -1,18 +1,31 @@
 import { Controller } from "stimulus"
-
-export default class extends Controller {
-  static targets = [ "delay", "delayLable" ];
-
-  connect() {
-    //console.log("Hello, Stimulus!", this.page)
-    this.setLables()
+import AutomationBlocksController from "./automation_blocks_controller"
+export default class extends AutomationBlocksController {
+  static targets = ["cardInputs", "delayLable"]
+  static values = {
+    delay: Number,
+  }
+  
+  initialize() {
+    this.delayValue = this.delayValue || 12;
+    this.render_inputs()
   }
 
-  setLables() {
-    this.delayLableTarget.innerHTML = this.delay;
+  delayValueChanged() {
+    this.delayLableTarget.innerHTML = this.delayValue;
+    this.render_inputs()
   }
 
-  get delay() {
-    return this.delayTarget.value
+  render_inputs() {
+    this.cardInputsTarget.innerHTML = `
+      <input type="hidden" name="delay" class="hidden-input" value="${this.delayValue}">
+    `
+  }
+
+  render_properties() {
+    var template = this.properties_template.content.cloneNode(true)
+    template.querySelector("input[target-value='delay']").value = this.timerValue;
+
+    return template 
   }
 }
