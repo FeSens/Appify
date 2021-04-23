@@ -1,11 +1,13 @@
-<div class='blockyleft'>
-  <i class="tio-lg tio-send-outlined"></i>
-  <p class='blockyname my-2'>Enviar Notificação</p>
+<div data-controller="automation-blocks send-push" data-action="click->automation-blocks#openSidePanel" data-automation-blocks-selected-class="selectedblock">
+  <div class='blockyleft'>
+    <i class="tio-lg tio-send-outlined"></i>
+    <p class='blockyname my-2'>Enviar Notificação</p>
+  </div>
+  <div class='blockyright'>
+    <i class="tio-more-vertical"></i>
+  </div>
+  <div class='blockydiv'>
+    <input type="hidden" name="send-push" data-action="input->send-push#setLables" data-automation-blocks-target="property" data-send-push-target="template" class="hidden-input" value="estamos com saudades">
+  </div>
+  <div class='blockyinfo'>Envia o tamplate <span data-send-push-target="templateLable" >estamos com saudades</span></div>
 </div>
-<div class='blockyright'>
-  <i class="tio-more-vertical"></i>
-</div>
-<div class='blockydiv'>
-
-</div>
-<div class='blockyinfo'>Envia o tamplate <span>estamos com saudades</span></div>
