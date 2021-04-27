@@ -6,6 +6,7 @@ module Admin
 
     rescue_from ActiveResource::UnauthorizedAccess, with: :logout_on_failure
     rescue_from NoMethodError, with: :logout_on_failure
+    rescue_from StandardError, with: :logout_on_failure
     #include ShopifyApp::Authenticated #if Rails.env.production?
     before_action :save_login_params
     before_action :authenticate_user!
@@ -32,6 +33,10 @@ module Admin
     end
 
     def verify_billing_plan
+      if current_shop.id == 55 && Flipper['extra-use'].enabled?(current_shop)
+        raise StandardError, "A sua loja excedeu os limites de uso. Por favor contate o nosso time de suporte"
+      end
+
       return if current_shop.plan.present? && current_shop.active
       # return if current_shop.shopify_domain == "teste-giovanna.myshopify.com" # TODO: Put a flipper on it
       return unless current_shop.type == "Shop::Shopify"
