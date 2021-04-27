@@ -66,7 +66,7 @@ module Campaigns
           url: campaign.url,
          }
       }
-      message[:data][:image] = image
+      message[:data][:image] = image if image.present?
 
       message_list = [message] * targets.length
       if Flipper['jaiminho'].enabled?(campaign.shop)
