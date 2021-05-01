@@ -1,6 +1,6 @@
 <% unless preview %>
   <style>
-    .aplicatify-modal {
+    .vorta-modal {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -25,7 +25,7 @@
                 0px 33px 94px rgba(0,0,0,0.09);
     }
 
-    .aplicatify-message{
+    .vorta-message{
       display:flex;
       -webkit-box-align:start;
       align-items:flex-start;
@@ -39,10 +39,10 @@
       border-radius:4px;
     }
 
-    .modal-text{
+    .vorta-modal-text{
       flex:1 1 0px;
     }
-    .modal-title{
+    .vorta-modal-title{
       word-wrap:break-word;
       font-size:20px;
       font-weight:600;
@@ -51,7 +51,7 @@
       color:#43464b;
     }
 
-    .modal-body{
+    .vorta-modal-body{
       color:#788;
       text-align:left;
       padding: 0
@@ -67,7 +67,7 @@
       margin-top:24px;
     }
 
-    .aplicatify-btn {
+    .vorta-btn {
       font-family:"Catamaran", "Helvetica Neue", sans-serif;
       flex:1 1 0px;
       display:block;
@@ -110,6 +110,7 @@
 
     .brand-link{
       font-weight:600;
+      color: #44B9B5
     }
 
     .brand-link a{
@@ -119,8 +120,8 @@
   </style>
 <% end %>
 
-<div class="aplicatify-modal" id="modal_<%=optin.kind%>" style="display: none; <%= "z-index: 0;" if preview == true %>">
-  <div class="aplicatify-message">
+<div class="vorta-modal" id="modal_<%=optin.kind%>" style="display: none; <%= "z-index: 0;" if preview == true %>">
+  <div class="vorta-message">
     <div class="modal-logo">
       <% cache @current_shop.manifest do %>
         <%if @current_shop.manifest.icon.attached? %>
@@ -129,25 +130,23 @@
         <% end %>
       <% end %>
     </div>
-    <div class="modal-text">
-      <div class="modal-title" id="modal_optin_title">
+    <div class="vorta-modal-text">
+      <div class="vorta-modal-title" id="modal_optin_title">
         <%=optin.title%>
       </div>
       <hr class="modal-line" style="background: #<%= optin.background_color %>; border-bottom:1px solid #<%= optin.background_color %>;">
-      <div class="modal-body" id="modal_optin_body">
+      <div class="vorta-modal-body" id="modal_optin_body">
         <%=optin.body%>
       </div>
     </div>
   </div>
   <div class="aling-bottom">
-    <button id="modal_optin_decline_button" class="aplicatify-btn close_button" onClick="closePopup('<%=optin.kind%>')"><%=optin.decline_button%></button>
-    <button id="modal_optin_accept_button"  style="background: #<%= optin.background_color %>;" class="aplicatify-btn accept" onClick="showPrompt('<%=optin.kind%>')"><%=optin.accept_button%></button>
+    <button id="modal_optin_decline_button" class="vorta-btn close_button" onClick="closePopup('<%=optin.kind%>')"><%=optin.decline_button%></button>
+    <button id="modal_optin_accept_button"  style="background: #<%= optin.background_color %>;" class="vorta-btn accept" onClick="showPrompt('<%=optin.kind%>')"><%=optin.accept_button%></button>
   </div>
   <% if branding %>
     <div class="branding-container">
-      <div class="branding">Feito por
-        <img src="https://appify-skin.s3.amazonaws.com/assets/Aplicatify+Marca.svg" class="brading-img">
-      </div>
+      <div class="branding">Feito por <a class="brand-link" href="https://www.vorta.com.br/?utm_source=modal&utm_medium=modal&utm_campaign=acq_loop" target="_blank">Vorta</a></div>
     </div>
   <% end %>
 </div>

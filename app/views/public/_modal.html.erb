@@ -1,5 +1,5 @@
 <style type="text/css">
-.aplicatify-modal {
+.vorta-modal {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -19,13 +19,13 @@
   box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
 }
 
-.aplicatify-modal-title {
+.vorta-modal-title {
     font-size: 1.1em;
     padding-bottom: 5px;
     font-weight: bold;
   }
 
-  .aplicatify-modal-body {
+  .vorta-modal-body {
     position: relative;
     font-size: 1.0em;
     padding-bottom: 25px;
@@ -70,12 +70,12 @@
 }
 </style>
 
-<div id="modal_<%=optin.kind%>" class="aplicatify-modal" style="background: #<%= optin.background_color %>; display: none; <%= "z-index: 0;" if preview == true %>">
-  <div id="modal_optin_title" class="aplicatify-modal-title" style="color: #<%= optin.text_color %>">
+<div id="modal_<%=optin.kind%>" class="vorta-modal" style="background: #<%= optin.background_color %>; display: none; <%= "z-index: 0;" if preview == true %>">
+  <div id="modal_optin_title" class="vorta-modal-title" style="color: #<%= optin.text_color %>">
     <%=optin.title%>
   </div>
 
-  <div id="modal_optin_body" class="aplicatify-modal-body" style="color: #<%= optin.text_color %>">
+  <div id="modal_optin_body" class="vorta-modal-body" style="color: #<%= optin.text_color %>">
     <%=optin.body%>
   </div>
 

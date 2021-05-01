@@ -72,7 +72,7 @@
           $('#brand-link').css('color', `#${$(this).val()}`)
       }
       if (this.id.includes("text_color")) {
-          $('.aplicatify-modal-title, .aplicatify-modal-body').css('color', `#${$(this).val()}`)
+          $('.vorta-modal-title, .vorta-modal-body').css('color', `#${$(this).val()}`)
       }
       });
     });
@@ -85,10 +85,10 @@
     $(`#modal_${this.id}`).html($(this).val())
 
     if (this.id.includes("background_color")) {
-        $('.aplicatify-modal').css('background', `#${$(this).val()}`)
+        $('.vorta-modal').css('background', `#${$(this).val()}`)
     }
     if (this.id.includes("text_color")) {
-        $('.aplicatify-modal-title, .aplicatify-modal-body').css('color', `#${$(this).val()}`)
+        $('.vorta-modal-title, .vorta-modal-body').css('color', `#${$(this).val()}`)
     }
     });
   </script>

@@ -45,7 +45,7 @@
 }
 
 // Optin preview inside settings pages
-.aplicatify-modal {
+.vorta-modal {
   position: relative;
   /* top: 50%; */
   /* left: 50%; */
@@ -70,7 +70,7 @@
   0px 33px 94px rgba(0,0,0,0.09);
 }
 
-.aplicatify-message{
+.vorta-message{
   display:flex;
   -webkit-box-align:start;
   align-items:flex-start;
@@ -87,7 +87,7 @@
 .modal-text{
   flex:1 1 0px;
 }
-.modal-title{
+.vorta-modal-title{
   word-wrap:break-word;
   font-size:20px;
   font-weight:600;
@@ -96,7 +96,7 @@
   color:#43464b;
 }
 
-.modal-body{
+.vorta-modal-body{
   color:#788;
   text-align:left;
   padding: 0
@@ -112,7 +112,7 @@
   margin-top:24px;
 }
 
-.aplicatify-btn {
+.vorta-btn {
   font-family:"Catamaran", "Helvetica Neue", sans-serif;
   flex:1 1 0px;
   display:block;
@@ -155,6 +155,7 @@
 
 .brand-link{
   font-weight:600;
+  color: #44B9B5
 }
 
 .brand-link a{
