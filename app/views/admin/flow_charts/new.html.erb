@@ -1,4 +1,11 @@
 <div id="leftcard">
+  <div class="col-12">
+    <%= form_with model: @flow_chart, url: admin_flow_charts_path do |f| %>
+      <%= f.hidden_field :chart_metadata %>
+
+      <%= f.submit t('helpers.submit.submit'), class: "btn btn-primary float-right px-4", id: "submit" %>
+    <% end %>
+  </div>
   <div id="blocklist">
       <div class="blockelem create-flowy noselect">
           <input type="hidden" name='blockelemtype' class="blockelemtype" value="1">

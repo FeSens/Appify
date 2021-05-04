@@ -4,8 +4,8 @@ module Admin
   class AuthenticatedController < ApplicationController
     layout "authenticated"
 
-    rescue_from ActiveResource::UnauthorizedAccess, with: :logout_on_failure
-    rescue_from NoMethodError, with: :logout_on_failure
+    rescue_from ActiveResource::UnauthorizedAccess, with: :logout_on_failure unless Rails.env.development?
+    rescue_from NoMethodError, with: :logout_on_failure unless Rails.env.development?
     #include ShopifyApp::Authenticated #if Rails.env.production?
     before_action :save_login_params
     before_action :authenticate_user!

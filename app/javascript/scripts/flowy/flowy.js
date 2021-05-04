@@ -77,3 +77,5 @@ document.addEventListener("turbolinks:load", () => {
     addEventListenerMulti("touchstart", beginTouch, false, ".block");
   }
 });
+
+window.flowy = flowy;

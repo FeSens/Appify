@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :home
     resources :campaigns
     resources :automations
-    resources :flowchartautomation
+    resources :flow_charts
     resource :pwa, only: %i[edit update]
     resources :subscribers, only: %i[index]
     resources :optins, only: %i[index update]

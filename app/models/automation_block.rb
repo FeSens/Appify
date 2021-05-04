@@ -5,6 +5,7 @@ class AutomationBlock < ApplicationRecord
   belongs_to :_prev, :class_name => 'AutomationBlock', :foreign_key => '_prev_id', optional: true
   belongs_to :campaign, optional: true
   belongs_to :shop
+  belongs_to :flow_chart
   
   has_many :automation_block_links, dependent: :destroy
   has_many :pushes, through: :automation_block_links

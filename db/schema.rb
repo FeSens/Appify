@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_13_113502) do
+ActiveRecord::Schema.define(version: 2021_05_04_124212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,7 +89,9 @@ ActiveRecord::Schema.define(version: 2021_04_13_113502) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.jsonb "settings"
+    t.bigint "flow_chart_id", null: false
     t.index ["campaign_id"], name: "index_automation_blocks_on_campaign_id"
+    t.index ["flow_chart_id"], name: "index_automation_blocks_on_flow_chart_id"
     t.index ["shop_id"], name: "index_automation_blocks_on_shop_id"
   end
 
@@ -162,6 +164,14 @@ ActiveRecord::Schema.define(version: 2021_04_13_113502) do
     t.string "phone"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "flow_charts", force: :cascade do |t|
+    t.bigint "shop_id", null: false
+    t.jsonb "chart_metadata"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["shop_id"], name: "index_flow_charts_on_shop_id"
   end
 
   create_table "manifests", force: :cascade do |t|
@@ -357,12 +367,14 @@ ActiveRecord::Schema.define(version: 2021_04_13_113502) do
   add_foreign_key "automation_block_links", "automation_blocks"
   add_foreign_key "automation_block_links", "pushes"
   add_foreign_key "automation_blocks", "campaigns"
+  add_foreign_key "automation_blocks", "flow_charts"
   add_foreign_key "automation_blocks", "shops"
   add_foreign_key "campaigns", "shops"
   add_foreign_key "carts", "customers"
   add_foreign_key "carts", "pushes"
   add_foreign_key "carts", "shops"
   add_foreign_key "configurations", "shops"
+  add_foreign_key "flow_charts", "shops"
   add_foreign_key "manifests", "shops"
   add_foreign_key "marketing_values", "shops"
   add_foreign_key "opt_in_counts", "shops"
