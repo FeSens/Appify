@@ -6,6 +6,13 @@ import delay from "../flowy/cards/delay.html"
 import end_block from "../flowy/cards/end_block.html"
 
 document.addEventListener("turbolinks:load", () => {
+
+  $("#flow-chart-form").on("submit", function(e){
+    e.preventDefault();
+    $("#flow_chart_chart_metadata").val(JSON.stringify(flowy.output()));
+
+    $(this).off('submit').submit()
+  })
   // INITIALIZATION OF FLOWY
   // =======================================================
   if ($("#canvas").length > 0) {

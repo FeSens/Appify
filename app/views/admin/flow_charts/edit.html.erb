@@ -1,0 +1,10 @@
+<%= render partial: "properties" %>
+<%= render partial: "blocks", locals: { url: admin_flow_chart_path(@flow_chart) } %>
+<div id="canvas"></div>
+
+<script type="text/javascript">
+  document.addEventListener("turbolinks:load", () => {
+    var flow_chart_metadata = <%= @flow_chart.chart_metadata.to_json.html_safe %>
+    flowy.import(flow_chart_metadata)
+  })
+</script>
