@@ -70,6 +70,114 @@
   }
 }
 
+
+.push-android {
+  width: 405px;
+  margin: 0px auto;
+  line-height: 1px;
+
+  .main {
+    max-height: 230px;
+    font-family: Roboto, "Open Sans", Arial, Helvetica, sans-serif;
+    padding: 16px;
+    border-radius: 2px;
+    background-color: rgb(254, 254, 254);
+    box-shadow: rgb(0, 0, 0 ) 0px 2px 2px 0px, rgb(0, 0, 0) 0px 3px 1px -2px, rgb(0, 0, 0) 0px 1px 5px 0px;
+    max-width: 500px;
+    overflow-y: hidden;
+    transition: max-height 0.3s ease-out 0s;
+    box-sizing: content-box;
+
+    .push-header {
+      display: flex;
+      font-size: 12px;
+      line-height: 15px;
+
+      .chrome-logo{
+        width: 13.12px;
+        height: 13.12px;
+        fill: rgb(117, 117, 117);
+        margin-right: 5.9px;
+      }
+      
+      .push-website {
+        color: rgb(99, 99, 99);
+        margin-right: 4px;
+      }
+    }
+  }
+
+  .app-logo {
+    width: 38px;
+    min-width: 38px;
+    max-width: 38px;
+    min-height: 38px;
+    max-height: 38px;
+    height: 38px;
+    background-color: rgb(254, 254, 254);
+  }
+
+  .push-body {
+    margin-top: 8px;
+    //width: 68.36%;
+    //padding: 2.9375em 0px 2.5em;
+    color: rgb(167, 167, 167);
+    font-family: "Segoe UI", Roboto, Proxima-Nova, "Proxima Nova", "Open Sans", Arial, Helvetica, sans-serif;
+
+    .push-image {
+      display: flex;
+      width: 100%;
+      max-height: 160px;
+      object-fit: cover;
+      margin-top: 10px;
+      background-color: rgb(254, 254, 254);
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      justify-content: center;
+    }
+  }
+
+  .push-content {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+
+    .lh-1 {
+      line-height: 1px;
+    }
+
+    .push-title {
+      color: rgb(83, 83, 83);
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 400;
+      letter-spacing: 0.1px;
+      margin: 0px;
+      display: inline-block;
+      overflow: hidden;
+      width: 315px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  
+    .push-text {
+      font-size: 14px;
+      line-height: 20px;
+      color: rgb(117, 117, 117);
+      font-weight: 400;
+      letter-spacing: 0.1px;
+      margin: 0px;
+      display: inline-block;
+      overflow: hidden;
+      width: 315px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
+
+
 .hr-text {
   line-height: 1em;
   position: relative;

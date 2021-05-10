@@ -6,29 +6,29 @@
 
       <div class="row align-items-center gx-2">
         <div class="col-auto mx-auto">
-                    <!-- Start Push Mac os preview-->
-        <div class="push-macos">
-          <div class="chrome-logo">
-            <%= image_tag "chrome_logo.png", size: "38x38"%>
-          </div>
-          <div class="push-body">
-            <div class="push-title">
-              Notification Preview
+          <!-- Start Push Mac os preview-->
+          <div class="push-macos">
+            <div class="chrome-logo">
+              <%= image_tag "chrome_logo.png", size: "38x38"%>
             </div>
-            <div class="push-website">
-              <%=current_shop.domain%>
+            <div class="push-body">
+              <div class="push-title">
+                Notification Preview
+              </div>
+              <div class="push-website">
+                <%=current_shop.domain%>
+              </div>
+              <div id="mac-text" class="push-text">
+                Preview your push notification
+              </div>
             </div>
-            <div id="mac-text" class="push-text">
-              Preview your push notification
-            </div>
-          </div>
-          <div class="app-logo">
-            <%if current_shop.manifest.icon.attached? %>
+            <div class="app-logo">
+              <%if current_shop.manifest.icon.attached? %>
               <%=image_tag current_shop.manifest.icon, size: "55x55"%>
-            <% end %>
+              <% end %>
+            </div>
           </div>
-        </div>
-        <!-- Start Push Mac os preview-->
+          <!-- Start Push Mac os preview-->
         </div>
       </div>
       <!-- End Row -->
@@ -45,38 +45,81 @@
 
       <div class="row align-items-center gx-2">
         <div class="col-auto mx-auto">
-        <!-- Start Push Mac os preview-->
-        <div class="push-windows">
-          <div class="main">
-            <div class="app-logo">
-            <%if current_shop.manifest.icon.attached? %>
-              <%=image_tag current_shop.manifest.icon, size: "55x55"%>
-            <% end %>
+          <!-- Start Push Mac os preview-->
+          <div class="push-windows">
+            <div class="main">
+              <div class="app-logo">
+                <%if current_shop.manifest.icon.attached? %>
+                <%=image_tag current_shop.manifest.icon, size: "55x55"%>
+                <% end %>
+              </div>
+              <div class="push-body">
+                <div class="push-title">
+                  Notification Preview
+                </div>
+                <div id="win-text" class="push-text">
+                  Preview your push notification
+                </div>
+                <div class="push-website mt-3">
+                  <%=current_shop.domain%>
+                </div>
+              </div>
             </div>
-          <div class="push-body">
-            <div class="push-title">
-              Notification Preview
-            </div>
-            <div id="win-text" class="push-text">
-              Preview your push notification
-            </div>
-            <div class="push-website mt-3">
-              <%=current_shop.domain%>
-            </div>
+            <!-- Start Push Mac os preview-->
           </div>
         </div>
-        <!-- Start Push Mac os preview-->
+        <!-- End Row -->
+      </div>
+    </div>
+    <!-- End Card -->
+  </div>
+</div>
+
+<div class="col-sm-12 mb-6 mb-lg-10">
+  <!-- Card -->
+  <div class="card h-100">
+    <div class="card-body">
+      <h6 class="card-subtitle mb-2">Android</h6>
+      <div class="row align-items-center gx-2">
+        <div class="col-auto mx-auto">
+
+          <!-- Start Android preview -->
+          <div class="push-android">
+            <div class="main">
+              <div class="push-header">
+                <%= image_tag "chrome_logo.png", size: "13x13", class: "chrome-logo" %>
+                <span class="push-website">Chrome • <%=current_shop.domain.gsub("https://", "")%></span>
+              </div>
+              <div class="push-body">
+                <div class="push-content">
+                  <div class="lh-1">
+                    <div class="push-title">
+                      Notification Preview
+                    </div>
+                    <div class="push-text">
+                      Preview your push notification
+                    </div>
+                  </div>
+                  <%if current_shop.manifest.icon.attached? %>
+                    <%=image_tag current_shop.manifest.icon, size: "38x38", class: "app-logo" %>
+                  <% end %>
+                </div>
+                <img src="" class="push-image">
+              </div>
+            </div>
+          </div>
+          <!-- End Android preview -->
         </div>
       </div>
-      <!-- End Row -->
     </div>
   </div>
   <!-- End Card -->
 </div>
 
+
 <script>
-  $("input, textarea").on('keyup change', function (){
-          console.log($(this).val())
+  $("input, textarea").on('keyup change', function () {
+    console.log($(this).val())
     if (this.id.includes("campaign_title")) {
       $('.push-title').html($(this).val())
     }
@@ -85,6 +128,7 @@
       if (m.length > 30) {
         m = m.slice(0, 30) + "..."
       }
+      $(".push-text").html($(this).val())
       $('#mac-text').html(m)
       $('#win-text').html($(this).val().replace(/(.{30})/g, "$1<br>"))
     }
