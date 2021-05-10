@@ -32,7 +32,7 @@ module Admin
     private
 
     def campaing_params
-      c = params.require(:campaign).permit(:name, :tag, :title, :body, :url, :release_date)
+      c = params.require(:campaign).permit(:name, :tag, :title, :image, :body, :url, :release_date)
       c[:url] = UrlBuilder.call(params[:campaign][:url], params[:campaign][:name])
       c
     end

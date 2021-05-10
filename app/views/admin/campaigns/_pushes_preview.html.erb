@@ -2,6 +2,92 @@
   <!-- Card -->
   <div class="card h-100">
     <div class="card-body">
+      <h6 class="card-subtitle mb-2">Android</h6>
+      <div class="row align-items-center gx-2">
+        <div class="col-auto mx-auto">
+
+          <!-- Start Android preview -->
+          <div class="push-android">
+            <div class="main">
+              <div class="push-header">
+                <%= image_tag "chrome_logo.png", size: "13x13", class: "chrome-logo" %>
+                <span class="push-website">Chrome • <%=current_shop.domain.gsub("https://", "")%></span>
+              </div>
+              <div class="push-body">
+                <div class="push-content">
+                  <div class="lh-1">
+                    <div class="push-title">
+                      Notification Preview
+                    </div>
+                    <div class="push-text">
+                      Preview your push notification
+                    </div>
+                  </div>
+                  <%if current_shop.manifest.icon.attached? %>
+                    <%=image_tag current_shop.manifest.icon, size: "38x38", class: "app-logo" %>
+                  <% end %>
+                </div>
+                <%if @campaign.image.attached? %>
+                  <%= image_tag @campaign.image, class: "push-image" %>
+                <% else %>
+                  <img src="" class="push-image">
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <!-- End Android preview -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Card -->
+</div>
+
+<div class="col-sm-12 mb-6 mb-lg-10">
+  <!-- Card -->
+  <div class="card h-100">
+    <div class="card-body">
+      <h6 class="card-subtitle mb-2">Windows</h6>
+
+      <div class="row align-items-center gx-2">
+        <div class="col-auto mx-auto">
+          <!-- Start Push Mac os preview-->
+          <div class="push-windows">
+            <%if @campaign.image.attached? %>
+              <%= image_tag @campaign.image, class: "push-image" %>
+            <% else %>
+              <img src="" class="push-image">
+            <% end %>
+            <div class="main">
+              <div class="app-logo-housing">
+                <%if current_shop.manifest.icon.attached? %>
+                  <%=image_tag current_shop.manifest.icon, size: "55x55", class:"app-logo" %>
+                <% end %>
+              </div>
+              <div class="push-body">
+                <div class="push-title">
+                  Notification Preview
+                </div>
+                <div id="win-text" class="push-text">Preview your push notification</div>
+                <div class="push-website">
+                  Google Chrome • <%=current_shop.domain.gsub("https://", "")%>
+                </div>
+              </div>
+            </div>
+            <div class="footer"></div>
+          </div>
+        </div>
+        <!-- End Row -->
+      </div>
+    </div>
+    <!-- End Card -->
+  </div>
+</div>
+
+<div class="col-sm-12 mb-6 mb-lg-10">
+  <!-- Card -->
+  <div class="card h-100">
+    <div class="card-body">
       <h6 class="card-subtitle mb-2">Mac os</h6>
 
       <div class="row align-items-center gx-2">
@@ -36,87 +122,6 @@
   </div>
   <!-- End Card -->
 </div>
-
-<div class="col-sm-12 mb-6 mb-lg-10">
-  <!-- Card -->
-  <div class="card h-100">
-    <div class="card-body">
-      <h6 class="card-subtitle mb-2">Windows</h6>
-
-      <div class="row align-items-center gx-2">
-        <div class="col-auto mx-auto">
-          <!-- Start Push Mac os preview-->
-          <div class="push-windows">
-            <img src="" class="push-image">
-            <div class="main">
-              <div class="app-logo-housing">
-                <%if current_shop.manifest.icon.attached? %>
-                  <%=image_tag current_shop.manifest.icon, size: "55x55", class:"app-logo" %>
-                <% end %>
-              </div>
-              <div class="push-body">
-                <div class="push-title">
-                  Notification Preview
-                </div>
-                <div id="win-text" class="push-text">
-                  Preview your push notification
-                </div>
-                <div class="push-website">
-                  Google Chrome • <%=current_shop.domain.gsub("https://", "")%>
-                </div>
-              </div>
-            </div>
-            <div class="footer"></div>
-          </div>
-        </div>
-        <!-- End Row -->
-      </div>
-    </div>
-    <!-- End Card -->
-  </div>
-</div>
-
-<div class="col-sm-12 mb-6 mb-lg-10">
-  <!-- Card -->
-  <div class="card h-100">
-    <div class="card-body">
-      <h6 class="card-subtitle mb-2">Android</h6>
-      <div class="row align-items-center gx-2">
-        <div class="col-auto mx-auto">
-
-          <!-- Start Android preview -->
-          <div class="push-android">
-            <div class="main">
-              <div class="push-header">
-                <%= image_tag "chrome_logo.png", size: "13x13", class: "chrome-logo" %>
-                <span class="push-website">Chrome • <%=current_shop.domain.gsub("https://", "")%></span>
-              </div>
-              <div class="push-body">
-                <div class="push-content">
-                  <div class="lh-1">
-                    <div class="push-title">
-                      Notification Preview
-                    </div>
-                    <div class="push-text">
-                      Preview your push notification
-                    </div>
-                  </div>
-                  <%if current_shop.manifest.icon.attached? %>
-                    <%=image_tag current_shop.manifest.icon, size: "38x38", class: "app-logo" %>
-                  <% end %>
-                </div>
-                <img src="" class="push-image">
-              </div>
-            </div>
-          </div>
-          <!-- End Android preview -->
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- End Card -->
-</div>
-
 
 <script>
   $("input, textarea").on('keyup change', function () {
