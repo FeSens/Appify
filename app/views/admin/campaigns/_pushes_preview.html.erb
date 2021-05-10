@@ -47,10 +47,11 @@
         <div class="col-auto mx-auto">
           <!-- Start Push Mac os preview-->
           <div class="push-windows">
+            <img src="" class="push-image">
             <div class="main">
-              <div class="app-logo">
+              <div class="app-logo-housing">
                 <%if current_shop.manifest.icon.attached? %>
-                <%=image_tag current_shop.manifest.icon, size: "55x55"%>
+                  <%=image_tag current_shop.manifest.icon, size: "55x55", class:"app-logo" %>
                 <% end %>
               </div>
               <div class="push-body">
@@ -60,12 +61,12 @@
                 <div id="win-text" class="push-text">
                   Preview your push notification
                 </div>
-                <div class="push-website mt-3">
-                  <%=current_shop.domain%>
+                <div class="push-website">
+                  Google Chrome • <%=current_shop.domain.gsub("https://", "")%>
                 </div>
               </div>
             </div>
-            <!-- Start Push Mac os preview-->
+            <div class="footer"></div>
           </div>
         </div>
         <!-- End Row -->

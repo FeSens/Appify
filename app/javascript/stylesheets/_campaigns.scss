@@ -30,9 +30,18 @@
 .push-windows {
   font-size: 9px;
   width: 45.4375em;
-  right: 9px;
-  bottom: 75px;
   background: rgb(32, 32, 32);
+
+  .push-image {
+    width: 100%;
+  }
+  
+  .footer {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0px 2em 2.9375em;
+    margin: -3px;
+  }
 
   .main {
     display: flex;
@@ -40,33 +49,41 @@
     position: relative;
   }
 
-  .app-logo {
+  .app-logo-housing {
     padding: 2.9375em 2em;
   }
 
+  .app-logo{
+    width: 6.0625em;
+  }
+
   .push-body {
-    width: 68.36%;
     padding: 2.9375em 0px 2.5em;
-    color: rgb(167, 167, 167);
-    font-family: "Segoe UI", Roboto, Proxima-Nova, "Proxima Nova", "Open Sans", Arial, Helvetica, sans-serif;
-  }
+    width: 68.36%;
 
-  .push-title {
-    color: rgb(255, 255, 255);
-    font-size: 190%;
-    letter-spacing: 0.1px;
-    max-height: 40px;
-    margin: 0px;
-    overflow: hidden;
-  }
-
-  .push-text {
-    letter-spacing: 0px;
-    font-size: 190%;
-    font-weight: 400;
-    max-height: 80px;
-    margin: 0px;
-    overflow: hidden;
+    .push-title {
+      color: rgb(255, 255, 255);
+      font-size: 190%;
+      letter-spacing: 0.1px;
+      margin: 0px;
+      max-height: 40px;
+      overflow: hidden;
+    }
+  
+    .push-text {
+      letter-spacing: 0px;
+      font-size: 190%;
+      font-weight: 400;
+      margin: 0px;
+      max-height: 80px;
+      white-space: pre-wrap;
+      overflow: hidden;
+    }
+  
+    .push-website {
+      font-size: 150%;
+      margin-top: 10px;
+    }
   }
 }
 
