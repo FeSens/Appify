@@ -7,7 +7,7 @@ class CreateCampaignJob < ApplicationJob
     return reschedule if postpone?
     return if campaign.sent?
 
-    Campaigns::Creator.call(campaign, targeter, **args)
+    Campaigns::Creator.call(campaign, targeter, **args) unless Flipper['extra-use'].enabled?(campaign.shop)
   end
 
   def postpone?
