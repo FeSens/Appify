@@ -23,6 +23,14 @@ module Campaigns
       end
     end
 
+    def image 
+      @image ||= begin
+        return if campaign.image.blank?
+
+        campaign.image.service_url.sub(/\?.*/, "") unless Rails.env.test?
+      end
+    end
+
     def filterd_targets(targets)
       ids = campaign.pushes.pluck(:id)
       return targets unless ids.present?
@@ -50,8 +58,15 @@ module Campaigns
         body: campaign.body,
         url: campaign.url,
         campaign_id: campaign.id,
-        icon: icon
+        icon: icon,
+        requireInteraction: true,
+        vibrate: [100, 50, 100],
+        data: { 
+          campaign_id: campaign.id,
+          url: campaign.url,
+         }
       }
+      message[:data][:image] = image if image.present?
 
       message_list = [message] * targets.length
       if Flipper['jaiminho'].enabled?(campaign.shop)

@@ -14,6 +14,12 @@
     <%= f.text_area :body, class: "form-control" %>
   </div>
 
+  <div class="form-group">
+    <%= label_tag :image, "Imagem (Opcional)" %>
+    <%= f.file_field :image, class: "form-control-file" %>
+    <div id="image-errors" class="invalid-feedback"></div>
+  </div>
+
   <div class="form-group" data-toggle="tooltip" data-placement="right" title="<%= t('tooltip.campaign.url')%>">
     <%= label_tag :url, t('activerecord.attributes.campaign.url') %>
 
@@ -42,3 +48,65 @@
 
   </div>
 <% end %>
+
+
+
+<script>
+  $.fn.hasExtension = function(exts) {
+      return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$')).test($(this).val());
+  }
+
+  $("input").on('change', function (){
+    if (this.id.includes("image")) {
+      readURL(this)
+    }
+  });
+
+  function readURL(input) {
+    $("#image-errors").text("")
+    window.valid_extention = true
+    var extention = $(input).val().toLowerCase().split(".").slice(-1).pop();
+    if (!["jpg", "png", "webp"].includes(extention)) {
+      $("#image-errors").append("Os formatos suportados são .PNG, .JPG, .WebP<br>")
+      window.valid_extention = false
+    }
+
+    if(!window.valid_extention) {
+      $("#campaign_image").addClass("is-invalid")
+      $("#campaign_image").val('');
+      $('#submit').prop('disabled', true);
+    }
+
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var image = new Image();
+        image.src = e.target.result;
+        image.onload = function () {
+          var valid = true
+          var height = this.height;
+          var width = this.width;
+
+          if (width < 300 || width > 2000) {
+            $("#image-errors").append("A imagem deve ter entre 300px e 2000px de largura<br>")
+            valid = false
+          }
+          if ( !(width >= (height/2 - 3) && width <= (height/2 + 3)) ) {
+            $("#image-errors").append("Recomendamos o aspecto 2:1 (2x de largura por 1x de altura)<br>")
+            $("#campaign_image").addClass("is-invalid")
+          }
+
+          if (valid && window.valid_extention) {
+            $('.push-image').attr('src', e.target.result);
+            $('#submit').prop('disabled', false);
+          } else {
+            $("#campaign_image").addClass("is-invalid")
+            $("#campaign_image").val('');
+            $('#submit').prop('disabled', true);
+          }
+        }
+      }
+      reader.readAsDataURL(input.files[0]); // convert to base64 string
+    }
+  }
+</script>

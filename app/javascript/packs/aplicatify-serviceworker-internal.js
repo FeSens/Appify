@@ -107,10 +107,9 @@ registerRoute(
 
 self.addEventListener("push", function(event) {
   var data = event.data.json();
-  var title = data.title;
   sendAnalytics(data, "impressions");
   event.waitUntil(
-    self.registration.showNotification(title, data)
+    self.registration.showNotification(data.title, data)
   );
 });
 
@@ -121,6 +120,12 @@ self.addEventListener('notificationclick', function(event) {
   self.clients.openWindow(url);
   event.notification.close();
 });
+
+//self.addEventListener('notificationclose', function(e) {
+//  var data = event.notification.data;
+//  var url = data.url;
+//  sendAnalytics(data, "close");
+//});
 
 self.addEventListener('pushsubscriptionchange', function(event) {
   console.log('Subscription expired');
