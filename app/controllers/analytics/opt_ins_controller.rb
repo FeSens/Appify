@@ -3,7 +3,9 @@ module Analytics
     attr_accessor :opt_in_count
 
     def create
-      opt_in_count.increment(params[:action])
+      opt_in_count.increment(params[:attr])
+
+      head :no_content
     end
 
     private

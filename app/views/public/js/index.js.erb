@@ -134,7 +134,7 @@ window.onload = function () {
   }
 }
 
-function sendOptInAnalytics(service, action) {
+function sendOptInAnalytics(service, attr) {
   return fetch('/apps/script/analytics/opt_ins', {
     method: 'post',
     headers: {
@@ -142,7 +142,7 @@ function sendOptInAnalytics(service, action) {
     },
     body: JSON.stringify({
       service: service,
-      action: action
+      attr: attr
     })
   });
 }

@@ -151,7 +151,7 @@ window.onload = function () {
   }
 }
 
-function sendOptInAnalytics(service, action) {
+function sendOptInAnalytics(service, attr) {
   return fetch("https://app.vorta.com.br/analytics/opt_ins", {
     method: 'post',
     headers: {
@@ -160,7 +160,7 @@ function sendOptInAnalytics(service, action) {
     body: JSON.stringify({
       shop_id: window.AplicatifyShopId,
       service: service,
-      action: action
+      attr: attr
     })
   });
 }
