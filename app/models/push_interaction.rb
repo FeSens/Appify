@@ -1,4 +1,6 @@
 class PushInteraction < ApplicationRecord
+  include CachedCountable
+
   class OutOfPushInteractionsError < StandardError; end
   belongs_to :shop
 
@@ -6,14 +8,6 @@ class PushInteraction < ApplicationRecord
     return true if Shop.find(shop_id).push_limit >= count
 
     false
-  end
-
-  def increment
-    PushInteraction.increment_counter :count, id
-  end
-
-  def decrement
-    PushInteraction.decrement_counter :count, id
   end
 
   def autorized?
