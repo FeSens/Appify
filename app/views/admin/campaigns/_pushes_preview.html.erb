@@ -17,10 +17,10 @@
                 <div class="push-content">
                   <div class="lh-1">
                     <div class="push-title">
-                      Notification Preview
+                      <%= campaign_title %>
                     </div>
                     <div class="push-text">
-                      Preview your push notification
+                      <%= campaign_body %>
                     </div>
                   </div>
                   <%if current_shop.manifest.icon.attached? %>
@@ -65,10 +65,8 @@
                 <% end %>
               </div>
               <div class="push-body">
-                <div class="push-title">
-                  Notification Preview
-                </div>
-                <div id="win-text" class="push-text">Preview your push notification</div>
+                <div class="push-title"><%= campaign_title %></div>
+                <div id="win-text" class="push-text"><%= campaign_body %></div>
                 <div class="push-website">
                   Google Chrome • <%=current_shop.domain.gsub("https://", "")%>
                 </div>
@@ -99,13 +97,13 @@
             </div>
             <div class="push-body">
               <div class="push-title">
-                Notification Preview
+                <%= campaign_title %>
               </div>
               <div class="push-website">
                 <%=current_shop.domain%>
               </div>
               <div id="mac-text" class="push-text">
-                Preview your push notification
+                <%= campaign_body %>
               </div>
             </div>
             <div class="app-logo">
