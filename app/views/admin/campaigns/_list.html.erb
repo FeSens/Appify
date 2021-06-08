@@ -65,7 +65,7 @@
                 </div>
               </a>
             </td>
-            <td>
+            <td data-order="<%= campaign.release_date %>">
               <span class="d-block h5 mb-0"><%= campaign.release_date.to_formatted_s(:short) %></span>
               <span class="d-block font-size-sm"><%= distance_of_time_in_words(Time.now, campaign.release_date) %></span>
             </td>
