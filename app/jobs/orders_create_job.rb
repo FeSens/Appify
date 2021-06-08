@@ -5,7 +5,7 @@ class OrdersCreateJob < ApplicationJob
   attr_accessor :webhook, :utm_source, :utm_medium, :utm_campaign, :campaign, :shop
 
   def perform(shop_domain:, webhook:)
-    return nil if True
+    return nil if true
 
     @webhook = webhook
     @shop = Shop.find_by(shopify_domain: shop_domain)
