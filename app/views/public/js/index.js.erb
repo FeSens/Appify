@@ -25,15 +25,6 @@ function incrementCookie(name, n) {
   return value
 }
 
-function sendOptInAnalytics(type){
-  fetch("/apps/script/analytics/opt_ins",
-    {
-      method: "POST",
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ service: type })
-    })
-}
-
 function addElement (type) { 
   // create a new div element 
   // and give it popup content 
@@ -52,7 +43,6 @@ function addElement (type) {
   if (incrementCookie(`prompt_counter-${type}`, 0) <= 1) {
     openPopup(type);
     incrementCookie(`prompt_counter-${type}`, 1);
-    sendOptInAnalytics(type);
   }
 }
 
@@ -66,11 +56,14 @@ function openPopup(type) {
       var el = document.getElementById(`modal_${type}`);
       el.style.display = 'block';
   }
+
+  sendOptInAnalytics(type, "count");
 }
 
 function closePopup(type) {
   var el = document.getElementById(`modal_${type}`);
   el.style.display = 'none';
+  sendOptInAnalytics(type, "declined");
 }
 
 function pwa_prompt() {
@@ -100,6 +93,8 @@ function showPrompt(type) {
   } else {
     push_prompt();
   }
+
+  sendOptInAnalytics(type, "accepted");
 }
 
 function getParam(param){
@@ -137,4 +132,17 @@ window.onload = function () {
       break;
     }
   }
+}
+
+function sendOptInAnalytics(service, action) {
+  return fetch('/apps/script/analytics/opt_ins', {
+    method: 'post',
+    headers: {
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify({
+      service: service,
+      action: action
+    })
+  });
 }
