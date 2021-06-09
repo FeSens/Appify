@@ -54,6 +54,6 @@ module CachedCountable
   end
 
   def schedule(queue)
-    CachedCountableJob.perform_later(@@cache_time.from_now) unless queue.zero?
+    CachedCountableJob.set(wait_until: @@cache_time.from_now).perform_later unless queue.zero?
   end
 end

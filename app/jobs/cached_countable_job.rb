@@ -7,7 +7,7 @@ class CachedCountableJob < ApplicationJob
     while (key = redis.spop("CachedCountable")) != nil do
       _class, id, column = key.split("/")
       value = get_value(key)
-      _class.constantize.find(id).increment!(column, value)
+      _class.constantize.find(id).increment!(column, value.to_i)
     end
   end
 
