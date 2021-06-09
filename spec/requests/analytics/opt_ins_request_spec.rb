@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Analytics::OptIns", type: :request do
+RSpec.describe "Analytics::OptIns", type: :request, order: :defined do
   let(:shop) { FactoryBot.create :shop}
   let(:params) { { shop_id: shop.id, service: "push", attr: "count" } }
   let(:status) { :no_content }
@@ -13,7 +13,9 @@ RSpec.describe "Analytics::OptIns", type: :request do
 
   describe "increment count" do
     include_examples "http_status"
+  end
 
+  describe "Create OptInCount" do
     it { expect { post "/analytics/opt_ins", params: params }.to change { OptInCount.count }.by(1) }
   end
 end
