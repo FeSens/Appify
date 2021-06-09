@@ -9,7 +9,7 @@ module Shops
 
     def call
       shop = Shop.create_with(shopify_token: token).find_or_create_by!(shopify_domain: shop_name)
-      shop.update(shopify_token: token)
+      shop.update_attribute(:shopify_token, token)
       perform_post_authenticate_jobs
       shop
     end
