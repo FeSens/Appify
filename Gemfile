@@ -37,14 +37,15 @@ gem 'activeresource'
 gem 'aws-sdk-s3', require: false
 gem 'aws-sdk-sqs'
 gem 'aws-sdk-dynamodb'
-gem 'bootstrap', '~>4.3.1'
+gem 'bootstrap', '~> 4.3.1'
 #Add Trhead Pools
 gem 'concurrent-ruby', require: 'concurrent'
 #Add Cors Response
 gem 'rack-cors'
 #Add Users Auth
 gem 'devise'
-gem 'omniauth-shopify-oauth2'
+gem "omniauth", "~> 1.9.1" # Can not move to 2.0 because of devise
+gem 'omniauth-shopify-oauth2', '~> 2.2.2'
 #Add API validations
 gem 'dry-validation'
 gem 'dry-monads'
@@ -54,7 +55,7 @@ gem 'pry-remote'
 gem 'pry-nav'
 gem 'redis'
 gem 'serviceworker-rails'
-gem 'shopify_app'
+gem 'shopify_app', '~> 17'
 gem 'sidekiq'
 gem 'sprockets', '~> 3.0'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
