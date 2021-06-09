@@ -203,7 +203,6 @@ export let utils = (() => {
     },
     init() {
       initialize();
-      cartBind();
       window.onappinstalled = function(ev) { 
         computeSubscriber("pwa")
       };
