@@ -47,4 +47,5 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   config.jaminho_sqs = "https://sqs.us-east-1.amazonaws.com/343793152121/jaiminho-webpush"
   config.pushes_broker = :default
+  config.active_job.queue_adapter = :test
 end
