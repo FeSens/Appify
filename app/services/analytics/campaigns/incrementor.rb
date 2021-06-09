@@ -13,7 +13,7 @@ module Analytics
         Campaign.find(campaign_id).increment(column)
         return unless column == "impressions"
 
-        PushInteraction.find_or_create_by(shop_id: shop_id, date: Date.today.at_beginning_of_month).increment
+        PushInteraction.find_or_create_by(shop_id: shop_id, date: Date.today.at_beginning_of_month).increment(:count)
       end
     end
   end

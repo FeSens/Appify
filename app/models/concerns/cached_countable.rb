@@ -45,12 +45,12 @@ module CachedCountable
     @redis ||= Redis.current
   end
 
-  def name
+  def class_name
     self.class.name
   end
 
   def key(attribute=:count)
-    "#{name}/#{id}/#{attribute}"
+    "#{class_name}/#{id}/#{attribute}"
   end
 
   def schedule(queue)
