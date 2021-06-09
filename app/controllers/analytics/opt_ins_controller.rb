@@ -15,7 +15,7 @@ module Analytics
     end
 
     def opt_in_count
-      @opt_in_count ||= Rails.cache.fetch("Analytics/OptInsController/#{shop.id}/#{params[:service]}", expires_in: 60.seconds) do
+      @opt_in_count ||= Rails.cache.fetch("Analytics/OptInsController/#{shop.id}/#{params[:service]}", expires_in: 5.minutes) do
         OptInCount.find_or_create_by(opt_in_params)
       end
     end
