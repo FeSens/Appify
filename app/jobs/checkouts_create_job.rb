@@ -5,6 +5,7 @@ class CheckoutsCreateJob < ActiveJob::Base
   attr_accessor :webhook
 
   def perform(shop_domain:, webhook:)
+    return if true
     cart = IdentifyCart.new(webhook).call
     raise CartNotFoundError unless cart
   end
