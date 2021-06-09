@@ -18,10 +18,10 @@ class CachedCountableJob < ApplicationJob
   end
 
   def get_value(key)
-    redis.multi
-    redis.get(key)
-    redis.del(key)
-    value, _ = redis.exec
+    value, _ = redis.multi do |multi|
+      multi.get(key)
+      multi.del(key)
+    end
 
     value
   end

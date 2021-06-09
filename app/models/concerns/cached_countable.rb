@@ -33,11 +33,12 @@ module CachedCountable
 
   def count_cached(method, attribute, by)
     redis_key = key(attribute)
-    redis.multi
-    redis.send(method, redis_key, by)
-    redis.sadd("CachedCountable", redis_key)
-    redis.setnx("CachedCountableQueued", 1)
-    _, _, queue = redis.exec
+    _, _, queue = redis.multi do |multi|
+      redis.send(method, redis_key, by)
+      redis.sadd("CachedCountable", redis_key)
+      redis.setnx("CachedCountableQueued", 1)
+    end
+
     schedule(queue)
   end
   
