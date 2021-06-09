@@ -5,3 +5,8 @@ task intercom_sync_task: :environment do
     BillingCheckJob.perform_later(shop)
   }
 end
+
+desc "Update cached counters"
+task update_cached_counters: :environment do
+  CachedCountableJob.perform_now 
+end
