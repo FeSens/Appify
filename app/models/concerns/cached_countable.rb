@@ -33,6 +33,10 @@ module CachedCountable
     redis.get(key(attribute)).present?
   end
 
+  def get_current_value(attribute)
+    self[attribute] + redis.get(key(attribute)).to_i
+  end
+
   private
 
   def count_cached(method, attribute, by)

@@ -70,8 +70,8 @@
               <span class="d-block font-size-sm"><%= distance_of_time_in_words(Time.now, campaign.release_date) %></span>
             </td>
             <td><%= campaign_revenue(campaign) %></td>
-            <td><%= campaign.impressions %></td>
-            <td><%= campaign.clicks %></td>
+            <td><%= campaign.get_current_value(:impressions) %></td>
+            <td><%= campaign.get_current_value(:clicks) %></td>
             <td><%= campaign.ctr %></td>
             <td>
               <% if campaign.sent? %>
