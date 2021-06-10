@@ -9,7 +9,7 @@ module Utils
 
     def call
       user.shop_id = shop_id
-      return Success(shop) if user.save
+      return Success(Shop.find(shop_id)) if user.save
       
       Failure(user.errors.full_messages.first.to_s.capitalize)
     end
