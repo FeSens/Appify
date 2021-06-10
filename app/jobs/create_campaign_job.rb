@@ -15,6 +15,6 @@ class CreateCampaignJob < ApplicationJob
   end
 
   def reschedule
-    CreateCampaignJob.set(wait_until: campaign.release_date).perform_later(campaign)
+    CreateCampaignJob.set(wait_until: campaign.release_date).perform_later(campaign, targeter, **args)
   end
 end
