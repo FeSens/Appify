@@ -9,18 +9,18 @@ module CachedCountable
     end
 
     def self.increment_cached(attribute, id, by=1)
-      self.count_cached(:incrby, attribute, by, id)
+      count_cached(:incrby, attribute, by, id)
     end
   
     def self.decrement_cached(attribute, id, by=1)
-      self.count_cached(:decrby, attribute, by, id)
+      count_cached(:decrby, attribute, by, id)
     end
 
     private
 
     def self.count_cached(method, attribute, by, id)
-      redis_key = self.key(attribute, id)
-      _, _, queue = self.redis.multi do |multi|
+      redis_key = key(attribute, id)
+      _, _, queue = redis.multi do |multi|
         multi.send(method, redis_key, by)
         multi.sadd("CachedCountable", redis_key)
         multi.set("CachedCountableQueued", 1, ex: @@cache_time + 2, nx: true)
