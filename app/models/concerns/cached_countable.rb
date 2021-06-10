@@ -9,11 +9,11 @@ module CachedCountable
     end
 
     def self.increment_cached(attribute, id, by=1)
-      self.class.count_cached(:incrby, attribute, by, id)
+      self.count_cached(:incrby, attribute, by, id)
     end
   
     def self.decrement_cached(attribute, id, by=1)
-      self.class.count_cached(:decrby, attribute, by, id)
+      self.count_cached(:decrby, attribute, by, id)
     end
 
     private
