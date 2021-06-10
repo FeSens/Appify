@@ -23,6 +23,6 @@ class Campaign < ApplicationRecord
   end
 
   def sent?
-    impressions != 0
+    impressions != 0 || is_cached?(impressions)
   end
 end

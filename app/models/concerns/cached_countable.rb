@@ -29,6 +29,10 @@ module CachedCountable
     self.update_attribute(attribute, self[attribute])
   end
 
+  def is_cached?(attribute)
+    redis.get(key(attribute)).present?
+  end
+
   private
 
   def count_cached(method, attribute, by)
@@ -39,7 +43,7 @@ module CachedCountable
       redis.setnx("CachedCountableQueued", 1)
     end
 
-    schedule(queue)
+    schedule if queue
   end
   
   def redis
@@ -54,7 +58,7 @@ module CachedCountable
     "#{class_name}/#{id}/#{attribute}"
   end
 
-  def schedule(queue)
-    CachedCountableJob.set(wait_until: @@cache_time.from_now).perform_later unless queue.zero?
+  def schedule
+    CachedCountableJob.set(wait_until: @@cache_time.from_now).perform_later
   end
 end
