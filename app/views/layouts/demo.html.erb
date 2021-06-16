@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang=<%= I18n.locale %>>
+  <head>
+    <title>Vorta</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= favicon_link_tag asset_path('favicon.png') %>
+    <%= stylesheet_pack_tag 'theme', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'theme', 'data-turbolinks-track': 'reload' %>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <%= render partial: "layouts/analytics" %>
+  </head>
+
+  <body>      
+    <!-- ========== MAIN CONTENT ========== -->
+    <main id="content" role="main" class="main">
+      <!-- Content -->
+      <%= flash_messages %>
+      <div class="content container-fluid">
+        <%= yield %>
+      </div>
+      <!-- End Content -->
+    </main>
+    <!-- ========== END MAIN CONTENT ========== -->
+  </body>
+</html>
