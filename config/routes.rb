@@ -36,7 +36,10 @@ Rails.application.routes.draw do
     resources :manifest, only: %i[index show]
     resource :push, only: %i[create new]
     resources :checkouts, only: %i[create]
+  end
 
+  namespace :demo do 
+    resources :home, only: %i[create new index]
   end
 
   namespace :api do
