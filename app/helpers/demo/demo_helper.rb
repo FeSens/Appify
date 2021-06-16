@@ -1,0 +1,2 @@
+module Demo::DemoHelper
+end
