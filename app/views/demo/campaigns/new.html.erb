@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-lg-6 col-md-12">
+    <div class="card mb-3 mb-lg-5">
+      <div class="card-header">
+        <h2 class="card-title h4">Nova Campanha</h2>
+      </div>
+
+      <!-- Body -->
+      <div class="card-body">
+        <!-- Form -->
+        <%= render "admin/campaigns/form", url: demo_campaigns_path(@campaign), method: :post %>
+        <!-- End Form -->
+      </div>
+      <!-- End Body -->
+    </div>
+  </div>
+
+  <div class="col-lg-6 col-md-12">
+    <%= render "admin/campaigns/pushes_preview" %>
+  </div>
+</div>

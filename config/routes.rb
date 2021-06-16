@@ -40,6 +40,7 @@ Rails.application.routes.draw do
 
   namespace :demo do 
     resources :home, only: %i[create new index]
+    resources :campaigns, only: %i[create new]
   end
 
   namespace :api do
