@@ -40,6 +40,8 @@ gem 'aws-sdk-dynamodb'
 gem 'bootstrap', '~> 4.3.1'
 #Add Trhead Pools
 gem 'concurrent-ruby', require: 'concurrent'
+#Discord Weebhook
+gem 'discordrb-webhooks'
 #Add Cors Response
 gem 'rack-cors'
 #Add Users Auth
