@@ -10,6 +10,8 @@ class Campaign < ApplicationRecord
   
   has_one_attached :image
 
+  after_create :notify
+
   scope :last_month, -> { where("created_at > ?", 30.days.ago) }
   scope :released_this_week, -> { where("release_date > ?", 7.days.ago) }
   scope :released_last_week, -> { where("release_date > ? and release_date < ?", 14.days.ago, 7.days.ago) }
@@ -24,5 +26,9 @@ class Campaign < ApplicationRecord
 
   def sent?
     impressions != 0 || is_cached?(:impressions)
+  end
+
+  def notify
+    Notifier::Campaign.call(self)
   end
 end
