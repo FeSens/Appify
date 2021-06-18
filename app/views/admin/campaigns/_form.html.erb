@@ -31,6 +31,10 @@
     <% end %>
     </div>
 
+    <% if is_a_test %>
+      <%= f.hidden_field :push_id %>
+    <% end %>
+
   </div>
 
   <div class="form-group">

@@ -14,6 +14,8 @@ Rails.application.configure do
       headers: { "Service-Worker-Allowed" => "/" }
     match '/aplicatify-serviceworker-internal.js' => 'aplicatify-serviceworker-internal.js', pack: true,
       headers: { "Service-Worker-Allowed" => "/" }
+    match '/demo/aplicatify-serviceworker.js' => 'aplicatify-serviceworker.js', pack: true,
+      headers: { "Service-Worker-Allowed" => "/" }
 
     match '/yampi.js' => 'yampi.js', pack: true
     # Examples
