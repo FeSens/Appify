@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       namespace :webhook do
         resource :push, only: %i[create]
+        resources :intercom, only: %i[create]
       end
       resources :webhook, only: %i[index create]
 
