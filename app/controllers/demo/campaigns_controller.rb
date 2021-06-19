@@ -10,7 +10,9 @@ module Demo
     def create
       @campaign = current_shop.campaigns.create(campaing_params)
       CreateCampaignJob.perform_later(campaign, :current, {push_id: params[:push_id]})
-      # Actually send push
+      flash[:success] = "Campanha enviada com sucesso"
+
+      redirect_to demo_home_index_path
     end
 
     private

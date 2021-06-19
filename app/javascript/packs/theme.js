@@ -45,6 +45,9 @@ import HSStickyBlock from "../vendor/hs/hs-sticky-block"
 import HSScrollspy from "../vendor/hs/hs-scrollspy"
 
 document.addEventListener("turbolinks:load", () => {
+  if (document.querySelectorAll("#demo-page").length) {
+    import("../scripts/demo") // webpack will load this JS async
+  }
   console.log("we are here")
   $('[data-toggle="tooltip"]').tooltip()
   $('[data-toggle="popover"]').popover()
