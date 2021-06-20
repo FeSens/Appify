@@ -6,5 +6,11 @@ module Notifier
     def initialize
       @client = Discordrb::Webhooks::Client.new(url: WEBHOOK_URL)
     end
+
+    def call
+      call!
+    rescue Exception => e
+      Rollbar.error(e)
+    end
   end
 end

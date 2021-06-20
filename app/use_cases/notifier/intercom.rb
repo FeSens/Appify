@@ -7,7 +7,7 @@ module Notifier
       @data = data["item"]
     end
 
-    def call
+    def call!
       client.execute do |builder|
         builder.username = "Intercom"
         builder.add_embed do |embed|

@@ -8,7 +8,7 @@ module Notifier
       @shop = campaign.shop
     end
 
-    def call
+    def call!
       client.execute do |builder|
         builder.content = "A loja #{shop.name} criou uma campanha!"
         builder.add_embed do |embed|
