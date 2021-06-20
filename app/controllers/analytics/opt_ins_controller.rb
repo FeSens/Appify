@@ -3,7 +3,8 @@ module Analytics
     attr_accessor :opt_in_count
 
     def create
-      opt_in_count.increment(params[:attr])
+      # TODO: Understand this error. Why sometimes attr is not set?
+      opt_in_count.increment(params[:attr]) if params[:attr].present?
 
       head :no_content
     end
