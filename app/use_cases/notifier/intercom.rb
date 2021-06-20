@@ -24,7 +24,10 @@ module Notifier
     private
 
     def message_raw
-      data.dig("conversation_parts", "conversation_parts")&.last
+      count = data.dig("conversation_parts", "total_count") || 0
+      return data.dig("conversation_parts", "conversation_parts")&.last if count > 0
+
+      data.dig("conversation_message")
     end
 
     def message
@@ -32,11 +35,11 @@ module Notifier
     end
 
     def timestamp
-      Time.at(message_raw["notified_at"])
+      Time.at(message_raw["notified_at"] || Time.now)
     end
 
     def author
-      message_raw.dig("author", "name")
+      message_raw.dig("author", "name") || "Autor Desconhecido"
     end
   end
 end
