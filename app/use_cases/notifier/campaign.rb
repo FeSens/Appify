@@ -27,15 +27,19 @@ module Notifier
     private
 
     def shop_icon
-      return "https://media.nature.com/lw800/magazine-assets/d41586-020-01430-5/d41586-020-01430-5_17977552.jpg" unless Rails.env.production?
-      
-      shop.manifest.icon.url
+      shop.manifest.icon.url || default_image
+    rescue URI::InvalidURIError => e
+      default_image
     end
 
     def campaign_image
-      return "https://media.nature.com/lw800/magazine-assets/d41586-020-01430-5/d41586-020-01430-5_17977552.jpg" unless Rails.env.production?
-      
-      campaign.image.url
+      campaign.image.url || default_image
+    rescue URI::InvalidURIError => e
+      default_image
+    end
+
+    def default_image
+      "https://i.ytimg.com/vi/QH2-TGUlwu4/sddefault.jpg"
     end
   end
 end

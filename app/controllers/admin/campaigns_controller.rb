@@ -2,6 +2,8 @@ module Admin
   class CampaignsController < AuthenticatedController
     before_action :load_campaign, only: %i[edit update destroy]
     after_action :create_job, only: %i[update create]
+    rescue_from StandardError, with: :on_exception
+
     attr_accessor :campaign
 
     def index
@@ -30,6 +32,11 @@ module Admin
     end
 
     private
+
+    def on_exception(exception=nil)
+      flash[:error] = exception.message if exception.present?
+      redirect_to admin_campaigns_path
+    end
 
     def campaing_params
       c = params.require(:campaign).permit(:name, :tag, :title, :image, :body, :url, :release_date)
