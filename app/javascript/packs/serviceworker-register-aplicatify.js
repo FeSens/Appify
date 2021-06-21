@@ -3,7 +3,7 @@ import BrowserInteractionTime from 'browser-interaction-time'
 
 function install() {
   if (navigator.serviceWorker) {
-    navigator.serviceWorker.register('aplicatify-serviceworker.js', { scope: '/' })
+    navigator.serviceWorker.register('/aplicatify-serviceworker.js', { scope: '/' })
       .then(function(reg) {
         console.log('[Companion]', 'Service worker registered!');
         window.saved_reg = reg;
