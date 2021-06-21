@@ -1,7 +1,7 @@
 module Analytics
   class CartsController < AnalyticsController
     def create
-      Analytics::Carts::Creator.call(cart_params, params[:subscriber_id], shop.id)
+      #Analytics::Carts::Creator.call(cart_params, params[:subscriber_id], shop.id)
       head :no_content
     end
 
