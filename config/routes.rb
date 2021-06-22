@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :privacy, only: %i[index]
 
   namespace :admin do
+    namespace :journey do 
+      resources :journeys
+    end
     resources :home
     resources :campaigns
     resources :automations
