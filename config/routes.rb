@@ -5,9 +5,6 @@ Rails.application.routes.draw do
   resources :privacy, only: %i[index]
 
   namespace :admin do
-    namespace :journey do 
-      resources :journeys
-    end
     resources :home
     resources :campaigns
     resources :automations
@@ -22,6 +19,11 @@ Rails.application.routes.draw do
     resources :plans, only: %i[index create callback] do
       collection do
         get :callback
+      end
+    end
+    namespace :journey do 
+      resources :journeys do
+        resources :interactions
       end
     end
   end
