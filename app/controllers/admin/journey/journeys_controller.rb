@@ -1,7 +1,9 @@
 module Admin
     module Journey
         class JourneysController < AuthenticatedController
-            def index; end
+            def index
+              @journeys = current_shop.journeys
+            end
         end
     end
 end

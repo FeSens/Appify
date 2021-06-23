@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_09_194748) do
+ActiveRecord::Schema.define(version: 2021_06_23_182901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -172,6 +172,22 @@ ActiveRecord::Schema.define(version: 2021_06_09_194748) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["shop_id"], name: "index_flow_charts_on_shop_id"
+  end
+
+  create_table "interactions", force: :cascade do |t|
+    t.bigint "journey_id", null: false
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["journey_id"], name: "index_interactions_on_journey_id"
+  end
+
+  create_table "journeys", force: :cascade do |t|
+    t.bigint "shop_id"
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["shop_id"], name: "index_journeys_on_shop_id"
   end
 
   create_table "manifests", force: :cascade do |t|
@@ -377,6 +393,7 @@ ActiveRecord::Schema.define(version: 2021_06_09_194748) do
   add_foreign_key "carts", "shops"
   add_foreign_key "configurations", "shops"
   add_foreign_key "flow_charts", "shops"
+  add_foreign_key "interactions", "journeys"
   add_foreign_key "manifests", "shops"
   add_foreign_key "marketing_values", "shops"
   add_foreign_key "opt_in_counts", "shops"
