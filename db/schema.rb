@@ -69,32 +69,6 @@ ActiveRecord::Schema.define(version: 2021_06_23_182901) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "automation_block_links", force: :cascade do |t|
-    t.bigint "automation_block_id", null: false
-    t.bigint "push_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["automation_block_id"], name: "index_automation_block_links_on_automation_block_id"
-    t.index ["push_id"], name: "index_automation_block_links_on_push_id"
-  end
-
-  create_table "automation_blocks", force: :cascade do |t|
-    t.bigint "_next_id"
-    t.bigint "_prev_id"
-    t.bigint "campaign_id"
-    t.bigint "shop_id", null: false
-    t.integer "count", default: 0
-    t.datetime "run_by"
-    t.string "type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.jsonb "settings"
-    t.bigint "flow_chart_id", null: false
-    t.index ["campaign_id"], name: "index_automation_blocks_on_campaign_id"
-    t.index ["flow_chart_id"], name: "index_automation_blocks_on_flow_chart_id"
-    t.index ["shop_id"], name: "index_automation_blocks_on_shop_id"
-  end
-
   create_table "campaigns", force: :cascade do |t|
     t.bigint "shop_id", null: false
     t.string "name"
@@ -108,7 +82,7 @@ ActiveRecord::Schema.define(version: 2021_06_23_182901) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "impressions", default: 0
     t.integer "clicks", default: 0
-    t.datetime "release_date", default: "2021-03-07 00:10:14", null: false
+    t.datetime "release_date", default: "2021-06-04 21:56:02", null: false
     t.index ["shop_id"], name: "index_campaigns_on_shop_id"
   end
 
@@ -164,14 +138,6 @@ ActiveRecord::Schema.define(version: 2021_06_23_182901) do
     t.string "phone"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "flow_charts", force: :cascade do |t|
-    t.bigint "shop_id", null: false
-    t.jsonb "chart_metadata"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["shop_id"], name: "index_flow_charts_on_shop_id"
   end
 
   create_table "interactions", force: :cascade do |t|
@@ -382,17 +348,11 @@ ActiveRecord::Schema.define(version: 2021_06_23_182901) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "automation_block_links", "automation_blocks"
-  add_foreign_key "automation_block_links", "pushes"
-  add_foreign_key "automation_blocks", "campaigns"
-  add_foreign_key "automation_blocks", "flow_charts"
-  add_foreign_key "automation_blocks", "shops"
   add_foreign_key "campaigns", "shops"
   add_foreign_key "carts", "customers"
   add_foreign_key "carts", "pushes"
   add_foreign_key "carts", "shops"
   add_foreign_key "configurations", "shops"
-  add_foreign_key "flow_charts", "shops"
   add_foreign_key "interactions", "journeys"
   add_foreign_key "manifests", "shops"
   add_foreign_key "marketing_values", "shops"

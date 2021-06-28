@@ -2,7 +2,7 @@ module Admin
   module Journey
     class InteractionsController < AuthenticatedController
       def index
-        @interactions = current_shop.journeys.find(params[:journey_id])
+        @interactions = current_shop.journeys.find(params[:journey_id]).interactions
       end
     end
   end
