@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :journey do
     shop
-    name { "MyString" }
+    name { Faker::Beer.unique.brand }
   end
 end
