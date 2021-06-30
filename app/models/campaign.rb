@@ -29,6 +29,6 @@ class Campaign < ApplicationRecord
   end
 
   def notify
-    Notifier::Campaign.call(self)
+    Notifier::Campaign.call(self) if Rails.env.production?
   end
 end

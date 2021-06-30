@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_23_182901) do
+ActiveRecord::Schema.define(version: 2021_06_30_125134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2021_06_23_182901) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "impressions", default: 0
     t.integer "clicks", default: 0
-    t.datetime "release_date", default: "2021-06-04 21:56:02", null: false
+    t.datetime "release_date", default: "2021-06-23 20:10:45", null: false
     t.index ["shop_id"], name: "index_campaigns_on_shop_id"
   end
 
@@ -140,12 +140,33 @@ ActiveRecord::Schema.define(version: 2021_06_23_182901) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "interaction_push_links", force: :cascade do |t|
+    t.bigint "push_id", null: false
+    t.bigint "interaction_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["interaction_id"], name: "index_interaction_push_links_on_interaction_id"
+    t.index ["push_id"], name: "index_interaction_push_links_on_push_id"
+  end
+
   create_table "interactions", force: :cascade do |t|
     t.bigint "journey_id", null: false
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "campaign_id"
+    t.bigint "shop_id", null: false
+    t.bigint "_next_id"
+    t.bigint "_prev_id"
+    t.integer "count", default: 0
+    t.jsonb "settings"
+    t.datetime "run_by"
+    t.string "type"
+    t.index ["_next_id"], name: "index_interactions_on__next_id"
+    t.index ["_prev_id"], name: "index_interactions_on__prev_id"
+    t.index ["campaign_id"], name: "index_interactions_on_campaign_id"
     t.index ["journey_id"], name: "index_interactions_on_journey_id"
+    t.index ["shop_id"], name: "index_interactions_on_shop_id"
   end
 
   create_table "journeys", force: :cascade do |t|
@@ -353,7 +374,13 @@ ActiveRecord::Schema.define(version: 2021_06_23_182901) do
   add_foreign_key "carts", "pushes"
   add_foreign_key "carts", "shops"
   add_foreign_key "configurations", "shops"
+  add_foreign_key "interaction_push_links", "interactions"
+  add_foreign_key "interaction_push_links", "pushes"
+  add_foreign_key "interactions", "campaigns"
+  add_foreign_key "interactions", "interactions", column: "_next_id"
+  add_foreign_key "interactions", "interactions", column: "_prev_id"
   add_foreign_key "interactions", "journeys"
+  add_foreign_key "interactions", "shops"
   add_foreign_key "manifests", "shops"
   add_foreign_key "marketing_values", "shops"
   add_foreign_key "opt_in_counts", "shops"
