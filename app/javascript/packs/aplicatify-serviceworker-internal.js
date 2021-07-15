@@ -5,13 +5,6 @@ import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute } from 'workbox-precaching';
 import { idbKeyval } from 'indexdb'
 import { RequestCORS } from 'workbox-custom'
-//This is the service worker with the Advanced caching
-const HTML_CACHE = "html";
-const JS_CACHE = "javascript";
-const STYLE_CACHE = "stylesheets";
-const IMAGE_CACHE = "images";
-const FONT_CACHE = "fonts";
-const CACHE = "pwabuilder-offline";
 
 /* Variables Declaration */
 var id;
@@ -23,83 +16,6 @@ var shop_id;
 self.addEventListener('install', e => {
   self.skipWaiting();
 });
-
-registerRoute(
-  ({event}) => event.request.destination === 'image',
-  new StaleWhileRevalidate({
-    cacheName: IMAGE_CACHE,
-    plugins: [
-      new CacheableResponsePlugin({
-        statuses: [200],
-      }),
-      new ExpirationPlugin({
-        maxEntries: 15, 
-        purgeOnQuotaError: true,
-      }),
-    ],
-  })
-);
-
-registerRoute(
-  ({event}) => event.request.destination === 'font',
-  new StaleWhileRevalidate({
-    cacheName: FONT_CACHE,
-    plugins: [
-      new ExpirationPlugin({
-        maxEntries: 15, 
-        purgeOnQuotaError: true,
-      }),
-    ],
-  })
-);
-
-registerRoute(
-  ({event}) => event.request.destination === 'script',
-  new StaleWhileRevalidate({
-    cacheName: JS_CACHE,
-    plugins: [
-      new CacheableResponsePlugin({
-        statuses: [200],
-      }),
-      new ExpirationPlugin({
-        maxEntries: 15, 
-        purgeOnQuotaError: true,
-      }),
-    ],
-  })
-);
-
-registerRoute(
-  ({event}) => event.request.destination === 'style',
-  new StaleWhileRevalidate({
-    cacheName: STYLE_CACHE,
-    plugins: [
-      new CacheableResponsePlugin({
-        statuses: [0, 200],
-      }),
-      new ExpirationPlugin({
-        maxEntries: 5, 
-        purgeOnQuotaError: true,
-      }),
-    ],
-  })
-);
-
-registerRoute(
-  ({event}) => event.request.destination === 'document',
-  new StaleWhileRevalidate({
-    cacheName: HTML_CACHE,
-    plugins: [
-      new CacheableResponsePlugin({
-        statuses: [200],
-      }),
-      new ExpirationPlugin({
-        maxEntries: 15, 
-        purgeOnQuotaError: true,
-      }),
-    ],
-  })
-);
 
 /* This is the  END of "Offline copy of assets" service worker */
 
