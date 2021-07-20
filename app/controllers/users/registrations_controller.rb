@@ -15,6 +15,8 @@ module Users
         @user.update(shop: shop.success)
       end
     rescue LoginError => e
+      flash[:error] = shop.failure 
+      redirect_to new_user_session_path
     end
 
     private
