@@ -9,6 +9,7 @@ module Shops
 
     def call
       shop = create_shop
+      return Failure("Infelizmente não estamos aceitando novos clientes no  momento")
       return Success(shop) if shop.persisted?
 
       Failure(shop.errors.full_messages.first.to_s.capitalize)
