@@ -1,0 +1,21 @@
+.banner { 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  background-color: #ec2c0b; 
+  width: 100%; 
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  z-index: 99;
+  height: 1.5rem;
+  a {
+    text-decoration: underline;
+    color: #FFFFFF;
+    margin-left: 0.3em;
+  }
+}
+
+.navbar { 
+  margin-top: 1.5rem;
+}
