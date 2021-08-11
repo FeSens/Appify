@@ -66,7 +66,7 @@ module Campaigns
           url: campaign.url,
          }
       }
-      message[:image] = image if image.present?
+      #message[:image] = image if image.present? Dont send images, they are too expensive
 
       message_list = [message] * targets.length
       if Flipper['jaiminho'].enabled?(campaign.shop)
