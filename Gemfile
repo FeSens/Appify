@@ -51,7 +51,7 @@ gem 'omniauth-shopify-oauth2', '~> 2.2.2'
 #Add API validations
 gem 'dry-validation'
 gem 'dry-monads'
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.12'
 gem 'pry'
 gem 'pry-remote'
 gem 'pry-nav'
