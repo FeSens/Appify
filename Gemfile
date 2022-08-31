@@ -46,7 +46,7 @@ gem 'discordrb-webhooks'
 gem 'rack-cors'
 #Add Users Auth
 gem 'devise'
-gem "omniauth", "~> 1.9.1" # Can not move to 2.0 because of devise
+gem "omniauth", "~> 1.9.2" # Can not move to 2.0 because of devise
 gem 'omniauth-shopify-oauth2', '~> 2.2.2'
 #Add API validations
 gem 'dry-validation'
